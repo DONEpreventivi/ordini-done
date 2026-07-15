@@ -12,42 +12,46 @@
 <title>Ordini D.ONE V4</title>
 <style>
 :root{
-  --bg:#0d0f0e;--panel:#141715;--panel2:#191d1a;--ink:#f4f5f1;--muted:#9da39d;
-  --line:#2a2e2b;--accent:#f07b4f;--ok:#8daa8b;--warn:#d0a55b;--danger:#c96d64;
+  --bg:#efe7d8;--panel:#fffaf2;--panel2:#f6efe4;--ink:#242424;--muted:#756f66;
+  --line:rgba(36,36,36,.12);--accent:#ec7a4d;--ok:#93b18f;--warn:#e6bd5f;--danger:#cf5b55;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg);touch-action:manipulation}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:300;min-height:100vh;overscroll-behavior:none}
 button,input,textarea{font:inherit;color:inherit}button{border:0}.hidden{display:none!important}
-.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:calc(148px + env(safe-area-inset-bottom))}
-header{position:sticky;top:0;z-index:50;background:rgba(13,15,14,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 11px}
-.headrow{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px}.logo{width:50px;height:32px;object-fit:contain;filter:brightness(0) invert(1)}.brand strong{font-size:16px;font-weight:700}.brand small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:50;background:rgba(239,231,216,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 11px}
+.headrow{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px}.logo{width:50px;height:32px;object-fit:contain;filter:none}.brand strong{font-size:16px;font-weight:700}.brand small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
 .user{background:transparent;display:flex;align-items:center;gap:8px}.avatar{width:31px;height:31px;border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:11px}.user span{font-size:10px;font-weight:700;text-align:left}.user em{display:block;color:var(--muted);font-size:8px;font-style:normal;margin-top:2px}
 main{padding:28px 18px 116px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent)}
 h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:10px 0 12px}h2{font-size:36px;line-height:1;letter-spacing:-.055em;font-weight:300;margin:7px 0 0}
 .lead{font-size:15px;line-height:1.55;color:var(--muted);max-width:500px;margin:0 0 24px}
 .sync{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;margin-bottom:30px;color:var(--muted);font-size:15px}.dot{width:6px;height:6px;background:var(--ok);display:inline-block;margin-right:8px}.linkbtn{background:transparent;padding:10px 0;color:var(--ink);text-transform:uppercase;font-size:11px;letter-spacing:.9px;font-weight:700}
 .sectiontitle{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:9px}.sectiontitle strong{font-size:12px;text-transform:uppercase;letter-spacing:1px}.count{font-size:13px;color:var(--muted);font-weight:700}
-.row{width:100%;background:transparent;border-bottom:1px solid var(--line);padding:22px 0;text-align:left;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}.row h3{font-size:20px;margin:0;font-weight:700}.row p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.4}.row .go{font-size:19px;font-weight:300}.status{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:700}.status.bozza{color:var(--warn)}.status.pronto{color:var(--accent)}.status.condiviso{color:#b79ad7}.status.inviato{color:var(--ok)}
+.row{width:100%;background:var(--panel);border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:14px;text-align:left;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}.row h3{font-size:20px;margin:0;font-weight:700}.row p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.4}.row .go{font-size:19px;font-weight:300}.status{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:700}.status.bozza{color:var(--warn)}.status.pronto{color:var(--accent)}.status.condiviso{color:#b79ad7}.status.inviato{color:var(--ok)}
 .pending{margin-bottom:28px}.pending .row{grid-template-columns:1fr auto}.pending-action{text-align:right}.pending-action button{background:transparent;padding:12px 0 12px 16px;color:var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}
-.supplier strong{font-size:34px;letter-spacing:-.04em}.supplier:first-child{border-top:1px solid var(--line)}
-.toolbar{position:sticky;top:69px;z-index:30;background:rgba(13,15,14,.98);margin:-23px -16px 14px;padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.toolbar strong{font-size:26px;font-weight:700}.toolbar small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.supplier strong{font-size:34px;letter-spacing:-.04em}
+.toolbar{position:sticky;top:69px;z-index:30;background:rgba(239,231,216,.98);margin:-23px -16px 14px;padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.toolbar strong{font-size:26px;font-weight:700}.toolbar small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
 .progress{height:2px;background:var(--line);margin:12px 0 3px}.progress span{display:block;height:100%;background:var(--ok);transition:.2s}
-.category{grid-template-columns:1fr auto}.category small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.catstate{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--muted)}.category.visited .catstate{color:var(--warn)}.category.done .catstate{color:var(--ok)}.category.done h3{color:var(--ok)}
+.category{grid-template-columns:1fr auto}.category small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.catstate{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--muted)}.category.visited{border-color:var(--warn);background:#fff8e8}.category.visited .catstate{color:#9a752d}.category.done .catstate{color:var(--ok)}.category.done{border-color:var(--ok);background:#f3f7f1}.category.done h3{color:#617d5f}
 .producttools{position:sticky;top:122px;z-index:25;background:var(--bg);padding-bottom:10px}.search{border-bottom:1px solid var(--line)}.search input{width:100%;border:0;background:transparent;padding:17px 0;outline:0;font-size:17px;font-weight:300}.filters{display:flex;gap:24px;padding-top:14px;overflow:auto}.filter{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:0;white-space:nowrap}.filter.active{color:var(--ink)}
-.product{padding:18px 0}.product.menu{border-left:2px solid var(--accent);padding-left:10px}.product strong{font-size:17px}.product small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.menutag{font-size:9px;color:var(--accent);margin-left:6px;letter-spacing:.8px}
-.qty{display:grid;grid-template-columns:54px 48px 54px;border:1px solid var(--line)}.qty button{height:54px;background:transparent;font-size:26px;font-weight:300}.qty b{display:grid;place-items:center;font-size:18px}.qty.active{border-color:var(--ok)}
+.product{padding:16px}.product.menu{border-left:5px solid var(--accent)}.product strong{font-size:17px}.product small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.menutag{font-size:9px;color:var(--accent);margin-left:6px;letter-spacing:.8px}
+.qty{display:grid;grid-template-columns:52px 46px 52px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.qty button{height:52px;background:#f6efe4;font-size:26px;font-weight:300}.qty b{display:grid;place-items:center;font-size:18px}.qty.active{border-color:var(--ok);box-shadow:0 0 0 2px rgba(147,177,143,.18)}
 .summary-group{border-bottom:1px solid var(--line);padding:15px 0}.summary-group h3{font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px}.sumrow{display:flex;justify-content:space-between;padding:9px 0;font-size:15px}.sumrow b{font-weight:700}
 .money{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:24px 0;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.7px}.money strong{display:block;color:var(--ink);font-size:22px;letter-spacing:0;text-transform:none;margin:5px 0}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}.action{background:var(--panel);padding:20px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}.action.primary{background:var(--ink);color:var(--bg)}.action.warn{color:var(--warn)}.action.danger{color:var(--danger)}.wide{grid-column:1/-1}
-.share-main{width:100%;background:var(--ink);color:var(--bg);padding:22px 12px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:18px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}.action{background:var(--panel);padding:20px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}.action.primary{background:var(--accent);color:#fff}.action.warn{color:var(--warn)}.action.danger{color:var(--danger)}.wide{grid-column:1/-1}
+.share-main{width:100%;background:var(--accent);color:#fff;padding:22px 12px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:18px}
 .timeline{border-left:1px solid var(--line);margin:15px 0 5px;padding-left:15px}.timeline div{position:relative;padding:0 0 19px;font-size:13px;color:var(--muted)}.timeline div:before{content:"";position:absolute;left:-19px;top:2px;width:7px;height:7px;background:var(--bg);border:1px solid var(--muted)}.timeline div.active{color:var(--ink);font-weight:700}.timeline div.active:before{border-color:var(--ok);background:var(--ok)}
-.quickbar{position:fixed;left:50%;bottom:calc(64px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:65;width:min(760px,100%);padding:10px 16px;background:rgba(13,15,14,.97);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px}
-.quickbar strong{font-size:20px;font-weight:700}.quickbar small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.quickbar button{min-width:148px;background:var(--ink);color:var(--bg);padding:16px 18px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:70;width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(13,15,14,.98);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:9px}.nav.active{color:var(--ink)}
-.login{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}.loginbox{width:min(390px,100%)}.loginlogo{width:160px;height:80px;object-fit:contain;filter:brightness(0) invert(1);display:block;margin:0 auto 46px}.pinrow{display:grid;grid-template-columns:1fr auto;border-bottom:1px solid #393d39}.pinrow input{border:0;background:transparent;outline:0;padding:20px 0;font-size:30px;letter-spacing:8px;font-weight:300}.pinrow button{background:transparent;padding:0 0 0 18px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.error{color:var(--danger);font-size:9px;margin-top:10px;min-height:15px}
-.modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.74);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--panel);border-top:1px solid var(--line);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:17px}.sheethead h2{font-size:26px}.close{background:transparent;color:var(--muted);font-size:23px}.modaltext{font-size:14px;line-height:1.55;color:var(--muted)}.miss{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:12px;color:var(--muted);line-height:1.8}.sharelist{display:grid}.shareopt{display:grid;grid-template-columns:1fr auto;align-items:center;background:transparent;border-bottom:1px solid var(--line);padding:22px 0;text-align:left;font-size:16px;font-weight:700}.shareopt small{color:var(--muted);font-size:10px;font-weight:300}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;display:block;margin-bottom:7px}.field textarea{width:100%;min-height:120px;background:transparent;border:1px solid var(--line);padding:11px;outline:0;font-size:15px}
-.toast{position:fixed;z-index:400;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:13px 17px;font-size:12px;font-weight:700;white-space:nowrap}.empty{color:var(--muted);font-size:14px;padding:27px 0;border-bottom:1px solid var(--line)}
+.controlpanel{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:80;width:min(760px,100%);background:rgba(255,250,242,.98);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.controlbtn{min-height:54px;border-radius:13px;background:#f2eadf;color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.75px;font-weight:700;padding:8px}
+.controlbtn.primary{background:var(--accent);color:#fff}
+.controlbtn.secondary{background:#dce9e7}
+.controlbtn.danger{color:var(--danger)}
+.controlbtn:disabled{opacity:.35}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:70;width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(239,231,216,.98);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:9px}.nav.active{color:var(--ink)}
+.login{position:fixed;inset:0;z-index:300;background:#efe7d8;display:flex;align-items:center;justify-content:center;padding:24px}.loginbox{width:min(390px,100%);background:#fffaf2;padding:34px 24px;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(36,36,36,.08)}.loginlogo{width:160px;height:80px;object-fit:contain;filter:none;display:block;margin:0 auto 46px}.pinrow{display:grid;grid-template-columns:1fr auto;border:1px solid var(--line);border-radius:14px;padding:0 14px;background:#fff}.pinrow input{border:0;background:transparent;outline:0;padding:20px 0;font-size:30px;letter-spacing:8px;font-weight:300}.pinrow button{background:transparent;color:var(--accent);padding:0 0 0 18px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.error{color:var(--danger);font-size:9px;margin-top:10px;min-height:15px}
+.modal{position:fixed;inset:0;z-index:200;background:rgba(36,36,36,.42);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--panel);border-top:1px solid var(--line);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:17px}.sheethead h2{font-size:26px}.close{background:transparent;color:var(--muted);font-size:23px}.modaltext{font-size:14px;line-height:1.55;color:var(--muted)}.miss{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:12px;color:var(--muted);line-height:1.8}.sharelist{display:grid}.shareopt{display:grid;grid-template-columns:1fr auto;align-items:center;background:transparent;border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:14px;text-align:left;font-size:16px;font-weight:700}.shareopt small{color:var(--muted);font-size:10px;font-weight:300}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;display:block;margin-bottom:7px}.field textarea{width:100%;min-height:120px;background:transparent;border:1px solid var(--line);padding:11px;outline:0;font-size:15px}
+.toast{position:fixed;z-index:400;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:13px 17px;font-size:12px;font-weight:700;white-space:nowrap}.empty{color:var(--muted);font-size:14px;padding:27px 0;border-bottom:1px solid var(--line)}
 .print{display:none}
 @media print{body>*:not(.print){display:none!important}.print{display:block!important;background:#fff;color:#111;padding:18mm;font-family:Arial}.print img{width:90px}.print table{width:100%;border-collapse:collapse}.print td{padding:5px 0;border-bottom:1px solid #ddd}.print td:last-child{text-align:right;font-weight:bold}}
 </style>
@@ -140,7 +144,7 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 <section id="summary" class="hidden">
   <div class="toolbar">
     <div><strong>Riepilogo</strong><small id="summaryCount"></small></div>
-    <button id="newOrderSummary" class="linkbtn">Nuovo ordine</button>
+    <button id="backToOrderSummary" class="linkbtn">Torna all’ordine</button>
   </div>
   <div id="summaryBody"></div>
   <div id="timeline" class="timeline"></div>
@@ -160,9 +164,10 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 </section>
 </main>
 
-<div id="quickbar" class="quickbar hidden">
-  <div><strong id="quickQty">0 pezzi</strong><small id="quickState">Ordine in bozza</small></div>
-  <button id="quickAction">Riepilogo</button>
+<div id="controlPanel" class="controlpanel hidden">
+  <button id="controlNew" class="controlbtn">Nuovo ordine</button>
+  <button id="controlBack" class="controlbtn secondary">Indietro</button>
+  <button id="controlMain" class="controlbtn primary">Conferma</button>
 </div>
 </div>
 
@@ -184,14 +189,14 @@ const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
 
-let user=JSON.parse(localStorage.getItem('done-v6-user')||'null');
-let pin=localStorage.getItem('done-v6-pin')||'';
+let user=JSON.parse(localStorage.getItem('done-v7-user')||'null');
+let pin=localStorage.getItem('done-v7-pin')||'';
 let catalog=[],grouped={spirits:{},wine:{},beer:{}},orders=[];
-let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v6-current')||'null')||newOrder();
+let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v7-current')||'null')||newOrder();
 let currentCategory='',filter='all',search='',confirmResolve=null,lastShareMethod='';
 
 function newOrder(){return{id:null,supplier:null,status:'BOZZA',qty:{},checked:{},visited:{},note:'',createdAt:null,createdBy:null}}
-function show(id){screens.forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo({top:0,behavior:'smooth'});setTimeout(renderQuickbar,0)}
+function show(id){screens.forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo({top:0,behavior:'smooth'});setTimeout(renderControlPanel,0)}
 function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function haptic(ms=18){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
 function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>$('toast').classList.add('hidden'),1900)}
@@ -203,25 +208,54 @@ function ask(title,text,ok='Conferma',miss=[]){$('confirmTitle').textContent=tit
 function closeAsk(v=false){$('confirmModal').classList.add('hidden');if(confirmResolve){confirmResolve(v);confirmResolve=null}}
 $('confirmOk').onclick=()=>closeAsk(true);$('confirmCancel').onclick=()=>closeAsk(false);$('confirmClose').onclick=()=>closeAsk(false);
 
-async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v6-user',JSON.stringify(user));localStorage.setItem('done-v6-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
+async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v7-user',JSON.stringify(user));localStorage.setItem('done-v7-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
 function applyUser(){$('userName').textContent=user.nome;$('userRole').textContent=user.ruolo;$('avatar').textContent=(user.nome||'?')[0].toUpperCase();$('profileName').textContent=user.nome;$('profileRole').textContent=user.admin?'Amministratore':'Operatore'}
-async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v6-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v6-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
+async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v7-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v7-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
 function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
 async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[]}catch(e){toast('Ordini non disponibili')}}
 function renderMacro(){$('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro))}
 async function openChoice(m){selectedMacro=m;await loadOrders();$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
 function openOrdersFor(m){return orders.filter(o=>supplierKey(o.macrocategoria)===m&&['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
-async function startCleanOrder(){if(current.supplier&&totalQty()){const ok=await ask('Creare un nuovo ordine?','L’ordine corrente verrà cancellato dal dispositivo. Le bozze già salvate online rimarranno disponibili.','Nuovo ordine');if(!ok)return}current={...newOrder(),supplier:selectedMacro,createdAt:new Date().toISOString(),createdBy:user.nome};saveCurrent();renderCategories();show('categories')}
+async function startCleanOrder(){
+  if(!selectedMacro&&current.supplier)selectedMacro=current.supplier;
+  if(current.supplier&&totalQty()){
+    const ok=await ask('Creare un nuovo ordine?','La schermata verrà completamente pulita. Le bozze già salvate online rimarranno disponibili.','Nuovo ordine');
+    if(!ok)return;
+  }
+  current={...newOrder(),supplier:selectedMacro,createdAt:new Date().toISOString(),createdBy:user.nome};
+  currentCategory='';filter='all';search='';
+  if($('search'))$('search').value='';
+  saveCurrent();renderCategories();show('categories');toast('Nuovo ordine vuoto');
+}
 function showOpenOrders(){const list=openOrdersFor(selectedMacro);$('openOrdersTitle').textContent=`${suppliers[selectedMacro]} · ordini aperti`;$('openOrdersList').innerHTML=list.length?list.map((o,i)=>`<button class="row" data-open="${i}"><div><h3>${esc(o.stato)} · ${o.pezziTotali} pezzi</h3><p>${fdate(o.data)} · ${esc(o.operatore)}</p></div><span class="go">→</span></button>`).join(''):'<div class="empty">Nessun ordine aperto.</div>';document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>resumeOrder(list[+b.dataset.open]));show('openOrders')}
 function resumeOrder(o){current={id:o.id,supplier:supplierKey(o.macrocategoria),status:o.stato,qty:{},checked:{},visited:{},note:o.note||'',createdAt:o.data,createdBy:o.operatore};(o.prodotti||[]).forEach(p=>{const found=catalog.find(x=>x.macrocategoria===p.macrocategoria&&x.sottocategoria===p.sottocategoria&&x.prodotto===p.prodotto&&String(x.formato||'')===String(p.formato||''));if(found)current.qty[key(found)]=p.quantita});saveCurrent();if(['PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase())){renderSummary();show('summary')}else{renderCategories();show('categories')}}
-function saveCurrent(){localStorage.setItem('done-v6-current',JSON.stringify(current));renderQuickbar()}
+function saveCurrent(){localStorage.setItem('done-v7-current',JSON.stringify(current));renderControlPanel()}
 function cats(){return Object.keys(grouped[current.supplier]||{})}
 function key(p){return`${current.supplier}|||${String(p.sottocategoria).toUpperCase()}|||${p.prodotto}|||${p.formato||''}`}
 function qty(p){return Number(current.qty[key(p)]||0)}
 function totalQty(){return Object.values(current.qty).reduce((a,b)=>a+Number(b),0)}
 function catQty(c){return(grouped[current.supplier]?.[c]||[]).reduce((n,p)=>n+qty(p),0)}
 function unchecked(){return cats().filter(c=>!current.checked[`${current.supplier}|||${c}`])}
-function renderQuickbar(){const active=current&&current.supplier&&['categories','products','summary'].some(id=>!$(id).classList.contains('hidden'));$('quickbar').classList.toggle('hidden',!active);if(!active)return;$('quickQty').textContent=`${totalQty()} pezzi`;$('quickState').textContent=`${suppliers[current.supplier]} · ${current.status}`;$('quickAction').textContent=$('summary').classList.contains('hidden')?'Riepilogo':(current.status==='BOZZA'?'Salva bozza':'Condividi')}
+function renderControlPanel(){
+  const visible=screens.find(id=>!$(id).classList.contains('hidden'));
+  const active=['categories','products','summary'].includes(visible)&&current&&current.supplier;
+  $('controlPanel').classList.toggle('hidden',!active);
+  if(!active)return;
+
+  $('controlNew').disabled=false;
+  $('controlBack').disabled=false;
+
+  if(visible==='categories'){
+    $('controlBack').textContent='Cambia macro';
+    $('controlMain').textContent='Riepilogo';
+  }else if(visible==='products'){
+    $('controlBack').textContent='Categorie';
+    $('controlMain').textContent='Conferma categoria';
+  }else if(visible==='summary'){
+    $('controlBack').textContent='Continua ordine';
+    $('controlMain').textContent=current.status==='BOZZA'?'Salva bozza':'Condividi';
+  }
+}
 function renderCategories(){const cs=cats(),done=cs.filter(c=>current.checked[`${current.supplier}|||${c}`]).length;$('supplierTitle').textContent=suppliers[current.supplier];$('orderState').innerHTML=`<span class="status ${current.status.toLowerCase()}">${current.status}</span> · ${totalQty()} pezzi`;$('catCount').textContent=`${done} / ${cs.length}`;$('progress').style.width=(cs.length?done/cs.length*100:0)+'%';$('categoryList').innerHTML=cs.map(c=>{const d=current.checked[`${current.supplier}|||${c}`],v=current.visited[`${current.supplier}|||${c}`];return`<button class="row category ${d?'done':v?'visited':''}" data-cat="${esc(c)}"><div><h3>${esc(c)}</h3><small>${catQty(c)} pezzi · ${(grouped[current.supplier][c]||[]).length} prodotti</small></div><span class="catstate">${d?'Controllata':v?'Da confermare':'Da aprire'}</span></button>`}).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>openCat(b.dataset.cat))}
 function openCat(c){currentCategory=c;current.visited[`${current.supplier}|||${c}`]=true;saveCurrent();filter='all';search='';$('search').value='';setFilter('all');renderProducts();show('products')}
 function setFilter(f){filter=f;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));renderProducts()}
@@ -230,7 +264,7 @@ function change(k,d){haptic(12);current.qty[k]=Math.max(0,Number(current.qty[k]|
 function selected(){return catalog.filter(p=>qty(p)).map(p=>({...p,quantita:qty(p)}))}
 function values(){return selected().reduce((a,p)=>{const n=p.prezzoNetto*p.quantita,v=n*p.iva/100;a.net+=n;a.vat+=v;a.total+=n+v;return a},{net:0,vat:0,total:0})}
 function renderTimeline(){const order=['BOZZA','PRONTO','CONDIVISO','INVIATO'],idx=order.indexOf(String(current.status).toUpperCase());$('timeline').innerHTML=order.map((s,i)=>`<div class="${i<=idx?'active':''}">${s}</div>`).join('')}
-function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderQuickbar()}
+function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderControlPanel()}
 function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger">Cancella</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
 function payload(status,extra={}){return{action:'salvaOrdine',pin,ordineId:current.id||null,macrocategoria:suppliers[current.supplier],stato:status,note:current.note||'',metodoCondivisione:extra.method||'',prodotti:selected().map(p=>({macrocategoria:p.macrocategoria,sottocategoria:p.sottocategoria,prodotto:p.prodotto,formato:p.formato,quantita:p.quantita}))}}
 async function saveState(status,extra={}){const d=await apiPost(payload(status,extra));if(!d.ok)throw new Error(d.errore);current.id=d.ordine.id;current.status=status;saveCurrent();await loadOrders();return d}
@@ -246,6 +280,26 @@ async function performShare(method){const text=orderText();if(method==='native')
 async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine inviato')}catch(e){toast(e.message||'Errore')}}
 function keepShared(){$('sentModal').classList.add('hidden');toast('Ordine lasciato aperto')}
 
+
+$('controlNew').onclick=()=>startCleanOrder();
+$('controlBack').onclick=()=>{
+  const visible=screens.find(id=>!$(id).classList.contains('hidden'));
+  if(visible==='products'){renderCategories();show('categories');}
+  else if(visible==='summary'){renderCategories();show('categories');}
+  else if(visible==='categories'){selectedMacro=current.supplier;show('choice');}
+};
+$('controlMain').onclick=()=>{
+  const visible=screens.find(id=>!$(id).classList.contains('hidden'));
+  if(visible==='categories'){renderSummary();show('summary');}
+  else if(visible==='products'){$('checkCategory').click();}
+  else if(visible==='summary'){
+    if(current.status==='BOZZA'){
+      if($('saveDraft'))$('saveDraft').click();
+    }else{
+      $('shareModal').classList.remove('hidden');
+    }
+  }
+};
 $('loginForm').onsubmit=login;
 $('syncBtn').onclick=syncCatalog;
 $('forceSync').onclick=syncCatalog;
@@ -256,7 +310,7 @@ $('backChoice').onclick=()=>show('choice');
 $('newOrderChoice').onclick=startCleanOrder;
 $('editOrderChoice').onclick=showOpenOrders;
 $('newOrderTop').onclick=startCleanOrder;
-$('newOrderSummary').onclick=startCleanOrder;
+$('backToOrderSummary').onclick=()=>{renderCategories();show('categories')};
 $('search').oninput=e=>{search=e.target.value;renderProducts()};
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));
 $('checkCategory').onclick=async()=>{const ok=await ask('Confermare categoria?','Dichiari di averla controllata, anche senza selezionare prodotti.','Conferma');if(!ok)return;current.checked[`${current.supplier}|||${currentCategory}`]=true;saveCurrent();renderCategories();show('categories')};
@@ -267,8 +321,7 @@ document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(
 $('markSent').onclick=markSent;
 $('keepShared').onclick=keepShared;
 $('sentClose').onclick=keepShared;
-$('quickAction').onclick=()=>{if($('summary').classList.contains('hidden')){renderSummary();show('summary')}else if(current.status==='BOZZA'){if($('saveDraft'))$('saveDraft').click()}else $('shareModal').classList.remove('hidden')};
-$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v6-user');localStorage.removeItem('done-v6-pin');location.reload()}};
+$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v7-user');localStorage.removeItem('done-v7-pin');location.reload()}};
 
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
