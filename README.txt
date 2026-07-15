@@ -1,16 +1,21 @@
-ORDINI D.ONE V5 — USABILITY
+ORDINI D.ONE V6 — SIMPLE FLOW
 
-MIGLIORAMENTI
-- Testi e titoli più grandi
-- Pulsanti quantità da 54 px
-- Righe prodotto e categorie più alte
-- Barra fissa in basso con pezzi e azione principale
-- Feedback aptico su +, -, conferme e salvataggi
-- Ricerca e filtri più leggibili
-- Login più grande
-- Bottom sheet e alert più facili da usare
-- Nessuna modifica necessaria ad Apps Script rispetto alla V4
+FLUSSO
+Login
+→ SPIRITS / VINO / BIRRA
+→ Nuovo ordine oppure Modifica ordine aperto
+→ Categorie
+→ Prodotti
+→ Riepilogo
+→ Bozza / Pronto / Condiviso / Inviato
 
-PUBBLICAZIONE
-Sostituisci nel repository GitHub tutti i file con quelli presenti nel pacchetto.
-Attendi GitHub Pages. Se l'iPhone mostra ancora la versione precedente, elimina l'icona dalla Home e aggiungila nuovamente.
+NOVITÀ
+- L'app si apre sempre sulle 3 macro.
+- Dopo la macro compaiono solo due scelte.
+- Nuovo ordine azzera quantità, controlli, filtri e note.
+- Modifica ordine aperto mostra solo gli ordini relativi alla macro scelta.
+- Pulsante Nuovo ordine sempre visibile durante la compilazione.
+- Interfaccia più lineare e pulita.
+
+APPS SCRIPT
+Usa lo stesso Codice_Apps_Script_V4.gs già incluso nel pacchetto.

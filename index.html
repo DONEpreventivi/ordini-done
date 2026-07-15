@@ -52,42 +52,118 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 @media print{body>*:not(.print){display:none!important}.print{display:block!important;background:#fff;color:#111;padding:18mm;font-family:Arial}.print img{width:90px}.print table{width:100%;border-collapse:collapse}.print td{padding:5px 0;border-bottom:1px solid #ddd}.print td:last-child{text-align:right;font-weight:bold}}
 </style>
 </head>
+
 <body>
-<div id="login" class="login"><div class="loginbox"><img class="loginlogo" src="done-logo.png"><form id="loginForm"><div class="pinrow"><input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN"><button>Entra</button></div></form><div id="loginError" class="error"></div></div></div>
+<div id="login" class="login">
+  <div class="loginbox">
+    <img class="loginlogo" src="done-logo.png">
+    <form id="loginForm">
+      <div class="pinrow">
+        <input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">
+        <button>Entra</button>
+      </div>
+    </form>
+    <div id="loginError" class="error"></div>
+  </div>
+</div>
 
 <div class="app">
-<header><div class="headrow"><div class="brand"><img class="logo" src="done-logo.png"><div><strong>Ordini</strong><small id="subtitle">D.ONE Internal</small></div></div><button id="profileBtn" class="user"><div id="avatar" class="avatar">S</div><div><span id="userName">Utente</span><em id="userRole">OPERATORE</em></div></button></div></header>
+<header>
+  <div class="headrow">
+    <div class="brand">
+      <img class="logo" src="done-logo.png">
+      <div><strong>Ordini</strong><small id="subtitle">D.ONE Internal</small></div>
+    </div>
+    <button id="profileBtn" class="user">
+      <div id="avatar" class="avatar">S</div>
+      <div><span id="userName">Utente</span><em id="userRole">OPERATORE</em></div>
+    </button>
+  </div>
+</header>
+
 <main>
-<section id="home">
-<div class="eyebrow">D.ONE INTERNAL</div><h1>Ordini.</h1><p class="lead">Ogni ordine può essere iniziato, ripreso, controllato e condiviso in momenti diversi.</p>
-<div class="sync"><span><i class="dot"></i><span id="syncText">Sincronizzazione…</span></span><button id="syncBtn" class="linkbtn">Aggiorna</button></div>
-<div id="pendingBlock" class="pending hidden"><div class="sectiontitle"><strong>Ordini in sospeso</strong><span id="pendingCount" class="count">0</span></div><div id="pendingList"></div></div>
-<div class="sectiontitle"><strong>Nuovo ordine</strong></div><div id="supplierList"></div>
+<section id="macro">
+  <div class="eyebrow">Scegli la macrocategoria</div>
+  <h1>Ordini.</h1>
+  <p class="lead">Seleziona il fornitore da gestire.</p>
+  <div class="sync"><span><i class="dot"></i><span id="syncText">Sincronizzazione…</span></span><button id="syncBtn" class="linkbtn">Aggiorna</button></div>
+  <div id="macroList"></div>
+</section>
+
+<section id="choice" class="hidden">
+  <div class="toolbar">
+    <div><strong id="choiceTitle"></strong><small>Scegli come procedere</small></div>
+    <button id="backMacro" class="linkbtn">Cambia macro</button>
+  </div>
+  <button id="newOrderChoice" class="row supplier">
+    <div><strong>Nuovo ordine</strong><p>Inizia con quantità e controlli completamente azzerati.</p></div><span class="go">→</span>
+  </button>
+  <button id="editOrderChoice" class="row supplier">
+    <div><strong>Modifica ordine aperto</strong><p id="openOrdersMeta">Nessun ordine aperto</p></div><span class="go">→</span>
+  </button>
+</section>
+
+<section id="openOrders" class="hidden">
+  <div class="toolbar">
+    <div><strong id="openOrdersTitle"></strong><small>Bozze, pronti e condivisi</small></div>
+    <button id="backChoice" class="linkbtn">Indietro</button>
+  </div>
+  <div id="openOrdersList"></div>
 </section>
 
 <section id="categories" class="hidden">
-<div class="toolbar"><div><strong id="supplierTitle"></strong><small id="orderState"></small></div><button id="openSummary" class="linkbtn">Riepilogo</button></div>
-<div class="sectiontitle"><strong>Controllo categorie</strong><span id="catCount" class="count">0 / 0</span></div><div class="progress"><span id="progress"></span></div><div id="categoryList"></div>
+  <div class="toolbar">
+    <div><strong id="supplierTitle"></strong><small id="orderState"></small></div>
+    <button id="newOrderTop" class="linkbtn">Nuovo ordine</button>
+  </div>
+  <div class="sectiontitle"><strong>Controllo categorie</strong><span id="catCount" class="count">0 / 0</span></div>
+  <div class="progress"><span id="progress"></span></div>
+  <div id="categoryList"></div>
 </section>
 
 <section id="products" class="hidden">
-<div class="toolbar"><div><strong id="categoryTitle"></strong><small id="categoryMeta"></small></div><button id="checkCategory" class="linkbtn">Conferma</button></div>
-<div class="producttools"><div class="search"><input id="search" type="search" placeholder="Cerca prodotto"></div><div class="filters"><button data-filter="all" class="filter active">Tutti</button><button data-filter="menu" class="filter">Menu drink</button><button data-filter="selected" class="filter">Selezionati</button></div></div><div id="productList"></div>
+  <div class="toolbar">
+    <div><strong id="categoryTitle"></strong><small id="categoryMeta"></small></div>
+    <button id="checkCategory" class="linkbtn">Conferma</button>
+  </div>
+  <div class="producttools">
+    <div class="search"><input id="search" type="search" placeholder="Cerca prodotto"></div>
+    <div class="filters">
+      <button data-filter="all" class="filter active">Tutti</button>
+      <button data-filter="menu" class="filter">Menu drink</button>
+      <button data-filter="selected" class="filter">Selezionati</button>
+    </div>
+  </div>
+  <div id="productList"></div>
 </section>
 
 <section id="summary" class="hidden">
-<div class="sectiontitle"><div><div class="eyebrow">Ordine corrente</div><h2>Riepilogo.</h2></div><span id="summaryCount" class="count"></span></div>
-<div id="summaryBody"></div>
-<div id="timeline" class="timeline"></div>
-<div id="summaryActions"></div>
+  <div class="toolbar">
+    <div><strong>Riepilogo</strong><small id="summaryCount"></small></div>
+    <button id="newOrderSummary" class="linkbtn">Nuovo ordine</button>
+  </div>
+  <div id="summaryBody"></div>
+  <div id="timeline" class="timeline"></div>
+  <div id="summaryActions"></div>
 </section>
 
-<section id="archive" class="hidden"><div class="sectiontitle"><div><div class="eyebrow">Database condiviso</div><h2>Ordini.</h2></div><span id="archiveCount" class="count">0</span></div><div id="archiveList"></div></section>
-
-<section id="profile" class="hidden"><div class="sectiontitle"><div><div class="eyebrow">Sessione</div><h2>Profilo.</h2></div></div><div class="row"><div><h3 id="profileName"></h3><p id="profileRole"></p></div></div><div class="actions"><button id="forceSync" class="action wide">Aggiorna catalogo</button><button id="logout" class="action danger wide">Esci</button></div></section>
+<section id="profile" class="hidden">
+  <div class="toolbar">
+    <div><strong>Profilo</strong><small id="profileRole"></small></div>
+    <button id="closeProfile" class="linkbtn">Chiudi</button>
+  </div>
+  <div class="row"><div><h3 id="profileName"></h3></div></div>
+  <div class="actions">
+    <button id="forceSync" class="action wide">Aggiorna catalogo</button>
+    <button id="logout" class="action danger wide">Esci</button>
+  </div>
+</section>
 </main>
-<div id="quickbar" class="quickbar hidden"><div><strong id="quickQty">0 pezzi</strong><small id="quickState">Ordine in bozza</small></div><button id="quickAction">Continua</button></div>
-<nav class="bottom"><button class="nav active" data-nav="home">Ordine</button><button class="nav" data-nav="archive">Archivio</button><button class="nav" data-nav="profile">Profilo</button></nav>
+
+<div id="quickbar" class="quickbar hidden">
+  <div><strong id="quickQty">0 pezzi</strong><small id="quickState">Ordine in bozza</small></div>
+  <button id="quickAction">Riepilogo</button>
+</div>
 </div>
 
 <div id="confirmModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Conferma</div><h2 id="confirmTitle"></h2></div><button id="confirmClose" class="close">×</button></div><div id="confirmText" class="modaltext"></div><div id="confirmMiss" class="miss hidden"></div><div class="actions"><button id="confirmCancel" class="action">Annulla</button><button id="confirmOk" class="action primary">Conferma</button></div></div></div>
@@ -98,18 +174,20 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 
 <div id="sentModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Condivisione completata</div><h2>È stato inviato?</h2></div><button id="sentClose" class="close">×</button></div><p class="modaltext">Conferma solo se l’ordine è stato realmente mandato al fornitore.</p><div class="actions"><button id="keepShared" class="action warn">No, resta condiviso</button><button id="markSent" class="action primary">Sì, inviato</button></div></div></div>
 
-<div id="toast" class="toast hidden"></div><div id="print" class="print"></div>
-
+<div id="toast" class="toast hidden"></div>
+<div id="print" class="print"></div>
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycbwguLOUwvP7cOogE30RZHtBfH-ryl0F9gudS4Lnqtwov062yJWyUzgT96ABnEg-vJGc/exec';
 const $=id=>document.getElementById(id);
-const screens=['home','categories','products','summary','archive','profile'];
+const screens=['macro','choice','openOrders','categories','products','summary','profile'];
 const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
-let user=JSON.parse(localStorage.getItem('done-v4-user')||'null'),pin=localStorage.getItem('done-v4-pin')||'';
+
+let user=JSON.parse(localStorage.getItem('done-v6-user')||'null');
+let pin=localStorage.getItem('done-v6-pin')||'';
 let catalog=[],grouped={spirits:{},wine:{},beer:{}},orders=[];
-let current=JSON.parse(localStorage.getItem('done-v4-current')||'null')||newOrder();
+let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v6-current')||'null')||newOrder();
 let currentCategory='',filter='all',search='',confirmResolve=null,lastShareMethod='';
 
 function newOrder(){return{id:null,supplier:null,status:'BOZZA',qty:{},checked:{},visited:{},note:'',createdAt:null,createdBy:null}}
@@ -117,7 +195,6 @@ function show(id){screens.forEach(x=>$(x).classList.toggle('hidden',x!==id));win
 function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function haptic(ms=18){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
 function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>$('toast').classList.add('hidden'),1900)}
-function saveCurrent(){localStorage.setItem('done-v4-current',JSON.stringify(current));renderHome();renderQuickbar()}
 function apiGet(a,extra=''){return fetch(`${API_URL}?action=${a}${extra}&_=${Date.now()}`,{cache:'no-store'}).then(r=>r.json())}
 function apiPost(b){return fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b)}).then(r=>r.json())}
 function supplierKey(v){v=String(v||'').toUpperCase();return v==='SPIRITS'?'spirits':v==='VINO'?'wine':'beer'}
@@ -126,37 +203,25 @@ function ask(title,text,ok='Conferma',miss=[]){$('confirmTitle').textContent=tit
 function closeAsk(v=false){$('confirmModal').classList.add('hidden');if(confirmResolve){confirmResolve(v);confirmResolve=null}}
 $('confirmOk').onclick=()=>closeAsk(true);$('confirmCancel').onclick=()=>closeAsk(false);$('confirmClose').onclick=()=>closeAsk(false);
 
-async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v4-user',JSON.stringify(user));localStorage.setItem('done-v4-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderArchive();renderHome()}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
+async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v6-user',JSON.stringify(user));localStorage.setItem('done-v6-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
 function applyUser(){$('userName').textContent=user.nome;$('userRole').textContent=user.ruolo;$('avatar').textContent=(user.nome||'?')[0].toUpperCase();$('profileName').textContent=user.nome;$('profileRole').textContent=user.admin?'Amministratore':'Operatore'}
-async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v4-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderHome();if(current.supplier)renderCategories()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v4-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
+async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v6-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v6-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
 function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
-async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[];renderArchive();renderHome()}catch(e){toast('Archivio non disponibile')}}
-function openOrders(){return orders.filter(o=>['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
-function renderHome(){
-  const pend=openOrders();$('pendingBlock').classList.toggle('hidden',!pend.length);$('pendingCount').textContent=pend.length;
-  $('pendingList').innerHTML=pend.map((o,i)=>`<div class="row"><div><h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3><p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p></div><div class="pending-action"><button data-pend="${i}">${String(o.stato).toUpperCase()==='PRONTO'?'Condividi':'Continua'} →</button></div></div>`).join('');
-  document.querySelectorAll('[data-pend]').forEach(b=>b.onclick=()=>resumeOrder(pend[+b.dataset.pend]));
-  const sent=orders.filter(o=>String(o.stato).toUpperCase()==='INVIATO'),last={};sent.forEach(o=>{const k=supplierKey(o.macrocategoria);if(!last[k])last[k]=o});
-  $('supplierList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-supplier="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}${last[k]?` · ultimo ${fdate(last[k].data)}`:''}</p></div><span class="go">→</span></button>`).join('');
-  document.querySelectorAll('[data-supplier]').forEach(b=>b.onclick=()=>startOrder(b.dataset.supplier))
-}
-async function startOrder(s){if(current.supplier&&totalQty()){const ok=await ask('Nuovo ordine?','L’ordine corrente rimane salvato come bozza sul dispositivo.','Continua');if(!ok)return}current={...newOrder(),supplier:s,createdAt:new Date().toISOString(),createdBy:user.nome};saveCurrent();renderCategories();show('categories')}
-function resumeOrder(o){current={id:o.id,supplier:supplierKey(o.macrocategoria),status:o.stato,qty:{},checked:{},visited:{},note:o.note||'',createdAt:o.data,createdBy:o.operatore};(o.prodotti||[]).forEach(p=>{const found=catalog.find(x=>x.macrocategoria===p.macrocategoria&&x.sottocategoria===p.sottocategoria&&x.prodotto===p.prodotto&&String(x.formato||'')===String(p.formato||''));if(found)current.qty[key(found)]=p.quantita});saveCurrent();if(String(o.stato).toUpperCase()==='PRONTO'||String(o.stato).toUpperCase()==='CONDIVISO'){renderSummary();show('summary')}else{renderCategories();show('categories')}setNav('home')}
+async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[]}catch(e){toast('Ordini non disponibili')}}
+function renderMacro(){$('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro))}
+async function openChoice(m){selectedMacro=m;await loadOrders();$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
+function openOrdersFor(m){return orders.filter(o=>supplierKey(o.macrocategoria)===m&&['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
+async function startCleanOrder(){if(current.supplier&&totalQty()){const ok=await ask('Creare un nuovo ordine?','L’ordine corrente verrà cancellato dal dispositivo. Le bozze già salvate online rimarranno disponibili.','Nuovo ordine');if(!ok)return}current={...newOrder(),supplier:selectedMacro,createdAt:new Date().toISOString(),createdBy:user.nome};saveCurrent();renderCategories();show('categories')}
+function showOpenOrders(){const list=openOrdersFor(selectedMacro);$('openOrdersTitle').textContent=`${suppliers[selectedMacro]} · ordini aperti`;$('openOrdersList').innerHTML=list.length?list.map((o,i)=>`<button class="row" data-open="${i}"><div><h3>${esc(o.stato)} · ${o.pezziTotali} pezzi</h3><p>${fdate(o.data)} · ${esc(o.operatore)}</p></div><span class="go">→</span></button>`).join(''):'<div class="empty">Nessun ordine aperto.</div>';document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>resumeOrder(list[+b.dataset.open]));show('openOrders')}
+function resumeOrder(o){current={id:o.id,supplier:supplierKey(o.macrocategoria),status:o.stato,qty:{},checked:{},visited:{},note:o.note||'',createdAt:o.data,createdBy:o.operatore};(o.prodotti||[]).forEach(p=>{const found=catalog.find(x=>x.macrocategoria===p.macrocategoria&&x.sottocategoria===p.sottocategoria&&x.prodotto===p.prodotto&&String(x.formato||'')===String(p.formato||''));if(found)current.qty[key(found)]=p.quantita});saveCurrent();if(['PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase())){renderSummary();show('summary')}else{renderCategories();show('categories')}}
+function saveCurrent(){localStorage.setItem('done-v6-current',JSON.stringify(current));renderQuickbar()}
 function cats(){return Object.keys(grouped[current.supplier]||{})}
 function key(p){return`${current.supplier}|||${String(p.sottocategoria).toUpperCase()}|||${p.prodotto}|||${p.formato||''}`}
 function qty(p){return Number(current.qty[key(p)]||0)}
 function totalQty(){return Object.values(current.qty).reduce((a,b)=>a+Number(b),0)}
-function renderQuickbar(){
-  const active=current&&current.supplier&&['categories','products','summary'].some(id=>!$(id).classList.contains('hidden'));
-  $('quickbar').classList.toggle('hidden',!active);
-  if(!active)return;
-  $('quickQty').textContent=`${totalQty()} pezzi`;
-  $('quickState').textContent=`${suppliers[current.supplier]} · ${current.status}`;
-  const onSummary=!$('summary').classList.contains('hidden');
-  $('quickAction').textContent=onSummary?(current.status==='BOZZA'?'Salva bozza':'Condividi'):'Riepilogo';
-}
 function catQty(c){return(grouped[current.supplier]?.[c]||[]).reduce((n,p)=>n+qty(p),0)}
 function unchecked(){return cats().filter(c=>!current.checked[`${current.supplier}|||${c}`])}
+function renderQuickbar(){const active=current&&current.supplier&&['categories','products','summary'].some(id=>!$(id).classList.contains('hidden'));$('quickbar').classList.toggle('hidden',!active);if(!active)return;$('quickQty').textContent=`${totalQty()} pezzi`;$('quickState').textContent=`${suppliers[current.supplier]} · ${current.status}`;$('quickAction').textContent=$('summary').classList.contains('hidden')?'Riepilogo':(current.status==='BOZZA'?'Salva bozza':'Condividi')}
 function renderCategories(){const cs=cats(),done=cs.filter(c=>current.checked[`${current.supplier}|||${c}`]).length;$('supplierTitle').textContent=suppliers[current.supplier];$('orderState').innerHTML=`<span class="status ${current.status.toLowerCase()}">${current.status}</span> · ${totalQty()} pezzi`;$('catCount').textContent=`${done} / ${cs.length}`;$('progress').style.width=(cs.length?done/cs.length*100:0)+'%';$('categoryList').innerHTML=cs.map(c=>{const d=current.checked[`${current.supplier}|||${c}`],v=current.visited[`${current.supplier}|||${c}`];return`<button class="row category ${d?'done':v?'visited':''}" data-cat="${esc(c)}"><div><h3>${esc(c)}</h3><small>${catQty(c)} pezzi · ${(grouped[current.supplier][c]||[]).length} prodotti</small></div><span class="catstate">${d?'Controllata':v?'Da confermare':'Da aprire'}</span></button>`}).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>openCat(b.dataset.cat))}
 function openCat(c){currentCategory=c;current.visited[`${current.supplier}|||${c}`]=true;saveCurrent();filter='all';search='';$('search').value='';setFilter('all');renderProducts();show('products')}
 function setFilter(f){filter=f;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));renderProducts()}
@@ -165,38 +230,49 @@ function change(k,d){haptic(12);current.qty[k]=Math.max(0,Number(current.qty[k]|
 function selected(){return catalog.filter(p=>qty(p)).map(p=>({...p,quantita:qty(p)}))}
 function values(){return selected().reduce((a,p)=>{const n=p.prezzoNetto*p.quantita,v=n*p.iva/100;a.net+=n;a.vat+=v;a.total+=n+v;return a},{net:0,vat:0,total:0})}
 function renderTimeline(){const order=['BOZZA','PRONTO','CONDIVISO','INVIATO'],idx=order.indexOf(String(current.status).toUpperCase());$('timeline').innerHTML=order.map((s,i)=>`<div class="${i<=idx?'active':''}">${s}</div>`).join('')}
-function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions()}
-function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button><button id="deleteCurrent" class="action danger wide">Cancella ordine</button></div>`}else if(s==='PRONTO'||s==='CONDIVISO'){h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger">Cancella</button></div>`}else{h=`<div class="actions"><button id="shareOrder" class="action wide">Condividi di nuovo</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
+function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderQuickbar()}
+function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger">Cancella</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
 function payload(status,extra={}){return{action:'salvaOrdine',pin,ordineId:current.id||null,macrocategoria:suppliers[current.supplier],stato:status,note:current.note||'',metodoCondivisione:extra.method||'',prodotti:selected().map(p=>({macrocategoria:p.macrocategoria,sottocategoria:p.sottocategoria,prodotto:p.prodotto,formato:p.formato,quantita:p.quantita}))}}
 async function saveState(status,extra={}){const d=await apiPost(payload(status,extra));if(!d.ok)throw new Error(d.errore);current.id=d.ordine.id;current.status=status;saveCurrent();await loadOrders();return d}
-async function saveDraft(){if(!totalQty())return toast('Seleziona almeno un prodotto');try{await saveState('BOZZA');haptic(35);toast('Bozza condivisa salvata');renderSummary()}catch(e){toast(e.message||'Errore')}}
+async function saveDraft(){if(!totalQty())return toast('Seleziona almeno un prodotto');try{await saveState('BOZZA');toast('Bozza condivisa salvata');renderSummary()}catch(e){toast(e.message||'Errore')}}
 async function openReady(){if(!totalQty())return toast('Seleziona almeno un prodotto');const miss=unchecked();if(miss.length){const ok=await ask('Categorie non controllate',`Hai controllato ${cats().length-miss.length} categorie su ${cats().length}.`,'Continua comunque',miss);if(!ok)return}$('notes').value=current.note||'';$('notesModal').classList.remove('hidden')}
-async function markReady(){current.note=$('notes').value;try{await saveState('PRONTO');$('notesModal').classList.add('hidden');haptic(40);toast('Ordine pronto per la condivisione');renderSummary()}catch(e){toast(e.message||'Errore')}}
-async function reopenDraft(){const ok=await ask('Riaprire l’ordine?','Tornerà modificabile e comparirà come bozza.','Riapri');if(!ok)return;try{await saveState('BOZZA');renderCategories();show('categories');toast('Ordine riaperto')}catch(e){toast(e.message||'Errore')}}
-async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders();show('home');setNav('home');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
+async function markReady(){current.note=$('notes').value;try{await saveState('PRONTO');$('notesModal').classList.add('hidden');toast('Ordine pronto');renderSummary()}catch(e){toast(e.message||'Errore')}}
+async function reopenDraft(){try{await saveState('BOZZA');renderCategories();show('categories')}catch(e){toast(e.message||'Errore')}}
+async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
 function orderText(){const a=[`ORDINE ${suppliers[current.supplier]}`,`Operatore: ${user.nome}`,`Stato: ${current.status}`,''];let c='';selected().forEach(p=>{if(p.sottocategoria!==c){c=p.sottocategoria;a.push('',c)}a.push(`• ${p.prodotto}${p.formato?' · '+p.formato:''} — ${p.quantita}`)});a.push('',`TOTALE: ${totalQty()} pezzi`);return a.join('\n')}
 function printOrder(){$('print').innerHTML=`<div style="display:flex;justify-content:space-between"><div><h1>ORDINE ${suppliers[current.supplier]}</h1><p>${fdate(new Date())} · ${esc(user.nome)}</p></div><img src="done-logo.png"></div>${[...new Set(selected().map(p=>p.sottocategoria))].map(c=>`<h2>${esc(c)}</h2><table>${selected().filter(p=>p.sottocategoria===c).map(p=>`<tr><td>${esc(p.prodotto)} ${esc(p.formato||'')}</td><td>${p.quantita}</td></tr>`).join('')}</table>`).join('')}<h2>Totale: ${totalQty()} pezzi</h2>`;window.print()}
-async function shared(method){lastShareMethod=method;try{await saveState('CONDIVISO',{method});$('shareModal').classList.add('hidden');$('sentModal').classList.remove('hidden');renderSummary()}catch(e){toast(e.message||'Errore salvataggio')}}
-async function performShare(method){const text=orderText();if(method==='native'){if(navigator.share){try{await navigator.share({title:`Ordine ${suppliers[current.supplier]}`,text});await shared('Condivisione telefono')}catch(e){}}else{await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}}if(method==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');await shared('WhatsApp')}if(method==='pdf'){printOrder();await shared('PDF')}if(method==='copy'){await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}if(method==='mail'){location.href=`mailto:?subject=${encodeURIComponent('Ordine '+suppliers[current.supplier])}&body=${encodeURIComponent(text)}`;await shared('Email')}}
-async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');haptic(50);toast('Ordine segnato come inviato');current=newOrder();saveCurrent();await loadOrders();show('home');setNav('home')}catch(e){toast(e.message||'Errore')}}
-function keepShared(){$('sentModal').classList.add('hidden');toast('Ordine lasciato in sospeso')}
-function renderArchive(){$('archiveCount').textContent=orders.length;$('archiveList').innerHTML=orders.length?orders.map((o,i)=>`<div class="row"><div><h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3><p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p></div><button class="linkbtn" data-open="${i}">Apri →</button></div>`).join(''):'<div class="empty">Nessun ordine.</div>';document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>resumeOrder(orders[+b.dataset.open]))}
-function setNav(n){document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.nav===n))}
-$('quickAction').onclick=()=>{
-  if(!$('summary').classList.contains('hidden')){
-    if(String(current.status).toUpperCase()==='BOZZA'){
-      if($('saveDraft'))$('saveDraft').click();
-    }else{
-      $('shareModal').classList.remove('hidden');
-    }
-  }else{
-    renderSummary();show('summary');
-  }
-};
-$('loginForm').onsubmit=login;$('syncBtn').onclick=syncCatalog;$('forceSync').onclick=syncCatalog;$('profileBtn').onclick=()=>{show('profile');setNav('profile')};$('openSummary').onclick=()=>{renderSummary();show('summary')};$('search').oninput=e=>{search=e.target.value;renderProducts()};document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));$('checkCategory').onclick=async()=>{const ok=await ask('Confermare categoria?','Dichiari di averla controllata, anche senza selezionare prodotti.','Conferma');if(!ok)return;haptic(25);current.checked[`${current.supplier}|||${currentCategory}`]=true;saveCurrent();renderCategories();show('categories')};$('confirmReady').onclick=markReady;$('notesClose').onclick=()=>$('notesModal').classList.add('hidden');$('shareClose').onclick=()=>$('shareModal').classList.add('hidden');document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(b.dataset.share));$('markSent').onclick=markSent;$('keepShared').onclick=keepShared;$('sentClose').onclick=keepShared;$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v4-user');localStorage.removeItem('done-v4-pin');location.reload()}};document.querySelectorAll('.nav').forEach(b=>b.onclick=async()=>{const n=b.dataset.nav;setNav(n);if(n==='home')show('home');if(n==='archive'){show('archive');await loadOrders()}if(n==='profile')show('profile')});
+async function shared(method){lastShareMethod=method;try{await saveState('CONDIVISO',{method});$('shareModal').classList.add('hidden');$('sentModal').classList.remove('hidden');renderSummary()}catch(e){toast(e.message||'Errore')}}
+async function performShare(method){const text=orderText();if(method==='native'){if(navigator.share){try{await navigator.share({title:`Ordine ${suppliers[current.supplier]}`,text});await shared('Condivisione telefono')}catch(e){}}else{await navigator.clipboard.writeText(text);await shared('Copia')}}if(method==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');await shared('WhatsApp')}if(method==='pdf'){printOrder();await shared('PDF')}if(method==='copy'){await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}if(method==='mail'){location.href=`mailto:?subject=${encodeURIComponent('Ordine '+suppliers[current.supplier])}&body=${encodeURIComponent(text)}`;await shared('Email')}}
+async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine inviato')}catch(e){toast(e.message||'Errore')}}
+function keepShared(){$('sentModal').classList.add('hidden');toast('Ordine lasciato aperto')}
+
+$('loginForm').onsubmit=login;
+$('syncBtn').onclick=syncCatalog;
+$('forceSync').onclick=syncCatalog;
+$('profileBtn').onclick=()=>show('profile');
+$('closeProfile').onclick=()=>show('macro');
+$('backMacro').onclick=()=>show('macro');
+$('backChoice').onclick=()=>show('choice');
+$('newOrderChoice').onclick=startCleanOrder;
+$('editOrderChoice').onclick=showOpenOrders;
+$('newOrderTop').onclick=startCleanOrder;
+$('newOrderSummary').onclick=startCleanOrder;
+$('search').oninput=e=>{search=e.target.value;renderProducts()};
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));
+$('checkCategory').onclick=async()=>{const ok=await ask('Confermare categoria?','Dichiari di averla controllata, anche senza selezionare prodotti.','Conferma');if(!ok)return;current.checked[`${current.supplier}|||${currentCategory}`]=true;saveCurrent();renderCategories();show('categories')};
+$('confirmReady').onclick=markReady;
+$('notesClose').onclick=()=>$('notesModal').classList.add('hidden');
+$('shareClose').onclick=()=>$('shareModal').classList.add('hidden');
+document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(b.dataset.share));
+$('markSent').onclick=markSent;
+$('keepShared').onclick=keepShared;
+$('sentClose').onclick=keepShared;
+$('quickAction').onclick=()=>{if($('summary').classList.contains('hidden')){renderSummary();show('summary')}else if(current.status==='BOZZA'){if($('saveDraft'))$('saveDraft').click()}else $('shareModal').classList.remove('hidden')};
+$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v6-user');localStorage.removeItem('done-v6-pin');location.reload()}};
+
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-(async()=>{if(user&&pin){$('login').classList.add('hidden');applyUser();await syncCatalog();await loadOrders();renderHome()}else $('pin').focus()})();
+(async()=>{if(user&&pin){$('login').classList.add('hidden');applyUser();await syncCatalog();await loadOrders();renderMacro();show('macro')}else $('pin').focus()})();
 </script>
 </body>
 </html>
