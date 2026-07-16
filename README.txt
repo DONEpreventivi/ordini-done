@@ -1,11 +1,20 @@
-ORDINI D.ONE V8
+ORDINI D.ONE V11
 
-- Login con sfondo pieno e senza riquadri.
-- Archivio ordini dalla schermata principale.
-- Cancellazione definitiva degli ordini archiviati.
-- Ritorno alla schermata principale.
-- Formato testo:
-  1 bott. Prodotto
-  1 cassa Prodotto / 2 casse Prodotto
-  Accessori: solo il nome.
-- Apps Script invariato: usa la versione V4 già pubblicata.
+NOVITÀ
+Durante la compilazione dell'ordine sono sempre disponibili:
+
+- SALVA BOZZA
+  Salva l'ordine come bozza condivisa e modificabile.
+
+- CONFERMA ORDINE
+  Porta al riepilogo e, dal riepilogo, avvia la conferma definitiva.
+
+FLUSSO
+Categorie / Prodotti
+→ Salva bozza oppure Conferma ordine
+→ Riepilogo
+→ Conferma ordine
+→ Pronto / Condivisione / Inviato
+
+APPS SCRIPT
+Resta invariato: usa la versione V4 già pubblicata.
