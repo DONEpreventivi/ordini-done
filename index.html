@@ -373,6 +373,103 @@ display:grid;grid-template-columns:1fr 1fr;background:var(--bg);padding:0 10px 8
 <div id="toast" class="toast hidden"></div>
 <div id="print" class="print"></div>
 <script>
+
+const DB_NAME='done-orders-local';
+const DB_VERSION=1;
+const STORE_CATALOG='catalog';
+const STORE_ORDERS='orders';
+
+function openLocalDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(DB_NAME,DB_VERSION);
+    req.onupgradeneeded=()=>{
+      const db=req.result;
+      if(!db.objectStoreNames.contains(STORE_CATALOG))db.createObjectStore(STORE_CATALOG,{keyPath:'key'});
+      if(!db.objectStoreNames.contains(STORE_ORDERS))db.createObjectStore(STORE_ORDERS,{keyPath:'id'});
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function idbPut(store,value){
+  const db=await openLocalDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(store,'readwrite');
+    tx.objectStore(store).put(value);
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+async function idbGet(store,key){
+  const db=await openLocalDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(store,'readonly');
+    const req=tx.objectStore(store).get(key);
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function idbGetAll(store){
+  const db=await openLocalDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(store,'readonly');
+    const req=tx.objectStore(store).getAll();
+    req.onsuccess=()=>resolve(req.result||[]);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function idbDelete(store,key){
+  const db=await openLocalDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(store,'readwrite');
+    tx.objectStore(store).delete(key);
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+async function saveCatalogLocal(items){
+  await idbPut(STORE_CATALOG,{key:'main',items,updatedAt:new Date().toISOString()});
+}
+async function loadCatalogLocal(){
+  return (await idbGet(STORE_CATALOG,'main'))?.items||[];
+}
+async function saveOrdersLocal(items){
+  const db=await openLocalDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE_ORDERS,'readwrite');
+    const store=tx.objectStore(STORE_ORDERS);
+    store.clear();
+    items.forEach(o=>store.put(o));
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+async function loadOrdersLocal(){
+  const items=await idbGetAll(STORE_ORDERS);
+  return items.sort((a,b)=>new Date(b.data||0)-new Date(a.data||0));
+}
+function localOrderFromCurrent(status='BOZZA'){
+  return {
+    id:current.id||`LOCAL-${Date.now()}`,
+    data:new Date().toISOString(),
+    operatore:user?.nome||'',
+    ruolo:user?.ruolo||'',
+    macrocategoria:suppliers[current.supplier],
+    pezziTotali:totalQty(),
+    stato:status,
+    note:current.note||'',
+    prodotti:selected().map(p=>({
+      macrocategoria:p.macrocategoria,
+      sottocategoria:p.sottocategoria,
+      prodotto:p.prodotto,
+      formato:p.formato,
+      unitaOrdine:p.unitaOrdine,
+      quantita:p.quantita
+    })),
+    syncState:'pending'
+  };
+}
+
 const API_URL='https://script.google.com/macros/s/AKfycbwguLOUwvP7cOogE30RZHtBfH-ryl0F9gudS4Lnqtwov062yJWyUzgT96ABnEg-vJGc/exec';
 const $=id=>document.getElementById(id);
 const screens=['macro','newOrderScreen','choice','openOrders','categories','products','summary','archive','profile'];
@@ -380,10 +477,10 @@ const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
 
-let user=JSON.parse(localStorage.getItem('done-v15-user')||'null');
-let pin=localStorage.getItem('done-v15-pin')||'';
+let user=JSON.parse(localStorage.getItem('done-v16-user')||'null');
+let pin=localStorage.getItem('done-v16-pin')||'';
 let catalog=[],grouped={spirits:{},wine:{},beer:{}},orders=[];
-let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v15-current')||'null')||newOrder();
+let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v16-current')||'null')||newOrder();
 let currentCategory='',filter='all',search='',confirmResolve=null,lastShareMethod='';
 
 function newOrder(){return{id:null,supplier:null,status:'BOZZA',qty:{},checked:{},visited:{},note:'',createdAt:null,createdBy:null}}
@@ -412,11 +509,50 @@ function initLogin(){
   }
 }
 
-async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v15-user',JSON.stringify(user));localStorage.setItem('done-v15-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
+async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];await saveOrdersLocal(orders);localStorage.setItem('done-v16-user',JSON.stringify(user));localStorage.setItem('done-v16-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog(false);renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
 function applyUser(){$('userName').textContent=user.nome;$('userRole').textContent=user.ruolo;$('avatar').textContent=(user.nome||'?')[0].toUpperCase();$('profileName').textContent=user.nome;$('profileRole').textContent=user.admin?'Amministratore':'Operatore'}
-async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v15-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v15-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
+async function syncCatalog(forceRemote=false){
+  $('syncText').textContent=forceRemote?'Aggiornamento catalogo…':'Caricamento catalogo locale…';
+  if(!forceRemote){
+    const local=await loadCatalogLocal().catch(()=>[]);
+    if(local.length){
+      catalog=local;
+      groupCatalog();
+      $('syncText').textContent=`${catalog.length} prodotti · locale`;
+      renderMacro();
+      return;
+    }
+  }
+  try{
+    const d=await apiGet('catalogo');
+    if(!d.ok)throw new Error(d.errore);
+    catalog=d.catalogo||[];
+    await saveCatalogLocal(catalog);
+    groupCatalog();
+    $('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;
+    renderMacro();
+  }catch(e){
+    catalog=await loadCatalogLocal().catch(()=>[]);
+    groupCatalog();
+    $('syncText').textContent=catalog.length?`${catalog.length} prodotti · locale`:'Catalogo non disponibile';
+  }
+}
 function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
-async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[]}catch(e){toast('Ordini non disponibili')}}
+async function loadOrders(forceRemote=false){
+  if(!forceRemote){
+    const local=await loadOrdersLocal().catch(()=>[]);
+    if(local.length){orders=local;return;}
+  }
+  try{
+    const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);
+    if(!d.ok)throw new Error(d.errore);
+    orders=d.ordini||[];
+    await saveOrdersLocal(orders);
+  }catch(e){
+    orders=await loadOrdersLocal().catch(()=>[]);
+    if(forceRemote)toast('Archivio online non disponibile');
+  }
+}
 function renderMacro(){
   $('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');
   document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro));
@@ -428,7 +564,7 @@ function renderMacro(){
       <button data-home-open="${i}" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;background:transparent;text-align:left;padding:0;border:0;width:100%">
         <div>
           <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
-          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p>
+          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
         </div>
         <span class="go">→</span>
       </button>
@@ -442,7 +578,7 @@ function renderNewMacro(){
   $('newMacroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-new-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');
   document.querySelectorAll('[data-new-macro]').forEach(b=>b.onclick=()=>{selectedMacro=b.dataset.newMacro;startCleanOrder()});
 }
-async function openChoice(m){selectedMacro=m;await loadOrders();$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
+async function openChoice(m){selectedMacro=m;await loadOrders(false);$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
 function openOrdersFor(m){return orders.filter(o=>supplierKey(o.macrocategoria)===m&&['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
 async function startCleanOrder(){
   if(!selectedMacro&&current.supplier)selectedMacro=current.supplier;
@@ -463,7 +599,7 @@ function showOpenOrders(){
       <button data-open="${i}" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;background:transparent;text-align:left;padding:0;border:0;width:100%">
         <div>
           <h3>${esc(o.stato)} · ${o.pezziTotali} pezzi</h3>
-          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p>
+          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
         </div>
         <span class="go">→</span>
       </button>
@@ -479,7 +615,7 @@ let saveTimer=null;
 function saveCurrent(){
   renderControlPanel();
   clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>localStorage.setItem('done-v15-current',JSON.stringify(current)),80);
+  saveTimer=setTimeout(()=>localStorage.setItem('done-v16-current',JSON.stringify(current)),80);
 }
 function cats(){return Object.keys(grouped[current.supplier]||{})}
 function key(p){return`${current.supplier}|||${String(p.sottocategoria).toUpperCase()}|||${p.prodotto}|||${p.formato||''}`}
@@ -545,12 +681,61 @@ function renderTimeline(){const order=['BOZZA','PRONTO','CONDIVISO','INVIATO'],i
 function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderControlPanel()}
 function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger" aria-label="Cancella">×</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
 function payload(status,extra={}){return{action:'salvaOrdine',pin,ordineId:current.id||null,macrocategoria:suppliers[current.supplier],stato:status,note:current.note||'',metodoCondivisione:extra.method||'',prodotti:selected().map(p=>({macrocategoria:p.macrocategoria,sottocategoria:p.sottocategoria,prodotto:p.prodotto,formato:p.formato,quantita:p.quantita}))}}
-async function saveState(status,extra={}){const d=await apiPost(payload(status,extra));if(!d.ok)throw new Error(d.errore);current.id=d.ordine.id;current.status=status;saveCurrent();await loadOrders();return d}
-async function saveDraft(){if(!totalQty())return toast('Seleziona almeno un prodotto');try{await saveState('BOZZA');toast('Bozza condivisa salvata');renderSummary()}catch(e){toast(e.message||'Errore')}}
+async function saveState(status,extra={}){
+  const localOrder={...localOrderFromCurrent(status),id:current.id||`LOCAL-${Date.now()}`,syncState:'syncing'};
+  current.id=localOrder.id;
+  current.status=status;
+  await idbPut(STORE_ORDERS,localOrder);
+  orders=await loadOrdersLocal();
+  saveCurrent();
+
+  const d=await apiPost(payload(status,extra));
+  if(!d.ok){
+    await idbPut(STORE_ORDERS,{...localOrder,syncState:'pending'});
+    throw new Error(d.errore);
+  }
+
+  current.id=d.ordine.id;
+  await idbDelete(STORE_ORDERS,localOrder.id);
+  await idbPut(STORE_ORDERS,{...d.ordine,syncState:'synced'});
+  orders=await loadOrdersLocal();
+  saveCurrent();
+  renderMacro();
+  return d;
+}
+async function saveDraft(){
+  if(!totalQty())return toast('Seleziona almeno un prodotto');
+
+  const localOrder=localOrderFromCurrent('BOZZA');
+  current.id=localOrder.id;
+  current.status='BOZZA';
+  await idbPut(STORE_ORDERS,localOrder);
+  orders=await loadOrdersLocal();
+  saveCurrent();
+  renderMacro();
+  renderSummary();
+  toast('Bozza salvata sul telefono');
+
+  setTimeout(async()=>{
+    try{
+      const d=await apiPost(payload('BOZZA'));
+      if(!d.ok)throw new Error(d.errore);
+      current.id=d.ordine.id;
+      await idbDelete(STORE_ORDERS,localOrder.id);
+      await idbPut(STORE_ORDERS,{...d.ordine,syncState:'synced'});
+      orders=await loadOrdersLocal();
+      saveCurrent();
+      renderMacro();
+      toast('Bozza sincronizzata');
+    }catch(e){
+      await idbPut(STORE_ORDERS,{...localOrder,syncState:'pending'});
+    }
+  },0);
+}
 async function openReady(){if(!totalQty())return toast('Seleziona almeno un prodotto');const miss=unchecked();if(miss.length){const ok=await ask('Categorie non controllate',`Hai controllato ${cats().length-miss.length} categorie su ${cats().length}.`,'Continua comunque',miss);if(!ok)return}$('notes').value=current.note||'';$('notesModal').classList.remove('hidden')}
 async function markReady(){current.note=$('notes').value;try{await saveState('PRONTO');$('notesModal').classList.add('hidden');toast('Ordine pronto');renderSummary()}catch(e){toast(e.message||'Errore')}}
 async function reopenDraft(){try{await saveState('BOZZA');renderCategories();show('categories')}catch(e){toast(e.message||'Errore')}}
-async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
+async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders(false);renderMacro();show('macro');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
 function textLineForProduct(p){
   const q=Number(p.quantita||0);
   const unit=String(p.unitaOrdine||'').trim().toLowerCase();
@@ -574,7 +759,7 @@ function orderText(){
 function printOrder(){$('print').innerHTML=`<div style="display:flex;justify-content:space-between"><div><h1>ORDINE ${suppliers[current.supplier]}</h1><p>${fdate(new Date())} · ${esc(user.nome)}</p></div><img src="done-logo.png"></div>${[...new Set(selected().map(p=>p.sottocategoria))].map(c=>`<h2>${esc(c)}</h2><table>${selected().filter(p=>p.sottocategoria===c).map(p=>`<tr><td>${esc(p.prodotto)} ${esc(p.formato||'')}</td><td>${p.quantita}</td></tr>`).join('')}</table>`).join('')}<h2>Totale: ${totalQty()} pezzi</h2>`;window.print()}
 async function shared(method){lastShareMethod=method;try{await saveState('CONDIVISO',{method});$('shareModal').classList.add('hidden');$('sentModal').classList.remove('hidden');renderSummary()}catch(e){toast(e.message||'Errore')}}
 async function performShare(method){const text=orderText();if(method==='native'){if(navigator.share){try{await navigator.share({title:`Ordine ${suppliers[current.supplier]}`,text});await shared('Condivisione telefono')}catch(e){}}else{await navigator.clipboard.writeText(text);await shared('Copia')}}if(method==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');await shared('WhatsApp')}if(method==='pdf'){printOrder();await shared('PDF')}if(method==='copy'){await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}if(method==='mail'){location.href=`mailto:?subject=${encodeURIComponent('Ordine '+suppliers[current.supplier])}&body=${encodeURIComponent(text)}`;await shared('Email')}}
-async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine inviato')}catch(e){toast(e.message||'Errore')}}
+async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');current=newOrder();saveCurrent();await loadOrders(false);renderMacro();show('macro');toast('Ordine inviato')}catch(e){toast(e.message||'Errore')}}
 function keepShared(){$('sentModal').classList.add('hidden');toast('Ordine lasciato aperto')}
 
 
@@ -617,7 +802,7 @@ async function deleteOpenOrder(o){
       save();
     }
 
-    await loadOrders();
+    await loadOrders(false);
     renderMacro();
 
     if(selectedMacro && !document.getElementById('openOrders').classList.contains('hidden')){
@@ -636,7 +821,7 @@ function renderArchive(){
     <div class="row">
       <div>
         <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
-        <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p>
+        <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
       </div>
       <button class="archive-delete" data-delete-archive="${i}" aria-label="Cancella">×</button>
     </div>
@@ -644,7 +829,7 @@ function renderArchive(){
   document.querySelectorAll('[data-delete-archive]').forEach(b=>b.onclick=()=>deleteArchivedOrder(list[+b.dataset.deleteArchive]));
 }
 async function openArchive(){
-  await loadOrders();
+  await loadOrders(false);
   renderArchive();
   show('archive');
 }
@@ -654,7 +839,7 @@ async function deleteArchivedOrder(o){
   try{
     const d=await apiPost({action:'eliminaOrdine',pin,ordineId:o.id});
     if(!d.ok)throw new Error(d.errore);
-    await loadOrders();
+    await loadOrders(false);
     renderArchive();
     toast('Ordine eliminato');
   }catch(e){
@@ -670,7 +855,7 @@ function setBottomNav(name){
 }
 function goOrders(){renderMacro();show('macro');setBottomNav('orders')}
 function goNew(){renderNewMacro();show('newOrderScreen');setBottomNav('new')}
-async function goArchive(){await openArchive();setBottomNav('archive')}
+async function goArchive(){await loadOrders(true);renderArchive();show('archive');setBottomNav('archive')}
 function goProfile(){show('profile');setBottomNav('profile')}
 $('productList').onclick=e=>{
   const btn=e.target.closest('[data-key][data-delta]');
@@ -678,14 +863,14 @@ $('productList').onclick=e=>{
   change(btn.dataset.key,Number(btn.dataset.delta));
 };
 
-$('syncBtn').onclick=syncCatalog;
+$('syncBtn').onclick=()=>syncCatalog(true);
 $('archiveBack').onclick=goOrders;
 $('newBack').onclick=goOrders;
 $('navOrders').onclick=goOrders;
 $('navNew').onclick=goNew;
 $('navArchive').onclick=goArchive;
 $('navProfile').onclick=goProfile;
-$('forceSync').onclick=syncCatalog;
+$('forceSync').onclick=()=>syncCatalog(true);
 $('profileBtn').onclick=goProfile;
 $('closeProfile').onclick=()=>show('macro');
 $('backMacro').onclick=()=>show('macro');
@@ -709,7 +894,7 @@ document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(
 $('markSent').onclick=markSent;
 $('keepShared').onclick=keepShared;
 $('sentClose').onclick=keepShared;
-$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v15-user');localStorage.removeItem('done-v15-pin');location.reload()}};
+$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v16-user');localStorage.removeItem('done-v16-pin');location.reload()}};
 
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
@@ -719,14 +904,14 @@ initLogin();
     try{
       $('login').classList.add('hidden');
       applyUser();
-      await syncCatalog();
-      await loadOrders();
+      await syncCatalog(false);
+      await loadOrders(false);
       renderMacro();
       show('macro');
       setBottomNav('orders');
     }catch(e){
-      localStorage.removeItem('done-v15-user');
-      localStorage.removeItem('done-v15-pin');
+      localStorage.removeItem('done-v16-user');
+      localStorage.removeItem('done-v16-pin');
       user=null;pin='';
       $('login').classList.remove('hidden');
       $('loginError').textContent='Inserisci nuovamente il PIN';
