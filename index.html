@@ -49,7 +49,7 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 .controlbtn.danger{color:var(--danger)}
 .controlbtn:disabled{opacity:.35}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:70;width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(239,231,216,.98);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:9px}.nav.active{color:var(--ink)}
-.login{position:fixed;inset:0;z-index:300;background:#efe7d8;display:flex;align-items:center;justify-content:center;padding:24px}.loginbox{width:min(390px,100%);background:#fffaf2;padding:34px 24px;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(36,36,36,.08)}.loginlogo{width:160px;height:80px;object-fit:contain;filter:none;display:block;margin:0 auto 46px}.pinrow{display:grid;grid-template-columns:1fr auto;border:1px solid var(--line);border-radius:14px;padding:0 14px;background:#fff}.pinrow input{border:0;background:transparent;outline:0;padding:20px 0;font-size:30px;letter-spacing:8px;font-weight:300}.pinrow button{background:transparent;color:var(--accent);padding:0 0 0 18px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.error{color:var(--danger);font-size:9px;margin-top:10px;min-height:15px}
+.login{position:fixed;inset:0;z-index:300;background:#8fb8b4;display:flex;align-items:center;justify-content:center;padding:24px}.loginbox{width:min(390px,100%);padding:34px 24px;background:transparent}.loginlogo{width:160px;height:80px;object-fit:contain;filter:none;display:block;margin:0 auto 46px}.pinrow{display:grid;grid-template-columns:1fr auto;border:0;border-bottom:2px solid rgba(36,36,36,.42);padding:0;background:transparent}.pinrow input{border:0;background:transparent;outline:0;padding:20px 0;font-size:30px;letter-spacing:8px;font-weight:300}.pinrow button{background:transparent;color:#242424;padding:0 0 0 18px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.error{color:var(--danger);font-size:9px;margin-top:10px;min-height:15px}
 .modal{position:fixed;inset:0;z-index:200;background:rgba(36,36,36,.42);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--panel);border-top:1px solid var(--line);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:17px}.sheethead h2{font-size:26px}.close{background:transparent;color:var(--muted);font-size:23px}.modaltext{font-size:14px;line-height:1.55;color:var(--muted)}.miss{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:12px;color:var(--muted);line-height:1.8}.sharelist{display:grid}.shareopt{display:grid;grid-template-columns:1fr auto;align-items:center;background:transparent;border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:14px;text-align:left;font-size:16px;font-weight:700}.shareopt small{color:var(--muted);font-size:10px;font-weight:300}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;display:block;margin-bottom:7px}.field textarea{width:100%;min-height:120px;background:transparent;border:1px solid var(--line);padding:11px;outline:0;font-size:15px}
 .toast{position:fixed;z-index:400;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:13px 17px;font-size:12px;font-weight:700;white-space:nowrap}.empty{color:var(--muted);font-size:14px;padding:27px 0;border-bottom:1px solid var(--line)}
 .print{display:none}
@@ -92,6 +92,9 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
   <p class="lead">Seleziona il fornitore da gestire.</p>
   <div class="sync"><span><i class="dot"></i><span id="syncText">Sincronizzazione…</span></span><button id="syncBtn" class="linkbtn">Aggiorna</button></div>
   <div id="macroList"></div>
+  <button id="archiveButton" class="row supplier" style="margin-top:18px">
+    <div><strong>Archivio ordini</strong><p>Consulta e cancella gli ordini già inviati.</p></div><span class="go">→</span>
+  </button>
 </section>
 
 <section id="choice" class="hidden">
@@ -151,6 +154,14 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
   <div id="summaryActions"></div>
 </section>
 
+
+<section id="archive" class="hidden">
+  <div class="toolbar">
+    <div><strong>Archivio ordini</strong><small id="archiveMeta"></small></div>
+    <button id="archiveBack" class="linkbtn">Schermata principale</button>
+  </div>
+  <div id="archiveList"></div>
+</section>
 <section id="profile" class="hidden">
   <div class="toolbar">
     <div><strong>Profilo</strong><small id="profileRole"></small></div>
@@ -184,7 +195,7 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycbwguLOUwvP7cOogE30RZHtBfH-ryl0F9gudS4Lnqtwov062yJWyUzgT96ABnEg-vJGc/exec';
 const $=id=>document.getElementById(id);
-const screens=['macro','choice','openOrders','categories','products','summary','profile'];
+const screens=['macro','choice','openOrders','categories','products','summary','archive','profile'];
 const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
@@ -273,7 +284,30 @@ async function openReady(){if(!totalQty())return toast('Seleziona almeno un prod
 async function markReady(){current.note=$('notes').value;try{await saveState('PRONTO');$('notesModal').classList.add('hidden');toast('Ordine pronto');renderSummary()}catch(e){toast(e.message||'Errore')}}
 async function reopenDraft(){try{await saveState('BOZZA');renderCategories();show('categories')}catch(e){toast(e.message||'Errore')}}
 async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders();renderMacro();show('macro');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
-function orderText(){const a=[`ORDINE ${suppliers[current.supplier]}`,`Operatore: ${user.nome}`,`Stato: ${current.status}`,''];let c='';selected().forEach(p=>{if(p.sottocategoria!==c){c=p.sottocategoria;a.push('',c)}a.push(`• ${p.prodotto}${p.formato?' · '+p.formato:''} — ${p.quantita}`)});a.push('',`TOTALE: ${totalQty()} pezzi`);return a.join('\n')}
+function textLineForProduct(p){
+  const q=Number(p.quantita||0);
+  const unit=String(p.unitaOrdine||'').trim().toLowerCase();
+  const category=String(p.sottocategoria||'').trim().toUpperCase();
+
+  if(category==='ACCESSORI'){
+    return p.prodotto;
+  }
+
+  if(unit.includes('cassa')||unit.includes('cartone')||unit.includes('confezione')){
+    return `${q} ${q===1?'cassa':'casse'} ${p.prodotto}${p.formato?' · '+p.formato:''}`;
+  }
+
+  return `${q} bott. ${p.prodotto}${p.formato?' · '+p.formato:''}`;
+}
+function orderText(){
+  const a=[`ORDINE ${suppliers[current.supplier]}`,`Operatore: ${user.nome}`,`Stato: ${current.status}`,''];
+  let c='';
+  selected().forEach(p=>{
+    if(p.sottocategoria!==c){c=p.sottocategoria;a.push('',c)}
+    a.push(textLineForProduct(p));
+  });
+  return a.join('\n');
+}
 function printOrder(){$('print').innerHTML=`<div style="display:flex;justify-content:space-between"><div><h1>ORDINE ${suppliers[current.supplier]}</h1><p>${fdate(new Date())} · ${esc(user.nome)}</p></div><img src="done-logo.png"></div>${[...new Set(selected().map(p=>p.sottocategoria))].map(c=>`<h2>${esc(c)}</h2><table>${selected().filter(p=>p.sottocategoria===c).map(p=>`<tr><td>${esc(p.prodotto)} ${esc(p.formato||'')}</td><td>${p.quantita}</td></tr>`).join('')}</table>`).join('')}<h2>Totale: ${totalQty()} pezzi</h2>`;window.print()}
 async function shared(method){lastShareMethod=method;try{await saveState('CONDIVISO',{method});$('shareModal').classList.add('hidden');$('sentModal').classList.remove('hidden');renderSummary()}catch(e){toast(e.message||'Errore')}}
 async function performShare(method){const text=orderText();if(method==='native'){if(navigator.share){try{await navigator.share({title:`Ordine ${suppliers[current.supplier]}`,text});await shared('Condivisione telefono')}catch(e){}}else{await navigator.clipboard.writeText(text);await shared('Copia')}}if(method==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');await shared('WhatsApp')}if(method==='pdf'){printOrder();await shared('PDF')}if(method==='copy'){await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}if(method==='mail'){location.href=`mailto:?subject=${encodeURIComponent('Ordine '+suppliers[current.supplier])}&body=${encodeURIComponent(text)}`;await shared('Email')}}
@@ -300,8 +334,46 @@ $('controlMain').onclick=()=>{
     }
   }
 };
+
+function archivedOrders(){
+  return orders.filter(o=>String(o.stato).toUpperCase()==='INVIATO');
+}
+function renderArchive(){
+  const list=archivedOrders();
+  $('archiveMeta').textContent=`${list.length} ordin${list.length===1?'e':'i'}`;
+  $('archiveList').innerHTML=list.length?list.map((o,i)=>`
+    <div class="row">
+      <div>
+        <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
+        <p>${fdate(o.data)} · ${esc(o.operatore)}</p>
+      </div>
+      <button class="controlbtn danger" style="min-height:42px" data-delete-archive="${i}">Cancella</button>
+    </div>
+  `).join(''):'<div class="empty">Nessun ordine archiviato.</div>';
+  document.querySelectorAll('[data-delete-archive]').forEach(b=>b.onclick=()=>deleteArchivedOrder(list[+b.dataset.deleteArchive]));
+}
+async function openArchive(){
+  await loadOrders();
+  renderArchive();
+  show('archive');
+}
+async function deleteArchivedOrder(o){
+  const ok=await ask('Cancellare ordine archiviato?','L’ordine verrà eliminato definitivamente dal database condiviso.','Cancella');
+  if(!ok)return;
+  try{
+    const d=await apiPost({action:'eliminaOrdine',pin,ordineId:o.id});
+    if(!d.ok)throw new Error(d.errore);
+    await loadOrders();
+    renderArchive();
+    toast('Ordine eliminato');
+  }catch(e){
+    toast(e.message||'Errore cancellazione');
+  }
+}
 $('loginForm').onsubmit=login;
 $('syncBtn').onclick=syncCatalog;
+$('archiveButton').onclick=openArchive;
+$('archiveBack').onclick=()=>{renderMacro();show('macro')};
 $('forceSync').onclick=syncCatalog;
 $('profileBtn').onclick=()=>show('profile');
 $('closeProfile').onclick=()=>show('macro');
