@@ -12,7 +12,7 @@
 <title>Ordini D.ONE V4</title>
 <style>
 :root{
-  --bg:#efe7d8;--panel:#fffaf2;--panel2:#f6efe4;--ink:#242424;--muted:#756f66;
+  --bg:#f4f1ec;--panel:#ffffff;--panel2:#faf7f2;--ink:#242424;--muted:#7a7772;
   --line:rgba(36,36,36,.12);--accent:#ec7a4d;--ok:#93b18f;--warn:#e6bd5f;--danger:#cf5b55;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -20,7 +20,7 @@ html{background:var(--bg);touch-action:manipulation}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:300;min-height:100vh;overscroll-behavior:none}
 button,input,textarea{font:inherit;color:inherit}button{border:0}.hidden{display:none!important}
 .app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:calc(92px + env(safe-area-inset-bottom))}
-header{position:sticky;top:0;z-index:50;background:rgba(239,231,216,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 11px}
+header{position:sticky;top:0;z-index:50;background:rgba(244,241,236,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 11px}
 .headrow{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px}.logo{width:50px;height:32px;object-fit:contain;filter:none}.brand strong{font-size:16px;font-weight:700}.brand small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
 .user{background:transparent;display:flex;align-items:center;gap:8px}.avatar{width:31px;height:31px;border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:11px}.user span{font-size:10px;font-weight:700;text-align:left}.user em{display:block;color:var(--muted);font-size:8px;font-style:normal;margin-top:2px}
 main{padding:28px 18px 116px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent)}
@@ -28,10 +28,10 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 .lead{font-size:15px;line-height:1.55;color:var(--muted);max-width:500px;margin:0 0 24px}
 .sync{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;margin-bottom:30px;color:var(--muted);font-size:15px}.dot{width:6px;height:6px;background:var(--ok);display:inline-block;margin-right:8px}.linkbtn{background:transparent;padding:10px 0;color:var(--ink);text-transform:uppercase;font-size:11px;letter-spacing:.9px;font-weight:700}
 .sectiontitle{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:9px}.sectiontitle strong{font-size:12px;text-transform:uppercase;letter-spacing:1px}.count{font-size:13px;color:var(--muted);font-weight:700}
-.row{width:100%;background:var(--panel);border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:14px;text-align:left;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}.row h3{font-size:20px;margin:0;font-weight:700}.row p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.4}.row .go{font-size:19px;font-weight:300}.status{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:700}.status.bozza{color:var(--warn)}.status.pronto{color:var(--accent)}.status.condiviso{color:#b79ad7}.status.inviato{color:var(--ok)}
+.row{width:100%;background:var(--panel);border:1px solid var(--line);padding:17px 15px;margin-bottom:9px;border-radius:12px;text-align:left;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}.row h3{font-size:18px;margin:0;font-weight:650}.row p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.4}.row .go{font-size:19px;font-weight:300}.status{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:700}.status.bozza{color:var(--warn)}.status.pronto{color:var(--accent)}.status.condiviso{color:#b79ad7}.status.inviato{color:var(--ok)}
 .pending{margin-bottom:28px}.pending .row{grid-template-columns:1fr auto}.pending-action{text-align:right}.pending-action button{background:transparent;padding:12px 0 12px 16px;color:var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}
-.supplier strong{font-size:34px;letter-spacing:-.04em}
-.toolbar{position:sticky;top:69px;z-index:30;background:rgba(239,231,216,.98);margin:-23px -16px 14px;padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.toolbar strong{font-size:26px;font-weight:700}.toolbar small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.supplier strong{font-size:30px;letter-spacing:-.04em}
+.toolbar{position:sticky;top:69px;z-index:30;background:rgba(244,241,236,.98);margin:-23px -16px 14px;padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.toolbar strong{font-size:26px;font-weight:700}.toolbar small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
 .progress{height:2px;background:var(--line);margin:12px 0 3px}.progress span{display:block;height:100%;background:var(--ok);transition:.2s}
 .category{grid-template-columns:1fr auto}.category small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.catstate{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--muted)}.category.visited{border-color:var(--warn);background:#fff8e8}.category.visited .catstate{color:#9a752d}.category.done .catstate{color:var(--ok)}.category.done{border-color:var(--ok);background:#f3f7f1}.category.done h3{color:#617d5f}
 .producttools{position:sticky;top:122px;z-index:25;background:var(--bg);padding-bottom:10px}.search{border-bottom:1px solid var(--line)}.search input{width:100%;border:0;background:transparent;padding:17px 0;outline:0;font-size:17px;font-weight:300}.filters{display:flex;gap:24px;padding-top:14px;overflow:auto}.filter{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:0;white-space:nowrap}.filter.active{color:var(--ink)}
@@ -42,16 +42,21 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}.action{background:var(--panel);padding:20px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}.action.primary{background:var(--accent);color:#fff}.action.warn{color:var(--warn)}.action.danger{color:var(--danger)}.wide{grid-column:1/-1}
 .share-main{width:100%;background:var(--accent);color:#fff;padding:22px 12px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:18px}
 .timeline{border-left:1px solid var(--line);margin:15px 0 5px;padding-left:15px}.timeline div{position:relative;padding:0 0 19px;font-size:13px;color:var(--muted)}.timeline div:before{content:"";position:absolute;left:-19px;top:2px;width:7px;height:7px;background:var(--bg);border:1px solid var(--muted)}.timeline div.active{color:var(--ink);font-weight:700}.timeline div.active:before{border-color:var(--ok);background:var(--ok)}
-.controlpanel{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:80;width:min(760px,100%);background:rgba(255,250,242,.98);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.controlpanel{display:none!important;position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:80;width:min(760px,100%);background:rgba(255,250,242,.98);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .controlbtn{min-height:54px;border-radius:13px;background:#f2eadf;color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.75px;font-weight:700;padding:8px}
 .controlbtn.primary{background:var(--accent);color:#fff}
 .controlbtn.secondary{background:#dce9e7}
 .controlbtn.danger{color:var(--danger)}
 .controlbtn:disabled{opacity:.35}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:70;width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(239,231,216,.98);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:9px}.nav.active{color:var(--ink)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:70;width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(244,241,236,.98);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.nav{background:transparent;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700;padding:9px}.nav.active{color:var(--ink)}
+
+.bottomnav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:90;width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:7px 7px calc(7px + env(safe-area-inset-bottom))}
+.bottomnav button{background:transparent;color:var(--muted);padding:8px 3px;font-size:9px;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.bottomnav button span{display:block;font-size:19px;line-height:1;margin-bottom:5px;font-weight:400}
+.bottomnav button.active{color:var(--accent)}
 .login{position:fixed;inset:0;z-index:300;background:#8fb8b4;display:flex;align-items:center;justify-content:center;padding:24px}.loginbox{width:min(390px,100%);padding:34px 24px;background:transparent}.loginlogo{width:160px;height:80px;object-fit:contain;filter:none;display:block;margin:0 auto 46px}.pinrow{display:grid;grid-template-columns:1fr auto;border:0;border-bottom:2px solid rgba(36,36,36,.42);padding:0;background:transparent}.pinrow input{border:0;background:transparent;outline:0;padding:20px 0;font-size:30px;letter-spacing:8px;font-weight:300}.pinrow button{background:transparent;color:#242424;padding:0 0 0 18px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.error{color:var(--danger);font-size:9px;margin-top:10px;min-height:15px}
-.modal{position:fixed;inset:0;z-index:200;background:rgba(36,36,36,.42);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--panel);border-top:1px solid var(--line);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:17px}.sheethead h2{font-size:26px}.close{background:transparent;color:var(--muted);font-size:23px}.modaltext{font-size:14px;line-height:1.55;color:var(--muted)}.miss{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:12px;color:var(--muted);line-height:1.8}.sharelist{display:grid}.shareopt{display:grid;grid-template-columns:1fr auto;align-items:center;background:transparent;border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:14px;text-align:left;font-size:16px;font-weight:700}.shareopt small{color:var(--muted);font-size:10px;font-weight:300}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;display:block;margin-bottom:7px}.field textarea{width:100%;min-height:120px;background:transparent;border:1px solid var(--line);padding:11px;outline:0;font-size:15px}
-.toast{position:fixed;z-index:400;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:13px 17px;font-size:12px;font-weight:700;white-space:nowrap}.empty{color:var(--muted);font-size:14px;padding:27px 0;border-bottom:1px solid var(--line)}
+.modal{position:fixed;inset:0;z-index:200;background:rgba(36,36,36,.42);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--panel);border-top:1px solid var(--line);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:17px}.sheethead h2{font-size:26px}.close{background:transparent;color:var(--muted);font-size:23px}.modaltext{font-size:14px;line-height:1.55;color:var(--muted)}.miss{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:12px;color:var(--muted);line-height:1.8}.sharelist{display:grid}.shareopt{display:grid;grid-template-columns:1fr auto;align-items:center;background:transparent;border:1px solid var(--line);padding:18px 16px;margin-bottom:10px;border-radius:12px;text-align:left;font-size:16px;font-weight:700}.shareopt small{color:var(--muted);font-size:10px;font-weight:300}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;display:block;margin-bottom:7px}.field textarea{width:100%;min-height:120px;background:transparent;border:1px solid var(--line);padding:11px;outline:0;font-size:15px}
+.toast{position:fixed;z-index:400;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:13px 17px;font-size:12px;font-weight:700;white-space:nowrap}.archive-delete{width:44px;height:44px;border-radius:11px;background:#fff1ef!important;color:var(--danger)!important;font-size:20px!important;padding:0!important}.empty{color:var(--muted);font-size:14px;padding:27px 0;border-bottom:1px solid var(--line)}
 .print{display:none}
 @media print{body>*:not(.print){display:none!important}.print{display:block!important;background:#fff;color:#111;padding:18mm;font-family:Arial}.print img{width:90px}.print table{width:100%;border-collapse:collapse}.print td{padding:5px 0;border-bottom:1px solid #ddd}.print td:last-child{text-align:right;font-weight:bold}}
 </style>
@@ -92,11 +97,20 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
   <p class="lead">Seleziona il fornitore da gestire.</p>
   <div class="sync"><span><i class="dot"></i><span id="syncText">Sincronizzazione…</span></span><button id="syncBtn" class="linkbtn">Aggiorna</button></div>
   <div id="macroList"></div>
-  <button id="archiveButton" class="row supplier" style="margin-top:18px">
-    <div><strong>Archivio ordini</strong><p>Consulta e cancella gli ordini già inviati.</p></div><span class="go">→</span>
-  </button>
+  <div id="homeOpenBlock" class="hidden" style="margin-top:28px">
+    <div class="sectiontitle"><strong>Ordini aperti</strong><span id="homeOpenCount" class="count">0</span></div>
+    <div id="homeOpenList" style="margin-top:10px"></div>
+  </div>
 </section>
 
+
+<section id="newOrderScreen" class="hidden">
+  <div class="toolbar">
+    <div><strong>Nuovo ordine</strong><small>Scegli la macrocategoria</small></div>
+    <button id="newBack" class="linkbtn">Ordini</button>
+  </div>
+  <div id="newMacroList"></div>
+</section>
 <section id="choice" class="hidden">
   <div class="toolbar">
     <div><strong id="choiceTitle"></strong><small>Scegli come procedere</small></div>
@@ -158,7 +172,7 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 <section id="archive" class="hidden">
   <div class="toolbar">
     <div><strong>Archivio ordini</strong><small id="archiveMeta"></small></div>
-    <button id="archiveBack" class="linkbtn">Schermata principale</button>
+    <button id="archiveBack" class="linkbtn">Ordini</button>
   </div>
   <div id="archiveList"></div>
 </section>
@@ -180,6 +194,12 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
   <button id="controlBack" class="controlbtn secondary">Indietro</button>
   <button id="controlMain" class="controlbtn primary">Conferma</button>
 </div>
+<nav class="bottomnav">
+  <button id="navOrders" class="active"><span>⌂</span>Ordini</button>
+  <button id="navNew"><span>＋</span>Nuovo</button>
+  <button id="navArchive"><span>▣</span>Archivio</button>
+  <button id="navProfile"><span>○</span>Profilo</button>
+</nav>
 </div>
 
 <div id="confirmModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Conferma</div><h2 id="confirmTitle"></h2></div><button id="confirmClose" class="close">×</button></div><div id="confirmText" class="modaltext"></div><div id="confirmMiss" class="miss hidden"></div><div class="actions"><button id="confirmCancel" class="action">Annulla</button><button id="confirmOk" class="action primary">Conferma</button></div></div></div>
@@ -195,7 +215,7 @@ h1{font-size:46px;line-height:.95;letter-spacing:-.065em;font-weight:300;margin:
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycbwguLOUwvP7cOogE30RZHtBfH-ryl0F9gudS4Lnqtwov062yJWyUzgT96ABnEg-vJGc/exec';
 const $=id=>document.getElementById(id);
-const screens=['macro','choice','openOrders','categories','products','summary','archive','profile'];
+const screens=['macro','newOrderScreen','choice','openOrders','categories','products','summary','archive','profile'];
 const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
@@ -224,7 +244,19 @@ function applyUser(){$('userName').textContent=user.nome;$('userRole').textConte
 async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v7-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v7-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
 function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
 async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[]}catch(e){toast('Ordini non disponibili')}}
-function renderMacro(){$('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro))}
+function renderMacro(){
+  $('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');
+  document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro));
+  const open=orders.filter(o=>['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()));
+  $('homeOpenBlock').classList.toggle('hidden',!open.length);
+  $('homeOpenCount').textContent=open.length;
+  $('homeOpenList').innerHTML=open.map((o,i)=>`<button class="row" data-home-open="${i}"><div><h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3><p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}</p></div><span class="go">→</span></button>`).join('');
+  document.querySelectorAll('[data-home-open]').forEach(b=>b.onclick=()=>resumeOrder(open[+b.dataset.homeOpen]));
+}
+function renderNewMacro(){
+  $('newMacroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-new-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');
+  document.querySelectorAll('[data-new-macro]').forEach(b=>b.onclick=()=>{selectedMacro=b.dataset.newMacro;startCleanOrder()});
+}
 async function openChoice(m){selectedMacro=m;await loadOrders();$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
 function openOrdersFor(m){return orders.filter(o=>supplierKey(o.macrocategoria)===m&&['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
 async function startCleanOrder(){
@@ -276,7 +308,7 @@ function selected(){return catalog.filter(p=>qty(p)).map(p=>({...p,quantita:qty(
 function values(){return selected().reduce((a,p)=>{const n=p.prezzoNetto*p.quantita,v=n*p.iva/100;a.net+=n;a.vat+=v;a.total+=n+v;return a},{net:0,vat:0,total:0})}
 function renderTimeline(){const order=['BOZZA','PRONTO','CONDIVISO','INVIATO'],idx=order.indexOf(String(current.status).toUpperCase());$('timeline').innerHTML=order.map((s,i)=>`<div class="${i<=idx?'active':''}">${s}</div>`).join('')}
 function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderControlPanel()}
-function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger">Cancella</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
+function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger" aria-label="Cancella">×</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
 function payload(status,extra={}){return{action:'salvaOrdine',pin,ordineId:current.id||null,macrocategoria:suppliers[current.supplier],stato:status,note:current.note||'',metodoCondivisione:extra.method||'',prodotti:selected().map(p=>({macrocategoria:p.macrocategoria,sottocategoria:p.sottocategoria,prodotto:p.prodotto,formato:p.formato,quantita:p.quantita}))}}
 async function saveState(status,extra={}){const d=await apiPost(payload(status,extra));if(!d.ok)throw new Error(d.errore);current.id=d.ordine.id;current.status=status;saveCurrent();await loadOrders();return d}
 async function saveDraft(){if(!totalQty())return toast('Seleziona almeno un prodotto');try{await saveState('BOZZA');toast('Bozza condivisa salvata');renderSummary()}catch(e){toast(e.message||'Errore')}}
@@ -347,7 +379,7 @@ function renderArchive(){
         <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
         <p>${fdate(o.data)} · ${esc(o.operatore)}</p>
       </div>
-      <button class="controlbtn danger" style="min-height:42px" data-delete-archive="${i}">Cancella</button>
+      <button class="archive-delete" data-delete-archive="${i}" aria-label="Cancella">×</button>
     </div>
   `).join(''):'<div class="empty">Nessun ordine archiviato.</div>';
   document.querySelectorAll('[data-delete-archive]').forEach(b=>b.onclick=()=>deleteArchivedOrder(list[+b.dataset.deleteArchive]));
@@ -370,12 +402,27 @@ async function deleteArchivedOrder(o){
     toast(e.message||'Errore cancellazione');
   }
 }
+
+function setBottomNav(name){
+  ['Orders','New','Archive','Profile'].forEach(n=>{
+    const el=$('nav'+n);
+    if(el)el.classList.toggle('active',n.toLowerCase()===name.toLowerCase());
+  });
+}
+function goOrders(){renderMacro();show('macro');setBottomNav('orders')}
+function goNew(){renderNewMacro();show('newOrderScreen');setBottomNav('new')}
+async function goArchive(){await openArchive();setBottomNav('archive')}
+function goProfile(){show('profile');setBottomNav('profile')}
 $('loginForm').onsubmit=login;
 $('syncBtn').onclick=syncCatalog;
-$('archiveButton').onclick=openArchive;
-$('archiveBack').onclick=()=>{renderMacro();show('macro')};
+$('archiveBack').onclick=goOrders;
+$('newBack').onclick=goOrders;
+$('navOrders').onclick=goOrders;
+$('navNew').onclick=goNew;
+$('navArchive').onclick=goArchive;
+$('navProfile').onclick=goProfile;
 $('forceSync').onclick=syncCatalog;
-$('profileBtn').onclick=()=>show('profile');
+$('profileBtn').onclick=goProfile;
 $('closeProfile').onclick=()=>show('macro');
 $('backMacro').onclick=()=>show('macro');
 $('backChoice').onclick=()=>show('choice');
@@ -397,7 +444,7 @@ $('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuov
 
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-(async()=>{if(user&&pin){$('login').classList.add('hidden');applyUser();await syncCatalog();await loadOrders();renderMacro();show('macro')}else $('pin').focus()})();
+(async()=>{if(user&&pin){$('login').classList.add('hidden');applyUser();await syncCatalog();await loadOrders();renderMacro();show('macro');setBottomNav('orders')}else $('pin').focus()})();
 </script>
 </body>
 </html>
