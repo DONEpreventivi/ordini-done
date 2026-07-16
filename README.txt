@@ -1,10 +1,9 @@
-ORDINI D.ONE V16 — LOCAL FIRST
+ORDINI D.ONE V17 CLEAN
 
-- Catalogo salvato in IndexedDB.
-- Dopo il primo download si aggiorna soltanto premendo AGGIORNA.
-- Compilazione, quantità, filtri e navigazione lavorano in locale.
-- Salva bozza risponde immediatamente e sincronizza dopo.
-- Se manca internet, la bozza resta DA SINCRONIZZARE.
-- La conferma e l'invio forzano la sincronizzazione.
-- L'archivio viene aggiornato online solo quando lo apri.
-- Apps Script invariato: usa la V4 già pubblicata.
+- Rimosse le scritte introduttive sulla scelta della macro.
+- Rimosso il punto dopo Ordini.
+- Eliminato l'arancione da menu e toolbar.
+- Toolbar e azioni principali in antracite.
+- Interfaccia più vicina allo stile iOS.
+- Mantiene tutte le funzioni Local First della V16.
+- Apps Script invariato.
