@@ -1,20 +1,7 @@
-ORDINI D.ONE V11
+ORDINI D.ONE V12 — DANISH FLAT
 
-NOVITÀ
-Durante la compilazione dell'ordine sono sempre disponibili:
-
-- SALVA BOZZA
-  Salva l'ordine come bozza condivisa e modificabile.
-
-- CONFERMA ORDINE
-  Porta al riepilogo e, dal riepilogo, avvia la conferma definitiva.
-
-FLUSSO
-Categorie / Prodotti
-→ Salva bozza oppure Conferma ordine
-→ Riepilogo
-→ Conferma ordine
-→ Pronto / Condivisione / Inviato
-
-APPS SCRIPT
-Resta invariato: usa la versione V4 già pubblicata.
+- SALVA BOZZA e CONFERMA ORDINE sono sempre visibili in categorie, prodotti e riepilogo.
+- Salva bozza è disattivato soltanto quando non ci sono prodotti.
+- Conferma ordine porta al riepilogo; dal riepilogo avvia la conferma definitiva.
+- Grafica flat nordica: palette desaturata, angoli minimi, niente ombre decorative.
+- Apps Script invariato: usa la V4 già pubblicata.

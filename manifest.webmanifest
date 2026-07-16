@@ -1,10 +1,10 @@
 {
-  "name": "Ordini D.ONE",
+  "name": "Ordini D.ONE V12",
   "short_name": "Ordini",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f4f1ec",
-  "theme_color": "#f4f1ec",
+  "background_color": "#f2f0eb",
+  "theme_color": "#f2f0eb",
   "icons": [
     {
       "src": "icons/icon-192.png",
