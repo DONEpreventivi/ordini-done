@@ -139,13 +139,63 @@ display:grid;grid-template-columns:1fr 1fr;background:var(--bg);padding:0 10px 8
 .bottomnav button span{display:block;font-size:19px;line-height:1;margin-bottom:5px}
 .bottomnav button.active{background:var(--orange);color:#fff}
 
-.login{position:fixed;inset:0;z-index:300;background:var(--teal);display:flex;align-items:center;justify-content:center;padding:24px}
-.loginbox{width:min(390px,100%);background:transparent}
-.loginlogo{width:162px;height:82px;object-fit:contain;display:block;margin:0 auto 46px}
-.pinrow{display:grid;grid-template-columns:1fr auto;background:var(--paper)}
-.pinrow input{border:0;background:transparent;outline:0;padding:18px 16px;font-size:28px;letter-spacing:8px}
-.pinrow button{background:var(--black);color:#fff;padding:0 18px;font-size:10px;text-transform:uppercase;letter-spacing:.9px;font-weight:700}
-.error{color:#7f2f2a;font-size:10px;margin-top:10px;min-height:15px}
+.login{
+  position:fixed;inset:0;z-index:300;
+  background:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  padding:28px
+}
+.loginbox{
+  width:min(360px,100%);
+  background:transparent;
+  text-align:center
+}
+.loginlogo{
+  width:168px;height:84px;object-fit:contain;
+  display:block;margin:0 auto 58px
+}
+.pinrow{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  background:transparent
+}
+.pinrow input{
+  width:220px;
+  border:0;
+  border-bottom:2px solid rgba(31,31,31,.42);
+  background:transparent;
+  outline:0;
+  padding:12px 4px 14px;
+  font-size:30px;
+  letter-spacing:10px;
+  text-align:center;
+  font-weight:400
+}
+.pinrow input::placeholder{
+  color:rgba(31,31,31,.48);
+  letter-spacing:3px;
+  text-align:center
+}
+.pinrow button{
+  min-width:150px;
+  min-height:52px;
+  background:var(--black);
+  color:#fff;
+  padding:0 24px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:700
+}
+.error,.loginerror{
+  color:#7f2f2a;
+  font-size:11px;
+  margin-top:16px;
+  min-height:18px;
+  text-align:center
+}
 
 .modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.36);display:flex;align-items:flex-end;justify-content:center}
 .sheet{width:min(760px,100%);background:var(--paper);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}
@@ -330,10 +380,10 @@ const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
 const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
 const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
 
-let user=JSON.parse(localStorage.getItem('done-v7-user')||'null');
-let pin=localStorage.getItem('done-v7-pin')||'';
+let user=JSON.parse(localStorage.getItem('done-v15-user')||'null');
+let pin=localStorage.getItem('done-v15-pin')||'';
 let catalog=[],grouped={spirits:{},wine:{},beer:{}},orders=[];
-let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v7-current')||'null')||newOrder();
+let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v15-current')||'null')||newOrder();
 let currentCategory='',filter='all',search='',confirmResolve=null,lastShareMethod='';
 
 function newOrder(){return{id:null,supplier:null,status:'BOZZA',qty:{},checked:{},visited:{},note:'',createdAt:null,createdBy:null}}
@@ -349,9 +399,22 @@ function ask(title,text,ok='Conferma',miss=[]){$('confirmTitle').textContent=tit
 function closeAsk(v=false){$('confirmModal').classList.add('hidden');if(confirmResolve){confirmResolve(v);confirmResolve=null}}
 $('confirmOk').onclick=()=>closeAsk(true);$('confirmCancel').onclick=()=>closeAsk(false);$('confirmClose').onclick=()=>closeAsk(false);
 
-async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v7-user',JSON.stringify(user));localStorage.setItem('done-v7-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
+
+function safeEl(id){return document.getElementById(id)}
+function initLogin(){
+  const form=safeEl('loginForm');
+  const pinInput=safeEl('pin');
+  if(form)form.onsubmit=login;
+  if(!user||!pin){
+    const loginScreen=safeEl('login');
+    if(loginScreen)loginScreen.classList.remove('hidden');
+    setTimeout(()=>pinInput&&pinInput.focus(),50);
+  }
+}
+
+async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];localStorage.setItem('done-v15-user',JSON.stringify(user));localStorage.setItem('done-v15-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog();renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
 function applyUser(){$('userName').textContent=user.nome;$('userRole').textContent=user.ruolo;$('avatar').textContent=(user.nome||'?')[0].toUpperCase();$('profileName').textContent=user.nome;$('profileRole').textContent=user.admin?'Amministratore':'Operatore'}
-async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v7-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v7-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
+async function syncCatalog(){$('syncText').textContent='Aggiornamento catalogo…';try{const d=await apiGet('catalogo');if(!d.ok)throw new Error(d.errore);catalog=d.catalogo||[];localStorage.setItem('done-v15-catalog',JSON.stringify(catalog));groupCatalog();$('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;renderMacro()}catch(e){catalog=JSON.parse(localStorage.getItem('done-v15-catalog')||'[]');groupCatalog();$('syncText').textContent=catalog.length?`${catalog.length} prodotti · offline`:'Catalogo non disponibile'}}
 function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
 async function loadOrders(){try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);if(!d.ok)throw new Error(d.errore);orders=d.ordini||[]}catch(e){toast('Ordini non disponibili')}}
 function renderMacro(){
@@ -416,7 +479,7 @@ let saveTimer=null;
 function saveCurrent(){
   renderControlPanel();
   clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>localStorage.setItem('done-v7-current',JSON.stringify(current)),80);
+  saveTimer=setTimeout(()=>localStorage.setItem('done-v15-current',JSON.stringify(current)),80);
 }
 function cats(){return Object.keys(grouped[current.supplier]||{})}
 function key(p){return`${current.supplier}|||${String(p.sottocategoria).toUpperCase()}|||${p.prodotto}|||${p.formato||''}`}
@@ -614,7 +677,7 @@ $('productList').onclick=e=>{
   if(!btn)return;
   change(btn.dataset.key,Number(btn.dataset.delta));
 };
-$('loginForm').onsubmit=login;
+
 $('syncBtn').onclick=syncCatalog;
 $('archiveBack').onclick=goOrders;
 $('newBack').onclick=goOrders;
@@ -646,11 +709,31 @@ document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(
 $('markSent').onclick=markSent;
 $('keepShared').onclick=keepShared;
 $('sentClose').onclick=keepShared;
-$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v7-user');localStorage.removeItem('done-v7-pin');location.reload()}};
+$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v15-user');localStorage.removeItem('done-v15-pin');location.reload()}};
 
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-(async()=>{if(user&&pin){$('login').classList.add('hidden');applyUser();await syncCatalog();await loadOrders();renderMacro();show('macro');setBottomNav('orders')}else $('pin').focus()})();
+initLogin();
+(async()=>{
+  if(user&&pin){
+    try{
+      $('login').classList.add('hidden');
+      applyUser();
+      await syncCatalog();
+      await loadOrders();
+      renderMacro();
+      show('macro');
+      setBottomNav('orders');
+    }catch(e){
+      localStorage.removeItem('done-v15-user');
+      localStorage.removeItem('done-v15-pin');
+      user=null;pin='';
+      $('login').classList.remove('hidden');
+      $('loginError').textContent='Inserisci nuovamente il PIN';
+      setTimeout(()=>$('pin').focus(),50);
+    }
+  }
+})();
 </script>
 </body>
 </html>

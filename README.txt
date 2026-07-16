@@ -1,20 +1,17 @@
-ORDINI D.ONE V14 — FLAT FIELDS
+ORDINI D.ONE V15 — LOGIN FIX
 
-DESIGN
-- Ritorno alla palette dell'app Preventivi.
-- Campiture piene e nette.
-- Nessun filetto decorativo.
-- Nessuna ombra.
-- Nessuna card con bordi.
-- Macro a bande piene salvia, sabbia e verde acqua.
-- Azioni principali nero/arancione.
-- Categorie controllate a campitura piena.
-- Prodotti menu con campitura chiara dedicata.
+CORREZIONI
+- Login inizializzato in modo indipendente dal resto dell'interfaccia.
+- Se una sessione salvata è incompatibile, viene eliminata e viene richiesto nuovamente il PIN.
+- Nuove chiavi locali per evitare stati corrotti della V14.
+- Nuova cache PWA per forzare l'aggiornamento.
 
-FUNZIONI
-- Mantiene tutte le funzioni V13:
-  testo pulito, stato in archivio, cancellazione diretta,
-  Salva bozza, Conferma ordine e ottimizzazioni di fluidità.
+LOGIN
+- Nessun riquadro.
+- Logo centrato.
+- PIN e testo digitato centrati sotto il logo.
+- Linea singola sotto il PIN.
+- Pulsante ENTRA centrato sotto il campo.
 
 APPS SCRIPT
 Invariato: usa la V4 già pubblicata.
