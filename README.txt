@@ -29,3 +29,9 @@ CORREZIONE LOGIN 18.0.1
 - Il frontend usa action=ordini per il login, compatibile con il deployment V17 già pubblicato.
 - Il nuovo Code.gs riconosce sia action=login sia action=ordini.
 - Per usare Produzione, MATERIE_PRIME e permessi V18 è comunque necessario salvare Code.gs e creare una nuova versione del deployment Web App.
+
+
+V18.0.2 - Correzione estetica Home
+- Tutte le funzioni V18 restano invariate.
+- Rimosse le descrizioni colorate dai pulsanti principali.
+- Macro SPIRITS, VINO, BIRRA e SPEZIE disposte verticalmente, una sotto l'altra.
