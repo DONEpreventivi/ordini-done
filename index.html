@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Ordini D.ONE">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
-<title>Ordini D.ONE V18.0.5</title>
+<title>Ordini D.ONE V18.1 iOS B/W</title>
 <style>
 
 :root{--bg:#f2f2f7;--paper:#fff;--paper2:#ececf1;--ink:#1c1c1e;--muted:#8e8e93;--dark:#242426;--sage:#b4c0b2;--sand:#d9cfba;--warm:#c7c4be;--teal:#a8bab5;--red:#c45650}
@@ -119,6 +119,395 @@ main{padding:18px 16px 34px}
  #macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:linear-gradient(135deg,#263126,#1f2a20)}#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:linear-gradient(135deg,#332d23,#2a261f)}#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:linear-gradient(135deg,#2e2d2b,#242321)}.module-row,.module-row.production{background:linear-gradient(135deg,#20312e,#182724)!important}
  .go{color:#636366}.product.menu{background:#292722}.loginbox{background:rgba(28,28,30,.42)}.pinrow input{background:rgba(44,44,46,.78);color:#fff}.home-alert{background:rgba(255,69,58,.15)}
 }
+
+/* V18.0.6.2 — iOS solid, fondo bianco, colori saturi, testi neri */
+:root{
+  --bg:#ffffff;--paper:#ffffff;--paper-solid:#ffffff;--paper2:#f2f2f7;
+  --ink:#000000;--muted:#4a4a4f;--dark:#000000;--separator:#d1d1d6;
+  --blue:#0a84ff;--green:#30d158;--yellow:#ffd60a;--orange:#ff9f0a;
+  --purple:#bf5af2;--red:#ff453a;--teal:#64d2ff;
+}
+html,body{background:#fff!important;color:#000!important}
+body{background:#fff!important}
+.app,main,section{background:#fff!important}
+*{text-shadow:none!important}
+header{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid #e5e5ea!important;box-shadow:none!important}
+.brand strong,.brand small,.user span,.user em,.title,h1,h2,h3,p,small,strong,b,em,span,label,.count,.sectiontitle strong,.row,.row p,.row h3,.go,.linkbtn,.toolbar,.toolbar strong,.toolbar small,.toolbar .linkbtn,.status,.filter,.filter.active,.product small,.category small,.catstate,.money,.money strong,.action,.share-main,.timeline div,.controlbtn,.bottomnav button,.login,.login input,.login button,.sheet,.modaltext,.close,.select,.supplier-pill,.batch-card,.batch-home,.batch-chip,.home-alert,.material-category,.material-selected-row,.material-compact,.batch-confirm button,.toast,.field textarea{color:#000!important}
+header .avatar{background:#000!important;color:#fff!important}
+.title,h1{font-weight:700!important;letter-spacing:-.045em!important}
+.sync,.sectiontitle strong,.count,.row p,.product small,.category small,.toolbar small,.brand small,.user em,.modaltext{color:#3a3a3c!important}
+#macroList,#newMacroList{box-shadow:none!important;border-radius:18px!important;overflow:hidden!important;border:1px solid #d1d1d6!important;background:#fff!important}
+#macroList .supplier,#newMacroList .supplier{border-radius:0!important;border:0!important;border-bottom:1px solid rgba(0,0,0,.14)!important;box-shadow:none!important}
+#macroList .supplier:last-child,#newMacroList .supplier:last-child{border-bottom:0!important}
+#macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:#0a84ff!important}
+#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:#30d158!important}
+#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:#ffd60a!important}
+#macroList .supplier.spice,#newMacroList .supplier.spice{background:#bf5af2!important}
+.module-row,.module-row.production{background:#ff9f0a!important;border:1px solid #d97800!important;box-shadow:none!important;border-radius:18px!important;margin-top:12px!important}
+.supplier strong,.module-row strong{color:#000!important;font-weight:800!important}
+.go{font-weight:700!important}
+.toolbar{background:#fff!important;color:#000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid #e5e5ea!important;box-shadow:none!important}
+.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.home-alert,.money{background:#fff!important;border:1px solid #d1d1d6!important;box-shadow:none!important}
+.row{border-radius:14px!important;margin-bottom:8px!important}
+.category.done{background:#d9f7df!important;border-color:#30d158!important}.category.visited:not(.done){background:#fff3cd!important;border-color:#ffd60a!important}
+.product.menu{background:#fff7e6!important;border-color:#ff9f0a!important}
+.search,.select,.field textarea,.pinrow input{background:#f2f2f7!important;border:1px solid #d1d1d6!important;box-shadow:none!important;color:#000!important}
+.filters{gap:7px}.filter{background:#f2f2f7!important;border:1px solid #d1d1d6!important;color:#000!important}.filter.active{background:#0a84ff!important;border-color:#0a84ff!important;color:#000!important}
+.qty{background:#e5e5ea!important;border:1px solid #c7c7cc!important}.qty b{background:#fff!important;color:#000!important}.qty.active{background:#30d158!important}.qty button{color:#000!important}
+.action,.controlbtn{background:#f2f2f7!important;border:1px solid #c7c7cc!important;color:#000!important;box-shadow:none!important}
+.action.primary,.controlbtn.primary,.share-main,.batch-confirm button{background:#0a84ff!important;border-color:#006ee6!important;color:#000!important;box-shadow:none!important}
+.action.warn{background:#ffd60a!important;border-color:#d6b400!important}.action.danger{background:#ff453a!important;border-color:#d92e25!important;color:#000!important}
+.money{background:#64d2ff!important;color:#000!important}.money *{color:#000!important}
+.batch-home.alert,.home-alert,.batch-chip.low{background:#ff453a!important;border-color:#d92e25!important;color:#000!important}.batch-chip{background:#f2f2f7!important;border:1px solid #d1d1d6!important}
+.batch-card.changed{border-color:#0a84ff!important;box-shadow:inset 4px 0 0 #0a84ff!important}
+.material-selected-row button{background:#ff453a!important;color:#000!important}.supplier-pill{background:#64d2ff!important;color:#000!important;border:1px solid #20aee8!important}
+.bottomnav{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-top:1px solid #d1d1d6!important;box-shadow:none!important}.bottomnav button{color:#000!important}.bottomnav button.active{background:#e5f1ff!important;color:#000!important}
+.controlpanel{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-top:1px solid #d1d1d6!important}
+.modal{background:rgba(0,0,0,.35)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.sheet{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid #d1d1d6!important;box-shadow:none!important}.close{background:#e5e5ea!important;color:#000!important}
+.login{background:#fff!important}.loginbox{background:#fff!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.pinrow button{background:#0a84ff!important;color:#000!important;box-shadow:none!important}
+.toast{background:#ffd60a!important;color:#000!important;border:1px solid #d6b400!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.producttools,.material-tools{background:#fff!important}
+.progress{background:#e5e5ea!important}.progress span{background:#0a84ff!important}
+.status.bozza,.status.pronto,.status.condiviso,.status.inviato{color:#000!important}
+@media (prefers-color-scheme:dark){
+ :root{--bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f2f2f7;--ink:#000;--muted:#4a4a4f}
+ html,body,.app,main,section{background:#fff!important;color:#000!important}
+ header,.toolbar,.bottomnav,.controlpanel,.sheet,.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home{background:#fff!important;color:#000!important}
+}
+
+
+
+/* V18.0.6.3 — MONOCHROME + OCRA. Solo grafica, logica invariata. */
+:root{
+  --bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f4f4f4;
+  --ink:#000;--muted:#4b4b4b;--dark:#000;--separator:#d8d8d8;
+  --alert:#c7942d;--alert-dark:#8a6418;
+}
+html,body,.app,main,section{background:#fff!important;color:#000!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+header,.toolbar,.bottomnav,.controlpanel,.sheet{background:#fff!important;color:#000!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+header{border-bottom:1px solid #dedede!important}
+.toolbar{border-bottom:1px solid #dedede!important}
+*{text-shadow:none!important}
+
+/* Testi */
+h1,h2,h3,h4,p,span,strong,b,small,label,em,.title,.brand strong,.brand small,.user span,.user em,.sectiontitle strong,.row,.row p,.row h3,.go,.linkbtn,.status,.product small,.category small,.catstate,.money,.money strong,.timeline div,.modaltext,.batch-card,.batch-home,.batch-chip,.material-category,.material-selected-row,.material-compact,.field textarea{color:#000!important}
+.sync,.count,.row p,.product small,.category small,.toolbar small,.brand small,.user em,.modaltext,.batch-meta,.batch-home small,.material-selected-row small,.material-compact small{color:#4b4b4b!important}
+
+/* Pulsanti: sempre neri con scritte bianche */
+button,.action,.controlbtn,.share-main,.batch-confirm button,.pinrow button,.filter,.supplier-pill,.material-selected-row button,.archive-delete,.open-delete,.close,.qty button,.bottomnav button{
+  background:#000!important;color:#fff!important;border:1px solid #000!important;box-shadow:none!important;filter:none!important
+}
+button:disabled,.action:disabled,.controlbtn:disabled,.batch-confirm button:disabled{opacity:.32!important}
+button:active,.action:active,.controlbtn:active{transform:scale(.98)!important;filter:none!important}
+.bottomnav button{border-radius:12px!important}
+.bottomnav button.active{background:#000!important;color:#fff!important}
+.bottomnav button:not(.active){background:#fff!important;color:#000!important;border-color:#fff!important}
+.linkbtn{background:transparent!important;color:#000!important;border:0!important;padding:7px 4px!important}
+
+/* Macro e moduli Home */
+#macroList,#newMacroList{border:1px solid #000!important;border-radius:18px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important}
+#macroList .supplier,#newMacroList .supplier,.module-row,.module-row.production{
+  background:#000!important;color:#fff!important;border:0!important;border-bottom:1px solid #fff!important;box-shadow:none!important
+}
+#macroList .supplier:last-child,#newMacroList .supplier:last-child{border-bottom:0!important}
+#macroList .supplier *,#newMacroList .supplier *,.module-row *,.module-row.production *{color:#fff!important}
+.module-row,.module-row.production{border:1px solid #000!important;border-radius:18px!important;margin-top:12px!important}
+
+/* Card, liste e campi */
+.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.money{
+  background:#fff!important;border:1px solid #d8d8d8!important;color:#000!important;box-shadow:none!important
+}
+.search,.select,.field textarea,.pinrow input,.batch-controls input{
+  background:#f4f4f4!important;border:1px solid #cfcfcf!important;color:#000!important;box-shadow:none!important
+}
+.producttools,.material-tools,.batch-confirm{background:#fff!important}
+.qty{background:#000!important;border:1px solid #000!important}
+.qty b{background:#fff!important;color:#000!important}
+.qty.active{background:#000!important}
+.filters .filter{background:#fff!important;color:#000!important;border:1px solid #000!important}
+.filters .filter.active{background:#000!important;color:#fff!important}
+.progress{background:#e6e6e6!important}.progress span{background:#000!important}
+.category.done,.category.visited:not(.done),.product.menu{background:#fff!important;border-color:#000!important}
+.category.done .catstate{color:#000!important}
+
+/* Alert e avvisi: solo giallo ocra */
+.home-alert,.batch-home.alert,.batch-chip.low,.action.warn,.action.danger,.toast,.miss,.urgent-high,.urgent-mid{
+  background:var(--alert)!important;color:#000!important;border:1px solid var(--alert-dark)!important;box-shadow:none!important
+}
+.home-alert *,.batch-home.alert *,.batch-chip.low *,.action.warn,.action.danger,.toast,.miss *{color:#000!important}
+.batch-home.alert{box-shadow:inset 5px 0 0 #000!important}
+.batch-card.changed{border-color:var(--alert-dark)!important;box-shadow:inset 5px 0 0 var(--alert)!important}
+.status.bozza,.status.pronto,.status.condiviso,.status.inviato{color:#000!important}
+
+/* Login e modali */
+.login,.loginbox{background:#fff!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.modal{background:rgba(0,0,0,.42)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.sheet{border:1px solid #000!important}
+.toast{border-radius:12px!important}
+
+/* Forza tema chiaro anche con dispositivo in dark mode */
+@media (prefers-color-scheme:dark){
+  :root{--bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f4f4f4;--ink:#000;--muted:#4b4b4b}
+  html,body,.app,main,section,header,.toolbar,.bottomnav,.controlpanel,.sheet,.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home{background:#fff!important;color:#000!important}
+}
+
+
+
+/* V18.1.3 — produzione a due colonne con secondo colore dedicato */
+:root{--production-accent:#c89b2b;--production-accent-soft:#f3e6bf;--production-accent-dark:#6f5010}
+#openProductionHome{margin-top:10px!important}
+#batchHome{
+  margin-top:18px!important;padding:18px!important;border:0!important;
+  background:var(--production-accent-soft)!important;
+}
+#batchHome .batch-home-head{padding-bottom:13px;border-bottom:1px solid rgba(111,80,16,.28)}
+#batchHome .batch-home-head h3,#batchHome .batch-home-head .go{color:var(--production-accent-dark)!important}
+#batchHome .batch-home-head small{color:#624a19!important}
+.batch-overview-groups{display:grid;gap:18px;margin-top:15px}
+.batch-overview-group h4{margin:0 0 8px;font-size:11px;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--production-accent-dark)!important}
+.batch-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.batch-chip{
+  min-height:48px;padding:10px 11px!important;border:1px solid rgba(111,80,16,.22)!important;
+  background:rgba(255,255,255,.58)!important;display:flex!important;align-items:center!important;
+  justify-content:space-between!important;gap:8px!important
+}
+.batch-chip span{font-size:12px;line-height:1.15;color:#17130a!important}
+.batch-chip b{font-size:16px;color:#17130a!important}
+.batch-chip.low{background:var(--production-accent)!important;border-color:var(--production-accent-dark)!important}
+.batch-chip.low span,.batch-chip.low b{color:#000!important}
+#batchList{display:grid;gap:24px}
+.batch-area{min-width:0}
+.batch-area-title{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #000;font-size:13px;letter-spacing:.11em;text-transform:uppercase}
+.batch-area-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.batch-area .batch-card{
+  min-width:0;padding:14px!important;border:1px solid #d1d1d6!important;background:#fff!important
+}
+.batch-area .batch-card h3{margin:0 0 5px;font-size:15px;line-height:1.15}
+.batch-area .batch-card.is-low{background:var(--production-accent-soft)!important;border-color:var(--production-accent)!important}
+.batch-area .batch-card.is-low h3,.batch-area .batch-card.is-low .batch-meta{color:var(--production-accent-dark)!important}
+.batch-area .batch-card.changed{border-left:5px solid var(--production-accent)!important}
+.batch-area .batch-controls{grid-template-columns:38px minmax(0,1fr) 38px;gap:5px;margin-top:10px}
+.batch-area .batch-controls button{width:38px;height:38px;padding:0!important;border-radius:50%!important;background:#000!important;color:#fff!important}
+.batch-area .batch-controls input{height:38px!important;border-radius:9px!important}
+@media(max-width:420px){
+  .batch-area-grid,.batch-home-grid{gap:7px!important}
+  .batch-area .batch-card{padding:12px 10px!important}
+  .batch-chip{padding:9px!important}
+}
+
+
+.batch-category-empty{grid-column:1/-1;padding:10px 0;font-size:12px;color:#8e8e93;font-style:italic}
+#production .batch-category-empty.production-empty{padding:8px 0 18px;font-size:14px}
+</style>
+
+
+/* V18.1 — iOS B/W: 5 azioni principali nere, controlli minori testuali */
+<style>
+:root{--ios-black:#000;--ios-white:#fff;--ios-gray:#8e8e93;--ios-separator:#d1d1d6;--ios-fill:#f2f2f7;--ios-alert:#c89a34}
+html,body,.app,main,section{background:#fff!important;color:#000!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+header{background:#fff!important;border-bottom:1px solid var(--ios-separator)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.title{font-size:34px!important;line-height:1.05!important;letter-spacing:-.035em!important;font-weight:750!important;margin:14px 0 24px!important}
+h2{font-size:28px!important;font-weight:720!important;letter-spacing:-.025em!important}
+
+/* Cinque ingressi principali: nero pieno, testo bianco */
+#macroList,#newMacroList{border:0!important;border-radius:0!important;overflow:visible!important;background:transparent!important}
+#macroList .supplier,#newMacroList .supplier,.module-row,.module-row.production{
+  min-height:62px!important;margin:0 0 10px!important;padding:0 20px!important;border:0!important;border-radius:17px!important;
+  background:#000!important;color:#fff!important;box-shadow:none!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important
+}
+#macroList .supplier *,#newMacroList .supplier *,.module-row *,.module-row.production *{color:#fff!important}
+#macroList .supplier strong,#newMacroList .supplier strong,.module-row strong{font-size:18px!important;font-weight:720!important;letter-spacing:-.01em!important}
+
+/* Liste iOS: niente card, solo righe e separatori */
+.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.money{
+  border:0!important;border-bottom:1px solid var(--ios-separator)!important;border-radius:0!important;margin:0!important;background:#fff!important;box-shadow:none!important
+}
+.row{padding:17px 2px!important}.row:first-child,.row:last-child,.row:only-child{border-radius:0!important}
+.sectiontitle{padding:22px 2px 8px!important}.sectiontitle strong{font-size:13px!important;color:#000!important;font-weight:700!important}
+
+/* Controlli piccoli: solo testo, nessun box */
+.linkbtn,.action:not(.primary),.filter,.supplier-pill,.archive-delete,.open-delete,.close,.bottomnav button{
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#000!important;padding:8px 4px!important;min-height:auto!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;font-weight:600!important
+}
+.linkbtn:active,.action:not(.primary):active,.filter:active,.supplier-pill:active,.archive-delete:active,.open-delete:active,.close:active,.bottomnav button:active{opacity:.35!important;transform:none!important}
+.filters{gap:18px!important;border-bottom:1px solid var(--ios-separator)!important;padding:8px 2px 10px!important}
+.filter.active{background:transparent!important;color:#000!important;border:0!important;text-decoration:underline!important;text-underline-offset:5px!important;text-decoration-thickness:2px!important}
+
+/* CTA operative vere: nere */
+.action.primary,.controlbtn,.controlbtn.primary,.share-main,.batch-confirm button,.pinrow button{
+  background:#000!important;color:#fff!important;border:0!important;border-radius:15px!important;box-shadow:none!important;font-weight:700!important
+}
+.actions{gap:2px 18px!important}.action:not(.primary){justify-self:start!important;text-align:left!important}
+
+/* Stepper compatto stile iOS */
+.qty{background:transparent!important;border:0!important;border-radius:0!important;grid-template-columns:38px 40px 38px!important;gap:2px!important}
+.qty button{width:38px!important;height:38px!important;border-radius:50%!important;background:#000!important;color:#fff!important;border:0!important;padding:0!important}
+.qty b{background:transparent!important;color:#000!important;font-size:18px!important}
+
+/* Campi e navigazione */
+.search,.select,.field textarea,.pinrow input,.batch-controls input{background:var(--ios-fill)!important;border:0!important;border-radius:12px!important;color:#000!important}
+.toolbar{background:#fff!important;color:#000!important;border-bottom:1px solid var(--ios-separator)!important}
+.toolbar .linkbtn{color:#000!important}
+.bottomnav{background:#fff!important;border-top:1px solid var(--ios-separator)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.bottomnav button.active{text-decoration:underline!important;text-underline-offset:5px!important;text-decoration-thickness:2px!important}
+
+/* L'ocra compare esclusivamente per alert/problemi */
+.home-alert,.batch-home.alert,.batch-chip.low,.toast,.miss,.urgent-high,.urgent-mid,.action.warn,.action.danger{
+  background:var(--ios-alert)!important;color:#000!important;border:0!important;border-radius:12px!important
+}
+.home-alert *,.batch-home.alert *,.batch-chip.low *,.toast *,.miss *{color:#000!important}
+.batch-card.changed{border-left:5px solid var(--ios-alert)!important}
+
+/* Sheet iOS */
+.modal{background:rgba(0,0,0,.35)!important}.sheet{border:0!important;border-radius:22px 22px 0 0!important;background:#fff!important}
+.close{font-size:17px!important;font-weight:650!important}
+</style>
+
+
+<style id="v18-1-6-clean-locked-ui">
+/* V18.1.6 — clean lock: no coloured primary navigation buttons */
+:root{--production-accent:#ff3b30;--production-soft:#ffe8e6;--production-dark:#b42318}
+
+/* MAIN NAVIGATION — ALWAYS BLACK */
+#macroList,#newMacroList{display:block!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;box-shadow:none!important}
+#macroList > button.supplier,#newMacroList > button.supplier,button#openProductionHome{
+  width:100%!important;min-height:66px!important;margin:0 0 10px!important;padding:0 20px!important;
+  display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important;
+  background:#000!important;background-color:#000!important;background-image:none!important;
+  color:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;
+  text-align:left!important;appearance:none!important;-webkit-appearance:none!important
+}
+#macroList > button.supplier:nth-child(n),#newMacroList > button.supplier:nth-child(n),
+#macroList > button.supplier.spice,#newMacroList > button.supplier.spice,button#openProductionHome.module-row.production{
+  background:#000!important;background-color:#000!important;background-image:none!important;color:#fff!important
+}
+#macroList > button.supplier *,#newMacroList > button.supplier *,button#openProductionHome *{color:#fff!important}
+#macroList > button.supplier strong,#newMacroList > button.supplier strong,button#openProductionHome strong{
+  color:#fff!important;font-size:21px!important;line-height:1!important;font-weight:900!important;
+  letter-spacing:-.04em!important;text-transform:uppercase!important
+}
+#macroList > button.supplier .go,#newMacroList > button.supplier .go,button#openProductionHome .go{color:#fff!important}
+button#openProductionHome{margin-top:20px!important}
+
+/* PRODUCTION OVERVIEW ONLY — TWO COLUMNS AND ACCENT */
+#batchHome{background:var(--production-soft)!important;border:0!important;border-radius:0!important}
+#batchHome .batch-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#batchHome .batch-chip{background:rgba(255,255,255,.7)!important;border:1px solid rgba(111,80,16,.25)!important;border-radius:0!important}
+#batchHome .batch-chip.low{background:var(--production-accent)!important;border-color:var(--production-dark)!important}
+#batchHome .batch-chip,#batchHome .batch-chip *{color:#000!important}
+
+/* FULL PRODUCTION SCREEN — ONE COLUMN */
+#production #batchList .batch-area-grid,#batchList .batch-area-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+</style>
+
+<style id="v18-1-7-production-clean-ui">
+/* Overview produzione: pulita, senza bordi, filetti o decorazioni */
+#batchHome{
+  padding:20px 0 8px!important;
+  margin-top:24px!important;
+  background:#fff!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+#batchHome .batch-home-head{
+  padding:0 0 16px!important;
+  border:0!important;
+  align-items:center!important;
+}
+#batchHome .batch-home-head h3{
+  margin:0!important;
+  font-size:21px!important;
+  line-height:1.05!important;
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+  color:#000!important;
+}
+#batchHome .batch-home-head small{
+  margin-top:6px!important;
+  font-size:12px!important;
+  line-height:1.3!important;
+  color:#6e6e73!important;
+}
+#batchHome .batch-home-head .go{font-size:24px!important;color:#000!important}
+#batchHome .batch-overview-groups{gap:22px!important;margin-top:0!important}
+#batchHome .batch-overview-group h4{
+  margin:0 0 9px!important;
+  font-size:12px!important;
+  font-weight:750!important;
+  letter-spacing:.08em!important;
+  color:#000!important;
+}
+#batchHome .batch-home-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+#batchHome .batch-chip{
+  min-height:48px!important;
+  padding:11px 12px!important;
+  background:#f2f2f7!important;
+  border:0!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+  align-items:center!important;
+}
+#batchHome .batch-chip span{font-size:13px!important;font-weight:600!important;line-height:1.15!important;color:#000!important}
+#batchHome .batch-chip b{font-size:18px!important;font-weight:800!important;color:#000!important}
+#batchHome .batch-chip.low{background:var(--production-accent)!important;border:0!important}
+#batchHome.alert{background:#fff!important;box-shadow:none!important}
+
+/* Tab Produzione: una colonna e tipografia più grande */
+#production .toolbar strong{font-size:22px!important;font-weight:800!important;letter-spacing:-.03em!important}
+#production .toolbar small{font-size:13px!important;margin-top:3px!important}
+#production #batchPermission{font-size:14px!important;line-height:1.35!important;margin:14px 0 20px!important}
+#production #batchList{gap:30px!important}
+#production .batch-area-title{
+  margin:0 0 12px!important;
+  padding:0!important;
+  border:0!important;
+  font-size:19px!important;
+  line-height:1.1!important;
+  font-weight:850!important;
+  letter-spacing:-.025em!important;
+  text-transform:uppercase!important;
+}
+#production .batch-area-grid{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+#production .batch-card{padding:17px 0!important;border:0!important;border-bottom:1px solid #e5e5ea!important;background:#fff!important}
+#production .batch-card:last-child{border-bottom:0!important}
+#production .batch-card h3{font-size:19px!important;line-height:1.15!important;font-weight:760!important;letter-spacing:-.02em!important}
+#production .batch-meta{font-size:13px!important;line-height:1.4!important;margin-top:7px!important}
+#production .batch-controls{margin-top:14px!important;grid-template-columns:44px minmax(0,1fr) 44px!important;gap:8px!important}
+#production .batch-controls button{width:44px!important;height:44px!important;font-size:23px!important}
+#production .batch-controls input{height:44px!important;font-size:20px!important;font-weight:700!important}
+#production .batch-card.is-low{background:#fff!important}
+#production .batch-card.is-low h3{color:var(--production-dark)!important}
+#production .batch-card.changed{border-left:0!important;box-shadow:none!important}
+</style>
+
+
+<style id="v18-1-8-avatar-red-lock">
+/* Avatar utente: sempre circolare e mostra solo l'iniziale dinamica */
+header #profileBtn.user{
+  width:40px!important;height:40px!important;min-width:40px!important;
+  padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
+  background:transparent!important;display:grid!important;place-items:center!important;overflow:visible!important;
+}
+header #profileBtn.user>div:not(.avatar){display:none!important}
+header #avatar.avatar{
+  width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;
+  padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
+  background:#f2f2f7!important;background-image:none!important;color:#000!important;
+  display:grid!important;place-items:center!important;overflow:hidden!important;
+  font-size:16px!important;line-height:38px!important;font-weight:800!important;letter-spacing:0!important;
+  box-shadow:none!important;
+}
+/* Produzione: rosso iOS al posto dell'ocra/oro */
+:root{--production-accent:#ff3b30!important;--production-soft:#ffe8e6!important;--production-dark:#b42318!important}
+#batchHome .batch-chip.low{background:#ff3b30!important;color:#fff!important}
+#batchHome .batch-chip.low *{color:#fff!important}
+#production .batch-card.is-low h3{color:#b42318!important}
 </style>
 </head>
 
@@ -827,12 +1216,12 @@ async function syncV18Modules(force=false){
     if(!d.ok)throw new Error(d.errore);
     materials=d.materiePrime||[];batches=d.batches||[];
     localStorage.setItem('done-v18-materials',JSON.stringify(materials));
-    localStorage.setItem('done-v18-batches',JSON.stringify(batches));
-    const savedDraft=JSON.parse(localStorage.getItem('done-v18-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
+    localStorage.setItem('done-v18-122-batches',JSON.stringify(batches));
+    const savedDraft=JSON.parse(localStorage.getItem('done-v18-122-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
   }catch(e){
     materials=JSON.parse(localStorage.getItem('done-v18-materials')||'[]');
-    batches=JSON.parse(localStorage.getItem('done-v18-batches')||'[]');
-    const savedDraft=JSON.parse(localStorage.getItem('done-v18-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
+    batches=JSON.parse(localStorage.getItem('done-v18-122-batches')||'[]');
+    const savedDraft=JSON.parse(localStorage.getItem('done-v18-122-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
   }
   renderUrgentHome();renderBatchHome();
 }
@@ -872,21 +1261,63 @@ function renderMaterialCart(){const groups={};materialCartItems.forEach(x=>(grou
 function materialOrderText(){const groups={};materialCartItems.forEach(x=>(groups[x.fornitore||'SENZA FORNITORE']??=[]).push(x));const a=['ORDINE MATERIE PRIME',`Operatore: ${user.nome}`,`Data: ${new Date().toLocaleDateString('it-IT')}`,''];let grand=0;Object.entries(groups).forEach(([f,rows])=>{a.push(f.toUpperCase(),'');let st=0;rows.forEach(x=>{const c=x.quantita*Number(x.prezzo||0);st+=c;grand+=c;a.push(`${x.nome} — ${x.quantita} ${x.um}${user.vedePrezzi?' — €'+c.toFixed(2):''}`)});if(user.vedePrezzi)a.push(`Totale ${f}: €${st.toFixed(2)}`);a.push('')});if(user.vedePrezzi)a.push(`Totale ordine: €${grand.toFixed(2)}`);return a.join('\n')}
 async function saveMaterialOrderV18(status='INVIATO'){if(!materialCartItems.length)return toast('Ordine vuoto');const id='SP-'+Date.now();const d=await apiPost({action:'salvaOrdine',pin,ordineId:id,macrocategoria:'SPEZIE',stato,note:'',metodoCondivisione:'',prodotti:materialCartItems.map(x=>({macrocategoria:'SPEZIE',sottocategoria:x.categoria,prodotto:x.nome,formato:x.um,unitaOrdine:x.um,fornitore:x.fornitore,prezzo:x.prezzo,quantita:x.quantita})),testo:materialOrderText()});if(!d.ok)throw new Error(d.errore);materialCartItems=[];localStorage.removeItem('done-v18-material-cart');await loadOrders(true);renderMacro();toast('Ordine spezie salvato');show('macro')}
 async function shareMaterialV18(){if(!materialCartItems.length)return toast('Ordine vuoto');const text=materialOrderText();try{if(navigator.share)await navigator.share({title:'Ordine materie prime',text});else{await navigator.clipboard.writeText(text);toast('Testo copiato')}}catch(e){return}try{await saveMaterialOrderV18('INVIATO')}catch(e){toast(e.message||'Errore salvataggio')}}
+function batchMinimum(b){const n=Number(b.minimo);return Number.isFinite(n)?n:2}
+function batchIsLow(b,value){return Number(value===undefined?b.disponibili:value)<batchMinimum(b)}
+const BATCH_CATEGORY_ORDER=[
+  'GIRO DEL MONDO',
+  'GIRO DEL MONDO - ANALCOLICI',
+  'EVERGREEN',
+  'MAKE AMERICANO GREAT AGAIN',
+  'MAKE AMERICANO GREAT AGAIN - ANALCOLICI'
+];
+function normalizeBatchCategory(value){
+  const raw=String(value||'')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[–—−]/g,'-')
+    .replace(/\s*-\s*/g,' - ')
+    .replace(/\s+/g,' ')
+    .trim().toUpperCase();
+  if(!raw)return 'SENZA CATEGORIA';
+  if(raw==='EVERGREEN')return 'EVERGREEN';
+  if(raw.includes('GIRO DEL MONDO'))return raw.includes('ANALCOLIC')?'GIRO DEL MONDO - ANALCOLICI':'GIRO DEL MONDO';
+  if(raw.includes('MAKE AMERICANO GREAT AGAIN'))return raw.includes('ANALCOLIC')?'MAKE AMERICANO GREAT AGAIN - ANALCOLICI':'MAKE AMERICANO GREAT AGAIN';
+  return raw;
+}
+function batchGroups(){
+  const groups={};
+  BATCH_CATEGORY_ORDER.forEach(c=>groups[c]=[]);
+  const extras={};
+  batches.forEach(b=>{
+    const sourceCategory=b.categoria ?? b.Categoria ?? b.category ?? b.categoriaBatch ?? b['Categoria batch'] ?? '';
+    const c=normalizeBatchCategory(sourceCategory);
+    if(Object.prototype.hasOwnProperty.call(groups,c)) groups[c].push(b);
+    else (extras[c]??=[]).push(b);
+  });
+  const ordered={};
+  // Le cinque macroaree sono sempre presenti e sempre nello stesso ordine.
+  BATCH_CATEGORY_ORDER.forEach(c=>ordered[c]=groups[c]);
+  // Eventuali errori nel foglio non fanno sparire i batch: vengono mostrati in fondo.
+  Object.keys(extras).sort((a,b)=>a.localeCompare(b,'it')).forEach(c=>ordered[c]=extras[c]);
+  return ordered;
+}
 function renderBatchHome(){
   const box=$('batchHome');if(!batches.length){box.classList.add('hidden');return}
-  const low=batches.filter(b=>Number(b.disponibili||0)<2);const dates=batches.map(b=>b.ultimoAggiornamento).filter(Boolean);const last=dates[0]||'—';const op=(batches.find(b=>b.operatore)||{}).operatore||'—';
+  const low=batches.filter(b=>batchIsLow(b));const dates=batches.map(b=>b.ultimoAggiornamento).filter(Boolean);const last=dates[0]||'—';const op=(batches.find(b=>b.operatore)||{}).operatore||'—';
+  const groups=batchGroups();
   box.classList.remove('hidden');box.classList.toggle('alert',low.length>0);
-  box.innerHTML=`<div class="batch-home-head"><div><h3>${low.length?low.length+' BATCH DA PRODURRE':'BATCH REGOLARI'}</h3><small>Aggiornamento: ${esc(last)} · ${esc(op)}</small></div><span class="go">→</span></div><div class="batch-home-grid">${batches.map(b=>`<div class="batch-chip ${Number(b.disponibili||0)<2?'low':''}"><span>${esc(b.batch)}</span><b>${Number(b.disponibili||0)}${Number(b.disponibili||0)<2?' ⚠':''}</b></div>`).join('')}</div>`;
+  const groupedHtml=Object.entries(groups).map(([cat,items])=>`<div class="batch-overview-group"><h4>${esc(cat)}</h4><div class="batch-home-grid">${items.length?items.map(b=>`<div class="batch-chip ${batchIsLow(b)?'low':''}"><span>${esc(b.batch)}</span><b>${Number(b.disponibili||0)}${batchIsLow(b)?' !':''}</b></div>`).join(''):'<div class="batch-category-empty">Nessun batch</div>'}</div></div>`).join('');
+  box.innerHTML=`<div class="batch-home-head"><div><h3>${low.length?low.length+' BATCH DA PRODURRE':'OVERVIEW PRODUZIONE'}</h3><small>${Object.keys(groups).length} macro aree · aggiornamento ${esc(last)} · ${esc(op)}</small></div><span class="go">→</span></div><div class="batch-overview-groups">${groupedHtml}</div>`;
   box.onclick=openProduction;
 }
 function openProduction(){renderBatchesV18();show('production')}
 function batchChangedCount(){return batches.filter(b=>Number(batchDraft[b.batch])!==Number(b.disponibili||0)).length}
-function persistBatchDraft(){localStorage.setItem('done-v18-batch-draft',JSON.stringify(batchDraft))}
+function persistBatchDraft(){localStorage.setItem('done-v18-122-batch-draft',JSON.stringify(batchDraft))}
 function setBatchDraft(name,val){batchDraft[name]=Math.max(0,Number(String(val).replace(',','.'))||0);persistBatchDraft();renderBatchesV18()}
 function renderBatchesV18(){
   const can=Boolean(user.modificaBatch||user.admin||String(user.ruolo).toUpperCase()==='ADMIN');const changed=batchChangedCount();
   $('batchPermission').textContent=can?'Le modifiche restano locali fino alla conferma generale.':'Visualizzazione sola lettura.';
-  $('batchList').innerHTML=batches.length?batches.map((b,i)=>{const v=batchDraft[b.batch]!==undefined?batchDraft[b.batch]:Number(b.disponibili||0);const ch=Number(v)!==Number(b.disponibili||0);return `<div class="batch-card ${ch?'changed':''}"><h3>${esc(b.batch)} ${v<2?'⚠':''}</h3><div class="batch-meta">Server: ${Number(b.disponibili||0)} · ${esc(b.ultimoAggiornamento||'—')} · ${esc(b.operatore||'—')}</div><div class="batch-controls"><button data-bdelta="-1" data-bi="${i}" ${can?'':'disabled'}>−</button><input data-binput="${i}" inputmode="decimal" value="${Number(v)}" ${can?'':'disabled'}><button data-bdelta="1" data-bi="${i}" ${can?'':'disabled'}>+</button></div></div>`}).join(''):'<div class="empty">Nessun batch attivo nel foglio GIACENZE_BATCH.</div>';
+  const groups=batchGroups();let globalIndex=new Map(batches.map((b,i)=>[b,i]));
+  $('batchList').innerHTML=batches.length?Object.entries(groups).map(([cat,items])=>`<section class="batch-area"><h2 class="batch-area-title">${esc(cat)}</h2><div class="batch-area-grid">${items.length?items.map(b=>{const i=globalIndex.get(b);const v=batchDraft[b.batch]!==undefined?batchDraft[b.batch]:Number(b.disponibili||0);const ch=Number(v)!==Number(b.disponibili||0);const low=batchIsLow(b,v);return `<div class="batch-card ${ch?'changed':''} ${low?'is-low':''}"><h3>${esc(b.batch)}${low?' · DA PRODURRE':''}</h3><div class="batch-meta">Disponibili ${Number(b.disponibili||0)} · minimo ${batchMinimum(b)}<br>${esc(b.ultimoAggiornamento||'—')} · ${esc(b.operatore||'—')}</div><div class="batch-controls"><button data-bdelta="-1" data-bi="${i}" ${can?'':'disabled'}>−</button><input data-binput="${i}" inputmode="decimal" value="${Number(v)}" ${can?'':'disabled'}><button data-bdelta="1" data-bi="${i}" ${can?'':'disabled'}>+</button></div></div>`}).join(''):'<div class="batch-category-empty production-empty">Nessun batch in questa categoria</div>'}</div></section>`).join(''):'<div class="empty">Nessun batch attivo nel foglio GIACENZE_BATCH.</div>';
   $('batchConfirm').classList.toggle('hidden',!can||!batches.length);$('confirmAllBatches').disabled=!changed;$('batchChanges').textContent=changed?`${changed} batch modificati · il server non è ancora stato aggiornato`:'Nessuna modifica da confermare';
   document.querySelectorAll('[data-bdelta]').forEach(x=>x.onclick=()=>{const b=batches[+x.dataset.bi];setBatchDraft(b.batch,Number(batchDraft[b.batch]||0)+Number(x.dataset.bdelta))});
   document.querySelectorAll('[data-binput]').forEach(x=>x.onchange=()=>{const b=batches[+x.dataset.binput];setBatchDraft(b.batch,x.value)});
@@ -894,13 +1325,22 @@ function renderBatchesV18(){
 async function confirmAllBatchesV18(){
   const changed=batches.filter(b=>Number(batchDraft[b.batch])!==Number(b.disponibili||0)).map(b=>({batch:b.batch,disponibili:Number(batchDraft[b.batch])}));if(!changed.length)return;
   const ok=await ask('Confermare i batch?',changed.map(x=>`${x.batch}: ${batches.find(b=>b.batch===x.batch).disponibili} → ${x.disponibili}`).join('\n'),'Conferma');if(!ok)return;
-  const d=await apiPost({action:'aggiornaBatches',pin,batches:changed});if(!d.ok)return toast(d.errore||'Errore');localStorage.removeItem('done-v18-batch-draft');await syncV18Modules(true);renderBatchesV18();renderBatchHome();toast('Situazione batch aggiornata');
+  let d=await apiPost({action:'aggiornaBatches',pin,batches:changed});
+  if(!d.ok && /azione non valida|non riconosciuta/i.test(String(d.errore||''))){
+    for(const item of changed){
+      const single=await apiPost({action:'aggiornaBatch',pin,batch:item.batch,disponibili:item.disponibili});
+      if(!single.ok){d=single;break}
+      d={ok:true};
+    }
+  }
+  if(!d.ok)return toast(d.errore||'Errore durante il salvataggio dei batch');
+  localStorage.removeItem('done-v18-122-batch-draft');await syncV18Modules(true);renderBatchesV18();renderBatchHome();toast('Situazione batch aggiornata');
 }
 materialCartItems=JSON.parse(localStorage.getItem('done-v18-material-cart')||'[]');
 $('materialSearch').oninput=e=>{materialQuery=e.target.value;renderMaterialsV18()};$('confirmAllBatches').onclick=confirmAllBatchesV18;$('supplierFilter').onchange=e=>{materialSupplier=e.target.value;renderMaterialsV18()};$('materialsBack').onclick=()=>{show('macro');renderMaterialCartBar()};$('materialCartBack').onclick=()=>{renderMaterialsV18();show('materials');renderMaterialCartBar()};$('saveMaterialOrder').onclick=()=>saveMaterialOrderV18('INVIATO').catch(e=>toast(e.message));$('shareMaterialOrder').onclick=shareMaterialV18;$('openProductionHome').onclick=openProduction;$('productionBack').onclick=()=>show('macro');$('navProduction').onclick=()=>{openProduction();setBottomNav('production')};
 const originalShow=show;show=function(id){originalShow(id);setTimeout(renderMaterialCartBar,0)};
 
-let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});document.addEventListener('gesturestart',e=>e.preventDefault());
+document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 initLogin();
 (async()=>{
