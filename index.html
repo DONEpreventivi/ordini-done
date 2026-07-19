@@ -1,1369 +1,504 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Ordini D.ONE">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/icon-180.png">
-<title>Ordini D.ONE V18.1 iOS B/W</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>ORDINI D.ONE — V2.6 Ricette Batch</title>
 <style>
-
-:root{--bg:#f2f2f7;--paper:#fff;--paper2:#ececf1;--ink:#1c1c1e;--muted:#8e8e93;--dark:#242426;--sage:#b4c0b2;--sand:#d9cfba;--warm:#c7c4be;--teal:#a8bab5;--red:#c45650}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{background:var(--bg);touch-action:manipulation}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;min-height:100vh;overscroll-behavior:none}
-button,input,textarea{font:inherit;color:inherit}button{border:0}.hidden{display:none!important}
-.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:160px}
-header{position:sticky;top:0;z-index:50;background:rgba(242,242,247,.94);backdrop-filter:blur(18px);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
-.headrow{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px}.logo{width:46px;height:30px;object-fit:contain}.brand strong{font-size:17px;font-weight:650}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:1px}
-.user{background:transparent;display:flex;align-items:center;gap:8px;padding:0}.avatar{width:34px;height:34px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}.user span{font-size:10px;font-weight:600;text-align:left}.user em{display:block;color:var(--muted);font-size:8px;font-style:normal;margin-top:2px}
-main{padding:22px 16px 30px}.title{font-size:44px;line-height:.96;letter-spacing:-.055em;font-weight:350;margin:10px 0 24px}h2{font-size:33px;line-height:1;letter-spacing:-.045em;font-weight:450;margin:6px 0 0}.eyebrow,.lead{display:none}
-.sync{display:flex;justify-content:space-between;align-items:center;background:transparent;padding:10px 0;margin-bottom:20px;font-size:11px;color:var(--muted)}.dot{width:7px;height:7px;background:var(--sage);border-radius:50%;display:inline-block;margin-right:8px}.linkbtn{background:transparent;padding:8px 0;font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:var(--ink)}
-.sectiontitle{display:flex;justify-content:space-between;align-items:center;padding:10px 2px;margin-bottom:6px}.sectiontitle strong{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}.count{font-size:11px;color:var(--muted);font-weight:600}
-.row{width:100%;background:var(--paper);padding:18px 16px;margin-bottom:1px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;text-align:left}.row:first-child{border-radius:14px 14px 0 0}.row:last-child{border-radius:0 0 14px 14px}.row:only-child{border-radius:14px}.row h3{font-size:18px;margin:0;font-weight:600}.row p{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.35}.go{font-size:19px;color:var(--muted);font-weight:300}
-.status{font-size:9px;text-transform:uppercase;letter-spacing:.7px;font-weight:700}.status.bozza{color:#8d6a29}.status.pronto{color:#5f5f63}.status.condiviso{color:#6f5d89}.status.inviato{color:#587657}
-.supplier{min-height:82px}.supplier strong{font-size:28px;letter-spacing:-.035em}#macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:var(--sage)}#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:var(--sand)}#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:var(--warm)}
-.toolbar{position:sticky;top:64px;z-index:30;margin:-22px -16px 16px;padding:15px 16px;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:space-between}.toolbar strong{font-size:17px;font-weight:650}.toolbar small{display:block;font-size:10px;margin-top:3px;color:rgba(255,255,255,.66)}.toolbar .linkbtn{color:#fff}
-.progress{height:4px;background:#d1d1d6;margin:0 0 10px}.progress span{display:block;height:100%;background:var(--dark)}
-.category{min-height:68px}.category.done{background:var(--sage)}.category.visited:not(.done){background:#e8dfcc}.category small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.catstate{font-size:9px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:var(--muted)}.category.done .catstate{color:#405442}
-.producttools{position:sticky;top:116px;z-index:25;background:var(--bg);padding-bottom:10px}.search{background:var(--paper);border-radius:12px;padding:0 14px}.search input{width:100%;height:48px;background:transparent;border:0;outline:0;font-size:16px}.filters{display:flex;gap:8px;padding-top:8px;overflow:auto}.filter{background:var(--paper);border-radius:999px;padding:9px 13px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;white-space:nowrap}.filter.active{background:var(--dark);color:#fff}
-.product{min-height:78px}.product.menu{background:#ece7df}.product strong{font-size:17px;font-weight:560}.product small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.menutag{font-size:8px;color:var(--dark);margin-left:6px;letter-spacing:.7px}.qty{display:grid;grid-template-columns:50px 44px 50px;background:var(--paper2);border-radius:12px;overflow:hidden}.qty button{height:50px;background:transparent;font-size:22px;font-weight:300}.qty b{display:grid;place-items:center;font-size:17px;background:var(--paper)}.qty.active{background:var(--sage)}
-.summary-group{padding:15px 16px;background:var(--paper);margin-bottom:1px}.summary-group:first-child{border-radius:14px 14px 0 0}.summary-group:last-child{border-radius:0 0 14px 14px}.summary-group h3{font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin:0 0 8px;color:var(--muted)}.sumrow{display:flex;justify-content:space-between;padding:7px 0;font-size:14px}.sumrow b{font-weight:650}.money{background:var(--dark);color:#fff;padding:16px;border-radius:14px;margin:12px 0;font-size:10px}.money strong{display:block;font-size:22px;margin:5px 0}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.action{min-height:56px;border-radius:14px;background:var(--paper);padding:10px;font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700}.action.primary{background:var(--dark);color:#fff}.action.warn{background:var(--sand)}.action.danger{background:#f0d8d6;color:var(--red)}.wide{grid-column:1/-1}.share-main{width:100%;background:var(--dark);color:#fff;border-radius:14px;padding:17px;font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-top:16px}
-.timeline{background:var(--paper);border-radius:14px;padding:16px;margin-top:8px}.timeline div{padding:9px 0;font-size:12px;color:var(--muted)}.timeline div.active{font-weight:650;color:var(--ink)}
-.controlpanel{position:fixed;left:50%;bottom:calc(68px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:92;width:min(760px,100%);display:grid;grid-template-columns:1fr 1fr;gap:8px;background:rgba(242,242,247,.95);backdrop-filter:blur(18px);padding:10px 12px}.controlbtn{min-height:58px;border-radius:14px;background:var(--paper);font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}.controlbtn.primary{background:var(--dark);color:#fff}.controlbtn:disabled{opacity:.38}
-.bottomnav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:90;width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.96);backdrop-filter:blur(18px);padding:7px 7px calc(7px + env(safe-area-inset-bottom))}.bottomnav button{background:transparent;color:var(--muted);padding:8px 3px;font-size:9px;letter-spacing:.3px;font-weight:600}.bottomnav button span{display:block;font-size:18px;line-height:1;margin-bottom:5px}.bottomnav button.active{color:var(--ink)}
-.login{position:fixed;inset:0;z-index:300;background:var(--teal);display:flex;align-items:center;justify-content:center;padding:28px}.loginbox{width:min(360px,100%);background:transparent;text-align:center}.loginlogo{width:168px;height:84px;object-fit:contain;display:block;margin:0 auto 58px}.pinrow{display:flex;flex-direction:column;align-items:center;gap:20px;background:transparent}.pinrow input{width:220px;border:0;border-bottom:2px solid rgba(31,31,31,.35);background:transparent;outline:0;padding:12px 4px 14px;font-size:30px;letter-spacing:10px;text-align:center;font-weight:400}.pinrow input::placeholder{color:rgba(31,31,31,.42);letter-spacing:3px;text-align:center}.pinrow button{min-width:150px;min-height:52px;border-radius:14px;background:var(--dark);color:#fff;padding:0 24px;font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}.error,.loginerror{color:#7f2f2a;font-size:11px;margin-top:16px;min-height:18px;text-align:center}
-.modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.28);display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:var(--paper);padding:22px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto;border-radius:22px 22px 0 0}.sheethead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.sheethead h2{font-size:27px}.close{background:transparent;color:var(--muted);font-size:24px}.modaltext{font-size:13px;line-height:1.5;color:var(--muted)}.miss{background:var(--sand);border-radius:14px;padding:12px;margin-top:12px;font-size:11px;line-height:1.7}.shareopt{display:grid;grid-template-columns:1fr auto;width:100%;background:var(--paper);padding:18px 0;text-align:left;font-size:15px;font-weight:650}.shareopt small{color:var(--muted);font-size:10px;font-weight:400}.field label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:700;margin-bottom:7px}.field textarea{width:100%;min-height:110px;background:var(--paper2);border:0;border-radius:14px;padding:12px;outline:0;font-size:14px}.toast{position:fixed;z-index:400;left:50%;bottom:92px;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 16px;border-radius:14px;font-size:11px;font-weight:700;white-space:nowrap}.empty{padding:28px 16px;background:var(--paper);border-radius:14px;color:var(--muted);font-size:13px}.archive-delete,.open-delete{width:42px;height:42px;border-radius:12px;background:#f0d8d6!important;color:var(--red)!important;font-size:19px!important;padding:0!important}
-.print{display:none}@media print{body>*:not(.print){display:none!important}.print{display:block!important;background:#fff;color:#111;padding:18mm;font-family:Arial}.print img{width:90px}.print table{width:100%;border-collapse:collapse}.print td{padding:5px 0}.print td:last-child{text-align:right;font-weight:bold}}
-
-
-/* V18 modules layered on the proven V17 order flow */
-#macroList .supplier.spice,#newMacroList .supplier.spice{background:#c7b2a6}
-.module-row{margin-top:1px;background:#d8e0dc}
-.module-row.production{background:#b9cbc6}
-.module-row strong{font-size:24px;letter-spacing:-.03em}
-.material-group{background:var(--paper);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.material-head{padding:16px;border-bottom:1px solid var(--paper2)}
-.material-head h3{margin:0;font-size:18px}.material-head small{color:var(--muted)}
-.material-supplier{width:100%;padding:14px 16px;display:grid;grid-template-columns:1fr auto;align-items:center;background:var(--paper);border-top:1px solid var(--paper2);text-align:left}
-.material-supplier b{font-size:13px}.material-supplier small{display:block;color:var(--muted);margin-top:3px}.urgent-high{box-shadow:inset 4px 0 0 #c45650}.urgent-mid{box-shadow:inset 4px 0 0 #c49a48}
-.material-tools{position:sticky;top:64px;z-index:25;background:var(--bg);padding:10px 0}.select{width:100%;height:48px;border:0;border-radius:12px;background:var(--paper);padding:0 14px;font-size:16px;margin-top:8px}
-.cartbar{position:fixed;left:50%;bottom:calc(68px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(760px,100%);z-index:93;padding:10px 12px;background:rgba(242,242,247,.95);backdrop-filter:blur(18px)}
-.cartbar button{width:100%;height:58px;border-radius:14px;background:var(--dark);color:#fff;font-weight:700}
-.batch-card{background:var(--paper);border-radius:14px;padding:16px;margin-bottom:10px}.batch-card.changed{box-shadow:inset 4px 0 0 var(--teal)}.batch-card h3{margin:0 0 5px}.batch-meta{font-size:11px;color:var(--muted);margin-bottom:12px}.batch-controls{display:grid;grid-template-columns:54px 1fr 54px;gap:8px}.batch-controls button,.batch-controls input{height:48px;border:0;border-radius:12px;background:var(--paper2);text-align:center}.batch-controls input{font-size:18px;background:#fff;border:1px solid var(--paper2);min-width:0}.batch-confirm{position:sticky;bottom:80px;background:var(--bg);padding:12px 0 4px}.batch-confirm button{width:100%;height:56px;border-radius:14px;background:var(--dark);color:#fff;font-weight:750}.batch-confirm button:disabled{opacity:.35}.batch-changes{font-size:11px;color:var(--muted);margin:0 0 8px;text-align:center}
-.home-alert{margin-top:22px;background:#f0d8d6;border-radius:14px;padding:16px}.home-alert h3{margin:0}.home-alert p{margin:6px 0 0;font-size:12px;color:#70423f}.batch-home{margin-top:18px;background:var(--paper);border-radius:16px;padding:16px}.batch-home.alert{box-shadow:inset 4px 0 0 var(--red)}.batch-home-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.batch-home h3{margin:0;font-size:18px}.batch-home small{display:block;color:var(--muted);margin-top:4px}.batch-home-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}.batch-chip{display:flex;justify-content:space-between;gap:8px;background:var(--paper2);border-radius:10px;padding:10px;font-size:12px}.batch-chip.low{background:#f0d8d6;color:#7f2f2a}.batch-chip b{font-size:15px}.material-selected{margin:8px 0 14px}.material-selected h3{font-size:13px;margin:0 0 8px}.material-selected-row{display:grid;grid-template-columns:1fr auto;align-items:center;background:var(--paper);padding:12px 14px;border-radius:12px;margin-bottom:6px}.material-selected-row small{display:block;color:var(--muted);margin-top:2px}.material-selected-row button{width:34px;height:34px;border-radius:9px;background:#f0d8d6;color:var(--red)}.material-category{background:var(--paper);border-radius:14px;margin-bottom:8px;overflow:hidden}.material-category summary{list-style:none;padding:15px 16px;font-weight:700;display:flex;justify-content:space-between;cursor:pointer}.material-category summary::-webkit-details-marker{display:none}.material-category[open] summary{border-bottom:1px solid var(--paper2)}.material-compact{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px 16px;border-top:1px solid var(--paper2)}.material-compact:first-of-type{border-top:0}.material-compact small{display:block;color:var(--muted);margin-top:2px}.supplier-pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.supplier-pill{background:var(--paper2);border-radius:9px;padding:8px 10px;font-size:10px;font-weight:700}
-
-
-/* V18.0.5 — iOS 26 / Liquid Glass visual layer. Functional markup and JS unchanged. */
-:root{
-  --bg:#f5f5f7;--paper:rgba(255,255,255,.88);--paper-solid:#fff;--paper2:#ececf1;
-  --ink:#1d1d1f;--muted:#6e6e73;--separator:rgba(60,60,67,.16);
-  --dark:#1d1d1f;--blue:#007aff;--red:#ff3b30;--orange:#ff9f0a;--green:#34c759;
-  --sage:#dfe9df;--sand:#f1e8d8;--warm:#e9e7e3;--teal:#d9ebe8;
-  --glass:rgba(255,255,255,.66);--glass-strong:rgba(255,255,255,.82);
-  --shadow:0 10px 35px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.8) inset;
+:root{--bg:#f5f5f7;--surface:#fff;--text:#111;--muted:#717171;--line:#e5e5e7;--soft:#efeff1;--red:#d71920;--nav:78px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text)}body{padding-bottom:calc(var(--nav) + env(safe-area-inset-bottom))}button,input,textarea,select{font:inherit}.app{max-width:820px;margin:auto;min-height:100vh}header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px;background:rgba(245,245,247,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.04)}.brand{font-size:13px;font-weight:900;letter-spacing:.15em}.home-button{
+position:relative;z-index:3;border:0;background:#000;color:#fff;
+padding:10px 13px;border-radius:12px;font-size:12px;font-weight:900;
+letter-spacing:.04em;white-space:nowrap
 }
-body{background:linear-gradient(180deg,#f8f8fa 0%,#f2f2f7 42%,#ececf2 100%);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
-.app{max-width:760px}
-header{background:rgba(248,248,250,.58);-webkit-backdrop-filter:saturate(180%) blur(28px);backdrop-filter:saturate(180%) blur(28px);border-bottom:1px solid rgba(255,255,255,.56);padding:calc(10px + env(safe-area-inset-top)) 18px 10px}
-.logo{width:44px;height:28px}.brand strong{font-size:17px;font-weight:650;letter-spacing:-.01em}.brand small{font-size:10px;color:var(--muted)}
-.avatar{width:36px;height:36px;background:linear-gradient(145deg,#38383a,#111113);box-shadow:0 4px 14px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.18)}
-main{padding:18px 16px 34px}
-#macro>h1,.title{font-size:42px;line-height:1;letter-spacing:-.055em;font-weight:720;margin:18px 2px 18px}
-.sync{margin:0 2px 18px;padding:8px 0;font-size:12px}.dot{width:8px;height:8px;background:var(--green);box-shadow:0 0 0 4px rgba(52,199,89,.12)}
-.linkbtn{color:var(--blue);text-transform:none;letter-spacing:0;font-size:14px;font-weight:600;padding:7px 4px}
-.sectiontitle{padding:12px 4px 7px}.sectiontitle strong{font-size:12px;letter-spacing:.02em;text-transform:none;color:var(--muted);font-weight:600}
-.row{background:var(--paper-solid);padding:17px 16px;margin-bottom:1px;border-radius:0;box-shadow:none;border:0;transition:transform .16s ease,filter .16s ease}.row:active{transform:scale(.985);filter:brightness(.97)}
-.row:first-child{border-radius:18px 18px 0 0}.row:last-child{border-radius:0 0 18px 18px}.row:only-child{border-radius:18px}.row h3{font-size:17px;letter-spacing:-.015em}.row p{font-size:12px}.go{font-size:24px;color:#c7c7cc}
-#macroList,#newMacroList{border-radius:20px;overflow:hidden;box-shadow:0 9px 28px rgba(0,0,0,.055)}
-.supplier{min-height:74px}.supplier strong{font-size:23px;font-weight:700;letter-spacing:-.035em}
-#macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:linear-gradient(135deg,#e8f0e7,#dce8dc)}
-#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:linear-gradient(135deg,#f5eee2,#ede1cf)}
-#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:linear-gradient(135deg,#efeeeb,#e5e2dd)}
-.module-row{margin-top:10px!important;border-radius:18px!important;background:linear-gradient(135deg,#e3f0ed,#d0e6e0)!important;box-shadow:0 9px 28px rgba(0,0,0,.055)}
-.module-row.production{background:linear-gradient(135deg,#dcebe8,#c8dfda)!important}.module-row strong{font-size:23px}
-.batch-home,.home-alert,.timeline,.money{border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.62)}
-.batch-home{background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);padding:18px}.batch-home.alert{box-shadow:inset 4px 0 0 var(--red),var(--shadow)}
-.batch-home h3{font-size:19px;letter-spacing:-.02em}.batch-home-grid{gap:9px}.batch-home-grid>*{border-radius:14px;background:rgba(118,118,128,.08);padding:11px}
-.home-alert{background:rgba(255,59,48,.09);border-color:rgba(255,59,48,.14)}
-.toolbar{top:65px;margin:-18px -16px 16px;padding:11px 16px;background:rgba(245,245,247,.72);color:var(--ink);-webkit-backdrop-filter:saturate(180%) blur(28px);backdrop-filter:saturate(180%) blur(28px);border-bottom:1px solid var(--separator)}
-.toolbar strong{font-size:18px;letter-spacing:-.02em}.toolbar small{color:var(--muted);font-size:11px}.toolbar .linkbtn{color:var(--blue)}
-.progress{height:4px;border-radius:99px;overflow:hidden;background:rgba(118,118,128,.16)}.progress span{background:var(--blue);border-radius:99px}
-.category,.product{background:var(--paper-solid)}.category.done{background:#eaf5eb}.category.visited:not(.done){background:#f6f0e6}.category.done .catstate{color:var(--green)}
-.producttools,.material-tools{background:linear-gradient(180deg,var(--bg) 78%,rgba(245,245,247,0));padding-bottom:13px}
-.search{background:rgba(118,118,128,.12);border-radius:13px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}.search input{height:44px;font-size:17px}
-.filters{gap:7px}.filter{background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.72);box-shadow:0 3px 12px rgba(0,0,0,.04);padding:9px 14px;text-transform:none;letter-spacing:0;font-size:12px}.filter.active{background:var(--ink);color:#fff}
-.qty{grid-template-columns:46px 42px 46px;border-radius:14px;background:rgba(118,118,128,.12)}.qty button{height:46px;color:var(--blue);font-weight:400}.qty b{background:rgba(255,255,255,.92)}.qty.active{background:rgba(52,199,89,.18)}
-.summary-group{background:var(--paper-solid)}.summary-group:first-child{border-radius:18px 18px 0 0}.summary-group:last-child{border-radius:0 0 18px 18px}
-.actions{gap:10px}.action,.controlbtn,.share-main{border-radius:16px;min-height:54px;text-transform:none;letter-spacing:0;font-size:15px;font-weight:650;box-shadow:0 5px 18px rgba(0,0,0,.055)}.action.primary,.controlbtn.primary,.share-main{background:var(--blue);color:#fff}.action.warn{background:rgba(255,159,10,.15);color:#9a5b00}.action.danger{background:rgba(255,59,48,.12);color:var(--red)}
-.controlpanel{bottom:calc(79px + env(safe-area-inset-bottom));background:transparent;padding:10px 12px;gap:10px}.controlpanel:before{content:"";position:absolute;inset:5px 7px;background:rgba(255,255,255,.62);-webkit-backdrop-filter:saturate(180%) blur(28px);backdrop-filter:saturate(180%) blur(28px);border:1px solid rgba(255,255,255,.7);border-radius:24px;box-shadow:0 10px 35px rgba(0,0,0,.1);z-index:-1}
-.bottomnav{width:min(730px,calc(100% - 20px));bottom:calc(8px + env(safe-area-inset-bottom));border-radius:26px;padding:6px;background:rgba(255,255,255,.62);-webkit-backdrop-filter:saturate(190%) blur(30px);backdrop-filter:saturate(190%) blur(30px);border:1px solid rgba(255,255,255,.74);box-shadow:0 12px 40px rgba(0,0,0,.15)}
-.bottomnav button{border-radius:18px;padding:8px 3px;font-size:10px}.bottomnav button span{font-size:20px}.bottomnav button.active{background:rgba(118,118,128,.12);color:var(--blue)}
-.login{background:radial-gradient(circle at 50% 8%,rgba(255,255,255,.9),rgba(220,238,234,.86) 38%,#c6dfda 100%)}.loginbox{padding:28px 22px;border-radius:32px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.62);-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);box-shadow:0 24px 70px rgba(0,0,0,.14)}.loginlogo{margin-bottom:34px}.pinrow input{width:240px;border:0;border-radius:15px;background:rgba(255,255,255,.68);padding:14px;font-size:26px;box-shadow:inset 0 0 0 1px rgba(60,60,67,.12)}.pinrow button{min-width:180px;border-radius:16px;background:var(--blue);font-size:15px;text-transform:none;letter-spacing:0}
-.modal{background:rgba(0,0,0,.28);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}.sheet{background:rgba(248,248,250,.92);-webkit-backdrop-filter:saturate(180%) blur(28px);backdrop-filter:saturate(180%) blur(28px);border:1px solid rgba(255,255,255,.72);border-radius:30px 30px 0 0;box-shadow:0 -18px 55px rgba(0,0,0,.18)}.sheet:before{content:"";display:block;width:38px;height:5px;border-radius:99px;background:rgba(60,60,67,.24);margin:-8px auto 16px}.close{width:32px;height:32px;border-radius:50%;background:rgba(118,118,128,.12);display:grid;place-items:center;font-size:20px}
-.select{height:44px;border-radius:13px;background:rgba(118,118,128,.12);font-size:17px}.material-category{border-radius:18px;background:var(--paper-solid);box-shadow:0 5px 18px rgba(0,0,0,.04)}.material-category summary{padding:16px;font-size:16px}.material-selected-row{border-radius:15px}.supplier-pill{border-radius:999px;background:rgba(0,122,255,.1);color:var(--blue);padding:8px 11px}
-.batch-card{border-radius:18px;background:var(--paper-solid);box-shadow:0 6px 20px rgba(0,0,0,.045)}.batch-card.changed{box-shadow:inset 4px 0 0 var(--blue),0 6px 20px rgba(0,0,0,.045)}.batch-confirm{bottom:96px;background:transparent}.batch-confirm button{height:56px;border-radius:17px;background:var(--blue);font-size:15px;box-shadow:0 10px 28px rgba(0,122,255,.22)}
-.toast{bottom:110px;background:rgba(29,29,31,.88);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:13px;padding:12px 18px;box-shadow:0 10px 28px rgba(0,0,0,.18)}
-.field textarea{background:rgba(118,118,128,.12);border-radius:16px;font-size:16px}
-@media (prefers-color-scheme:dark){
- :root{--bg:#000;--paper:rgba(28,28,30,.9);--paper-solid:#1c1c1e;--paper2:#2c2c2e;--ink:#f5f5f7;--muted:#98989d;--separator:rgba(84,84,88,.55);--glass:rgba(28,28,30,.68);--glass-strong:rgba(28,28,30,.84)}
- body{background:linear-gradient(180deg,#111113,#000 42%)}header,.toolbar{background:rgba(28,28,30,.62);border-color:rgba(255,255,255,.08)}
- .row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row{background:#1c1c1e}.search,.select,.field textarea{background:rgba(118,118,128,.24)}
- .bottomnav,.controlpanel:before,.batch-home,.sheet{background:rgba(28,28,30,.72);border-color:rgba(255,255,255,.1)}.bottomnav button.active{background:rgba(118,118,128,.25)}
- #macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:linear-gradient(135deg,#263126,#1f2a20)}#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:linear-gradient(135deg,#332d23,#2a261f)}#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:linear-gradient(135deg,#2e2d2b,#242321)}.module-row,.module-row.production{background:linear-gradient(135deg,#20312e,#182724)!important}
- .go{color:#636366}.product.menu{background:#292722}.loginbox{background:rgba(28,28,30,.42)}.pinrow input{background:rgba(44,44,46,.78);color:#fff}.home-alert{background:rgba(255,69,58,.15)}
-}
+.home-button:active{transform:scale(.97)}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e3e3e6;font-weight:900}main{padding:18px}.view{display:none}.view.active{display:block}h1{font-size:34px;line-height:1.02;margin:7px 0;letter-spacing:-.04em}h2{font-size:22px;margin:26px 0 12px}h3{font-size:14px;margin:0;text-transform:uppercase;letter-spacing:.08em}p{margin:0;color:var(--muted)}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.metric,.panel,.form,.order{background:#fff;border-radius:20px;padding:17px;margin-top:13px}.metric strong{display:block;font-size:29px}.metric span,.meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.link{border:0;background:none;font-weight:800}.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.main-btn{border:0;background:#000;color:#fff;border-radius:0;min-height:95px;padding:22px 15px;text-align:left;font-size:22px;font-weight:900}.main-btn small{display:block;font-size:11px;opacity:.6;margin-top:9px}.cat{margin-top:25px}.cat-title{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}.batch-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.batch-card{background:#fff;border-radius:16px;padding:14px}.batch-card strong{display:block}.qty{font-size:26px;font-weight:900;color:var(--red);margin-top:10px}.batch-row{display:grid;grid-template-columns:1fr 78px 92px;gap:10px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.batch-row:last-child{border-bottom:0}.batch-name{font-size:18px;font-weight:900}.step{display:flex;background:var(--soft);border-radius:12px;overflow:hidden;align-items:center;justify-content:space-between}.step button{border:0;background:none;width:30px;height:38px;font-size:20px}.recipe-btn,.btn.black{border:0;background:#000;color:#fff;border-radius:12px;padding:11px;font-weight:900}.note{background:#fff;border-radius:16px;padding:15px;margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:10px}.note.done{opacity:.45}.note-title{font-weight:900}.note-text{font-size:14px;color:var(--muted);margin-top:5px;white-space:pre-wrap}.note-actions{display:flex;gap:6px}.icon{border:0;background:var(--soft);width:36px;height:36px;border-radius:50%;font-size:18px}.icon.active{background:#000;color:#fff}label{display:block;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin:13px 0 7px}input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:13px}textarea{min-height:100px}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:900}.btn.light{background:var(--soft)}.actions{display:flex;gap:9px;margin-top:13px}.order-top{display:flex;justify-content:space-between}.badge{background:var(--soft);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}.ingredient{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.calc{background:#000;color:#fff;border-radius:19px;padding:17px;margin-top:14px}.calc input,.calc select{background:#171717;color:#fff;border-color:#333}.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,820px);height:calc(var(--nav) + env(safe-area-inset-bottom));padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:2px}.nav button{border:0;background:none;border-radius:13px;padding:7px 2px;color:#777;font-size:9px;font-weight:900}.nav button span{display:block;font-size:21px}.nav button.active{background:#000;color:#fff}.hidden{display:none}.empty{text-align:center;color:var(--muted);padding:20px}@media(max-width:520px){main{padding:15px}.batch-row{grid-template-columns:1fr 76px}.recipe-btn{grid-column:1/-1}.main-btn{font-size:20px}}
 
-/* V18.0.6.2 — iOS solid, fondo bianco, colori saturi, testi neri */
-:root{
-  --bg:#ffffff;--paper:#ffffff;--paper-solid:#ffffff;--paper2:#f2f2f7;
-  --ink:#000000;--muted:#4a4a4f;--dark:#000000;--separator:#d1d1d6;
-  --blue:#0a84ff;--green:#30d158;--yellow:#ffd60a;--orange:#ff9f0a;
-  --purple:#bf5af2;--red:#ff453a;--teal:#64d2ff;
-}
-html,body{background:#fff!important;color:#000!important}
-body{background:#fff!important}
-.app,main,section{background:#fff!important}
-*{text-shadow:none!important}
-header{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid #e5e5ea!important;box-shadow:none!important}
-.brand strong,.brand small,.user span,.user em,.title,h1,h2,h3,p,small,strong,b,em,span,label,.count,.sectiontitle strong,.row,.row p,.row h3,.go,.linkbtn,.toolbar,.toolbar strong,.toolbar small,.toolbar .linkbtn,.status,.filter,.filter.active,.product small,.category small,.catstate,.money,.money strong,.action,.share-main,.timeline div,.controlbtn,.bottomnav button,.login,.login input,.login button,.sheet,.modaltext,.close,.select,.supplier-pill,.batch-card,.batch-home,.batch-chip,.home-alert,.material-category,.material-selected-row,.material-compact,.batch-confirm button,.toast,.field textarea{color:#000!important}
-header .avatar{background:#000!important;color:#fff!important}
-.title,h1{font-weight:700!important;letter-spacing:-.045em!important}
-.sync,.sectiontitle strong,.count,.row p,.product small,.category small,.toolbar small,.brand small,.user em,.modaltext{color:#3a3a3c!important}
-#macroList,#newMacroList{box-shadow:none!important;border-radius:18px!important;overflow:hidden!important;border:1px solid #d1d1d6!important;background:#fff!important}
-#macroList .supplier,#newMacroList .supplier{border-radius:0!important;border:0!important;border-bottom:1px solid rgba(0,0,0,.14)!important;box-shadow:none!important}
-#macroList .supplier:last-child,#newMacroList .supplier:last-child{border-bottom:0!important}
-#macroList .supplier:nth-child(1),#newMacroList .supplier:nth-child(1){background:#0a84ff!important}
-#macroList .supplier:nth-child(2),#newMacroList .supplier:nth-child(2){background:#30d158!important}
-#macroList .supplier:nth-child(3),#newMacroList .supplier:nth-child(3){background:#ffd60a!important}
-#macroList .supplier.spice,#newMacroList .supplier.spice{background:#bf5af2!important}
-.module-row,.module-row.production{background:#ff9f0a!important;border:1px solid #d97800!important;box-shadow:none!important;border-radius:18px!important;margin-top:12px!important}
-.supplier strong,.module-row strong{color:#000!important;font-weight:800!important}
-.go{font-weight:700!important}
-.toolbar{background:#fff!important;color:#000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid #e5e5ea!important;box-shadow:none!important}
-.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.home-alert,.money{background:#fff!important;border:1px solid #d1d1d6!important;box-shadow:none!important}
-.row{border-radius:14px!important;margin-bottom:8px!important}
-.category.done{background:#d9f7df!important;border-color:#30d158!important}.category.visited:not(.done){background:#fff3cd!important;border-color:#ffd60a!important}
-.product.menu{background:#fff7e6!important;border-color:#ff9f0a!important}
-.search,.select,.field textarea,.pinrow input{background:#f2f2f7!important;border:1px solid #d1d1d6!important;box-shadow:none!important;color:#000!important}
-.filters{gap:7px}.filter{background:#f2f2f7!important;border:1px solid #d1d1d6!important;color:#000!important}.filter.active{background:#0a84ff!important;border-color:#0a84ff!important;color:#000!important}
-.qty{background:#e5e5ea!important;border:1px solid #c7c7cc!important}.qty b{background:#fff!important;color:#000!important}.qty.active{background:#30d158!important}.qty button{color:#000!important}
-.action,.controlbtn{background:#f2f2f7!important;border:1px solid #c7c7cc!important;color:#000!important;box-shadow:none!important}
-.action.primary,.controlbtn.primary,.share-main,.batch-confirm button{background:#0a84ff!important;border-color:#006ee6!important;color:#000!important;box-shadow:none!important}
-.action.warn{background:#ffd60a!important;border-color:#d6b400!important}.action.danger{background:#ff453a!important;border-color:#d92e25!important;color:#000!important}
-.money{background:#64d2ff!important;color:#000!important}.money *{color:#000!important}
-.batch-home.alert,.home-alert,.batch-chip.low{background:#ff453a!important;border-color:#d92e25!important;color:#000!important}.batch-chip{background:#f2f2f7!important;border:1px solid #d1d1d6!important}
-.batch-card.changed{border-color:#0a84ff!important;box-shadow:inset 4px 0 0 #0a84ff!important}
-.material-selected-row button{background:#ff453a!important;color:#000!important}.supplier-pill{background:#64d2ff!important;color:#000!important;border:1px solid #20aee8!important}
-.bottomnav{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-top:1px solid #d1d1d6!important;box-shadow:none!important}.bottomnav button{color:#000!important}.bottomnav button.active{background:#e5f1ff!important;color:#000!important}
-.controlpanel{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-top:1px solid #d1d1d6!important}
-.modal{background:rgba(0,0,0,.35)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.sheet{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid #d1d1d6!important;box-shadow:none!important}.close{background:#e5e5ea!important;color:#000!important}
-.login{background:#fff!important}.loginbox{background:#fff!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.pinrow button{background:#0a84ff!important;color:#000!important;box-shadow:none!important}
-.toast{background:#ffd60a!important;color:#000!important;border:1px solid #d6b400!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
-.producttools,.material-tools{background:#fff!important}
-.progress{background:#e5e5ea!important}.progress span{background:#0a84ff!important}
-.status.bozza,.status.pronto,.status.condiviso,.status.inviato{color:#000!important}
-@media (prefers-color-scheme:dark){
- :root{--bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f2f2f7;--ink:#000;--muted:#4a4a4f}
- html,body,.app,main,section{background:#fff!important;color:#000!important}
- header,.toolbar,.bottomnav,.controlpanel,.sheet,.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home{background:#fff!important;color:#000!important}
+/* ORDINI V2.3 */
+.order-progress{height:11px;background:var(--soft);overflow:hidden;margin:12px 0}.order-progress>div{height:100%;background:#000;transition:.2s}
+.order-toolbar{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-top:18px}.order-toolbar h2{margin:0}
+.order-category{width:100%;border:0;background:#fff;padding:16px;margin-top:9px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:16px}
+.order-category strong{font-size:17px}.order-category small{display:block;color:var(--muted);margin-top:4px}.order-state{font-size:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.order-state.done{color:#15834d}.order-state.new{color:var(--muted)}
+.order-product{display:grid;grid-template-columns:1fr 126px;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.order-product:last-child{border-bottom:0}.order-product-name{font-weight:800}.order-product-meta{font-size:11px;color:var(--muted);margin-top:4px}
+.order-qty{display:grid;grid-template-columns:34px 1fr 34px;gap:5px;align-items:center}.order-qty button{height:38px;border:0;background:var(--soft);font-size:19px;font-weight:900}.order-qty input{height:38px;padding:5px;text-align:center;border-radius:0}
+.order-filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.order-filter-grid label{margin-top:0}
+.order-preview{white-space:pre-wrap;background:#fff;padding:17px;margin-top:13px;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;border-radius:16px}
+.order-alert{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:80;display:none;align-items:center;justify-content:center;padding:18px}.order-alert.show{display:flex}.order-alert-box{background:#fff;width:min(520px,100%);padding:20px;border-radius:20px}.order-alert-box h2{margin-top:0}.draft-card{border-left:5px solid #d39b16}.status-ok{color:#15834d}.order-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
+@media(max-width:520px){.order-product{grid-template-columns:1fr}.order-qty{width:150px}.order-filter-grid{grid-template-columns:1fr}}
+
+/* ARCHIVIO V2.4 */
+.archive-tools{background:#fff;border-radius:20px;padding:15px;margin-top:16px}.archive-filters{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.archive-filter{border:0;background:var(--soft);padding:9px 12px;font-size:11px;font-weight:900;white-space:nowrap}.archive-filter.active{background:#000;color:#fff}.archive-search{margin-top:10px}.archive-type{font-size:20px;font-weight:900}.archive-date{margin-top:4px}.archive-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:13px}.archive-actions .btn{padding:11px 8px}.archive-detail{display:none;margin-top:13px}.archive-detail.show{display:block}.archive-delete{background:#f9e6e6;color:#a31515}.archive-editing{background:#fff4d8;color:#7a5700}.archive-empty-filter{text-align:center;color:var(--muted);padding:28px 10px}
+@media(max-width:520px){.archive-actions{grid-template-columns:1fr 1fr}.archive-actions .archive-delete{grid-column:1/-1}}
+
+/* SITUAZIONE BATCH V2.5 */
+.batch-launcher-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.batch-launcher{border:0;background:#000;color:#fff;min-height:112px;padding:18px;text-align:left;font-size:18px;font-weight:900}
+.batch-launcher small{display:block;margin-top:8px;font-size:11px;font-weight:700;opacity:.62;line-height:1.35}
+.batch-toolbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:18px}
+.batch-toolbar h2{margin:0}.batch-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
+.batch-edit-row{background:#fff;border-radius:18px;padding:16px;margin-top:10px}
+.batch-edit-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.batch-edit-name{font-size:19px;font-weight:900}
+.batch-alert{background:#fff0f0;color:#a31515;padding:9px 11px;margin-top:11px;font-size:12px;font-weight:900}
+.batch-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.batch-fields label{margin:0 0 6px;font-size:10px}
+.batch-fields input{border-radius:0;text-align:center;font-weight:900;font-size:18px}
+.batch-production-badge{background:#000;color:#fff;padding:6px 9px;font-size:11px;font-weight:900;white-space:nowrap}
+.batch-production-badge.zero{background:var(--soft);color:var(--muted)}
+.home-batch-task{background:#fff;border-radius:16px;padding:14px;margin-top:9px}
+.home-batch-task-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.home-batch-task strong{font-size:17px}
+.home-batch-confirm{width:100%;margin-top:12px;border:0;background:#000;color:#fff;padding:11px;font-weight:900}
+.batch-save-note{font-size:11px;color:var(--muted);margin-top:12px}
+@media(max-width:560px){
+ .batch-launcher-grid{grid-template-columns:1fr}
+ .batch-fields{grid-template-columns:1fr 1fr}
+ .batch-fields>div:last-child{grid-column:1/-1}
 }
 
 
-
-/* V18.0.6.3 — MONOCHROME + OCRA. Solo grafica, logica invariata. */
-:root{
-  --bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f4f4f4;
-  --ink:#000;--muted:#4b4b4b;--dark:#000;--separator:#d8d8d8;
-  --alert:#c7942d;--alert-dark:#8a6418;
-}
-html,body,.app,main,section{background:#fff!important;color:#000!important}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
-header,.toolbar,.bottomnav,.controlpanel,.sheet{background:#fff!important;color:#000!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-header{border-bottom:1px solid #dedede!important}
-.toolbar{border-bottom:1px solid #dedede!important}
-*{text-shadow:none!important}
-
-/* Testi */
-h1,h2,h3,h4,p,span,strong,b,small,label,em,.title,.brand strong,.brand small,.user span,.user em,.sectiontitle strong,.row,.row p,.row h3,.go,.linkbtn,.status,.product small,.category small,.catstate,.money,.money strong,.timeline div,.modaltext,.batch-card,.batch-home,.batch-chip,.material-category,.material-selected-row,.material-compact,.field textarea{color:#000!important}
-.sync,.count,.row p,.product small,.category small,.toolbar small,.brand small,.user em,.modaltext,.batch-meta,.batch-home small,.material-selected-row small,.material-compact small{color:#4b4b4b!important}
-
-/* Pulsanti: sempre neri con scritte bianche */
-button,.action,.controlbtn,.share-main,.batch-confirm button,.pinrow button,.filter,.supplier-pill,.material-selected-row button,.archive-delete,.open-delete,.close,.qty button,.bottomnav button{
-  background:#000!important;color:#fff!important;border:1px solid #000!important;box-shadow:none!important;filter:none!important
-}
-button:disabled,.action:disabled,.controlbtn:disabled,.batch-confirm button:disabled{opacity:.32!important}
-button:active,.action:active,.controlbtn:active{transform:scale(.98)!important;filter:none!important}
-.bottomnav button{border-radius:12px!important}
-.bottomnav button.active{background:#000!important;color:#fff!important}
-.bottomnav button:not(.active){background:#fff!important;color:#000!important;border-color:#fff!important}
-.linkbtn{background:transparent!important;color:#000!important;border:0!important;padding:7px 4px!important}
-
-/* Macro e moduli Home */
-#macroList,#newMacroList{border:1px solid #000!important;border-radius:18px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important}
-#macroList .supplier,#newMacroList .supplier,.module-row,.module-row.production{
-  background:#000!important;color:#fff!important;border:0!important;border-bottom:1px solid #fff!important;box-shadow:none!important
-}
-#macroList .supplier:last-child,#newMacroList .supplier:last-child{border-bottom:0!important}
-#macroList .supplier *,#newMacroList .supplier *,.module-row *,.module-row.production *{color:#fff!important}
-.module-row,.module-row.production{border:1px solid #000!important;border-radius:18px!important;margin-top:12px!important}
-
-/* Card, liste e campi */
-.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.money{
-  background:#fff!important;border:1px solid #d8d8d8!important;color:#000!important;box-shadow:none!important
-}
-.search,.select,.field textarea,.pinrow input,.batch-controls input{
-  background:#f4f4f4!important;border:1px solid #cfcfcf!important;color:#000!important;box-shadow:none!important
-}
-.producttools,.material-tools,.batch-confirm{background:#fff!important}
-.qty{background:#000!important;border:1px solid #000!important}
-.qty b{background:#fff!important;color:#000!important}
-.qty.active{background:#000!important}
-.filters .filter{background:#fff!important;color:#000!important;border:1px solid #000!important}
-.filters .filter.active{background:#000!important;color:#fff!important}
-.progress{background:#e6e6e6!important}.progress span{background:#000!important}
-.category.done,.category.visited:not(.done),.product.menu{background:#fff!important;border-color:#000!important}
-.category.done .catstate{color:#000!important}
-
-/* Alert e avvisi: solo giallo ocra */
-.home-alert,.batch-home.alert,.batch-chip.low,.action.warn,.action.danger,.toast,.miss,.urgent-high,.urgent-mid{
-  background:var(--alert)!important;color:#000!important;border:1px solid var(--alert-dark)!important;box-shadow:none!important
-}
-.home-alert *,.batch-home.alert *,.batch-chip.low *,.action.warn,.action.danger,.toast,.miss *{color:#000!important}
-.batch-home.alert{box-shadow:inset 5px 0 0 #000!important}
-.batch-card.changed{border-color:var(--alert-dark)!important;box-shadow:inset 5px 0 0 var(--alert)!important}
-.status.bozza,.status.pronto,.status.condiviso,.status.inviato{color:#000!important}
-
-/* Login e modali */
-.login,.loginbox{background:#fff!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.modal{background:rgba(0,0,0,.42)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.sheet{border:1px solid #000!important}
-.toast{border-radius:12px!important}
-
-/* Forza tema chiaro anche con dispositivo in dark mode */
-@media (prefers-color-scheme:dark){
-  :root{--bg:#fff;--paper:#fff;--paper-solid:#fff;--paper2:#f4f4f4;--ink:#000;--muted:#4b4b4b}
-  html,body,.app,main,section,header,.toolbar,.bottomnav,.controlpanel,.sheet,.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home{background:#fff!important;color:#000!important}
+/* RICETTE BATCH V2.6 */
+.recipe-category-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.recipe-category-btn{border:0;background:#000;color:#fff;min-height:112px;padding:18px;text-align:left;font-size:18px;font-weight:900}
+.recipe-category-btn small{display:block;margin-top:8px;font-size:11px;font-weight:700;opacity:.62;line-height:1.35}
+.recipe-list{margin-top:18px}
+.recipe-list-btn{width:100%;border:0;background:#fff;padding:17px;margin-top:9px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:16px}
+.recipe-list-btn strong{font-size:19px}.recipe-list-btn span{font-size:25px}
+.recipe-screen-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:15px}
+.recipe-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
+.recipe-hero{background:#000;color:#fff;padding:20px;margin-top:14px}
+.recipe-hero p{color:#aaa}.recipe-hero h2{font-size:30px;margin:4px 0 9px}
+.recipe-yield{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.recipe-multiplier{background:#fff;padding:16px;margin-top:10px;border-radius:18px}
+.recipe-multiplier-grid{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin-top:10px}
+.recipe-multiplier-grid button{border:0;background:#000;color:#fff;width:46px;height:46px;font-size:26px;font-weight:900}
+.recipe-multiplier-grid input{text-align:center;font-size:22px;font-weight:900;border-radius:0}
+.recipe-summary{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.recipe-summary>div{background:var(--soft);padding:13px}
+.recipe-summary strong{display:block;font-size:22px}
+.recipe-sheet{background:#fff;padding:18px;margin-top:10px;border-radius:18px}
+.recipe-sheet-title{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;padding-bottom:9px;border-bottom:2px solid #000}
+.recipe-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.recipe-table-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+.recipe-table-row:last-child{border-bottom:0}
+.recipe-table-row strong{text-align:right}
+.recipe-time{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.recipe-time>div{background:#000;color:#fff;padding:14px}
+.recipe-time span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.6}
+.recipe-time strong{display:block;font-size:20px;margin-top:5px}
+.recipe-steps{counter-reset:steps;margin-top:5px}
+.recipe-step{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.recipe-step:before{counter-increment:steps;content:counter(steps);display:grid;place-items:center;width:28px;height:28px;background:#000;color:#fff;font-weight:900}
+.recipe-serve{background:#000;color:#fff;padding:18px;margin-top:10px}
+.recipe-serve h3{margin-bottom:8px}.recipe-serve-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid #333}
+.recipe-serve-row:last-child{border-bottom:0}
+.recipe-secondary{background:var(--soft);padding:15px;margin-top:12px}
+.recipe-note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.45}
+@media(max-width:560px){
+ .recipe-category-grid,.recipe-columns{grid-template-columns:1fr}
+ .recipe-summary{grid-template-columns:1fr 1fr}
 }
 
-
-
-/* V18.1.3 — produzione a due colonne con secondo colore dedicato */
-:root{--production-accent:#c89b2b;--production-accent-soft:#f3e6bf;--production-accent-dark:#6f5010}
-#openProductionHome{margin-top:10px!important}
-#batchHome{
-  margin-top:18px!important;padding:18px!important;border:0!important;
-  background:var(--production-accent-soft)!important;
-}
-#batchHome .batch-home-head{padding-bottom:13px;border-bottom:1px solid rgba(111,80,16,.28)}
-#batchHome .batch-home-head h3,#batchHome .batch-home-head .go{color:var(--production-accent-dark)!important}
-#batchHome .batch-home-head small{color:#624a19!important}
-.batch-overview-groups{display:grid;gap:18px;margin-top:15px}
-.batch-overview-group h4{margin:0 0 8px;font-size:11px;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--production-accent-dark)!important}
-.batch-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-.batch-chip{
-  min-height:48px;padding:10px 11px!important;border:1px solid rgba(111,80,16,.22)!important;
-  background:rgba(255,255,255,.58)!important;display:flex!important;align-items:center!important;
-  justify-content:space-between!important;gap:8px!important
-}
-.batch-chip span{font-size:12px;line-height:1.15;color:#17130a!important}
-.batch-chip b{font-size:16px;color:#17130a!important}
-.batch-chip.low{background:var(--production-accent)!important;border-color:var(--production-accent-dark)!important}
-.batch-chip.low span,.batch-chip.low b{color:#000!important}
-#batchList{display:grid;gap:24px}
-.batch-area{min-width:0}
-.batch-area-title{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #000;font-size:13px;letter-spacing:.11em;text-transform:uppercase}
-.batch-area-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.batch-area .batch-card{
-  min-width:0;padding:14px!important;border:1px solid #d1d1d6!important;background:#fff!important
-}
-.batch-area .batch-card h3{margin:0 0 5px;font-size:15px;line-height:1.15}
-.batch-area .batch-card.is-low{background:var(--production-accent-soft)!important;border-color:var(--production-accent)!important}
-.batch-area .batch-card.is-low h3,.batch-area .batch-card.is-low .batch-meta{color:var(--production-accent-dark)!important}
-.batch-area .batch-card.changed{border-left:5px solid var(--production-accent)!important}
-.batch-area .batch-controls{grid-template-columns:38px minmax(0,1fr) 38px;gap:5px;margin-top:10px}
-.batch-area .batch-controls button{width:38px;height:38px;padding:0!important;border-radius:50%!important;background:#000!important;color:#fff!important}
-.batch-area .batch-controls input{height:38px!important;border-radius:9px!important}
-@media(max-width:420px){
-  .batch-area-grid,.batch-home-grid{gap:7px!important}
-  .batch-area .batch-card{padding:12px 10px!important}
-  .batch-chip{padding:9px!important}
-}
-
-
-.batch-category-empty{grid-column:1/-1;padding:10px 0;font-size:12px;color:#8e8e93;font-style:italic}
-#production .batch-category-empty.production-empty{padding:8px 0 18px;font-size:14px}
-</style>
-
-
-/* V18.1 — iOS B/W: 5 azioni principali nere, controlli minori testuali */
-<style>
-:root{--ios-black:#000;--ios-white:#fff;--ios-gray:#8e8e93;--ios-separator:#d1d1d6;--ios-fill:#f2f2f7;--ios-alert:#c89a34}
-html,body,.app,main,section{background:#fff!important;color:#000!important}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
-header{background:#fff!important;border-bottom:1px solid var(--ios-separator)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.title{font-size:34px!important;line-height:1.05!important;letter-spacing:-.035em!important;font-weight:750!important;margin:14px 0 24px!important}
-h2{font-size:28px!important;font-weight:720!important;letter-spacing:-.025em!important}
-
-/* Cinque ingressi principali: nero pieno, testo bianco */
-#macroList,#newMacroList{border:0!important;border-radius:0!important;overflow:visible!important;background:transparent!important}
-#macroList .supplier,#newMacroList .supplier,.module-row,.module-row.production{
-  min-height:62px!important;margin:0 0 10px!important;padding:0 20px!important;border:0!important;border-radius:17px!important;
-  background:#000!important;color:#fff!important;box-shadow:none!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important
-}
-#macroList .supplier *,#newMacroList .supplier *,.module-row *,.module-row.production *{color:#fff!important}
-#macroList .supplier strong,#newMacroList .supplier strong,.module-row strong{font-size:18px!important;font-weight:720!important;letter-spacing:-.01em!important}
-
-/* Liste iOS: niente card, solo righe e separatori */
-.row,.category,.product,.summary-group,.batch-card,.material-category,.material-selected-row,.timeline,.batch-home,.money{
-  border:0!important;border-bottom:1px solid var(--ios-separator)!important;border-radius:0!important;margin:0!important;background:#fff!important;box-shadow:none!important
-}
-.row{padding:17px 2px!important}.row:first-child,.row:last-child,.row:only-child{border-radius:0!important}
-.sectiontitle{padding:22px 2px 8px!important}.sectiontitle strong{font-size:13px!important;color:#000!important;font-weight:700!important}
-
-/* Controlli piccoli: solo testo, nessun box */
-.linkbtn,.action:not(.primary),.filter,.supplier-pill,.archive-delete,.open-delete,.close,.bottomnav button{
-  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#000!important;padding:8px 4px!important;min-height:auto!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;font-weight:600!important
-}
-.linkbtn:active,.action:not(.primary):active,.filter:active,.supplier-pill:active,.archive-delete:active,.open-delete:active,.close:active,.bottomnav button:active{opacity:.35!important;transform:none!important}
-.filters{gap:18px!important;border-bottom:1px solid var(--ios-separator)!important;padding:8px 2px 10px!important}
-.filter.active{background:transparent!important;color:#000!important;border:0!important;text-decoration:underline!important;text-underline-offset:5px!important;text-decoration-thickness:2px!important}
-
-/* CTA operative vere: nere */
-.action.primary,.controlbtn,.controlbtn.primary,.share-main,.batch-confirm button,.pinrow button{
-  background:#000!important;color:#fff!important;border:0!important;border-radius:15px!important;box-shadow:none!important;font-weight:700!important
-}
-.actions{gap:2px 18px!important}.action:not(.primary){justify-self:start!important;text-align:left!important}
-
-/* Stepper compatto stile iOS */
-.qty{background:transparent!important;border:0!important;border-radius:0!important;grid-template-columns:38px 40px 38px!important;gap:2px!important}
-.qty button{width:38px!important;height:38px!important;border-radius:50%!important;background:#000!important;color:#fff!important;border:0!important;padding:0!important}
-.qty b{background:transparent!important;color:#000!important;font-size:18px!important}
-
-/* Campi e navigazione */
-.search,.select,.field textarea,.pinrow input,.batch-controls input{background:var(--ios-fill)!important;border:0!important;border-radius:12px!important;color:#000!important}
-.toolbar{background:#fff!important;color:#000!important;border-bottom:1px solid var(--ios-separator)!important}
-.toolbar .linkbtn{color:#000!important}
-.bottomnav{background:#fff!important;border-top:1px solid var(--ios-separator)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.bottomnav button.active{text-decoration:underline!important;text-underline-offset:5px!important;text-decoration-thickness:2px!important}
-
-/* L'ocra compare esclusivamente per alert/problemi */
-.home-alert,.batch-home.alert,.batch-chip.low,.toast,.miss,.urgent-high,.urgent-mid,.action.warn,.action.danger{
-  background:var(--ios-alert)!important;color:#000!important;border:0!important;border-radius:12px!important
-}
-.home-alert *,.batch-home.alert *,.batch-chip.low *,.toast *,.miss *{color:#000!important}
-.batch-card.changed{border-left:5px solid var(--ios-alert)!important}
-
-/* Sheet iOS */
-.modal{background:rgba(0,0,0,.35)!important}.sheet{border:0!important;border-radius:22px 22px 0 0!important;background:#fff!important}
-.close{font-size:17px!important;font-weight:650!important}
-</style>
-
-
-<style id="v18-1-6-clean-locked-ui">
-/* V18.1.6 — clean lock: no coloured primary navigation buttons */
-:root{--production-accent:#ff3b30;--production-soft:#ffe8e6;--production-dark:#b42318}
-
-/* MAIN NAVIGATION — ALWAYS BLACK */
-#macroList,#newMacroList{display:block!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;box-shadow:none!important}
-#macroList > button.supplier,#newMacroList > button.supplier,button#openProductionHome{
-  width:100%!important;min-height:66px!important;margin:0 0 10px!important;padding:0 20px!important;
-  display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important;
-  background:#000!important;background-color:#000!important;background-image:none!important;
-  color:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;
-  text-align:left!important;appearance:none!important;-webkit-appearance:none!important
-}
-#macroList > button.supplier:nth-child(n),#newMacroList > button.supplier:nth-child(n),
-#macroList > button.supplier.spice,#newMacroList > button.supplier.spice,button#openProductionHome.module-row.production{
-  background:#000!important;background-color:#000!important;background-image:none!important;color:#fff!important
-}
-#macroList > button.supplier *,#newMacroList > button.supplier *,button#openProductionHome *{color:#fff!important}
-#macroList > button.supplier strong,#newMacroList > button.supplier strong,button#openProductionHome strong{
-  color:#fff!important;font-size:21px!important;line-height:1!important;font-weight:900!important;
-  letter-spacing:-.04em!important;text-transform:uppercase!important
-}
-#macroList > button.supplier .go,#newMacroList > button.supplier .go,button#openProductionHome .go{color:#fff!important}
-button#openProductionHome{margin-top:20px!important}
-
-/* PRODUCTION OVERVIEW ONLY — TWO COLUMNS AND ACCENT */
-#batchHome{background:var(--production-soft)!important;border:0!important;border-radius:0!important}
-#batchHome .batch-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-#batchHome .batch-chip{background:rgba(255,255,255,.7)!important;border:1px solid rgba(111,80,16,.25)!important;border-radius:0!important}
-#batchHome .batch-chip.low{background:var(--production-accent)!important;border-color:var(--production-dark)!important}
-#batchHome .batch-chip,#batchHome .batch-chip *{color:#000!important}
-
-/* FULL PRODUCTION SCREEN — ONE COLUMN */
-#production #batchList .batch-area-grid,#batchList .batch-area-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
-</style>
-
-<style id="v18-1-7-production-clean-ui">
-/* Overview produzione: pulita, senza bordi, filetti o decorazioni */
-#batchHome{
-  padding:20px 0 8px!important;
-  margin-top:24px!important;
-  background:#fff!important;
-  border:0!important;
-  border-radius:0!important;
-  box-shadow:none!important;
-}
-#batchHome .batch-home-head{
-  padding:0 0 16px!important;
-  border:0!important;
-  align-items:center!important;
-}
-#batchHome .batch-home-head h3{
-  margin:0!important;
-  font-size:21px!important;
-  line-height:1.05!important;
-  font-weight:800!important;
-  letter-spacing:-.035em!important;
-  color:#000!important;
-}
-#batchHome .batch-home-head small{
-  margin-top:6px!important;
-  font-size:12px!important;
-  line-height:1.3!important;
-  color:#6e6e73!important;
-}
-#batchHome .batch-home-head .go{font-size:24px!important;color:#000!important}
-#batchHome .batch-overview-groups{gap:22px!important;margin-top:0!important}
-#batchHome .batch-overview-group h4{
-  margin:0 0 9px!important;
-  font-size:12px!important;
-  font-weight:750!important;
-  letter-spacing:.08em!important;
-  color:#000!important;
-}
-#batchHome .batch-home-grid{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:8px!important;
-}
-#batchHome .batch-chip{
-  min-height:48px!important;
-  padding:11px 12px!important;
-  background:#f2f2f7!important;
-  border:0!important;
-  border-radius:10px!important;
-  box-shadow:none!important;
-  align-items:center!important;
-}
-#batchHome .batch-chip span{font-size:13px!important;font-weight:600!important;line-height:1.15!important;color:#000!important}
-#batchHome .batch-chip b{font-size:18px!important;font-weight:800!important;color:#000!important}
-#batchHome .batch-chip.low{background:var(--production-accent)!important;border:0!important}
-#batchHome.alert{background:#fff!important;box-shadow:none!important}
-
-/* Tab Produzione: una colonna e tipografia più grande */
-#production .toolbar strong{font-size:22px!important;font-weight:800!important;letter-spacing:-.03em!important}
-#production .toolbar small{font-size:13px!important;margin-top:3px!important}
-#production #batchPermission{font-size:14px!important;line-height:1.35!important;margin:14px 0 20px!important}
-#production #batchList{gap:30px!important}
-#production .batch-area-title{
-  margin:0 0 12px!important;
-  padding:0!important;
-  border:0!important;
-  font-size:19px!important;
-  line-height:1.1!important;
-  font-weight:850!important;
-  letter-spacing:-.025em!important;
-  text-transform:uppercase!important;
-}
-#production .batch-area-grid{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
-#production .batch-card{padding:17px 0!important;border:0!important;border-bottom:1px solid #e5e5ea!important;background:#fff!important}
-#production .batch-card:last-child{border-bottom:0!important}
-#production .batch-card h3{font-size:19px!important;line-height:1.15!important;font-weight:760!important;letter-spacing:-.02em!important}
-#production .batch-meta{font-size:13px!important;line-height:1.4!important;margin-top:7px!important}
-#production .batch-controls{margin-top:14px!important;grid-template-columns:44px minmax(0,1fr) 44px!important;gap:8px!important}
-#production .batch-controls button{width:44px!important;height:44px!important;font-size:23px!important}
-#production .batch-controls input{height:44px!important;font-size:20px!important;font-weight:700!important}
-#production .batch-card.is-low{background:#fff!important}
-#production .batch-card.is-low h3{color:var(--production-dark)!important}
-#production .batch-card.changed{border-left:0!important;box-shadow:none!important}
-</style>
-
-
-<style id="v18-1-8-avatar-red-lock">
-/* Avatar utente: sempre circolare e mostra solo l'iniziale dinamica */
-header #profileBtn.user{
-  width:40px!important;height:40px!important;min-width:40px!important;
-  padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
-  background:transparent!important;display:grid!important;place-items:center!important;overflow:visible!important;
-}
-header #profileBtn.user>div:not(.avatar){display:none!important}
-header #avatar.avatar{
-  width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;
-  padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
-  background:#f2f2f7!important;background-image:none!important;color:#000!important;
-  display:grid!important;place-items:center!important;overflow:hidden!important;
-  font-size:16px!important;line-height:38px!important;font-weight:800!important;letter-spacing:0!important;
-  box-shadow:none!important;
-}
-/* Produzione: rosso iOS al posto dell'ocra/oro */
-:root{--production-accent:#ff3b30!important;--production-soft:#ffe8e6!important;--production-dark:#b42318!important}
-#batchHome .batch-chip.low{background:#ff3b30!important;color:#fff!important}
-#batchHome .batch-chip.low *{color:#fff!important}
-#production .batch-card.is-low h3{color:#b42318!important}
 </style>
 </head>
-
-<body>
-<div id="login" class="login">
-  <div class="loginbox">
-    <img class="loginlogo" src="done-logo.png">
-    <form id="loginForm">
-      <div class="pinrow">
-        <input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">
-        <button>Entra</button>
-      </div>
-    </form>
-    <div id="loginError" class="error"></div>
-  </div>
-</div>
-
-<div class="app">
-<header>
-  <div class="headrow">
-    <div class="brand">
-      <img class="logo" src="done-logo.png">
-      <div><strong>Ordini</strong><small id="subtitle">D.ONE Internal</small></div>
-    </div>
-    <button id="profileBtn" class="user">
-      <div id="avatar" class="avatar">S</div>
-      <div><span id="userName">Utente</span><em id="userRole">OPERATORE</em></div>
-    </button>
-  </div>
-</header>
-
-<main>
-<section id="macro">
-  
-  <h1>Ordini</h1>
-  
-  <div class="sync"><span><i class="dot"></i><span id="syncText">Sincronizzazione…</span></span><button id="syncBtn" class="linkbtn">Aggiorna</button></div>
-  <div id="macroList"></div>
-  <button id="openProductionHome" class="row supplier module-row production"><div><strong>PRODUZIONE</strong></div><span class="go">→</span></button>
-  <div id="batchHome" class="batch-home hidden"></div>
-  <div id="urgentHome" class="home-alert hidden"><h3>SPEZIE URGENTI · <span id="urgentCount">0</span></h3><p id="urgentNames"></p></div>
-  <div id="homeOpenBlock" class="hidden" style="margin-top:28px">
-    <div class="sectiontitle"><strong>Ordini aperti</strong><span id="homeOpenCount" class="count">0</span></div>
-    <div id="homeOpenList" style="margin-top:10px"></div>
-  </div>
+<body><div class="app"><header><button id="homeButton" class="home-button" type="button" aria-label="Vai alla Home">⌂ HOME</button><div class="brand">ORDINI D.ONE</div><div class="avatar">S</div></header><main>
+<section id="home" class="view active"><p>Pannello operativo</p><h1>Ciao, Simone.</h1><div class="summary"><div class="metric"><strong id="mBatch">0</strong><span>Batch da produrre</span></div><div class="metric"><strong id="mBottle">0</strong><span>Bottiglie totali</span></div></div><div class="panel"><div class="head"><h3>Situazione batch</h3><button class="link" data-go="batch">Apri</button></div><div id="homeBatch"></div></div><div class="panel"><div class="head"><h3>Appunti in evidenza</h3><button class="link" data-go="notes">Apri</button></div><div id="homeNotes"></div></div><div class="panel"><div class="head"><h3>Ordini in sospeso</h3><button class="link" data-go="neworder">Nuovo</button></div><div id="homeDrafts"></div></div><div class="panel"><div class="head"><h3>Ultimi ordini</h3><button class="link" data-go="archive">Archivio</button></div><div id="homeOrders"></div></div></section>
+<section id="neworder" class="view"><p>Ordini fornitori</p><h1>Nuovo ordine</h1>
+<div id="orderLauncher"><div class="main-grid"><button class="main-btn cat-btn" data-cat="Spirits">SPIRITS<small>Catalogo per tipologia</small></button><button class="main-btn cat-btn" data-cat="Vini">VINI<small>Bianchi e rossi · casse da 6</small></button><button class="main-btn cat-btn" data-cat="Birre">BIRRE<small>Ordine espresso in fusti</small></button><button class="main-btn cat-btn" data-cat="Spezie">SPEZIE<small>Spezie, tè ed essenze</small></button></div></div>
+<div id="orderWizard" class="hidden"></div>
+<div id="orderCategoryDetail" class="hidden"></div>
+<div id="orderPreviewWrap" class="hidden"></div>
 </section>
-
-
-<section id="newOrderScreen" class="hidden">
-  <div class="toolbar">
-    <div><strong>Nuovo ordine</strong><small>Scegli la macrocategoria</small></div>
-    <button id="newBack" class="linkbtn">Ordini</button>
-  </div>
-  <div id="newMacroList"></div>
+<section id="archive" class="view"><p>Storico condiviso</p><h1>Archivio ordini</h1><div class="archive-tools"><div class="archive-filters" id="archiveFilters"></div><input class="archive-search" id="archiveSearch" placeholder="Cerca per operatore, data o tipo…"></div><div id="archiveList"></div></section>
+<section id="batch" class="view">
+<p>Produzione</p>
+<h1>Situazione batch</h1>
+<p>Inserisci la giacenza attuale, la soglia minima e quante bottiglie desideri produrre.</p>
+<div id="batchManager"></div>
 </section>
-<section id="choice" class="hidden">
-  <div class="toolbar">
-    <div><strong id="choiceTitle"></strong><small>Scegli come procedere</small></div>
-    <button id="backMacro" class="linkbtn">Cambia macro</button>
-  </div>
-  <button id="newOrderChoice" class="row supplier">
-    <div><strong>Nuovo ordine</strong><p>Inizia con quantità e controlli completamente azzerati.</p></div><span class="go">→</span>
-  </button>
-  <button id="editOrderChoice" class="row supplier">
-    <div><strong>Modifica ordine aperto</strong><p id="openOrdersMeta">Nessun ordine aperto</p></div><span class="go">→</span>
-  </button>
+<section id="notes" class="view"><p>Bacheca condivisa</p><h1>Bacheca appunti</h1><div class="form"><label>Titolo</label><input id="noteTitle" placeholder="Es. Ordinare bottiglie nuove"><label>Testo</label><textarea id="noteText" placeholder="Scrivi una nota visibile a tutti…"></textarea><label><input id="noteStar" type="checkbox" style="width:auto;margin-right:6px"> Mostra anche in Home</label><button class="btn black" id="addNote">Aggiungi appunto</button></div><div id="notesList"></div></section>
+<section id="recipes" class="view">
+<p>Manuale operativo</p>
+<h1>Ricette batch</h1>
+<p>Scegli la sezione, apri una ricetta e imposta quanti batch desideri preparare.</p>
+<div id="recipeManager"></div>
 </section>
+</main></div><nav class="nav"><button data-view="neworder"><span>＋</span>NUOVO<br>ORDINE</button><button data-view="archive"><span>▤</span>ARCHIVIO</button><button data-view="batch"><span>◫</span>BATCH</button><button data-view="notes"><span>✎</span>BACHECA</button><button data-view="recipes"><span>∑</span>RICETTE</button></nav>
+<div id="orderMissingAlert" class="order-alert"><div class="order-alert-box"><h2>Categorie non controllate</h2><p id="orderMissingText"></p><div class="actions"><button class="btn light" id="orderAlertBack">TORNA A CONTROLLARE</button><button class="btn black" id="orderAlertContinue">CONTINUA COSÌ</button></div></div></div><script>
+const C=["Main cocktail list","Analcolici main cocktail list","Evergreen","Make americano great again","Analcolici Make americano great again"];
+const orderCatalog={
+Spirits:{label:"SPIRITS",categories:[
+{name:"Vermouth",items:["Martini Riserva Speciale Rubino","Martini Riserva Speciale Ambrato","Cocchi Storico Vermouth di Torino","Carpano Antica Formula"]},
+{name:"Bitter",items:["Martini Bitter","Campari","Select","Bitter Fusetti"]},
+{name:"Aperitivi",items:["Aperol","Martini Fiero","Cocchi Americano","Italicus"]},
+{name:"Gin",items:["Bombay Sapphire","Tanqueray","Hendrick's","Gin Mare"]},
+{name:"Vodka",items:["Grey Goose","Belvedere","Ketel One"]},
+{name:"Rum",items:["Bacardi Carta Blanca","Bacardi 8","Diplomatico Reserva","Plantation 3 Stars"]},
+{name:"Whisky",items:["Dewar's 12","Maker's Mark","Laphroaig 10","Jameson"]},
+{name:"Tequila e Mezcal",items:["Patrón Silver","Patrón Reposado","Patrón Añejo","Del Maguey Vida"]},
+{name:"Liquori",items:["St-Germain","Amaretto Disaronno","Frangelico","Cointreau"]}]},
+Vini:{label:"VINI",categories:[{name:"Bianchi",items:["Roero Arneis","Chardonnay","Sauvignon Blanc","Riesling"]},{name:"Rossi",items:["Barbera d'Alba","Nebbiolo Langhe","Dolcetto d'Alba"]}]},
+Birre:{label:"BIRRE",categories:[{name:"Catalogo birre",items:["Lager","IPA","Blanche"]}]},
+Spezie:{label:"SPEZIE",categories:[
+{name:"Spezie",items:[{name:"Pepe nero",supplier:"Metro",unit:"etti"},{name:"Cardamomo verde",supplier:"Tuttospezie",unit:"grammi"},{name:"Cannella Ceylon",supplier:"Tuttospezie",unit:"scatole"},{name:"Anice stellato",supplier:"Metro",unit:"etti"},{name:"Pepe di Sichuan",supplier:"Longino",unit:"grammi"}]},
+{name:"Tè",items:[{name:"Tè matcha",supplier:"Tea Shop",unit:"boccette"},{name:"Earl Grey",supplier:"Tea Shop",unit:"scatole"},{name:"Tè oolong",supplier:"Tuttospezie",unit:"grammi"},{name:"Mate",supplier:"Metro",unit:"etti"}]},
+{name:"Essenze",items:[{name:"Essenza bergamotto",supplier:"FlavourArt",unit:"bottiglie"},{name:"Essenza vaniglia",supplier:"FlavourArt",unit:"boccette"},{name:"Acqua di fiori d'arancio",supplier:"Metro",unit:"bottiglie"}]}]}}
+let S=JSON.parse(localStorage.getItem("doneProto")||"null")||{batches:[{name:"Sakura",category:C[0],available:2,toProduce:4,ideal:6,recipe:"Sakura"},{name:"Pisco Andes",category:C[0],available:5,toProduce:1,ideal:6,recipe:"Pisco Andes"},{name:"Tokyo Zero",category:C[1],available:1,toProduce:3,ideal:4,recipe:"Tokyo Zero"},{name:"Negroni",category:C[2],available:6,toProduce:0,ideal:6,recipe:"Negroni"},{name:"Boulevardier",category:C[2],available:1,toProduce:4,ideal:5,recipe:"Boulevardier"},{name:"Americano Torino",category:C[3],available:3,toProduce:3,ideal:6,recipe:"Americano Torino"},{name:"Americano Tropical",category:C[3],available:0,toProduce:4,ideal:4,recipe:"Americano Tropical"},{name:"Americano Zero",category:C[4],available:2,toProduce:2,ideal:4,recipe:"Americano Zero"}],notes:[{title:"Bottiglie batch",text:"Verificare disponibilità delle bottiglie da 720 ml.",author:"Simone",star:true,done:false,date:"18 luglio"},{title:"Sciroppo matcha",text:"Prepararne una nuova base entro venerdì.",author:"Vanessa",star:false,done:false,date:"17 luglio"}],orders:[{date:"18 luglio · 20:42",category:"Spirits",items:5,status:"Inviato",operator:"Simone"},{date:"17 luglio · 18:10",category:"Vini",items:3,status:"Bozza",operator:"Vanessa"}],recipes:{"Sakura":{base:12,bottle:720,ings:[["Rhum mix sakura",320,"ml"],["Sciroppo matcha",160,"ml"],["Shochu",160,"ml"],["Choya umeboshi",80,"ml"]]},"Pisco Andes":{base:10,bottle:700,ings:[["Pisco",350,"ml"],["Cordial andino",210,"ml"],["Vermouth dry",140,"ml"]]},"Tokyo Zero":{base:10,bottle:700,ings:[["Tè sencha",350,"ml"],["Cordial yuzu",210,"ml"],["Verjus",140,"ml"]]},"Negroni":{base:10,bottle:900,ings:[["Gin",300,"ml"],["Vermouth rosso",300,"ml"],["Bitter",300,"ml"]]},"Boulevardier":{base:10,bottle:900,ings:[["Bourbon",300,"ml"],["Vermouth rosso",300,"ml"],["Bitter",300,"ml"]]},"Americano Torino":{base:12,bottle:720,ings:[["Vermouth rosso",360,"ml"],["Bitter",240,"ml"],["Cordial",120,"ml"]]},"Americano Tropical":{base:12,bottle:720,ings:[["Vermouth bianco",300,"ml"],["Bitter tropicale",240,"ml"],["Cordial ananas",180,"ml"]]},"Americano Zero":{base:12,bottle:720,ings:[["Aperitivo analcolico",360,"ml"],["Vermouth analcolico",240,"ml"],["Cordial agrumi",120,"ml"]]}}};
+S.orderDrafts=S.orderDrafts||[];
+S.orders=(S.orders||[]).filter(o=>(o.status||'Inviato').toLowerCase()!=='bozza');
+S.orders.forEach((o,i)=>{o.id=o.id||('arch'+Date.now()+i);o.status='Inviato';o.category=o.category||o.type||'Ordine';o.operator=o.operator||'Operatore non indicato';o.date=o.date||'Data non disponibile'});
 
-<section id="openOrders" class="hidden">
-  <div class="toolbar">
-    <div><strong id="openOrdersTitle"></strong><small>Bozze, pronti e condivisi</small></div>
-    <button id="backChoice" class="linkbtn">Indietro</button>
-  </div>
-  <div id="openOrdersList"></div>
-</section>
-
-<section id="categories" class="hidden">
-  <div class="toolbar">
-    <div><strong id="supplierTitle"></strong><small id="orderState"></small></div>
-    <button id="newOrderTop" class="linkbtn">Nuovo ordine</button>
-  </div>
-  <div class="sectiontitle"><strong>Controllo categorie</strong><span id="catCount" class="count">0 / 0</span></div>
-  <div class="progress"><span id="progress"></span></div>
-  <div id="categoryList"></div>
-</section>
-
-<section id="products" class="hidden">
-  <div class="toolbar">
-    <div><strong id="categoryTitle"></strong><small id="categoryMeta"></small></div>
-    <button id="checkCategory" class="linkbtn">Conferma</button>
-  </div>
-  <div class="producttools">
-    <div class="search"><input id="search" type="search" placeholder="Cerca prodotto"></div>
-    <div class="filters">
-      <button data-filter="all" class="filter active">Tutti</button>
-      <button data-filter="menu" class="filter">Menu drink</button>
-      <button data-filter="selected" class="filter">Selezionati</button>
-    </div>
-  </div>
-  <div id="productList"></div>
-</section>
-
-<section id="summary" class="hidden">
-  <div class="toolbar">
-    <div><strong>Riepilogo</strong><small id="summaryCount"></small></div>
-    <button id="backToOrderSummary" class="linkbtn">Torna all’ordine</button>
-  </div>
-  <div id="summaryBody"></div>
-  <div id="timeline" class="timeline"></div>
-  <div id="summaryActions"></div>
-</section>
-
-
-
-<section id="materials" class="hidden">
-  <div class="toolbar"><div><strong>SPEZIE</strong><small>Materie prime per fornitore</small></div><button id="materialsBack" class="linkbtn">Ordini</button></div>
-  <div class="material-tools">
-    <div class="search"><input id="materialSearch" type="search" placeholder="Cerca materia prima"></div>
-    <select id="supplierFilter" class="select"><option value="">Tutti i fornitori</option></select>
-  </div>
-  <div id="materialsList"></div>
-</section>
-<section id="materialCart" class="hidden">
-  <div class="toolbar"><div><strong>Ordine spezie</strong><small id="materialCartMeta"></small></div><button id="materialCartBack" class="linkbtn">Continua</button></div>
-  <div id="materialCartList"></div>
-  <div class="actions"><button id="saveMaterialOrder" class="action warn wide">Salva in archivio</button><button id="shareMaterialOrder" class="action primary wide">Condividi ordine</button></div>
-</section>
-<section id="production" class="hidden">
-  <div class="toolbar"><div><strong>Produzione</strong><small>Giacenze batch</small></div><button id="productionBack" class="linkbtn">Ordini</button></div>
-  <div id="batchPermission" class="sync"></div>
-  <div id="batchList"></div>
-  <div id="batchConfirm" class="batch-confirm hidden"><div id="batchChanges" class="batch-changes"></div><button id="confirmAllBatches">CONFERMA AGGIORNAMENTO BATCH</button></div>
-</section>
-<section id="archive" class="hidden">
-  <div class="toolbar">
-    <div><strong>Archivio ordini</strong><small id="archiveMeta"></small></div>
-    <button id="archiveBack" class="linkbtn">Ordini</button>
-  </div>
-  <div id="archiveList"></div>
-</section>
-<section id="profile" class="hidden">
-  <div class="toolbar">
-    <div><strong>Profilo</strong><small id="profileRole"></small></div>
-    <button id="closeProfile" class="linkbtn">Chiudi</button>
-  </div>
-  <div class="row"><div><h3 id="profileName"></h3></div></div>
-  <div class="actions">
-    <button id="forceSync" class="action wide">Aggiorna catalogo</button>
-    <button id="logout" class="action danger wide">Esci</button>
-  </div>
-</section>
-</main>
-
-<div id="controlPanel" class="controlpanel hidden">
-  <button id="controlDraft" class="controlbtn">Salva bozza</button>
-  <button id="controlConfirm" class="controlbtn primary">Conferma ordine</button>
-</div>
-<nav class="bottomnav">
-  <button id="navOrders" class="active"><span>⌂</span>Ordini</button>
-  <button id="navNew"><span>＋</span>Nuovo</button>
-  <button id="navArchive"><span>▣</span>Archivio</button>
-  <button id="navProduction"><span>◫</span>Produzione</button>
-</nav>
-</div>
-
-<div id="confirmModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Conferma</div><h2 id="confirmTitle"></h2></div><button id="confirmClose" class="close">×</button></div><div id="confirmText" class="modaltext"></div><div id="confirmMiss" class="miss hidden"></div><div class="actions"><button id="confirmCancel" class="action">Annulla</button><button id="confirmOk" class="action primary">Conferma</button></div></div></div>
-
-<div id="shareModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Ordine pronto</div><h2>Condividi.</h2></div><button id="shareClose" class="close">×</button></div><div class="sharelist"><button class="shareopt" data-share="native"><span>Condivisione telefono</span><small>Consigliato</small></button><button class="shareopt" data-share="whatsapp"><span>WhatsApp</span><small>Testo</small></button><button class="shareopt" data-share="pdf"><span>PDF / Stampa</span><small>Documento</small></button><button class="shareopt" data-share="copy"><span>Copia testo</span><small>Appunti</small></button><button class="shareopt" data-share="mail"><span>Email</span><small>Testo</small></button></div></div></div>
-
-<div id="notesModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Ordine pronto</div><h2>Note.</h2></div><button id="notesClose" class="close">×</button></div><div class="field"><label>Note facoltative</label><textarea id="notes"></textarea></div><div class="actions"><button id="confirmReady" class="action primary wide">Segna come pronto</button></div></div></div>
-
-<div id="sentModal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">Condivisione completata</div><h2>È stato inviato?</h2></div><button id="sentClose" class="close">×</button></div><p class="modaltext">Conferma solo se l’ordine è stato realmente mandato al fornitore.</p><div class="actions"><button id="keepShared" class="action warn">No, resta condiviso</button><button id="markSent" class="action primary">Sì, inviato</button></div></div></div>
-
-<div id="toast" class="toast hidden"></div>
-<div id="print" class="print"></div>
-<script>
-
-const DB_NAME='done-orders-local';
-const DB_VERSION=1;
-const STORE_CATALOG='catalog';
-const STORE_ORDERS='orders';
-
-function openLocalDB(){
-  return new Promise((resolve,reject)=>{
-    const req=indexedDB.open(DB_NAME,DB_VERSION);
-    req.onupgradeneeded=()=>{
-      const db=req.result;
-      if(!db.objectStoreNames.contains(STORE_CATALOG))db.createObjectStore(STORE_CATALOG,{keyPath:'key'});
-      if(!db.objectStoreNames.contains(STORE_ORDERS))db.createObjectStore(STORE_ORDERS,{keyPath:'id'});
-    };
-    req.onsuccess=()=>resolve(req.result);
-    req.onerror=()=>reject(req.error);
-  });
-}
-async function idbPut(store,value){
-  const db=await openLocalDB();
-  return new Promise((resolve,reject)=>{
-    const tx=db.transaction(store,'readwrite');
-    tx.objectStore(store).put(value);
-    tx.oncomplete=()=>resolve();
-    tx.onerror=()=>reject(tx.error);
-  });
-}
-async function idbGet(store,key){
-  const db=await openLocalDB();
-  return new Promise((resolve,reject)=>{
-    const tx=db.transaction(store,'readonly');
-    const req=tx.objectStore(store).get(key);
-    req.onsuccess=()=>resolve(req.result);
-    req.onerror=()=>reject(req.error);
-  });
-}
-async function idbGetAll(store){
-  const db=await openLocalDB();
-  return new Promise((resolve,reject)=>{
-    const tx=db.transaction(store,'readonly');
-    const req=tx.objectStore(store).getAll();
-    req.onsuccess=()=>resolve(req.result||[]);
-    req.onerror=()=>reject(req.error);
-  });
-}
-async function idbDelete(store,key){
-  const db=await openLocalDB();
-  return new Promise((resolve,reject)=>{
-    const tx=db.transaction(store,'readwrite');
-    tx.objectStore(store).delete(key);
-    tx.oncomplete=()=>resolve();
-    tx.onerror=()=>reject(tx.error);
-  });
-}
-async function saveCatalogLocal(items){
-  await idbPut(STORE_CATALOG,{key:'main',items,updatedAt:new Date().toISOString()});
-}
-async function loadCatalogLocal(){
-  return (await idbGet(STORE_CATALOG,'main'))?.items||[];
-}
-async function saveOrdersLocal(items){
-  const db=await openLocalDB();
-  return new Promise((resolve,reject)=>{
-    const tx=db.transaction(STORE_ORDERS,'readwrite');
-    const store=tx.objectStore(STORE_ORDERS);
-    store.clear();
-    items.forEach(o=>store.put(o));
-    tx.oncomplete=()=>resolve();
-    tx.onerror=()=>reject(tx.error);
-  });
-}
-async function loadOrdersLocal(){
-  const items=await idbGetAll(STORE_ORDERS);
-  return items.sort((a,b)=>new Date(b.data||0)-new Date(a.data||0));
-}
-function localOrderFromCurrent(status='BOZZA'){
-  return {
-    id:current.id||`LOCAL-${Date.now()}`,
-    data:new Date().toISOString(),
-    operatore:user?.nome||'',
-    ruolo:user?.ruolo||'',
-    macrocategoria:suppliers[current.supplier],
-    pezziTotali:totalQty(),
-    stato:status,
-    note:current.note||'',
-    prodotti:selected().map(p=>({
-      macrocategoria:p.macrocategoria,
-      sottocategoria:p.sottocategoria,
-      prodotto:p.prodotto,
-      formato:p.formato,
-      unitaOrdine:p.unitaOrdine,
-      quantita:p.quantita
-    })),
-    syncState:'pending'
-  };
-}
-
-const API_URL='https://script.google.com/macros/s/AKfycbwguLOUwvP7cOogE30RZHtBfH-ryl0F9gudS4Lnqtwov062yJWyUzgT96ABnEg-vJGc/exec';
-const $=id=>document.getElementById(id);
-const screens=['macro','newOrderScreen','choice','openOrders','categories','products','summary','materials','materialCart','production','archive','profile'];
-const suppliers={spirits:'SPIRITS',wine:'VINO',beer:'BIRRA'};
-const supplierCopy={spirits:'Spirits, analcolici e accessori',wine:'Selezione vini',beer:'Birre e fusti'};
-const defaultCats={spirits:['VERMOUTH','BITTER','APERITIVI','LIQUORI','SPIRITS','NO ALCOHOL','AMARI','SODATI-SUCCHI','SCIROPPI','ACCESSORI'],wine:[],beer:[]};
-
-let user=JSON.parse(localStorage.getItem('done-v16-user')||'null');
-let pin=localStorage.getItem('done-v16-pin')||'';
-let catalog=[],grouped={spirits:{},wine:{},beer:{}},orders=[];
-let selectedMacro=null,current=JSON.parse(localStorage.getItem('done-v16-current')||'null')||newOrder();
-let currentCategory='',filter='all',search='',confirmResolve=null,lastShareMethod='';
-let materials=[],batches=[],materialCartItems=[];let materialQuery='',materialSupplier='';let batchDraft={};
-
-function newOrder(){return{id:null,supplier:null,status:'BOZZA',qty:{},checked:{},visited:{},note:'',createdAt:null,createdBy:null}}
-function show(id){screens.forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo({top:0,behavior:'smooth'});setTimeout(renderControlPanel,0)}
-function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function haptic(ms=18){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
-function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>$('toast').classList.add('hidden'),1900)}
-function apiGet(a,extra=''){return fetch(`${API_URL}?action=${a}${extra}&_=${Date.now()}`,{cache:'no-store'}).then(r=>r.json())}
-function apiPost(b){return fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b)}).then(r=>r.json())}
-function supplierKey(v){v=String(v||'').toUpperCase();return v==='SPIRITS'?'spirits':v==='VINO'?'wine':'beer'}
-function fdate(v){try{return new Intl.DateTimeFormat('it-IT',{dateStyle:'medium',timeStyle:'short'}).format(new Date(v))}catch(e){return v}}
-function ask(title,text,ok='Conferma',miss=[]){$('confirmTitle').textContent=title;$('confirmText').textContent=text;$('confirmOk').textContent=ok;$('confirmMiss').classList.toggle('hidden',!miss.length);$('confirmMiss').innerHTML=miss.map(x=>`• ${esc(x)}`).join('<br>');$('confirmModal').classList.remove('hidden');return new Promise(r=>confirmResolve=r)}
-function closeAsk(v=false){$('confirmModal').classList.add('hidden');if(confirmResolve){confirmResolve(v);confirmResolve=null}}
-$('confirmOk').onclick=()=>closeAsk(true);$('confirmCancel').onclick=()=>closeAsk(false);$('confirmClose').onclick=()=>closeAsk(false);
-
-
-function safeEl(id){return document.getElementById(id)}
-function initLogin(){
-  const form=safeEl('loginForm');
-  const pinInput=safeEl('pin');
-  if(form)form.onsubmit=login;
-  if(!user||!pin){
-    const loginScreen=safeEl('login');
-    if(loginScreen)loginScreen.classList.remove('hidden');
-    setTimeout(()=>pinInput&&pinInput.focus(),50);
-  }
-}
-
-async function login(e){e.preventDefault();const p=$('pin').value.trim();if(!p)return $('loginError').textContent='Inserisci il PIN';$('loginError').textContent='Accesso…';try{const d=await apiGet('ordini',`&pin=${encodeURIComponent(p)}`);if(!d.ok)throw new Error(d.errore);user=d.utente;pin=p;orders=d.ordini||[];await saveOrdersLocal(orders);localStorage.setItem('done-v16-user',JSON.stringify(user));localStorage.setItem('done-v16-pin',pin);$('login').classList.add('hidden');applyUser();await syncCatalog(false);await syncV18Modules(false);renderMacro();show('macro')}catch(e){$('loginError').textContent=e.message||'Accesso non disponibile'}}
-function applyUser(){$('userName').textContent=user.nome;$('userRole').textContent=user.ruolo;$('avatar').textContent=(user.nome||'?')[0].toUpperCase();$('profileName').textContent=user.nome;$('profileRole').textContent=(user.admin||String(user.ruolo).toUpperCase()==='ADMIN')?'Amministratore':'Operatore'}
-async function syncCatalog(forceRemote=false){
-  $('syncText').textContent=forceRemote?'Aggiornamento catalogo…':'Caricamento catalogo locale…';
-  if(!forceRemote){
-    const local=await loadCatalogLocal().catch(()=>[]);
-    if(local.length){
-      catalog=local;
-      groupCatalog();
-      $('syncText').textContent=`${catalog.length} prodotti · locale`;
-      renderMacro();
-      return;
-    }
-  }
-  try{
-    const d=await apiGet('catalogo',`&pin=${encodeURIComponent(pin)}`);
-    if(!d.ok)throw new Error(d.errore);
-    catalog=d.catalogo||[];
-    await saveCatalogLocal(catalog);
-    groupCatalog();
-    $('syncText').textContent=`${catalog.length} prodotti · aggiornato ora`;
-    renderMacro();
-  }catch(e){
-    catalog=await loadCatalogLocal().catch(()=>[]);
-    groupCatalog();
-    $('syncText').textContent=catalog.length?`${catalog.length} prodotti · locale`:'Catalogo non disponibile';
-  }
-}
-function groupCatalog(){grouped={spirits:{},wine:{},beer:{}};catalog.forEach(p=>{const s=supplierKey(p.macrocategoria),c=(p.sottocategoria||'ALTRO').toUpperCase();(grouped[s][c]??=[]).push(p)});defaultCats.spirits.forEach(c=>grouped.spirits[c]??=[])}
-async function loadOrders(forceRemote=false){
-  if(!forceRemote){
-    const local=await loadOrdersLocal().catch(()=>[]);
-    if(local.length){orders=local;return;}
-  }
-  try{
-    const d=await apiGet('ordini',`&pin=${encodeURIComponent(pin)}`);
-    if(!d.ok)throw new Error(d.errore);
-    orders=d.ordini||[];
-    await saveOrdersLocal(orders);
-  }catch(e){
-    orders=await loadOrdersLocal().catch(()=>[]);
-    if(forceRemote)toast('Archivio online non disponibile');
-  }
-}
-function renderMacro(){
-  $('macroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-macro="${k}"><div><strong>${suppliers[k]}</strong></div><span class="go">→</span></button>`).join('')+`<button class="row supplier spice" id="openMaterials"><div><strong>SPEZIE</strong></div><span class="go">→</span></button>`;
-  document.querySelectorAll('[data-macro]').forEach(b=>b.onclick=()=>openChoice(b.dataset.macro));
-  $('openMaterials').onclick=()=>openMaterialsScreen();
-  const open=orders.filter(o=>['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()));
-  $('homeOpenBlock').classList.toggle('hidden',!open.length);
-  $('homeOpenCount').textContent=open.length;
-  $('homeOpenList').innerHTML=open.map((o,i)=>`
-    <div class="row" style="grid-template-columns:1fr auto">
-      <button data-home-open="${i}" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;background:transparent;text-align:left;padding:0;border:0;width:100%">
-        <div>
-          <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
-          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
-        </div>
-        <span class="go">→</span>
-      </button>
-      <button class="open-delete" data-delete-home-open="${i}" aria-label="Cancella ordine aperto">×</button>
-    </div>
-  `).join('');
-  document.querySelectorAll('[data-home-open]').forEach(b=>b.onclick=()=>resumeOrder(open[+b.dataset.homeOpen]));
-  document.querySelectorAll('[data-delete-home-open]').forEach(b=>b.onclick=()=>deleteOpenOrder(open[+b.dataset.deleteHomeOpen]));
-}
-function renderNewMacro(){
-  $('newMacroList').innerHTML=Object.keys(suppliers).map(k=>`<button class="row supplier" data-new-macro="${k}"><div><strong>${suppliers[k]}</strong><p>${supplierCopy[k]}</p></div><span class="go">→</span></button>`).join('');
-  document.querySelectorAll('[data-new-macro]').forEach(b=>b.onclick=()=>{selectedMacro=b.dataset.newMacro;startCleanOrder()});
-}
-async function openChoice(m){selectedMacro=m;await loadOrders(false);$('choiceTitle').textContent=suppliers[m];const open=openOrdersFor(m);$('openOrdersMeta').textContent=open.length?`${open.length} ordine${open.length>1?'i':''} aperto${open.length>1?'i':''}`:'Nessun ordine aperto';$('editOrderChoice').disabled=!open.length;$('editOrderChoice').style.opacity=open.length?'1':'.38';show('choice')}
-function openOrdersFor(m){return orders.filter(o=>supplierKey(o.macrocategoria)===m&&['BOZZA','PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase()))}
-async function startCleanOrder(){
-  if(!selectedMacro&&current.supplier)selectedMacro=current.supplier;
-  if(current.supplier&&totalQty()){
-    const ok=await ask('Creare un nuovo ordine?','La schermata verrà completamente pulita. Le bozze già salvate online rimarranno disponibili.','Nuovo ordine');
-    if(!ok)return;
-  }
-  current={...newOrder(),supplier:selectedMacro,createdAt:new Date().toISOString(),createdBy:user.nome};
-  currentCategory='';filter='all';search='';
-  if($('search'))$('search').value='';
-  saveCurrent();renderCategories();show('categories');toast('Nuovo ordine vuoto');
-}
-function showOpenOrders(){
-  const list=openOrdersFor(selectedMacro);
-  $('openOrdersTitle').textContent=`${suppliers[selectedMacro]} · ordini aperti`;
-  $('openOrdersList').innerHTML=list.length?list.map((o,i)=>`
-    <div class="row" style="grid-template-columns:1fr auto">
-      <button data-open="${i}" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;background:transparent;text-align:left;padding:0;border:0;width:100%">
-        <div>
-          <h3>${esc(o.stato)} · ${o.pezziTotali} pezzi</h3>
-          <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
-        </div>
-        <span class="go">→</span>
-      </button>
-      <button class="open-delete" data-delete-open="${i}" aria-label="Cancella ordine aperto">×</button>
-    </div>
-  `).join(''):'<div class="empty">Nessun ordine aperto.</div>';
-  document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>resumeOrder(list[+b.dataset.open]));
-  document.querySelectorAll('[data-delete-open]').forEach(b=>b.onclick=()=>deleteOpenOrder(list[+b.dataset.deleteOpen]));
-  show('openOrders');
-}
-function resumeOrder(o){current={id:o.id,supplier:supplierKey(o.macrocategoria),status:o.stato,qty:{},checked:{},visited:{},note:o.note||'',createdAt:o.data,createdBy:o.operatore};(o.prodotti||[]).forEach(p=>{const found=catalog.find(x=>x.macrocategoria===p.macrocategoria&&x.sottocategoria===p.sottocategoria&&x.prodotto===p.prodotto&&String(x.formato||'')===String(p.formato||''));if(found)current.qty[key(found)]=p.quantita});saveCurrent();if(['PRONTO','CONDIVISO'].includes(String(o.stato).toUpperCase())){renderSummary();show('summary')}else{renderCategories();show('categories')}}
-let saveTimer=null;
-function saveCurrent(){
-  renderControlPanel();
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>localStorage.setItem('done-v16-current',JSON.stringify(current)),80);
-}
-function cats(){return Object.keys(grouped[current.supplier]||{})}
-function key(p){return`${current.supplier}|||${String(p.sottocategoria).toUpperCase()}|||${p.prodotto}|||${p.formato||''}`}
-function qty(p){return Number(current.qty[key(p)]||0)}
-function totalQty(){return Object.values(current.qty).reduce((a,b)=>a+Number(b),0)}
-function catQty(c){return(grouped[current.supplier]?.[c]||[]).reduce((n,p)=>n+qty(p),0)}
-function unchecked(){return cats().filter(c=>!current.checked[`${current.supplier}|||${c}`])}
-function renderControlPanel(){
-  const visible=screens.find(id=>!$(id).classList.contains('hidden'));
-  const active=Boolean(current&&current.supplier&&['categories','products','summary'].includes(visible));
-  $('controlPanel').classList.toggle('hidden',!active);
-  if(!active)return;
-  $('controlDraft').disabled=totalQty()===0;
-}
-function renderCategories(){const cs=cats(),done=cs.filter(c=>current.checked[`${current.supplier}|||${c}`]).length;$('supplierTitle').textContent=suppliers[current.supplier];$('orderState').innerHTML=`<span class="status ${current.status.toLowerCase()}">${current.status}</span> · ${totalQty()} pezzi`;$('catCount').textContent=`${done} / ${cs.length}`;$('progress').style.width=(cs.length?done/cs.length*100:0)+'%';$('categoryList').innerHTML=cs.map(c=>{const d=current.checked[`${current.supplier}|||${c}`],v=current.visited[`${current.supplier}|||${c}`];return`<button class="row category ${d?'done':v?'visited':''}" data-cat="${esc(c)}"><div><h3>${esc(c)}</h3><small>${catQty(c)} pezzi · ${(grouped[current.supplier][c]||[]).length} prodotti</small></div><span class="catstate">${d?'Controllata':v?'Da confermare':'Da aprire'}</span></button>`}).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>openCat(b.dataset.cat))}
-function openCat(c){currentCategory=c;current.visited[`${current.supplier}|||${c}`]=true;saveCurrent();filter='all';search='';$('search').value='';setFilter('all');renderProducts();show('products')}
-function setFilter(f){filter=f;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));renderProducts()}
-function renderProducts(){
-  let arr=[...(grouped[current.supplier]?.[currentCategory]||[])],q=search.trim().toLowerCase();
-  if(q)arr=arr.filter(p=>[p.prodotto,p.formato,p.unitaOrdine].join(' ').toLowerCase().includes(q));
-  if(filter==='menu')arr=arr.filter(p=>p.menuDrink);
-  if(filter==='selected')arr=arr.filter(p=>qty(p));
-
-  $('categoryTitle').textContent=currentCategory;
-  $('categoryMeta').textContent=`${catQty(currentCategory)} pezzi · ${arr.length} prodotti`;
-
-  $('productList').innerHTML=arr.length?arr.map(p=>{
-    const k=key(p),qta=qty(p);
-    return `<div class="row product ${p.menuDrink?'menu':''}" data-product-key="${esc(k)}">
-      <div>
-        <strong>${esc(p.prodotto)}${p.menuDrink?'<span class="menutag">MENU</span>':''}</strong>
-        <small>${esc([p.formato,p.unitaOrdine].filter(Boolean).join(' · '))}</small>
-      </div>
-      <div class="qty ${qta?'active':''}">
-        <button data-delta="-1" data-key="${esc(k)}">−</button>
-        <b data-count="${esc(k)}">${qta}</b>
-        <button data-delta="1" data-key="${esc(k)}">+</button>
-      </div>
-    </div>`;
-  }).join(''):'<div class="empty">Nessun prodotto.</div>';
-}
-function change(k,d){
-  haptic(10);
-  current.qty[k]=Math.max(0,Number(current.qty[k]||0)+d);
-  if(!current.qty[k])delete current.qty[k];
-  current.status='BOZZA';
-  saveCurrent();
-
-  const countEl=[...document.querySelectorAll('[data-count]')].find(el=>el.dataset.count===k);
-  if(countEl){
-    const value=Number(current.qty[k]||0);
-    countEl.textContent=value;
-    const qtyBox=countEl.closest('.qty');
-    if(qtyBox)qtyBox.classList.toggle('active',value>0);
-  }
-
-  $('categoryMeta').textContent=`${catQty(currentCategory)} pezzi · ${(grouped[current.supplier]?.[currentCategory]||[]).length} prodotti`;
-  if($('orderState'))$('orderState').innerHTML=`<span class="status ${current.status.toLowerCase()}">${current.status}</span> · ${totalQty()} pezzi`;
-}
-function selected(){return catalog.filter(p=>qty(p)).map(p=>({...p,quantita:qty(p)}))}
-function values(){return selected().reduce((a,p)=>{const n=p.prezzoNetto*p.quantita,v=n*p.iva/100;a.net+=n;a.vat+=v;a.total+=n+v;return a},{net:0,vat:0,total:0})}
-function renderTimeline(){const order=['BOZZA','PRONTO','CONDIVISO','INVIATO'],idx=order.indexOf(String(current.status).toUpperCase());$('timeline').innerHTML=order.map((s,i)=>`<div class="${i<=idx?'active':''}">${s}</div>`).join('')}
-function renderSummary(){const sel=selected(),groups={};sel.forEach(p=>(groups[p.sottocategoria]??=[]).push(p));$('summaryCount').textContent=`${totalQty()} pezzi`;$('summaryBody').innerHTML=Object.entries(groups).map(([c,a])=>`<div class="summary-group"><h3>${esc(c)}</h3>${a.map(p=>`<div class="sumrow"><span>${esc(p.prodotto)} <small style="color:var(--muted)">${esc(p.formato||'')}</small></span><b>${p.quantita}</b></div>`).join('')}</div>`).join('')||'<div class="empty">Nessun prodotto selezionato.</div>';if(user.admin&&sel.length){const v=values();$('summaryBody').innerHTML+=`<div class="money">Informazione amministrativa<strong>€ ${v.total.toLocaleString('it-IT',{minimumFractionDigits:2})}</strong>Imponibile € ${v.net.toFixed(2)} · IVA € ${v.vat.toFixed(2)}</div>`}renderTimeline();renderSummaryActions();renderControlPanel()}
-function renderSummaryActions(){const s=String(current.status).toUpperCase();let h='';if(s==='BOZZA'){h=`<div class="actions"><button id="saveDraft" class="action warn wide">Salva bozza condivisa</button><button id="markReady" class="action primary wide">Segna come pronto</button></div>`}else{h=`<button id="shareOrder" class="share-main">Condividi ordine</button><div class="actions"><button id="backDraft" class="action warn">Riapri come bozza</button><button id="deleteCurrent" class="action danger" aria-label="Cancella">×</button></div>`}$('summaryActions').innerHTML=h;if($('saveDraft'))$('saveDraft').onclick=saveDraft;if($('markReady'))$('markReady').onclick=openReady;if($('shareOrder'))$('shareOrder').onclick=()=>{$('shareModal').classList.remove('hidden')};if($('backDraft'))$('backDraft').onclick=reopenDraft;if($('deleteCurrent'))$('deleteCurrent').onclick=deleteCurrent}
-function payload(status,extra={}){return{action:'salvaOrdine',pin,ordineId:current.id||null,macrocategoria:suppliers[current.supplier],stato:status,note:current.note||'',metodoCondivisione:extra.method||'',prodotti:selected().map(p=>({macrocategoria:p.macrocategoria,sottocategoria:p.sottocategoria,prodotto:p.prodotto,formato:p.formato,quantita:p.quantita}))}}
-async function saveState(status,extra={}){
-  const localOrder={...localOrderFromCurrent(status),id:current.id||`LOCAL-${Date.now()}`,syncState:'syncing'};
-  current.id=localOrder.id;
-  current.status=status;
-  await idbPut(STORE_ORDERS,localOrder);
-  orders=await loadOrdersLocal();
-  saveCurrent();
-
-  const d=await apiPost(payload(status,extra));
-  if(!d.ok){
-    await idbPut(STORE_ORDERS,{...localOrder,syncState:'pending'});
-    throw new Error(d.errore);
-  }
-
-  current.id=d.ordine.id;
-  await idbDelete(STORE_ORDERS,localOrder.id);
-  await idbPut(STORE_ORDERS,{...d.ordine,syncState:'synced'});
-  orders=await loadOrdersLocal();
-  saveCurrent();
-  renderMacro();
-  return d;
-}
-async function saveDraft(){
-  if(!totalQty())return toast('Seleziona almeno un prodotto');
-
-  const localOrder=localOrderFromCurrent('BOZZA');
-  current.id=localOrder.id;
-  current.status='BOZZA';
-  await idbPut(STORE_ORDERS,localOrder);
-  orders=await loadOrdersLocal();
-  saveCurrent();
-  renderMacro();
-  renderSummary();
-  toast('Bozza salvata sul telefono');
-
-  setTimeout(async()=>{
-    try{
-      const d=await apiPost(payload('BOZZA'));
-      if(!d.ok)throw new Error(d.errore);
-      current.id=d.ordine.id;
-      await idbDelete(STORE_ORDERS,localOrder.id);
-      await idbPut(STORE_ORDERS,{...d.ordine,syncState:'synced'});
-      orders=await loadOrdersLocal();
-      saveCurrent();
-      renderMacro();
-      toast('Bozza sincronizzata');
-    }catch(e){
-      await idbPut(STORE_ORDERS,{...localOrder,syncState:'pending'});
-    }
-  },0);
-}
-async function openReady(){if(!totalQty())return toast('Seleziona almeno un prodotto');const miss=unchecked();if(miss.length){const ok=await ask('Categorie non controllate',`Hai controllato ${cats().length-miss.length} categorie su ${cats().length}.`,'Continua comunque',miss);if(!ok)return}$('notes').value=current.note||'';$('notesModal').classList.remove('hidden')}
-async function markReady(){current.note=$('notes').value;try{await saveState('PRONTO');$('notesModal').classList.add('hidden');toast('Ordine pronto');renderSummary()}catch(e){toast(e.message||'Errore')}}
-async function reopenDraft(){try{await saveState('BOZZA');renderCategories();show('categories')}catch(e){toast(e.message||'Errore')}}
-async function deleteCurrent(){const ok=await ask('Cancellare ordine?','L’ordine verrà rimosso dal database condiviso.','Cancella');if(!ok)return;try{if(current.id){const d=await apiPost({action:'eliminaOrdine',pin,ordineId:current.id});if(!d.ok)throw new Error(d.errore)}current=newOrder();saveCurrent();await loadOrders(false);renderMacro();show('macro');toast('Ordine cancellato')}catch(e){toast(e.message||'Errore')}}
-function textLineForProduct(p){
-  const q=Number(p.quantita||0);
-  const unit=String(p.unitaOrdine||'').trim().toLowerCase();
-  const category=String(p.sottocategoria||'').trim().toUpperCase();
-
-  if(category==='ACCESSORI'){
-    return p.prodotto;
-  }
-
-  if(unit.includes('cassa')||unit.includes('cartone')||unit.includes('confezione')){
-    return `${q} ${q===1?'cassa':'casse'} ${p.prodotto}`;
-  }
-
-  return `${q} bott. ${p.prodotto}`;
-}
-function orderText(){
-  const a=[`ORDINE ${suppliers[current.supplier]}`,`Operatore: ${user.nome}`,''];
-  selected().forEach(p=>a.push(textLineForProduct(p)));
-  return a.join('\n');
-}
-function printOrder(){$('print').innerHTML=`<div style="display:flex;justify-content:space-between"><div><h1>ORDINE ${suppliers[current.supplier]}</h1><p>${fdate(new Date())} · ${esc(user.nome)}</p></div><img src="done-logo.png"></div>${[...new Set(selected().map(p=>p.sottocategoria))].map(c=>`<h2>${esc(c)}</h2><table>${selected().filter(p=>p.sottocategoria===c).map(p=>`<tr><td>${esc(p.prodotto)} ${esc(p.formato||'')}</td><td>${p.quantita}</td></tr>`).join('')}</table>`).join('')}<h2>Totale: ${totalQty()} pezzi</h2>`;window.print()}
-async function shared(method){lastShareMethod=method;try{await saveState('CONDIVISO',{method});$('shareModal').classList.add('hidden');$('sentModal').classList.remove('hidden');renderSummary()}catch(e){toast(e.message||'Errore')}}
-async function performShare(method){const text=orderText();if(method==='native'){if(navigator.share){try{await navigator.share({title:`Ordine ${suppliers[current.supplier]}`,text});await shared('Condivisione telefono')}catch(e){}}else{await navigator.clipboard.writeText(text);await shared('Copia')}}if(method==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');await shared('WhatsApp')}if(method==='pdf'){printOrder();await shared('PDF')}if(method==='copy'){await navigator.clipboard.writeText(text);toast('Testo copiato');await shared('Copia')}if(method==='mail'){location.href=`mailto:?subject=${encodeURIComponent('Ordine '+suppliers[current.supplier])}&body=${encodeURIComponent(text)}`;await shared('Email')}}
-async function markSent(){try{await saveState('INVIATO',{method:lastShareMethod});$('sentModal').classList.add('hidden');current=newOrder();saveCurrent();await loadOrders(false);renderMacro();show('macro');toast('Ordine inviato')}catch(e){toast(e.message||'Errore')}}
-function keepShared(){$('sentModal').classList.add('hidden');toast('Ordine lasciato aperto')}
-
-
-$('controlDraft').onclick=async()=>{
-  if(!totalQty())return toast('Seleziona almeno un prodotto');
-  await saveDraft();
+const batchCategoryMigration={
+ "Giro del mondo":"Main cocktail list",
+ "Giro del mondo - analcolici":"Analcolici main cocktail list",
+ "Make americano great again - analcolici":"Analcolici Make americano great again"
 };
 
-$('controlConfirm').onclick=async()=>{
-  const visible=screens.find(id=>!$(id).classList.contains('hidden'));
-  if(visible!=='summary'){
-    renderSummary();
-    show('summary');
-    return;
-  }
-  if(String(current.status).toUpperCase()==='BOZZA'){
-    await openReady();
-    return;
-  }
-  $('shareModal').classList.remove('hidden');
-};
-
-function archivedOrders(){
-  return orders.filter(o=>String(o.stato).toUpperCase()==='INVIATO');
-}
-async function deleteOpenOrder(o){
-  const ok=await ask(
-    'Cancellare ordine aperto?',
-    `L’ordine ${o.macrocategoria} in stato ${o.stato} verrà eliminato definitivamente.`,
-    'Cancella'
-  );
-  if(!ok)return;
-
-  try{
-    const d=await apiPost({action:'eliminaOrdine',pin,ordineId:o.id});
-    if(!d.ok)throw new Error(d.errore);
-
-    if(current.id===o.id){
-      current=fresh();
-      save();
-    }
-
-    await loadOrders(false);
-    renderMacro();
-
-    if(selectedMacro && !document.getElementById('openOrders').classList.contains('hidden')){
-      showOpenOrders();
-    }
-
-    toast('Ordine aperto eliminato');
-  }catch(e){
-    toast(e.message||'Errore cancellazione');
-  }
-}
-function renderArchive(){
-  const list=archivedOrders();
-  $('archiveMeta').textContent=`${list.length} ordin${list.length===1?'e':'i'}`;
-  $('archiveList').innerHTML=list.length?list.map((o,i)=>`
-    <div class="row">
-      <div>
-        <h3>${esc(o.macrocategoria)} · ${o.pezziTotali} pezzi</h3>
-        <p><span class="status ${String(o.stato).toLowerCase()}">${esc(o.stato)}</span> · ${fdate(o.data)} · ${esc(o.operatore)}${o.syncState==='pending'?' · DA SINCRONIZZARE':o.syncState==='syncing'?' · SINCRONIZZAZIONE…':''}</p>
-      </div>
-      <button class="archive-delete" data-delete-archive="${i}" aria-label="Cancella">×</button>
-    </div>
-  `).join(''):'<div class="empty">Nessun ordine archiviato.</div>';
-  document.querySelectorAll('[data-delete-archive]').forEach(b=>b.onclick=()=>deleteArchivedOrder(list[+b.dataset.deleteArchive]));
-}
-async function openArchive(){
-  await loadOrders(false);
-  renderArchive();
-  show('archive');
-}
-async function deleteArchivedOrder(o){
-  const ok=await ask('Cancellare ordine archiviato?','L’ordine verrà eliminato definitivamente dal database condiviso.','Cancella');
-  if(!ok)return;
-  try{
-    const d=await apiPost({action:'eliminaOrdine',pin,ordineId:o.id});
-    if(!d.ok)throw new Error(d.errore);
-    await loadOrders(false);
-    renderArchive();
-    toast('Ordine eliminato');
-  }catch(e){
-    toast(e.message||'Errore cancellazione');
-  }
-}
-
-function setBottomNav(name){
-  ['Orders','New','Archive','Production'].forEach(n=>{
-    const el=$('nav'+n);
-    if(el)el.classList.toggle('active',n.toLowerCase()===name.toLowerCase());
-  });
-}
-function goOrders(){renderMacro();show('macro');setBottomNav('orders')}
-function goNew(){renderNewMacro();show('newOrderScreen');setBottomNav('new')}
-async function goArchive(){await loadOrders(true);renderArchive();show('archive');setBottomNav('archive')}
-function goProfile(){show('profile');setBottomNav('profile')}
-$('productList').onclick=e=>{
-  const btn=e.target.closest('[data-key][data-delta]');
-  if(!btn)return;
-  change(btn.dataset.key,Number(btn.dataset.delta));
-};
-
-$('syncBtn').onclick=()=>syncCatalog(true);
-$('archiveBack').onclick=goOrders;
-$('newBack').onclick=goOrders;
-$('navOrders').onclick=goOrders;
-$('navNew').onclick=goNew;
-$('navArchive').onclick=goArchive;
-
-$('forceSync').onclick=()=>syncCatalog(true);
-$('profileBtn').onclick=goProfile;
-$('closeProfile').onclick=()=>show('macro');
-$('backMacro').onclick=()=>show('macro');
-$('backChoice').onclick=()=>show('choice');
-$('newOrderChoice').onclick=startCleanOrder;
-$('editOrderChoice').onclick=showOpenOrders;
-$('newOrderTop').onclick=startCleanOrder;
-$('backToOrderSummary').onclick=()=>{renderCategories();show('categories')};
-let searchRenderTimer=null;
-$('search').oninput=e=>{
-  search=e.target.value;
-  clearTimeout(searchRenderTimer);
-  searchRenderTimer=setTimeout(renderProducts,120);
-};
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));
-$('checkCategory').onclick=async()=>{const ok=await ask('Confermare categoria?','Dichiari di averla controllata, anche senza selezionare prodotti.','Conferma');if(!ok)return;current.checked[`${current.supplier}|||${currentCategory}`]=true;saveCurrent();renderCategories();show('categories')};
-$('confirmReady').onclick=markReady;
-$('notesClose').onclick=()=>$('notesModal').classList.add('hidden');
-$('shareClose').onclick=()=>$('shareModal').classList.add('hidden');
-document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>performShare(b.dataset.share));
-$('markSent').onclick=markSent;
-$('keepShared').onclick=keepShared;
-$('sentClose').onclick=keepShared;
-$('logout').onclick=async()=>{const ok=await ask('Uscire?','Dovrai inserire nuovamente il PIN.','Esci');if(ok){localStorage.removeItem('done-v16-user');localStorage.removeItem('done-v16-pin');location.reload()}};
-
-
-async function syncV18Modules(force=false){
-  try{
-    const d=await apiGet('bootstrap',`&pin=${encodeURIComponent(pin)}`);
-    if(!d.ok)throw new Error(d.errore);
-    materials=d.materiePrime||[];batches=d.batches||[];
-    localStorage.setItem('done-v18-materials',JSON.stringify(materials));
-    localStorage.setItem('done-v18-122-batches',JSON.stringify(batches));
-    const savedDraft=JSON.parse(localStorage.getItem('done-v18-122-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
-  }catch(e){
-    materials=JSON.parse(localStorage.getItem('done-v18-materials')||'[]');
-    batches=JSON.parse(localStorage.getItem('done-v18-122-batches')||'[]');
-    const savedDraft=JSON.parse(localStorage.getItem('done-v18-122-batch-draft')||'{}');batchDraft={};batches.forEach(b=>batchDraft[b.batch]=savedDraft[b.batch]!==undefined?Number(savedDraft[b.batch]):Number(b.disponibili||0));
-  }
-  renderUrgentHome();renderBatchHome();
-}
-function urgencyLevel(v){v=String(v||'').trim().toUpperCase();if(['SI','SÌ','URGENTE','TRUE','VERO','1'].includes(v))return 2;if(v==='ATTENZIONE')return 1;return 0}
-function renderUrgentHome(){
-  const map=new Map();materials.forEach(m=>{const l=urgencyLevel(m.urgenza);if(l&&!map.has(m.nome.toLowerCase()))map.set(m.nome.toLowerCase(),m.nome)});
-  const a=[...map.values()];$('urgentHome').classList.toggle('hidden',!a.length);$('urgentCount').textContent=a.length;$('urgentNames').textContent=a.slice(0,5).join(' · ');
-  $('urgentHome').onclick=()=>{materialQuery='';materialSupplier='';openMaterialsScreen(true)};
-}
-function openMaterialsScreen(urgentOnly=false){
-  materialQuery='';materialSupplier='';$('materialSearch').value='';renderSupplierOptions();renderMaterialsV18(urgentOnly);show('materials');
-}
-function renderSupplierOptions(){const a=[...new Set(materials.map(m=>m.fornitore).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'it'));$('supplierFilter').innerHTML='<option value="">Tutti i fornitori</option>'+a.map(x=>`<option>${esc(x)}</option>`).join('')}
-function renderMaterialsV18(urgentOnly=false){
-  let rows=materials.filter(m=>(!materialQuery||[m.nome,m.categoria,m.fornitore].join(' ').toLowerCase().includes(materialQuery.toLowerCase()))&&(!materialSupplier||m.fornitore===materialSupplier));
-  if(urgentOnly)rows=rows.filter(m=>urgencyLevel(m.urgenza));
-  const selectedKeys=new Set(materialCartItems.map(x=>[x.nome,x.fornitore,x.um].join('|')));
-  const selected=materialCartItems.map((x,i)=>`<div class="material-selected-row"><div><b>${esc(x.nome)}</b><small>${esc(x.fornitore||'Senza fornitore')} · ${x.quantita} ${esc(x.um)}</small></div><button data-rm-selected="${i}">×</button></div>`).join('');
-  const byCat={};rows.forEach(m=>(byCat[m.categoria||'ALTRE']??=[]).push(m));
-  const cats=Object.entries(byCat).sort((a,b)=>a[0].localeCompare(b[0],'it')).map(([cat,a])=>{
-    const byName={};a.forEach(m=>(byName[m.nome]??=[]).push(m));
-    const items=Object.entries(byName).sort((a,b)=>a[0].localeCompare(b[0],'it')).map(([name,opts])=>{
-      const urgent=Math.max(...opts.map(x=>urgencyLevel(x.urgenza)));
-      const pills=opts.map(m=>`<button class="supplier-pill" data-mat="${esc(name)}" data-supplier="${esc(m.fornitore)}">${esc(m.fornitore||'Aggiungi')}</button>`).join('');
-      return `<div class="material-compact ${urgent===2?'urgent-high':urgent===1?'urgent-mid':''}"><div><b>${esc(name)}</b><small>${esc(opts[0].um||'unità')}${urgent?' · URGENTE':''}</small></div><div class="supplier-pills">${pills}</div></div>`;
-    }).join('');
-    const open=Boolean(materialQuery||urgentOnly);
-    return `<details class="material-category" ${open?'open':''}><summary><span>${esc(cat)}</span><span>${Object.keys(byName).length} ▾</span></summary>${items}</details>`;
-  }).join('');
-  $('materialsList').innerHTML=(selected?`<div class="material-selected"><h3>DA ORDINARE · ${materialCartItems.length}</h3>${selected}</div>`:'')+cats||'<div class="empty">Nessuna materia prima.</div>';
-  document.querySelectorAll('[data-mat]').forEach(b=>b.onclick=()=>addMaterialPrompt(b.dataset.mat,b.dataset.supplier));
-  document.querySelectorAll('[data-rm-selected]').forEach(b=>b.onclick=()=>{materialCartItems.splice(+b.dataset.rmSelected,1);localStorage.setItem('done-v18-material-cart',JSON.stringify(materialCartItems));renderMaterialsV18(urgentOnly);renderMaterialCartBar()});
-}
-function addMaterialPrompt(name,supplier){const m=materials.find(x=>x.nome===name&&x.fornitore===supplier);if(!m)return;const raw=prompt(`Quantità da ordinare (${m.um||'unità'})`,`1`);if(raw===null)return;const q=Number(String(raw).replace(',','.'));if(!(q>0))return toast('Quantità non valida');const existing=materialCartItems.find(x=>x.nome===name&&x.fornitore===supplier&&x.um===m.um);if(existing)existing.quantita+=q;else materialCartItems.push({...m,quantita:q});localStorage.setItem('done-v18-material-cart',JSON.stringify(materialCartItems));toast(`${name}: ${q} ${m.um}`);renderMaterialCartBar()}
-function renderMaterialCartBar(){let bar=$('materialCartBar');if(!bar){bar=document.createElement('div');bar.id='materialCartBar';bar.className='cartbar hidden';bar.innerHTML='<button id="openMaterialCartBtn"></button>';document.body.appendChild(bar);$('openMaterialCartBtn').onclick=()=>{renderMaterialCart();show('materialCart')}}const n=materialCartItems.reduce((a,x)=>a+Number(x.quantita||0),0);bar.classList.toggle('hidden',!materialCartItems.length||$('materials').classList.contains('hidden'));$('openMaterialCartBtn').textContent=`Riepilogo spezie · ${n.toLocaleString('it-IT')} unità`}
-function renderMaterialCart(){const groups={};materialCartItems.forEach(x=>(groups[x.fornitore||'SENZA FORNITORE']??=[]).push(x));let total=0;$('materialCartList').innerHTML=Object.entries(groups).map(([f,a])=>{let st=0;const rows=a.map((x,i)=>{const c=Number(x.quantita)*Number(x.prezzo||0);st+=c;total+=c;return `<div class="sumrow"><span>${esc(x.nome)} <small>${x.quantita} ${esc(x.um)}</small></span><b>${user.vedePrezzi?'€ '+c.toFixed(2):''} <button data-rm-mat="${materialCartItems.indexOf(x)}">×</button></b></div>`}).join('');return `<div class="summary-group"><h3>${esc(f)}</h3>${rows}${user.vedePrezzi?`<div class="sumrow"><span>Totale ${esc(f)}</span><b>€ ${st.toFixed(2)}</b></div>`:''}</div>`}).join('')||'<div class="empty">Nessun articolo.</div>';$('materialCartMeta').textContent=materialCartItems.length+' articoli'+(user.vedePrezzi?` · € ${total.toFixed(2)}`:'');document.querySelectorAll('[data-rm-mat]').forEach(b=>b.onclick=()=>{materialCartItems.splice(+b.dataset.rmMat,1);localStorage.setItem('done-v18-material-cart',JSON.stringify(materialCartItems));renderMaterialCart()})}
-function materialOrderText(){const groups={};materialCartItems.forEach(x=>(groups[x.fornitore||'SENZA FORNITORE']??=[]).push(x));const a=['ORDINE MATERIE PRIME',`Operatore: ${user.nome}`,`Data: ${new Date().toLocaleDateString('it-IT')}`,''];let grand=0;Object.entries(groups).forEach(([f,rows])=>{a.push(f.toUpperCase(),'');let st=0;rows.forEach(x=>{const c=x.quantita*Number(x.prezzo||0);st+=c;grand+=c;a.push(`${x.nome} — ${x.quantita} ${x.um}${user.vedePrezzi?' — €'+c.toFixed(2):''}`)});if(user.vedePrezzi)a.push(`Totale ${f}: €${st.toFixed(2)}`);a.push('')});if(user.vedePrezzi)a.push(`Totale ordine: €${grand.toFixed(2)}`);return a.join('\n')}
-async function saveMaterialOrderV18(status='INVIATO'){if(!materialCartItems.length)return toast('Ordine vuoto');const id='SP-'+Date.now();const d=await apiPost({action:'salvaOrdine',pin,ordineId:id,macrocategoria:'SPEZIE',stato,note:'',metodoCondivisione:'',prodotti:materialCartItems.map(x=>({macrocategoria:'SPEZIE',sottocategoria:x.categoria,prodotto:x.nome,formato:x.um,unitaOrdine:x.um,fornitore:x.fornitore,prezzo:x.prezzo,quantita:x.quantita})),testo:materialOrderText()});if(!d.ok)throw new Error(d.errore);materialCartItems=[];localStorage.removeItem('done-v18-material-cart');await loadOrders(true);renderMacro();toast('Ordine spezie salvato');show('macro')}
-async function shareMaterialV18(){if(!materialCartItems.length)return toast('Ordine vuoto');const text=materialOrderText();try{if(navigator.share)await navigator.share({title:'Ordine materie prime',text});else{await navigator.clipboard.writeText(text);toast('Testo copiato')}}catch(e){return}try{await saveMaterialOrderV18('INVIATO')}catch(e){toast(e.message||'Errore salvataggio')}}
-function batchMinimum(b){const n=Number(b.minimo);return Number.isFinite(n)?n:2}
-function batchIsLow(b,value){return Number(value===undefined?b.disponibili:value)<batchMinimum(b)}
-const BATCH_CATEGORY_ORDER=[
-  'GIRO DEL MONDO',
-  'GIRO DEL MONDO - ANALCOLICI',
-  'EVERGREEN',
-  'MAKE AMERICANO GREAT AGAIN',
-  'MAKE AMERICANO GREAT AGAIN - ANALCOLICI'
+const recipeBatchSeeds=[
+ {name:"Floyd Patterson",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Floyd Patterson"},
+ {name:"Carlos Ortiz",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Carlos Ortiz"},
+ {name:"Jean-Claude Bouttier",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Jean-Claude Bouttier"},
+ {name:"Carlos Zarate",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Carlos Zarate"}
 ];
-function normalizeBatchCategory(value){
-  const raw=String(value||'')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[–—−]/g,'-')
-    .replace(/\s*-\s*/g,' - ')
-    .replace(/\s+/g,' ')
-    .trim().toUpperCase();
-  if(!raw)return 'SENZA CATEGORIA';
-  if(raw==='EVERGREEN')return 'EVERGREEN';
-  if(raw.includes('GIRO DEL MONDO'))return raw.includes('ANALCOLIC')?'GIRO DEL MONDO - ANALCOLICI':'GIRO DEL MONDO';
-  if(raw.includes('MAKE AMERICANO GREAT AGAIN'))return raw.includes('ANALCOLIC')?'MAKE AMERICANO GREAT AGAIN - ANALCOLICI':'MAKE AMERICANO GREAT AGAIN';
-  return raw;
-}
-function batchGroups(){
-  const groups={};
-  BATCH_CATEGORY_ORDER.forEach(c=>groups[c]=[]);
-  const extras={};
-  batches.forEach(b=>{
-    const sourceCategory=b.categoria ?? b.Categoria ?? b.category ?? b.categoriaBatch ?? b['Categoria batch'] ?? '';
-    const c=normalizeBatchCategory(sourceCategory);
-    if(Object.prototype.hasOwnProperty.call(groups,c)) groups[c].push(b);
-    else (extras[c]??=[]).push(b);
-  });
-  const ordered={};
-  // Le cinque macroaree sono sempre presenti e sempre nello stesso ordine.
-  BATCH_CATEGORY_ORDER.forEach(c=>ordered[c]=groups[c]);
-  // Eventuali errori nel foglio non fanno sparire i batch: vengono mostrati in fondo.
-  Object.keys(extras).sort((a,b)=>a.localeCompare(b,'it')).forEach(c=>ordered[c]=extras[c]);
-  return ordered;
-}
-function renderBatchHome(){
-  const box=$('batchHome');if(!batches.length){box.classList.add('hidden');return}
-  const low=batches.filter(b=>batchIsLow(b));const dates=batches.map(b=>b.ultimoAggiornamento).filter(Boolean);const last=dates[0]||'—';const op=(batches.find(b=>b.operatore)||{}).operatore||'—';
-  const groups=batchGroups();
-  box.classList.remove('hidden');box.classList.toggle('alert',low.length>0);
-  const groupedHtml=Object.entries(groups).map(([cat,items])=>`<div class="batch-overview-group"><h4>${esc(cat)}</h4><div class="batch-home-grid">${items.length?items.map(b=>`<div class="batch-chip ${batchIsLow(b)?'low':''}"><span>${esc(b.batch)}</span><b>${Number(b.disponibili||0)}${batchIsLow(b)?' !':''}</b></div>`).join(''):'<div class="batch-category-empty">Nessun batch</div>'}</div></div>`).join('');
-  box.innerHTML=`<div class="batch-home-head"><div><h3>${low.length?low.length+' BATCH DA PRODURRE':'OVERVIEW PRODUZIONE'}</h3><small>${Object.keys(groups).length} macro aree · aggiornamento ${esc(last)} · ${esc(op)}</small></div><span class="go">→</span></div><div class="batch-overview-groups">${groupedHtml}</div>`;
-  box.onclick=openProduction;
-}
-function openProduction(){renderBatchesV18();show('production')}
-function batchChangedCount(){return batches.filter(b=>Number(batchDraft[b.batch])!==Number(b.disponibili||0)).length}
-function persistBatchDraft(){localStorage.setItem('done-v18-122-batch-draft',JSON.stringify(batchDraft))}
-function setBatchDraft(name,val){batchDraft[name]=Math.max(0,Number(String(val).replace(',','.'))||0);persistBatchDraft();renderBatchesV18()}
-function renderBatchesV18(){
-  const can=Boolean(user.modificaBatch||user.admin||String(user.ruolo).toUpperCase()==='ADMIN');const changed=batchChangedCount();
-  $('batchPermission').textContent=can?'Le modifiche restano locali fino alla conferma generale.':'Visualizzazione sola lettura.';
-  const groups=batchGroups();let globalIndex=new Map(batches.map((b,i)=>[b,i]));
-  $('batchList').innerHTML=batches.length?Object.entries(groups).map(([cat,items])=>`<section class="batch-area"><h2 class="batch-area-title">${esc(cat)}</h2><div class="batch-area-grid">${items.length?items.map(b=>{const i=globalIndex.get(b);const v=batchDraft[b.batch]!==undefined?batchDraft[b.batch]:Number(b.disponibili||0);const ch=Number(v)!==Number(b.disponibili||0);const low=batchIsLow(b,v);return `<div class="batch-card ${ch?'changed':''} ${low?'is-low':''}"><h3>${esc(b.batch)}${low?' · DA PRODURRE':''}</h3><div class="batch-meta">Disponibili ${Number(b.disponibili||0)} · minimo ${batchMinimum(b)}<br>${esc(b.ultimoAggiornamento||'—')} · ${esc(b.operatore||'—')}</div><div class="batch-controls"><button data-bdelta="-1" data-bi="${i}" ${can?'':'disabled'}>−</button><input data-binput="${i}" inputmode="decimal" value="${Number(v)}" ${can?'':'disabled'}><button data-bdelta="1" data-bi="${i}" ${can?'':'disabled'}>+</button></div></div>`}).join(''):'<div class="batch-category-empty production-empty">Nessun batch in questa categoria</div>'}</div></section>`).join(''):'<div class="empty">Nessun batch attivo nel foglio GIACENZE_BATCH.</div>';
-  $('batchConfirm').classList.toggle('hidden',!can||!batches.length);$('confirmAllBatches').disabled=!changed;$('batchChanges').textContent=changed?`${changed} batch modificati · il server non è ancora stato aggiornato`:'Nessuna modifica da confermare';
-  document.querySelectorAll('[data-bdelta]').forEach(x=>x.onclick=()=>{const b=batches[+x.dataset.bi];setBatchDraft(b.batch,Number(batchDraft[b.batch]||0)+Number(x.dataset.bdelta))});
-  document.querySelectorAll('[data-binput]').forEach(x=>x.onchange=()=>{const b=batches[+x.dataset.binput];setBatchDraft(b.batch,x.value)});
-}
-async function confirmAllBatchesV18(){
-  const changed=batches.filter(b=>Number(batchDraft[b.batch])!==Number(b.disponibili||0)).map(b=>({batch:b.batch,disponibili:Number(batchDraft[b.batch])}));if(!changed.length)return;
-  const ok=await ask('Confermare i batch?',changed.map(x=>`${x.batch}: ${batches.find(b=>b.batch===x.batch).disponibili} → ${x.disponibili}`).join('\n'),'Conferma');if(!ok)return;
-  let d=await apiPost({action:'aggiornaBatches',pin,batches:changed});
-  if(!d.ok && /azione non valida|non riconosciuta/i.test(String(d.errore||''))){
-    for(const item of changed){
-      const single=await apiPost({action:'aggiornaBatch',pin,batch:item.batch,disponibili:item.disponibili});
-      if(!single.ok){d=single;break}
-      d={ok:true};
-    }
-  }
-  if(!d.ok)return toast(d.errore||'Errore durante il salvataggio dei batch');
-  localStorage.removeItem('done-v18-122-batch-draft');await syncV18Modules(true);renderBatchesV18();renderBatchHome();toast('Situazione batch aggiornata');
-}
-materialCartItems=JSON.parse(localStorage.getItem('done-v18-material-cart')||'[]');
-$('materialSearch').oninput=e=>{materialQuery=e.target.value;renderMaterialsV18()};$('confirmAllBatches').onclick=confirmAllBatchesV18;$('supplierFilter').onchange=e=>{materialSupplier=e.target.value;renderMaterialsV18()};$('materialsBack').onclick=()=>{show('macro');renderMaterialCartBar()};$('materialCartBack').onclick=()=>{renderMaterialsV18();show('materials');renderMaterialCartBar()};$('saveMaterialOrder').onclick=()=>saveMaterialOrderV18('INVIATO').catch(e=>toast(e.message));$('shareMaterialOrder').onclick=shareMaterialV18;$('openProductionHome').onclick=openProduction;$('productionBack').onclick=()=>show('macro');$('navProduction').onclick=()=>{openProduction();setBottomNav('production')};
-const originalShow=show;show=function(id){originalShow(id);setTimeout(renderMaterialCartBar,0)};
 
-document.addEventListener('gesturestart',e=>e.preventDefault());
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-initLogin();
-(async()=>{
-  if(user&&pin){
-    try{
-      $('login').classList.add('hidden');
-      applyUser();
-      await syncCatalog(false);
-      await loadOrders(false);
-      await syncV18Modules(false);
-      renderMacro();
-      show('macro');
-      setBottomNav('orders');
-    }catch(e){
-      localStorage.removeItem('done-v16-user');
-      localStorage.removeItem('done-v16-pin');
-      user=null;pin='';
-      $('login').classList.remove('hidden');
-      $('loginError').textContent='Inserisci nuovamente il PIN';
-      setTimeout(()=>$('pin').focus(),50);
-    }
-  }
-})();
-</script>
-</body>
-</html>
+S.batches=S.batches||[];
+S.batches.forEach(b=>{
+ b.category=batchCategoryMigration[b.category]||b.category||C[0];
+ b.available=Math.max(0,Number(b.available)||0);
+ b.toProduce=Math.max(0,Number(b.toProduce)||0);
+ b.minimum=Math.max(0,Number(b.minimum ?? b.ideal ?? 0)||0);
+});
+recipeBatchSeeds.forEach(seed=>{
+ if(!S.batches.some(b=>b.name===seed.name))S.batches.push({...seed});
+});
+localStorage.setItem('doneProto',JSON.stringify(S));
+let activeBatchCategory=null;
+
+
+const recipeCategories=[...C];
+const operationalRecipes={
+ "Floyd Patterson":{
+   category:"Make americano great again",yield:9,finalVolume:750,
+   liquid:[
+     ["Martini Rosso",305,"ml"],["Martini Bitter",122,"ml"],
+     ["Martini RS Bitter",122,"ml"],["China Martini",62,"ml"],
+     ["Liquore mandarino",140,"ml"]
+   ],
+   solid:[["Zenzero",75,"gr"],["Cardamomo",9,"gr"],["Scorze lime",9,"gr"]],
+   time:[["Cottura / infusione","4 ore"],["Temperatura","60°"]],
+   steps:[
+     "Pestare lo zenzero in un contenitore.",
+     "Mettere tutto in un sacchetto: parte liquida escluso il liquore al mandarino e parte solida.",
+     "Cuocere con il roner per 4 ore a 60°.",
+     "Lasciare raffreddare.",
+     "Filtrare con superbag: si ottengono circa 610 ml di batch.",
+     "Aggiungere 140 ml di liquore al mandarino.",
+     "Imbottigliare."
+   ],
+   serve:[["Pre-batch",8,"cl"],["Birra IPA Moretti",6,"cl"],["Garnish","Coin lime",""]],
+   notes:"Una produzione completa genera circa 750 ml, equivalenti a 9 pre-batch."
+ },
+ "Carlos Ortiz":{
+   category:"Make americano great again",yield:9,finalVolume:745,
+   liquid:[
+     ["Martini Rosso",155,"ml"],["Martini RS Rubino",75,"ml"],
+     ["Martini Bitter",235,"ml"],["China Martini",140,"ml"],
+     ["Liquore Rabarbaro",140,"ml"]
+   ],
+   solid:[["Pepe nero in grani",10,"gr"],["Caffè in chicchi",40,"gr"]],
+   time:[["Infusione","24 ore"],["Temperatura","A freddo · 4°–5°"]],
+   steps:[
+     "Pestare molto delicatamente il pepe in un contenitore.",
+     "Mettere tutta la parte liquida e la parte solida in una caraffa.",
+     "Lasciare in frigorifero, circa a 4°–5°, per 24 ore.",
+     "Filtrare con superbag.",
+     "Imbottigliare."
+   ],
+   serve:[["Pre-batch",8,"cl"],["Indian tonic",6,"cl"],["Garnish","Sedano essiccato",""]],
+   notes:"La resa reale può variare leggermente a causa dell'assorbimento degli ingredienti solidi."
+ },
+ "Jean-Claude Bouttier":{
+   category:"Make americano great again",yield:9,finalVolume:745,
+   liquid:[
+     ["Martini Rosso",155,"ml"],["Martini RS Ambrato",100,"ml"],
+     ["Martini Bitter",375,"ml"],["St. Germain",115,"ml"]
+   ],
+   solid:[
+     ["Tè Flowery Oolong",10,"gr"],["Tè Bancha fiori",10,"gr"],
+     ["Soluzione salina",36,"gocce"],["Acido citrico",4,"gr"]
+   ],
+   time:[["Infusione","1 ora"],["Temperatura","Ambiente"]],
+   steps:[
+     "Mettere tutta la parte liquida in un contenitore.",
+     "Aggiungere i due tè e lasciare in infusione.",
+     "Filtrare con superbag.",
+     "Aggiungere la soluzione salina.",
+     "Aggiungere l'acido citrico.",
+     "Imbottigliare."
+   ],
+   serve:[["Pre-batch",8,"cl"],["Soda sambuco Gasco",6,"cl"],["Finitura","Profumo geranio",""]],
+   notes:"Aggiungere soluzione salina e acido citrico soltanto dopo la filtrazione."
+ },
+ "Carlos Zarate":{
+   category:"Make americano great again",yield:8,finalVolume:751,
+   liquid:[
+     ["Martini Rosso",168,"ml"],["Martini RS Rubino",168,"ml"],
+     ["Martini Bitter",335,"ml"],["Crema di mezcal",80,"ml"]
+   ],
+   solid:[["Mate",27,"gr"]],
+   time:[["Mate","5 ore · ambiente"],["Crema di mezcal","3 ore · 60°"]],
+   steps:[
+     "Infondere i prodotti Martini con il mate per 5 ore a temperatura ambiente.",
+     "Parallelamente preparare la crema di mezcal.",
+     "Terminate infusione e cottura, filtrare le due preparazioni.",
+     "Unire i prodotti infusi e la crema di mezcal.",
+     "Imbottigliare."
+   ],
+   serve:[["Pre-batch",9,"cl"],["Three Cents grapefruit",6,"cl"],["Finitura","Tajin",""]],
+   secondary:{
+     title:"Crema di mezcal · dose per 1 produzione",
+     ingredients:[["Mezcal Espadin",40,"ml"],["Miele di fiori",40,"gr"],["Habanero",0.8,"gr"]],
+     steps:[
+       "Pulire l'habanero dai semi e tagliarlo finemente.",
+       "Mettere mezcal, miele di fiori e habanero in un sacchetto.",
+       "Cuocere con il roner per 3 ore a 60°.",
+       "Filtrare e imbottigliare."
+     ],
+     note:"Per 1 litro: 500 ml Mezcal Espadin, 500 gr miele di fiori e 10 gr habanero."
+   },
+   notes:"La crema di mezcal viene normalmente prodotta in bottiglie da un litro e utilizzata nella quantità necessaria."
+ }
+};
+let activeRecipeCategory=null;
+let activeRecipeName=null;
+let desiredRecipeBatches=9;
+
+let archiveFilter='Tutti',archiveQuery='';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='archive')renderArchive();if(id==='batch')renderBatch();if(id==='recipes')renderRecipes();scrollTo(0,0)}
+document.getElementById('homeButton').onclick=()=>go('home');document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+document.getElementById('archiveSearch').oninput=e=>{archiveQuery=e.target.value;renderArchive()};
+function save(){localStorage.setItem('doneProto',JSON.stringify(S));renderAll()}
+function renderHome(){
+ const pending=S.batches.filter(b=>Number(b.toProduce)>0);
+ mBatch.textContent=pending.length;
+ mBottle.textContent=pending.reduce((n,b)=>n+Number(b.toProduce||0),0);
+ homeBatch.innerHTML=C.map(cat=>{
+   const rows=pending.filter(b=>b.category===cat);
+   if(!rows.length)return '';
+   return `<div class="cat"><div class="cat-title">${esc(cat)}</div>${rows.map(b=>{
+      const i=S.batches.indexOf(b);
+      return `<div class="home-batch-task">
+        <div class="home-batch-task-top">
+          <div><strong>${esc(b.name)}</strong><div class="meta">${b.available} disponibili · minimo ${b.minimum}</div></div>
+          <div class="qty">${b.toProduce}</div>
+        </div>
+        <button class="home-batch-confirm" onclick="completeBatch(${i})">✓ CONFERMA PRODUZIONE COMPLETATA</button>
+      </div>`;
+   }).join('')}</div>`;
+ }).join('')||'<div class="empty">Nessun batch da produrre.</div>';
+ const n=S.notes.filter(x=>x.star&&!x.done);
+ homeNotes.innerHTML=n.map(x=>`<div class="note"><div><div class="note-title">★ ${esc(x.title)}</div><div class="note-text">${esc(x.text)}</div><div class="meta">${esc(x.author)} · ${esc(x.date)}</div></div></div>`).join('')||'<div class="empty">Nessuna nota in evidenza.</div>';
+ homeDrafts.innerHTML=S.orderDrafts.length?S.orderDrafts.map(d=>`<div class="order draft-card"><div class="order-top"><div><strong>${esc(d.type)}</strong><div class="meta">${esc(d.operator||'Operatore')} · ${esc(d.updatedLabel||'adesso')}</div></div><span class="badge">BOZZA</span></div><div class="actions"><button class="btn black" onclick="resumeOrder('${d.id}')">CONTINUA</button></div></div>`).join(''):'<div class="empty">Nessun ordine in sospeso.</div>';
+ homeOrders.innerHTML=S.orders.filter(o=>o.status==='Inviato').slice(0,3).map(o=>`<div class="order"><div class="order-top"><div><strong>${esc(o.category)}</strong><div class="meta">${esc(o.date)} · ${esc(o.operator)}</div></div><span class="badge">INVIATO</span></div></div>`).join('')||'<div class="empty">Nessun ordine condiviso.</div>';
+}
+function renderBatch(){
+ const root=document.getElementById('batchManager');
+ if(!activeBatchCategory){
+   root.innerHTML=`<div class="batch-launcher-grid">${C.map((cat,i)=>{
+      const items=S.batches.filter(b=>b.category===cat);
+      const alerts=items.filter(b=>Number(b.available)<Number(b.minimum)).length;
+      const production=items.reduce((n,b)=>n+Number(b.toProduce||0),0);
+      return `<button class="batch-launcher" onclick="openBatchCategory(${i})">${esc(cat).toUpperCase()}<small>${items.length} batch · ${production} da produrre${alerts?` · ${alerts} sotto soglia`:''}</small></button>`;
+   }).join('')}</div>`;
+   return;
+ }
+ const list=S.batches.filter(b=>b.category===activeBatchCategory);
+ root.innerHTML=`<div class="batch-toolbar"><div><p>Categoria</p><h2>${esc(activeBatchCategory)}</h2></div><button class="batch-back" onclick="closeBatchCategory()">← CATEGORIE</button></div>
+ ${list.map(b=>{
+   const i=S.batches.indexOf(b);
+   const low=Number(b.available)<Number(b.minimum);
+   return `<div class="batch-edit-row">
+    <div class="batch-edit-head">
+      <div><div class="batch-edit-name">${esc(b.name)}</div><div class="meta">${esc(b.recipe||'Ricetta non associata')}</div></div>
+      <span class="batch-production-badge ${Number(b.toProduce)===0?'zero':''}">${Number(b.toProduce)===0?'NESSUNA PRODUZIONE':b.toProduce+' DA PRODURRE'}</span>
+    </div>
+    ${low?`<div class="batch-alert">⚠ GIACENZA SOTTO IL MINIMO: ${b.available} disponibili, minimo ${b.minimum}</div>`:''}
+    <div class="batch-fields">
+      <div><label>GIACENZA ATTUALE</label><input type="number" min="0" value="${b.available}" onchange="setBatchValue(${i},'available',this.value,true)"></div>
+      <div><label>DA PRODURRE</label><input type="number" min="0" value="${b.toProduce}" onchange="setBatchValue(${i},'toProduce',this.value,false)"></div>
+      <div><label>SOGLIA MINIMA</label><input type="number" min="0" value="${b.minimum}" onchange="setBatchValue(${i},'minimum',this.value,true)"></div>
+    </div>
+    <div class="actions"><button class="recipe-btn" onclick="openRecipe('${esc(b.recipe)}',${b.toProduce||1})">APRI RICETTA</button></div>
+   </div>`;
+ }).join('')||'<div class="empty">Nessun batch associato a questa categoria.</div>'}
+ <div class="batch-save-note">Le modifiche vengono salvate automaticamente nel dispositivo.</div>`;
+}
+window.openBatchCategory=i=>{activeBatchCategory=C[i];renderBatch();scrollTo(0,0)};
+window.closeBatchCategory=()=>{activeBatchCategory=null;renderBatch();scrollTo(0,0)};
+window.setBatchValue=(i,field,value,checkMinimum)=>{
+ const b=S.batches[i];
+ if(!b)return;
+ b[field]=Math.max(0,Number(value)||0);
+ localStorage.setItem('doneProto',JSON.stringify(S));
+ renderAll();
+ if(checkMinimum && Number(b.available)<Number(b.minimum)){
+   alert(`${b.name}: giacenza sotto il minimo.\nDisponibili: ${b.available}\nMinimo impostato: ${b.minimum}`);
+ }
+};
+window.completeBatch=i=>{
+ const b=S.batches[i];
+ if(!b||Number(b.toProduce)<=0)return;
+ const made=Number(b.toProduce);
+ if(!confirm(`Confermi che sono state prodotte ${made} bottiglie di ${b.name}?`))return;
+ b.available=Number(b.available||0)+made;
+ b.toProduce=0;
+ save();
+};
+function renderNotes(){notesList.innerHTML=S.notes.map((n,i)=>`<div class="note ${n.done?'done':''}"><div><div class="note-title">${esc(n.title)}</div><div class="note-text">${esc(n.text)}</div><div class="meta">${esc(n.author)} · ${esc(n.date)}</div></div><div class="note-actions"><button class="icon ${n.star?'active':''}" onclick="star(${i})">★</button><button class="icon ${n.done?'active':''}" onclick="done(${i})">✓</button></div></div>`).join('')}
+window.star=i=>{S.notes[i].star=!S.notes[i].star;save()};window.done=i=>{S.notes[i].done=!S.notes[i].done;save()};addNote.onclick=()=>{const t=noteTitle.value.trim();if(!t)return alert('Inserisci un titolo');S.notes.unshift({title:t,text:noteText.value.trim(),author:'Simone',star:noteStar.checked,done:false,date:'adesso'});noteTitle.value='';noteText.value='';noteStar.checked=false;save()};
+function archiveTypeOptions(){return ['Tutti','Spirits','Vini','Birre','Spezie']}
+function renderArchive(){
+ const filters=document.getElementById('archiveFilters');
+ if(filters)filters.innerHTML=archiveTypeOptions().map(x=>`<button class="archive-filter ${archiveFilter===x?'active':''}" onclick="setArchiveFilter('${x}')">${x}</button>`).join('');
+ const q=archiveQuery.trim().toLowerCase();
+ const rows=S.orders.filter(o=>o.status==='Inviato').filter(o=>archiveFilter==='Tutti'||o.category===archiveFilter).filter(o=>!q||[o.category,o.date,o.operator].join(' ').toLowerCase().includes(q));
+ archiveList.innerHTML=rows.map(o=>{const i=S.orders.findIndex(x=>x.id===o.id);return`<div class="order"><div class="order-top"><div><div class="archive-type">${esc(o.category)}</div><div class="meta archive-date">${esc(o.date)} · ${esc(o.operator)} · ${Number(o.items||0)} prodotti</div></div><span class="badge">INVIATO</span></div><div class="actions archive-actions"><button class="btn light" onclick="toggleArchivedOrder('${o.id}')">APRI</button><button class="btn black" onclick="editArchivedOrder('${o.id}')">MODIFICA</button><button class="btn archive-delete" onclick="deleteArchivedOrder('${o.id}')">ELIMINA</button></div><div class="archive-detail" id="archive-detail-${o.id}"><div class="order-preview">${esc(o.text||'Dettaglio non disponibile per questo vecchio ordine.')}</div></div></div>`}).join('')||'<div class="archive-empty-filter">Nessun ordine inviato corrisponde ai filtri.</div>'
+}
+window.setArchiveFilter=x=>{archiveFilter=x;renderArchive()};
+window.toggleArchivedOrder=id=>{const el=document.getElementById('archive-detail-'+id);if(el)el.classList.toggle('show')};
+window.deleteArchivedOrder=id=>{const o=S.orders.find(x=>x.id===id);if(!o)return;if(!confirm(`Eliminare definitivamente l’ordine ${o.category} del ${o.date}?`))return;S.orders=S.orders.filter(x=>x.id!==id);save();};
+window.editArchivedOrder=id=>{const o=S.orders.find(x=>x.id===id);if(!o)return;if(o.snapshot){currentOrder=JSON.parse(JSON.stringify(o.snapshot));currentOrder.archiveId=o.id}else{currentOrder=freshOrder(o.category);currentOrder.archiveId=o.id;currentOrder.operator=o.operator||'Simone';currentOrder.notes='Ordine storico importato. Controllare e reinserire le quantità prima di salvare le modifiche.'}go('neworder');renderOrderWizard();showOrderPane('orderWizard')};
+window.showArchivedOrder=i=>{const o=S.orders[i];if(o)toggleArchivedOrder(o.id)};
+let currentOrder=null,activeOrderCategory=0;
+function freshOrder(type){return{id:'ord'+Date.now(),type,operator:'Simone',notes:'',visited:{},quantities:{},units:{},created:new Date().toISOString(),updatedLabel:'adesso'}}
+function showOrderPane(name){['orderLauncher','orderWizard','orderCategoryDetail','orderPreviewWrap'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==name))}
+document.querySelectorAll('.cat-btn').forEach(b=>b.onclick=()=>startOrder(b.dataset.cat));
+window.startOrder=type=>{currentOrder=freshOrder(type);renderOrderWizard();showOrderPane('orderWizard')};
+window.resumeOrder=id=>{const d=S.orderDrafts.find(x=>x.id===id);if(!d)return;currentOrder=JSON.parse(JSON.stringify(d));go('neworder');renderOrderWizard();showOrderPane('orderWizard')};
+function renderOrderWizard(){const c=orderCatalog[currentOrder.type],total=c.categories.length,done=c.categories.filter((_,i)=>currentOrder.visited[i]).length;orderWizard.innerHTML=`<div class="order-toolbar"><div><p>${currentOrder.archiveId?'Modifica ordine inviato':'Nuovo ordine'}</p><h2>${esc(c.label)}</h2></div><button class="order-back" onclick="cancelOrderView()">← CATEGORIE</button></div><div class="order-progress"><div style="width:${total?done/total*100:0}%"></div></div><div class="meta">${done} / ${total} categorie controllate</div><div class="panel">${c.categories.map((cat,i)=>`<button class="order-category" onclick="openOrderCategory(${i})"><span><strong>${esc(cat.name)}</strong><small>${cat.items.length} articoli</small></span><span class="order-state ${currentOrder.visited[i]?'done':'new'}">${currentOrder.visited[i]?'✓ CONTROLLATA':'○ MAI APERTA'}</span></button>`).join('')}</div><div class="form"><label>Operatore</label><input id="orderOperator" value="${esc(currentOrder.operator)}"><label>Note generali</label><textarea id="orderNotesField" placeholder="Indicazioni per il fornitore">${esc(currentOrder.notes)}</textarea><div class="actions">${currentOrder.archiveId?'':`<button class="btn light" onclick="saveOrderDraft()">SALVA BOZZA</button>`}<button class="btn black" onclick="attemptOrderConfirm()">CONFERMA ORDINE</button></div></div>`}
+window.cancelOrderView=()=>{if(currentOrder&&currentOrder.archiveId){go('archive')}else showOrderPane('orderLauncher');currentOrder=null};
+window.openOrderCategory=i=>{activeOrderCategory=i;renderOrderCategory();showOrderPane('orderCategoryDetail')};
+function renderOrderCategory(){const c=orderCatalog[currentOrder.type],cat=c.categories[activeOrderCategory];let filters='',items=cat.items;if(currentOrder.type==='Spezie'){const suppliers=[...new Set(cat.items.map(x=>x.supplier))];filters=`<div class="form order-filter-grid"><div><label>Macro</label><select disabled><option>${esc(cat.name)}</option></select></div><div><label>Fornitore</label><select id="supplierFilter"><option value="">Tutti</option>${suppliers.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div></div>`}orderCategoryDetail.innerHTML=`<div class="order-toolbar"><div><p>${esc(c.label)}</p><h2>${esc(cat.name)}</h2></div><button class="order-back" onclick="backToOrderWizard()">← INDIETRO</button></div>${filters}<div class="panel" id="orderProducts"></div><button class="btn black" style="width:100%;margin-top:13px" onclick="confirmOrderCategory()">CONFERMA CATEGORIA</button>`;if(currentOrder.type==='Spezie')supplierFilter.onchange=renderOrderProducts;renderOrderProducts()}
+function orderItemObj(raw){return typeof raw==='string'?{name:raw,unit:currentOrder.type==='Birre'?'fusti':currentOrder.type==='Vini'?'bottiglie':'bottiglie'}:raw}
+function renderOrderProducts(){const cat=orderCatalog[currentOrder.type].categories[activeOrderCategory];let items=cat.items;if(currentOrder.type==='Spezie'&&supplierFilter.value)items=items.filter(x=>x.supplier===supplierFilter.value);orderProducts.innerHTML=items.map(raw=>{const o=orderItemObj(raw),key=activeOrderCategory+'|'+o.name,q=Number(currentOrder.quantities[key]||0);currentOrder.units[key]=o.unit;return`<div class="order-product"><div><div class="order-product-name">${esc(o.name)}</div><div class="order-product-meta">${o.supplier?esc(o.supplier)+' · ':''}${esc(o.unit)}</div></div><div class="order-qty"><button onclick="changeOrderQty('${encodeURIComponent(key)}',-1)">−</button><input type="number" min="0" value="${q}" onchange="setOrderQty('${encodeURIComponent(key)}',this.value)"><button onclick="changeOrderQty('${encodeURIComponent(key)}',1)">+</button></div></div>`}).join('')||'<div class="empty">Nessun prodotto.</div>'}
+window.changeOrderQty=(encoded,d)=>{const key=decodeURIComponent(encoded);currentOrder.quantities[key]=Math.max(0,Number(currentOrder.quantities[key]||0)+d);renderOrderProducts()};
+window.setOrderQty=(encoded,v)=>{const key=decodeURIComponent(encoded);currentOrder.quantities[key]=Math.max(0,Number(v)||0)};
+window.backToOrderWizard=()=>{renderOrderWizard();showOrderPane('orderWizard')};
+window.confirmOrderCategory=()=>{currentOrder.visited[activeOrderCategory]=true;renderOrderWizard();showOrderPane('orderWizard')};
+function syncOrderFields(){currentOrder.operator=(document.getElementById('orderOperator')?.value||'Simone').trim()||'Simone';currentOrder.notes=(document.getElementById('orderNotesField')?.value||'').trim();currentOrder.updatedLabel='adesso'}
+window.saveOrderDraft=()=>{syncOrderFields();const i=S.orderDrafts.findIndex(x=>x.id===currentOrder.id);if(i>=0)S.orderDrafts[i]=JSON.parse(JSON.stringify(currentOrder));else S.orderDrafts.unshift(JSON.parse(JSON.stringify(currentOrder)));save();alert('Bozza salvata e visibile nella Home.');go('home')};
+window.attemptOrderConfirm=()=>{syncOrderFields();const c=orderCatalog[currentOrder.type],missing=c.categories.filter((_,i)=>!currentOrder.visited[i]).map(x=>x.name);if(missing.length){orderMissingText.innerHTML=`Non hai ancora aperto:<br><br><strong>${missing.map(esc).join('<br>')}</strong><br><br>Vuoi continuare comunque?`;orderMissingAlert.classList.add('show')}else renderOrderPreview()};
+orderAlertBack.onclick=()=>orderMissingAlert.classList.remove('show');orderAlertContinue.onclick=()=>{orderMissingAlert.classList.remove('show');renderOrderPreview()};
+function orderSelectedLines(){const c=orderCatalog[currentOrder.type],lines=[];c.categories.forEach((cat,i)=>cat.items.forEach(raw=>{const o=orderItemObj(raw),key=i+'|'+o.name,q=Number(currentOrder.quantities[key]||0);if(q<=0)return;let line;if(currentOrder.type==='Vini'){const boxes=Math.floor(q/6),loose=q%6,parts=[];if(boxes)parts.push(`${boxes} ${boxes===1?'cassa':'casse'}`);if(loose)parts.push(`${loose} ${loose===1?'bottiglia':'bottiglie'}`);line=`${o.name}: ${parts.join(' + ')} (${q} bottiglie)`}else if(currentOrder.type==='Birre')line=`${o.name}: ${q} ${q===1?'fusto':'fusti'}`;else line=`${o.name}: ${q} ${o.unit}`;lines.push({category:cat.name,line})}));return lines}
+function buildOrderText(){const lines=orderSelectedLines();let out=`ORDINE ${currentOrder.type.toUpperCase()}\nOperatore: ${currentOrder.operator}\nData: ${new Date().toLocaleString('it-IT')}\n`;let last='';lines.forEach(x=>{if(last!==x.category){out+=`\n${x.category.toUpperCase()}\n`;last=x.category}out+=`- ${x.line}\n`});if(!lines.length)out+='\nNessun articolo con quantità superiore a zero.\n';if(currentOrder.notes)out+=`\nNOTE\n${currentOrder.notes}\n`;return out.trim()}
+function renderOrderPreview(){orderPreviewWrap.innerHTML=`<div class="order-toolbar"><div><p>Anteprima ordine</p><h2>${esc(currentOrder.type)}</h2></div><button class="order-back" onclick="backToOrderWizard()">← MODIFICA</button></div><div class="order-preview" id="finalOrderText">${esc(buildOrderText())}</div><div class="form"><div class="actions"><button class="btn light" onclick="copyOrderText()">COPIA TESTO</button><button class="btn light" onclick="printOrderPdf()">ESPORTA PDF</button></div><button class="btn black" style="width:100%;margin-top:10px" onclick="markOrderShared()">${currentOrder.archiveId?'SALVA MODIFICHE':'HO CONDIVISO L\'ORDINE'}</button><p class="meta" style="margin-top:10px">${currentOrder.archiveId?'L’ordine resterà nello storico con i dati aggiornati.':'Passa in archivio soltanto dopo questa conferma.'}</p></div>`;showOrderPane('orderPreviewWrap')}
+window.copyOrderText=async()=>{try{await navigator.clipboard.writeText(buildOrderText());alert('Testo copiato.')}catch(e){alert('Copia automatica non disponibile: seleziona il testo dell’anteprima.')}};
+window.printOrderPdf=()=>{const w=window.open('','_blank');w.document.write(`<html><head><title>Ordine ${esc(currentOrder.type)}</title><style>body{font-family:Arial;padding:40px;white-space:pre-wrap;line-height:1.5}h1{font-size:24px}
+/* ARCHIVIO V2.4 */
+.archive-tools{background:#fff;border-radius:20px;padding:15px;margin-top:16px}.archive-filters{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.archive-filter{border:0;background:var(--soft);padding:9px 12px;font-size:11px;font-weight:900;white-space:nowrap}.archive-filter.active{background:#000;color:#fff}.archive-search{margin-top:10px}.archive-type{font-size:20px;font-weight:900}.archive-date{margin-top:4px}.archive-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:13px}.archive-actions .btn{padding:11px 8px}.archive-detail{display:none;margin-top:13px}.archive-detail.show{display:block}.archive-delete{background:#f9e6e6;color:#a31515}.archive-editing{background:#fff4d8;color:#7a5700}.archive-empty-filter{text-align:center;color:var(--muted);padding:28px 10px}
+@media(max-width:520px){.archive-actions{grid-template-columns:1fr 1fr}.archive-actions .archive-delete{grid-column:1/-1}}
+</style></head><body><h1>ORDINI D.ONE</h1>${esc(buildOrderText())}</body></html>`);w.document.close();w.print()};
+window.markOrderShared=()=>{const lines=orderSelectedLines(),now=new Date(),record={id:currentOrder.archiveId||('arch'+Date.now()),date:now.toLocaleDateString('it-IT',{day:'2-digit',month:'long',year:'numeric'})+' · '+now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),category:currentOrder.type,items:lines.length,status:'Inviato',operator:currentOrder.operator,text:buildOrderText(),snapshot:JSON.parse(JSON.stringify({...currentOrder,archiveId:undefined}))};S.orderDrafts=S.orderDrafts.filter(x=>x.id!==currentOrder.id);if(currentOrder.archiveId){const i=S.orders.findIndex(x=>x.id===currentOrder.archiveId);if(i>=0)S.orders[i]=record;else S.orders.unshift(record)}else S.orders.unshift(record);save();alert(currentOrder.archiveId?'Modifiche salvate nell’archivio.':'Ordine archiviato come condiviso.');go('archive');showOrderPane('orderLauncher');currentOrder=null};
+function recipeNum(value){
+ const n=Number(value);
+ if(!Number.isFinite(n))return value;
+ return Math.round(n*100)/100;
+}
+function scaledRecipeValue(value,multiplier){
+ return recipeNum(Number(value)*multiplier);
+}
+function recipeIngredientRows(items,multiplier){
+ return items.map(x=>`<div class="recipe-table-row"><span>${esc(x[0])}</span><strong>${scaledRecipeValue(x[1],multiplier)} ${esc(x[2])}</strong></div>`).join('');
+}
+function renderRecipes(){
+ const root=document.getElementById('recipeManager');
+ if(!root)return;
+ if(!activeRecipeCategory){
+   root.innerHTML=`<div class="recipe-category-grid">${recipeCategories.map((cat,i)=>{
+     const count=Object.values(operationalRecipes).filter(r=>r.category===cat).length;
+     return `<button class="recipe-category-btn" onclick="openRecipeCategory(${i})">${esc(cat).toUpperCase()}<small>${count?count+' ricette operative':'Sezione pronta per le ricette'}</small></button>`;
+   }).join('')}</div>`;
+   return;
+ }
+ if(!activeRecipeName){
+   const names=Object.keys(operationalRecipes).filter(n=>operationalRecipes[n].category===activeRecipeCategory);
+   root.innerHTML=`<div class="recipe-screen-head"><div><p>Sezione</p><h2>${esc(activeRecipeCategory)}</h2></div><button class="recipe-back" onclick="closeRecipeCategory()">← MACROCATEGORIE</button></div>
+   <div class="recipe-list">${names.map(n=>`<button class="recipe-list-btn" onclick="showOperationalRecipe('${esc(n)}')"><strong>${esc(n)}</strong><span>›</span></button>`).join('')||'<div class="empty">Nessuna ricetta ancora inserita in questa sezione.</div>'}</div>`;
+   return;
+ }
+ const r=operationalRecipes[activeRecipeName];
+ if(!r){activeRecipeName=null;renderRecipes();return}
+ const wanted=Math.max(1,Number(desiredRecipeBatches)||1);
+ const multiplier=wanted/r.yield;
+ const volume=Math.round(r.finalVolume*multiplier);
+ const litres=(volume/1000).toFixed(volume%1000===0?0:2).replace('.',',');
+ const oneL=Math.ceil(volume/1000);
+ const bottles700=Math.ceil(volume/700);
+ root.innerHTML=`<div class="recipe-screen-head"><div><p>Ricetta operativa</p><h2>${esc(activeRecipeName)}</h2></div><button class="recipe-back" onclick="backToRecipeList()">← LISTA</button></div>
+ <div class="recipe-hero">
+   <p>HOW TO BATCH · HOW TO SERVE</p>
+   <h2>${esc(activeRecipeName)}</h2>
+   <div class="recipe-yield">1× = ${r.yield} batch · resa circa ${r.finalVolume} ml</div>
+ </div>
+ <div class="recipe-multiplier">
+   <label>NUMERO DI BATCH DA PREPARARE</label>
+   <div class="recipe-multiplier-grid">
+     <button onclick="changeDesiredBatches(-1)">−</button>
+     <input id="desiredRecipeBatches" type="number" min="1" value="${wanted}" onchange="setDesiredBatches(this.value)">
+     <button onclick="changeDesiredBatches(1)">+</button>
+   </div>
+   <div class="recipe-summary">
+     <div><span class="meta">Moltiplicatore</span><strong>×${multiplier.toFixed(2)}</strong></div>
+     <div><span class="meta">Volume stimato</span><strong>${litres} L</strong></div>
+     <div><span class="meta">Bottiglie da 1 L</span><strong>${oneL}</strong></div>
+     <div><span class="meta">Bottiglie da 700 ml</span><strong>${bottles700}</strong></div>
+   </div>
+ </div>
+ <div class="recipe-sheet">
+   <div class="recipe-columns">
+     <div><div class="recipe-sheet-title">Parte liquida</div>${recipeIngredientRows(r.liquid,multiplier)}</div>
+     <div><div class="recipe-sheet-title">Parte solida</div>${recipeIngredientRows(r.solid,multiplier)}</div>
+   </div>
+ </div>
+ <div class="recipe-sheet">
+   <div class="recipe-sheet-title">Tempi cotture e infusioni</div>
+   <div class="recipe-time">${r.time.map(t=>`<div><span>${esc(t[0])}</span><strong>${esc(t[1])}</strong></div>`).join('')}</div>
+ </div>
+ <div class="recipe-sheet">
+   <div class="recipe-sheet-title">Modalità</div>
+   <div class="recipe-steps">${r.steps.map(s=>`<div class="recipe-step"><div>${esc(s)}</div></div>`).join('')}</div>
+ </div>
+ ${r.secondary?`<div class="recipe-sheet">
+   <div class="recipe-sheet-title">${esc(r.secondary.title)}</div>
+   ${recipeIngredientRows(r.secondary.ingredients,multiplier)}
+   <div class="recipe-steps">${r.secondary.steps.map(s=>`<div class="recipe-step"><div>${esc(s)}</div></div>`).join('')}</div>
+   <div class="recipe-secondary">${esc(r.secondary.note)}</div>
+ </div>`:''}
+ <div class="recipe-serve">
+   <h3>How to serve</h3>
+   ${r.serve.map(x=>`<div class="recipe-serve-row"><span>${esc(x[0])}</span><strong>${typeof x[1]==='number'?scaledRecipeValue(x[1],1)+' '+esc(x[2]):esc(x[1])}</strong></div>`).join('')}
+ </div>
+ <div class="recipe-note">${esc(r.notes)}</div>`;
+}
+window.openRecipeCategory=i=>{activeRecipeCategory=recipeCategories[i];activeRecipeName=null;renderRecipes();scrollTo(0,0)};
+window.closeRecipeCategory=()=>{activeRecipeCategory=null;activeRecipeName=null;renderRecipes();scrollTo(0,0)};
+window.showOperationalRecipe=name=>{activeRecipeName=name;desiredRecipeBatches=operationalRecipes[name]?.yield||1;renderRecipes();scrollTo(0,0)};
+window.backToRecipeList=()=>{activeRecipeName=null;renderRecipes();scrollTo(0,0)};
+window.setDesiredBatches=value=>{desiredRecipeBatches=Math.max(1,Number(value)||1);renderRecipes()};
+window.changeDesiredBatches=delta=>{desiredRecipeBatches=Math.max(1,(Number(desiredRecipeBatches)||1)+delta);renderRecipes()};
+window.openRecipe=(name,q)=>{
+ go('recipes');
+ const op=operationalRecipes[name];
+ if(op){
+   activeRecipeCategory=op.category;
+   activeRecipeName=name;
+   desiredRecipeBatches=Math.max(1,Number(q)||op.yield);
+ }else{
+   activeRecipeCategory=recipeCategories.find(cat=>cat===S.batches.find(b=>b.recipe===name)?.category)||null;
+   activeRecipeName=null;
+ }
+ renderRecipes();
+};
+
+function renderAll(){renderHome();renderBatch();renderNotes();renderArchive();renderRecipes()}renderAll();
+go("home");
+</script></body></html>

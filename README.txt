@@ -1,37 +1,66 @@
-ORDINI D.ONE V18
+ORDINI D.ONE — V2.4 ARCHIVIO FUNZIONANTE
 
-FILE PRINCIPALI
-- index.html: frontend PWA mobile-first completo.
-- Code.gs: backend Google Apps Script V18.
-- manifest.webmanifest, sw.js, icone e logo: asset PWA.
+Base: ORDINI_DONE_V2_3_ORDINI_FUNZIONANTI.
 
-NUOVI FOGLI / INTESTAZIONI
-UTENTI: Nome | Ruolo | PIN | Attivo | Modifica batch | Vede prezzi
-MATERIE_PRIME: Nome | Categoria | UM | Prezzo | Fornitore | Urgenza | Note | Attivo
-GIACENZE_BATCH: Batch | Disponibili | Ultimo aggiornamento | Operatore | Attivo
-ORDINI: ID | Data | Operatore | Stato | Macrocategoria | Prodotti JSON | Testo
+NOVITÀ ARCHIVIO
+- Mostra esclusivamente ordini inviati.
+- Tipo ordine sempre visibile: Spirits, Vini, Birre o Spezie.
+- Data e ora reali di invio/modifica.
+- Operatore sempre visibile.
+- Filtro rapido per tipo di ordine.
+- Ricerca per tipo, data o operatore.
+- Apertura del dettaglio dell'ordine.
+- Riapertura e modifica degli ordini inviati.
+- Salvataggio delle modifiche sullo stesso ordine, senza duplicarlo.
+- Eliminazione definitiva con richiesta di conferma.
+- Le bozze restano esclusivamente nella Home.
 
-PUBBLICAZIONE
-1. Aprire il progetto Apps Script collegato al Google Sheet.
-2. Sostituire/integrare il backend con Code.gs.
-3. Eseguire una volta setupV18() autorizzando lo script.
-4. Distribuisci > Nuova distribuzione > App web.
-5. Esegui come proprietario; accesso secondo le esigenze del locale.
-6. Copiare l'URL /exec nella costante API_URL di index.html oppure salvarlo in localStorage con chiave done-api-url.
-7. Pubblicare i file PWA su hosting HTTPS.
+COMPATIBILITÀ
+Gli ordini creati dalla V2.4 conservano l'intero contenuto modificabile.
+I vecchi ordini creati da versioni precedenti possono non contenere le quantità strutturate: quando vengono modificati, l'app apre un nuovo modulo della stessa tipologia e richiede di ricontrollare le quantità.
 
-MIGRAZIONE V17
-- Il catalogo storico viene letto dai fogli CATALOGO o PRODOTTI tramite intestazioni.
-- Gli ordini V18 salvano una copia completa dei prodotti, quindi restano apribili anche dopo aggiornamenti catalogo.
-- Il frontend mantiene dati e sessione localmente e continua a funzionare con i dati già sincronizzati in assenza di rete.
-
-CORREZIONE LOGIN 18.0.1
-- Il frontend usa action=ordini per il login, compatibile con il deployment V17 già pubblicato.
-- Il nuovo Code.gs riconosce sia action=login sia action=ordini.
-- Per usare Produzione, MATERIE_PRIME e permessi V18 è comunque necessario salvare Code.gs e creare una nuova versione del deployment Web App.
+UTILIZZO
+Estrarre lo ZIP e aprire index.html nel browser.
+I dati restano salvati localmente nel browser.
 
 
-V18.0.2 - Correzione estetica Home
-- Tutte le funzioni V18 restano invariate.
-- Rimosse le descrizioni colorate dai pulsanti principali.
-- Macro SPIRITS, VINO, BIRRA e SPEZIE disposte verticalmente, una sotto l'altra.
+V2.5 — SITUAZIONE BATCH
+
+- Terzo tab diviso in cinque macrocategorie:
+  1. Main cocktail list
+  2. Analcolici main cocktail list
+  3. Evergreen
+  4. Make americano great again
+  5. Analcolici Make americano great again
+- Per ogni batch si possono inserire:
+  - giacenza attuale;
+  - quantità da produrre;
+  - soglia minima personale.
+- Alert quando la giacenza è inferiore alla soglia minima.
+- Solo i batch con quantità da produrre maggiore di zero compaiono in Home.
+- Ogni produzione può essere confermata singolarmente dalla Home.
+- Alla conferma:
+  - la quantità prodotta viene sommata alla giacenza;
+  - la richiesta di produzione viene azzerata e scompare dalla Home.
+- Migrazione automatica dei dati salvati dalle versioni precedenti.
+
+
+V2.6 — RICETTE BATCH DEMO
+
+- Ricette divise nelle stesse cinque macrocategorie della Situazione Batch.
+- Demo completa della sezione Make Americano Great Again.
+- Ricette operative inserite:
+  - Floyd Patterson
+  - Carlos Ortiz
+  - Jean-Claude Bouttier
+  - Carlos Zarate
+- Ogni ricetta include:
+  - parte liquida;
+  - parte solida;
+  - tempi e temperature;
+  - istruzioni numerate;
+  - how to serve;
+  - eventuali preparazioni secondarie.
+- Il numero di batch desiderato proporziona automaticamente tutte le quantità.
+- Calcolo automatico del moltiplicatore, del volume e delle bottiglie necessarie.
+- Collegamento dalla Situazione Batch alla relativa ricetta operativa.
