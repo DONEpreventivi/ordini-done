@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>ORDINI D.ONE — V2.6 Ricette Batch</title>
+<title>ORDINI D.ONE — V2.7 UX Refinement</title>
 <style>
 :root{--bg:#f5f5f7;--surface:#fff;--text:#111;--muted:#717171;--line:#e5e5e7;--soft:#efeff1;--red:#d71920;--nav:78px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text)}body{padding-bottom:calc(var(--nav) + env(safe-area-inset-bottom))}button,input,textarea,select{font:inherit}.app{max-width:820px;margin:auto;min-height:100vh}header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px;background:rgba(245,245,247,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.04)}.brand{font-size:13px;font-weight:900;letter-spacing:.15em}.home-button{
 position:relative;z-index:3;border:0;background:#000;color:#fff;
@@ -97,9 +97,315 @@ letter-spacing:.04em;white-space:nowrap
  .recipe-summary{grid-template-columns:1fr 1fr}
 }
 
+
+/* =========================================================
+   V2.7 — UX REFINEMENT / DESIGN SYSTEM
+   ========================================================= */
+:root{
+  --bg:#f4f4f2;
+  --surface:#ffffff;
+  --surface-2:#ececea;
+  --text:#0b0b0b;
+  --muted:#747470;
+  --line:#dcdcd8;
+  --soft:#ececea;
+  --red:#c9161d;
+  --nav:72px;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:22px;
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
+button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
+input,textarea,select{font-size:16px}
+.app{max-width:760px}
+.app-header{
+  min-height:64px;
+  padding:10px 16px;
+  background:rgba(244,244,242,.94);
+  border-bottom:1px solid rgba(0,0,0,.07);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.brand-logo{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:block;
+  width:92px;
+  height:42px;
+  object-fit:contain;
+}
+.header-action{
+  border:0;
+  background:transparent;
+  padding:10px 5px;
+  color:var(--text);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.header-action:active{opacity:.45}
+.avatar{
+  width:34px;height:34px;
+  background:#111;color:#fff;
+  font-size:12px;
+}
+main{padding:24px 18px 34px}
+.view>p:first-child{
+  font-size:11px;
+  line-height:1.2;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-weight:800;
+  color:var(--muted);
+}
+h1{
+  margin:7px 0 10px;
+  font-size:clamp(34px,8vw,48px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  font-weight:850;
+}
+h2{
+  margin:30px 0 13px;
+  font-size:24px;
+  line-height:1;
+  letter-spacing:-.035em;
+}
+h3{font-size:12px;letter-spacing:.11em}
+p{line-height:1.45}
+.metric,.panel,.form,.order,.archive-tools,.batch-edit-row,.home-batch-task,.note{
+  border-radius:var(--radius-md);
+  box-shadow:none;
+}
+.main-grid,.batch-launcher-grid,.recipe-category-grid{gap:8px}
+.main-btn,.batch-launcher,.recipe-category-btn{
+  min-height:104px;
+  border-radius:0;
+  padding:18px;
+  transition:transform .12s ease,opacity .12s ease;
+}
+.main-btn:active,.batch-launcher:active,.recipe-category-btn:active{transform:scale(.985);opacity:.86}
+.btn,.recipe-btn,.home-batch-confirm,.order-back,.batch-back,.recipe-back{
+  min-height:42px;
+  border-radius:var(--radius-sm);
+  transition:transform .12s ease,opacity .12s ease;
+}
+.btn:active,.recipe-btn:active,.home-batch-confirm:active,.order-back:active,.batch-back:active,.recipe-back:active{transform:scale(.98);opacity:.75}
+.btn.light,.order-back,.batch-back,.recipe-back{background:transparent;border:1px solid var(--line)}
+.link{padding:9px 0;color:var(--text)}
+.nav{
+  height:calc(var(--nav) + env(safe-area-inset-bottom));
+  padding:7px 7px calc(7px + env(safe-area-inset-bottom));
+}
+.nav button{
+  border-radius:11px;
+  font-size:8px;
+  letter-spacing:.04em;
+}
+.nav button span{font-size:19px;margin-bottom:1px}
+.nav button.active{background:#111}
+.home-batch-task{
+  position:relative;
+  padding:17px;
+  border-left:4px solid #111;
+}
+.home-batch-task strong{font-size:19px;line-height:1.05}
+.home-batch-confirm{margin-top:14px}
+.batch-grid{gap:8px}
+.batch-card{border-radius:var(--radius-md)}
+.qty{font-variant-numeric:tabular-nums}
+.order-category,.recipe-list-btn{border-radius:var(--radius-md)}
+.order-product-name,.batch-edit-name,.recipe-list-btn strong{letter-spacing:-.02em}
+
+/* Ricette: meno box, più gerarchia */
+.recipe-screen-head{
+  align-items:center;
+  margin-top:18px;
+}
+.recipe-screen-head h2{margin:4px 0 0;font-size:24px}
+.recipe-hero{
+  background:transparent;
+  color:var(--text);
+  padding:30px 0 23px;
+  margin-top:12px;
+  border-top:2px solid #111;
+  border-bottom:2px solid #111;
+}
+.recipe-hero p{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-weight:850;
+  color:var(--muted);
+}
+.recipe-hero h2{
+  margin:12px 0 8px;
+  font-size:clamp(39px,10vw,58px);
+  line-height:.88;
+  letter-spacing:-.065em;
+}
+.recipe-yield{color:var(--muted)}
+.recipe-multiplier{
+  padding:20px 0;
+  margin-top:0;
+  border-radius:0;
+  border-bottom:1px solid var(--line);
+  background:transparent;
+}
+.recipe-multiplier label{margin-top:0}
+.recipe-multiplier-grid{
+  grid-template-columns:50px minmax(0,1fr) 50px;
+  max-width:360px;
+}
+.recipe-multiplier-grid button{
+  width:50px;height:50px;border-radius:50%;
+  transition:transform .1s ease,opacity .1s ease;
+}
+.recipe-multiplier-grid button:active{transform:scale(.93);opacity:.72}
+.recipe-multiplier-grid input{
+  height:54px;
+  border:0;
+  border-bottom:2px solid #111;
+  background:transparent;
+  font-size:30px;
+  font-variant-numeric:tabular-nums;
+}
+.recipe-summary{
+  margin-top:22px;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+}
+.recipe-summary>div{
+  min-height:106px;
+  background:var(--surface);
+  padding:16px;
+}
+.recipe-summary .meta{display:block}
+.recipe-summary strong{
+  margin-top:9px;
+  font-size:clamp(27px,7vw,38px);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;
+}
+.recipe-sheet{
+  padding:28px 0 0;
+  margin-top:0;
+  border-radius:0;
+  background:transparent;
+}
+.recipe-sheet-title{
+  font-size:11px;
+  padding:0 0 10px;
+  border-bottom:2px solid #111;
+}
+.recipe-columns{gap:30px}
+.recipe-table-row{
+  display:block;
+  padding:15px 0 14px;
+}
+.recipe-table-row span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+}
+.recipe-table-row strong{
+  display:block;
+  margin-top:3px;
+  text-align:left;
+  font-size:clamp(25px,6vw,34px);
+  line-height:1;
+  letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+}
+.recipe-time{gap:1px;background:var(--line)}
+.recipe-time>div{
+  min-height:96px;
+  background:#111;
+}
+.recipe-time strong{font-size:24px;line-height:1}
+.recipe-step{
+  grid-template-columns:42px 1fr;
+  gap:12px;
+  padding:18px 0;
+}
+.recipe-step:before{
+  width:34px;height:34px;
+  border-radius:50%;
+  font-size:14px;
+}
+.recipe-step>div{
+  padding-top:5px;
+  font-size:16px;
+  line-height:1.5;
+}
+.recipe-serve{
+  padding:22px 0 0;
+  margin-top:30px;
+  background:transparent;
+  color:var(--text);
+  border-top:2px solid #111;
+}
+.recipe-serve h3{font-size:11px}
+.recipe-serve-row{
+  display:block;
+  padding:15px 0;
+  border-color:var(--line);
+}
+.recipe-serve-row span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+}
+.recipe-serve-row strong{
+  display:block;
+  margin-top:4px;
+  font-size:25px;
+  letter-spacing:-.03em;
+}
+.recipe-secondary{
+  margin-top:16px;
+  border-left:3px solid #111;
+}
+.recipe-note{
+  padding:16px 0 0;
+  font-size:13px;
+}
+.recipe-number-flash{
+  animation:recipeFlash .16s ease-out;
+}
+@keyframes recipeFlash{
+  from{opacity:.2;transform:translateY(2px)}
+  to{opacity:1;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+@media(max-width:560px){
+  .recipe-columns{grid-template-columns:1fr}
+  .recipe-summary{grid-template-columns:1fr 1fr}
+  .brand-logo{width:82px}
+}
+
 </style>
 </head>
-<body><div class="app"><header><button id="homeButton" class="home-button" type="button" aria-label="Vai alla Home">⌂ HOME</button><div class="brand">ORDINI D.ONE</div><div class="avatar">S</div></header><main>
+<body><div class="app">
+<header class="app-header">
+  <button id="homeButton" class="header-action" type="button" aria-label="Vai alla Home">HOME</button>
+  <img class="brand-logo" src="done-logo.png" alt="D.ONE Torino">
+  <div class="avatar" aria-label="Profilo Simone">S</div>
+</header>
+<main>
 <section id="home" class="view active"><p>Pannello operativo</p><h1>Ciao, Simone.</h1><div class="summary"><div class="metric"><strong id="mBatch">0</strong><span>Batch da produrre</span></div><div class="metric"><strong id="mBottle">0</strong><span>Bottiglie totali</span></div></div><div class="panel"><div class="head"><h3>Situazione batch</h3><button class="link" data-go="batch">Apri</button></div><div id="homeBatch"></div></div><div class="panel"><div class="head"><h3>Appunti in evidenza</h3><button class="link" data-go="notes">Apri</button></div><div id="homeNotes"></div></div><div class="panel"><div class="head"><h3>Ordini in sospeso</h3><button class="link" data-go="neworder">Nuovo</button></div><div id="homeDrafts"></div></div><div class="panel"><div class="head"><h3>Ultimi ordini</h3><button class="link" data-go="archive">Archivio</button></div><div id="homeOrders"></div></div></section>
 <section id="neworder" class="view"><p>Ordini fornitori</p><h1>Nuovo ordine</h1>
 <div id="orderLauncher"><div class="main-grid"><button class="main-btn cat-btn" data-cat="Spirits">SPIRITS<small>Catalogo per tipologia</small></button><button class="main-btn cat-btn" data-cat="Vini">VINI<small>Bianchi e rossi · casse da 6</small></button><button class="main-btn cat-btn" data-cat="Birre">BIRRE<small>Ordine espresso in fusti</small></button><button class="main-btn cat-btn" data-cat="Spezie">SPEZIE<small>Spezie, tè ed essenze</small></button></div></div>
@@ -406,8 +712,47 @@ function recipeNum(value){
 function scaledRecipeValue(value,multiplier){
  return recipeNum(Number(value)*multiplier);
 }
+function recipeDisplayNumber(value){
+ return String(recipeNum(value)).replace('.',',');
+}
 function recipeIngredientRows(items,multiplier){
- return items.map(x=>`<div class="recipe-table-row"><span>${esc(x[0])}</span><strong>${scaledRecipeValue(x[1],multiplier)} ${esc(x[2])}</strong></div>`).join('');
+ return items.map((x,index)=>`<div class="recipe-table-row">
+   <span>${esc(x[0])}</span>
+   <strong class="js-recipe-value" data-base="${Number(x[1])}" data-unit="${esc(x[2])}">${recipeDisplayNumber(Number(x[1])*multiplier)} ${esc(x[2])}</strong>
+ </div>`).join('');
+}
+function flashRecipeNumber(el){
+ el.classList.remove('recipe-number-flash');
+ void el.offsetWidth;
+ el.classList.add('recipe-number-flash');
+}
+function updateRecipeNumbers(){
+ const r=operationalRecipes[activeRecipeName];
+ if(!r)return;
+ const wanted=Math.max(1,Number(desiredRecipeBatches)||1);
+ const multiplier=wanted/r.yield;
+ const volume=Math.round(r.finalVolume*multiplier);
+ const litres=(volume/1000).toFixed(volume%1000===0?0:2).replace('.',',');
+ const oneL=Math.ceil(volume/1000);
+ const bottles700=Math.ceil(volume/700);
+
+ const input=document.getElementById('desiredRecipeBatches');
+ if(input && Number(input.value)!==wanted)input.value=wanted;
+
+ document.querySelectorAll('.js-recipe-value').forEach(el=>{
+   const next=`${recipeDisplayNumber(Number(el.dataset.base)*multiplier)} ${el.dataset.unit}`;
+   if(el.textContent!==next){el.textContent=next;flashRecipeNumber(el)}
+ });
+ const dynamic={
+   recipeMultiplier:`×${multiplier.toFixed(2).replace('.',',')}`,
+   recipeVolume:`${litres} L`,
+   recipeOneL:String(oneL),
+   recipeSevenHundred:String(bottles700)
+ };
+ Object.entries(dynamic).forEach(([id,value])=>{
+   const el=document.getElementById(id);
+   if(el && el.textContent!==value){el.textContent=value;flashRecipeNumber(el)}
+ });
 }
 function renderRecipes(){
  const root=document.getElementById('recipeManager');
@@ -435,22 +780,22 @@ function renderRecipes(){
  const bottles700=Math.ceil(volume/700);
  root.innerHTML=`<div class="recipe-screen-head"><div><p>Ricetta operativa</p><h2>${esc(activeRecipeName)}</h2></div><button class="recipe-back" onclick="backToRecipeList()">← LISTA</button></div>
  <div class="recipe-hero">
-   <p>HOW TO BATCH · HOW TO SERVE</p>
+   <p>${esc(r.category)}</p>
    <h2>${esc(activeRecipeName)}</h2>
-   <div class="recipe-yield">1× = ${r.yield} batch · resa circa ${r.finalVolume} ml</div>
+   <div class="recipe-yield">1× = ${r.yield} batch · resa indicativa ${r.finalVolume} ml</div>
  </div>
  <div class="recipe-multiplier">
-   <label>NUMERO DI BATCH DA PREPARARE</label>
+   <label for="desiredRecipeBatches">Batch da preparare</label>
    <div class="recipe-multiplier-grid">
-     <button onclick="changeDesiredBatches(-1)">−</button>
-     <input id="desiredRecipeBatches" type="number" min="1" value="${wanted}" onchange="setDesiredBatches(this.value)">
-     <button onclick="changeDesiredBatches(1)">+</button>
+     <button type="button" aria-label="Riduci batch" onclick="changeDesiredBatches(-1)">−</button>
+     <input id="desiredRecipeBatches" inputmode="numeric" type="number" min="1" value="${wanted}" aria-label="Numero di batch">
+     <button type="button" aria-label="Aumenta batch" onclick="changeDesiredBatches(1)">+</button>
    </div>
    <div class="recipe-summary">
-     <div><span class="meta">Moltiplicatore</span><strong>×${multiplier.toFixed(2)}</strong></div>
-     <div><span class="meta">Volume stimato</span><strong>${litres} L</strong></div>
-     <div><span class="meta">Bottiglie da 1 L</span><strong>${oneL}</strong></div>
-     <div><span class="meta">Bottiglie da 700 ml</span><strong>${bottles700}</strong></div>
+     <div><span class="meta">Moltiplicatore</span><strong id="recipeMultiplier">×${multiplier.toFixed(2).replace('.',',')}</strong></div>
+     <div><span class="meta">Volume stimato</span><strong id="recipeVolume">${litres} L</strong></div>
+     <div><span class="meta">Bottiglie da 1 L</span><strong id="recipeOneL">${oneL}</strong></div>
+     <div><span class="meta">Bottiglie da 700 ml</span><strong id="recipeSevenHundred">${bottles700}</strong></div>
    </div>
  </div>
  <div class="recipe-sheet">
@@ -478,13 +823,29 @@ function renderRecipes(){
    ${r.serve.map(x=>`<div class="recipe-serve-row"><span>${esc(x[0])}</span><strong>${typeof x[1]==='number'?scaledRecipeValue(x[1],1)+' '+esc(x[2]):esc(x[1])}</strong></div>`).join('')}
  </div>
  <div class="recipe-note">${esc(r.notes)}</div>`;
+
+ const input=document.getElementById('desiredRecipeBatches');
+ if(input){
+   input.addEventListener('input',()=>{
+     desiredRecipeBatches=Math.max(1,Number(input.value)||1);
+     updateRecipeNumbers();
+   });
+   input.addEventListener('blur',()=>{
+     desiredRecipeBatches=Math.max(1,Number(input.value)||1);
+     input.value=desiredRecipeBatches;
+     updateRecipeNumbers();
+   });
+ }
 }
 window.openRecipeCategory=i=>{activeRecipeCategory=recipeCategories[i];activeRecipeName=null;renderRecipes();scrollTo(0,0)};
 window.closeRecipeCategory=()=>{activeRecipeCategory=null;activeRecipeName=null;renderRecipes();scrollTo(0,0)};
 window.showOperationalRecipe=name=>{activeRecipeName=name;desiredRecipeBatches=operationalRecipes[name]?.yield||1;renderRecipes();scrollTo(0,0)};
 window.backToRecipeList=()=>{activeRecipeName=null;renderRecipes();scrollTo(0,0)};
-window.setDesiredBatches=value=>{desiredRecipeBatches=Math.max(1,Number(value)||1);renderRecipes()};
-window.changeDesiredBatches=delta=>{desiredRecipeBatches=Math.max(1,(Number(desiredRecipeBatches)||1)+delta);renderRecipes()};
+window.setDesiredBatches=value=>{desiredRecipeBatches=Math.max(1,Number(value)||1);updateRecipeNumbers()};
+window.changeDesiredBatches=delta=>{
+ desiredRecipeBatches=Math.max(1,(Number(desiredRecipeBatches)||1)+delta);
+ updateRecipeNumbers();
+};
 window.openRecipe=(name,q)=>{
  go('recipes');
  const op=operationalRecipes[name];
