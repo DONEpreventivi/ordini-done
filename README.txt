@@ -1,25 +1,41 @@
-ORDINI D.ONE — V2.7 UX REFINEMENT
+ORDINI D.ONE — V2.8 FEATURE COMPLETE
 
-Base:
-- V2.6 Ricette Batch
+Questa è l’ultima release offline prima del Database v1.0 e del collegamento a Google Sheets.
 
-Modifiche principali:
-- Logo D.ONE Torino inserito nell'header e sempre visibile.
-- Header più compatto, fisso e leggero.
-- Nuovo sistema tipografico con gerarchie più nette.
-- Spaziature e componenti uniformati.
-- Riduzione di cornici, box e rumore visivo.
-- Pulsanti primari, secondari e di ritorno differenziati.
-- Home e attività batch rese più leggibili.
-- Ricette ridisegnate come manuale operativo.
-- Quantità ingredienti molto più evidenti.
-- Procedimento più leggibile, con passaggi separati.
-- Dashboard produzione semplificata.
-- Aggiornamento dei batch senza ricostruire tutta la schermata.
-- Microanimazione breve sui soli numeri modificati.
-- Rispetto di prefers-reduced-motion.
-- Nessuna dipendenza esterna: applicazione ancora leggera e utilizzabile offline.
+CREDENZIALI DEMO
+- Simone / done123
+- Vanessa / done123
+- Marco / done123
 
-Nota:
-I valori di resa e calcolo batch rimangono indicativi in questa release.
-Saranno corretti e centralizzati durante l'integrazione con Google Sheets.
+FUNZIONI NUOVE
+- Login con username e password.
+- Opzione “Ricorda l’accesso” sul dispositivo.
+- Logout dal menu utente.
+- Supporto multiutente offline.
+- Nome dell’utente utilizzato per appunti, ordini e storico.
+- Conferma dei promemoria batch direttamente dalla Home.
+- Rimozione di un promemoria senza registrare la produzione.
+- Nota di produzione modificabile nella sezione Batch e visibile in Home.
+- Note libere permanenti sotto ogni ricetta.
+- Storico attività accessibile dal menu utente.
+- Registrazione di produzioni, promemoria rimossi, note, accessi e uscite.
+- Logo D.ONE sempre visibile.
+- Tutte le funzioni precedenti della V2.7 mantenute.
+
+IMPORTANTE SULLA PASSWORD
+Questa è una demo HTML offline: utenti e password sono salvati nel codice locale e non costituiscono
+un sistema di sicurezza adatto alla pubblicazione su Internet. Nella versione collegata al Database v1.0
+il login dovrà essere gestito lato server / Apps Script, con password non leggibili nel foglio e sessioni sicure.
+
+DATI LOCALI
+Le modifiche vengono salvate nel localStorage del browser. Dispositivi diversi non condividono ancora
+gli stessi dati: la sincronizzazione multiutente reale arriverà con il collegamento a Google Sheets.
+
+PROSSIMO PASSAGGIO
+D.ONE DATABASE v1.0:
+- file Excel importabile in Google Sheets;
+- struttura completa e protetta;
+- foglio utenti;
+- ordini, batch, produzioni, ricette, note, log;
+- predisposizione magazzino;
+- manuale passo passo.
