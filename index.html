@@ -140,14 +140,355 @@ nav{
   .category-grid{grid-template-columns:repeat(3,1fr)}
   .form2{grid-template-columns:1fr 1fr}
 }
+
+/* V1.1 */
+.app-header{min-height:128px;display:flex;align-items:flex-end;padding:calc(24px + env(safe-area-inset-top)) 18px 22px}
+.app-header .header-row{width:100%;align-items:center}
+.logo{width:132px;max-width:36vw}
+.app-title-block{flex:1;padding-left:18px;border-left:1px solid var(--line)}
+.app-title-accent{font-size:14px;font-weight:900;color:var(--blue);letter-spacing:.05em}
+.app-title-main{font-size:23px;font-weight:900;margin-top:3px}
+.header-menu{width:72px;height:56px;border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:16px;font-weight:900;font-size:11px}
+.category-page{min-height:calc(100vh - 128px);padding-bottom:0!important}
+.category-page-head{padding-bottom:12px}
+.back-link{border:0;background:transparent;color:var(--blue-2);font-weight:850;padding:0;margin:0 0 16px;font-size:15px}
+.category-info{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:13px 14px;color:var(--muted);margin-bottom:10px}
+.category-products-scroll{padding-bottom:150px;min-height:calc(100vh - 390px);-webkit-overflow-scrolling:touch}
+.category-product{border-bottom:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.category-product:last-child{border-bottom:0}
+.category-product .product-name{color:#fff;font-size:16px}
+.category-product .meta{font-size:13px}
+.category-product .price-line{margin-top:7px;font-weight:850;color:#fff}
+.category-product .price-line span{color:var(--muted);font-weight:500;margin-left:14px}
+.category-product .stepper button{background:var(--panel);color:#fff;border:1px solid var(--line)}
+.category-product .stepper input{background:var(--panel);color:var(--blue-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.category-confirm-bar{position:fixed;left:0;right:0;bottom:0;z-index:35;max-width:820px;margin:auto;background:#08172a;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(120px,1fr) minmax(190px,1.25fr);gap:12px;align-items:center;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.category-total-block strong{display:block;color:var(--blue-2);font-size:14px}
+.category-total-block span{display:block;color:#fff;font-size:14px;margin-top:3px}
+.category-confirm-btn{height:52px}
+body.category-open nav{display:none}
+body.category-open{padding-bottom:0}
+body.category-open main{padding-bottom:0}
+@media(max-width:420px){
+  .app-header{min-height:118px;padding-bottom:18px}
+  .logo{width:112px}
+  .app-title-block{padding-left:14px}
+  .app-title-accent{font-size:12px}
+  .app-title-main{font-size:20px}
+  .header-menu{width:62px;height:50px}
+  .category-confirm-bar{grid-template-columns:1fr 1.4fr;padding-left:12px;padding-right:12px}
+  .category-confirm-btn{font-size:13px}
+}
+
+
+/* V1.2 — header proportions aligned to Kitchen Intelligence */
+header.app-header{
+  min-height:154px;
+  height:154px;
+  padding:calc(26px + env(safe-area-inset-top)) 24px 24px;
+  background:var(--bg);
+  border-bottom:0;
+  box-shadow:none;
+  display:flex;
+  align-items:flex-end;
+}
+.app-header .header-row{
+  width:100%;
+  display:grid;
+  grid-template-columns:142px minmax(0,1fr) 76px;
+  gap:24px;
+  align-items:center;
+}
+.app-header .logo{
+  width:142px;
+  max-width:none;
+  height:auto;
+  object-fit:contain;
+  object-position:left center;
+}
+.app-title-block{
+  min-width:0;
+  padding-left:0;
+  border-left:0;
+}
+.app-title-main{
+  color:#fff;
+  font-size:22px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.12em;
+  margin:0 0 9px;
+}
+.app-title-accent{
+  color:var(--blue-2);
+  font-size:10px;
+  line-height:1.2;
+  font-weight:850;
+  letter-spacing:.13em;
+  white-space:nowrap;
+}
+.header-menu{
+  width:76px;
+  height:72px;
+  padding:0 22px;
+  border:1px solid #2b3d55;
+  background:#101b2b;
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:7px;
+}
+.header-menu span{height:3px;border-radius:3px;background:#fff;display:block}
+main{padding-top:28px}
+.category-page{min-height:calc(100vh - 154px)}
+@media(max-width:480px){
+  header.app-header{
+    min-height:138px;
+    height:138px;
+    padding:calc(21px + env(safe-area-inset-top)) 20px 20px;
+  }
+  .app-header .header-row{grid-template-columns:118px minmax(0,1fr) 64px;gap:18px}
+  .app-header .logo{width:118px}
+  .app-title-main{font-size:18px;margin-bottom:7px;letter-spacing:.1em}
+  .app-title-accent{font-size:8px;letter-spacing:.1em}
+  .header-menu{width:64px;height:62px;border-radius:17px;padding:0 18px;gap:6px}
+  .header-menu span{height:2px}
+  main{padding-top:24px}
+  .category-page{min-height:calc(100vh - 138px)}
+}
+@media(max-width:360px){
+  .app-header .header-row{grid-template-columns:105px minmax(0,1fr) 58px;gap:13px}
+  .app-header .logo{width:105px}
+  .app-title-main{font-size:16px}
+  .app-title-accent{font-size:7px}
+  .header-menu{width:58px;height:56px;padding:0 16px}
+}
+
+
+/* V1.3 — complete proportional reset */
+:root{
+  --radius:20px;
+}
+body{font-size:15px;padding-bottom:72px}
+.app{max-width:640px}
+header.app-header{
+  position:sticky;top:0;z-index:40;
+  min-height:104px;height:auto;
+  padding:calc(14px + env(safe-area-inset-top)) 18px 14px;
+  background:var(--bg);
+}
+.app-header .header-row{
+  display:grid;
+  grid-template-columns:82px 1fr 58px;
+  gap:18px;
+  align-items:center;
+}
+.app-header .logo{width:82px;max-width:82px}
+.app-title-block{padding:0;border:0}
+.app-title-main{
+  margin:0 0 5px;
+  font-size:18px;line-height:1;
+  letter-spacing:.12em;font-weight:900;color:#fff;
+}
+.app-title-accent{
+  font-size:9px;line-height:1.15;
+  color:var(--blue-2);font-weight:900;letter-spacing:.15em;
+}
+.header-menu{
+  width:58px;height:58px;padding:0 16px;
+  border-radius:18px;border:1px solid var(--line);
+  background:var(--panel);
+}
+.header-menu span{height:2px;gap:0}
+main{padding:16px 16px 28px}
+.eyebrow{font-size:10px;letter-spacing:.12em}
+h1{font-size:30px;line-height:1.02;margin:6px 0 7px;letter-spacing:-1px}
+h2{font-size:18px}
+p.sub{font-size:14px;margin-bottom:16px}
+.primary-action,.row-action{padding:17px;border-radius:18px}
+.primary-action strong,.row-action strong{font-size:19px}
+.primary-action span,.row-action span{font-size:12px}
+.action-stack{gap:9px}
+.section-head{margin:21px 0 9px}
+.summary-grid{gap:7px}
+.metric{padding:12px;border-radius:16px;min-height:76px}
+.metric b{font-size:22px}.metric span{font-size:10px}
+.card{padding:13px;border-radius:17px;margin-bottom:8px}
+.card-title{font-size:15px}
+.meta{font-size:11px}
+.badge{font-size:9px;padding:4px 8px}
+.search{height:48px;padding:0 14px;border-radius:14px;font-size:15px}
+.category-grid{gap:8px}
+.category{min-height:92px;padding:13px;border-radius:16px}
+.category strong{font-size:15px}.category span{font-size:11px}.category-state{font-size:10px;margin-top:9px}
+.btn{min-height:48px;border-radius:14px;padding:12px 14px;font-size:14px}
+.actions{gap:7px}.actions.three{grid-template-columns:1fr 1fr 1fr}
+.sticky-action{bottom:68px;padding-top:20px}
+nav{
+  min-height:68px;
+  padding:6px 7px calc(6px + env(safe-area-inset-bottom));
+}
+.nav{padding:8px 2px;font-size:10px}
+/* dedicated category page */
+.category-page{min-height:calc(100vh - 104px);padding-bottom:0!important}
+.category-page-head{padding-bottom:9px}
+.back-link{font-size:14px;margin-bottom:13px}
+.category-info{font-size:13px;padding:11px 12px;border-radius:13px;margin-bottom:4px}
+.category-products-scroll{min-height:0;padding-bottom:108px}
+.category-product{
+  min-height:104px;
+  padding:15px 0;
+  grid-template-columns:minmax(0,1fr) 128px;
+  gap:12px;
+}
+.category-product .product-name{font-size:15px;line-height:1.2}
+.category-product .meta{font-size:12px;margin-top:4px}
+.category-product .price-line{font-size:14px;margin-top:6px}
+.category-product .price-line span{margin-left:10px}
+.stepper{grid-template-columns:40px 48px 40px}
+.stepper button,.stepper input{height:44px}
+.stepper button{font-size:21px}
+.category-confirm-bar{
+  grid-template-columns:1fr 1.55fr;
+  gap:10px;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  min-height:78px;
+}
+.category-total-block strong{font-size:12px}
+.category-total-block span{font-size:13px}
+.category-confirm-btn{height:50px;font-size:13px;padding:8px 10px}
+body.category-open main{padding-top:12px}
+.sheet{padding:16px 14px calc(22px + env(safe-area-inset-bottom))}
+@media(max-width:370px){
+  .app-header .header-row{grid-template-columns:72px 1fr 52px;gap:13px}
+  .app-header .logo{width:72px;max-width:72px}
+  .app-title-main{font-size:16px}
+  .app-title-accent{font-size:8px}
+  .header-menu{width:52px;height:52px;border-radius:16px;padding:0 14px}
+  main{padding-left:13px;padding-right:13px}
+  h1{font-size:27px}
+  .category-product{grid-template-columns:minmax(0,1fr) 116px}
+  .stepper{grid-template-columns:36px 44px 36px}
+  .stepper input{width:44px}
+  .category-confirm-bar{grid-template-columns:.9fr 1.6fr}
+  .category-confirm-btn{font-size:12px}
+}
+
+
+/* V1.4 CHECK */
+nav{grid-template-columns:repeat(5,1fr)}
+.check-card{border-left:3px solid var(--blue)}
+.check-card.completed{border-left-color:var(--green);opacity:.72}
+.check-progress-bar{height:8px;background:var(--panel-2);border-radius:999px;overflow:hidden;margin-top:10px}
+.check-progress-bar span{display:block;height:100%;background:var(--green);border-radius:999px}
+.check-item{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:9px}
+.check-item-row{display:grid;grid-template-columns:34px 1fr auto;gap:11px;align-items:center}
+.check-box{width:28px;height:28px;accent-color:var(--green)}
+.check-item.delivered{opacity:.5}
+.check-item.delivered .check-name{text-decoration:line-through}
+.check-name{font-weight:850;font-size:16px}
+.check-qty{font-weight:900;color:var(--blue-2);white-space:nowrap}
+.check-actions{position:sticky;bottom:78px;background:linear-gradient(transparent,var(--bg) 30%);padding-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+body.category-open .check-actions{bottom:0}
+.missing-empty{border:1px solid var(--green);color:var(--green);border-radius:16px;padding:16px;text-align:center;font-weight:850}
+@media(max-width:390px){
+  nav .nav{font-size:8.5px}
+  .check-actions{grid-template-columns:1fr}
+}
+
+
+/* V1.5 — functional cleanup and unified proportions */
+:root{--control-h:50px;--control-r:15px;--card-r:17px}
+body{font-size:15px;padding-bottom:74px}
+.app{max-width:640px}
+header.app-header{min-height:100px;padding:calc(13px + env(safe-area-inset-top)) 16px 13px}
+.app-header .header-row{grid-template-columns:78px minmax(0,1fr) 52px;gap:14px}
+.app-header .logo{width:78px;max-width:78px}
+.app-title-main{font-size:17px;margin-bottom:5px;letter-spacing:.11em}
+.app-title-accent{font-size:8px;letter-spacing:.14em}
+.header-menu{width:52px;height:52px;min-height:52px;border-radius:15px;padding:0 13px;gap:5px}
+.header-menu span{height:2px}
+main{padding:15px 15px 28px}
+h1{font-size:29px;margin:5px 0 7px}
+h2{font-size:18px}
+p.sub{font-size:13px;line-height:1.45;margin-bottom:15px}
+.primary-action,.row-action{min-height:78px;padding:15px;border-radius:var(--card-r)}
+.primary-action strong,.row-action strong{font-size:18px}
+.primary-action span,.row-action span{font-size:12px}
+.summary-grid{gap:7px}
+.metric{min-width:0;min-height:72px;padding:11px 9px;border-radius:15px}
+.metric b{font-size:21px}
+.metric span{font-size:9.5px;line-height:1.2;overflow-wrap:anywhere}
+.card{padding:13px;border-radius:var(--card-r)}
+.card-row{align-items:flex-start}
+.card-title{font-size:15px;line-height:1.25}
+.meta{font-size:11px;line-height:1.35}
+.btn{min-height:var(--control-h);height:auto;border-radius:var(--control-r);padding:12px 13px;font-size:13px;line-height:1.15;display:flex;align-items:center;justify-content:center;text-align:center}
+.actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.actions.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.actions .btn{width:100%;min-width:0;padding-left:8px;padding-right:8px;overflow-wrap:anywhere}
+.category-grid{gap:8px}
+.category{min-height:92px;border-radius:16px;padding:12px}
+.category strong{font-size:14px;line-height:1.2}
+.category span{font-size:10.5px;line-height:1.3}
+.category-state{font-size:9px}
+.search,.field input,.field textarea,.field select{min-height:var(--control-h);border-radius:var(--control-r);padding:12px 13px}
+.category-product{min-height:96px;grid-template-columns:minmax(0,1fr) 122px;gap:10px;padding:13px 0}
+.category-product .product-name{font-size:14px}
+.category-product .meta{font-size:11px}
+.category-product .price-line{font-size:13px}
+.stepper{grid-template-columns:38px 46px 38px}
+.stepper button,.stepper input{height:44px}
+.stepper input{width:46px}
+.category-confirm-bar{min-height:76px;grid-template-columns:minmax(92px,.85fr) minmax(165px,1.5fr);gap:8px;padding:9px 11px calc(9px + env(safe-area-inset-bottom))}
+.category-confirm-btn{width:100%;min-height:50px;font-size:12px}
+.category-total-block strong{font-size:11px}
+.category-total-block span{font-size:12px}
+nav{min-height:70px;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:5px 3px calc(5px + env(safe-area-inset-bottom))}
+.nav{min-width:0;min-height:50px;padding:7px 1px;font-size:8.5px;line-height:1.1;letter-spacing:0}
+.check-card .actions{margin-top:10px!important}
+.check-item{border-radius:15px;padding:12px}
+.check-item-row{grid-template-columns:30px minmax(0,1fr) auto;gap:9px}
+.check-box{width:25px;height:25px}
+.check-name{font-size:14px;line-height:1.25}
+.check-qty{font-size:12px}
+.check-actions{bottom:72px;gap:7px;padding-top:22px}
+.check-actions .btn{width:100%}
+.close{width:42px;height:42px;min-width:42px;min-height:42px;padding:0;display:flex;align-items:center;justify-content:center}
+@media(max-width:390px){
+  main{padding-left:12px;padding-right:12px}
+  .app-header .header-row{grid-template-columns:68px minmax(0,1fr) 48px;gap:11px}
+  .app-header .logo{width:68px;max-width:68px}
+  .header-menu{width:48px;height:48px;min-height:48px;padding:0 12px}
+  .app-title-main{font-size:15px}
+  .app-title-accent{font-size:7px}
+  h1{font-size:26px}
+  .summary-grid{gap:5px}
+  .metric{padding:10px 7px}
+  .metric b{font-size:19px}
+  .metric span{font-size:8.5px}
+  .category-product{grid-template-columns:minmax(0,1fr) 112px}
+  .stepper{grid-template-columns:34px 44px 34px}
+  .stepper input{width:44px}
+  .actions.three{grid-template-columns:1fr}
+  .check-actions{grid-template-columns:1fr}
+  .nav{font-size:7.8px}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
-<header>
+<header class="app-header">
   <div class="header-row">
     <img class="logo" src="logo-DONE-white.png" alt="D.ONE Torino">
-    <div class="header-meta"><strong>D.ONE ORDINI</strong><span id="headerStatus">Nessun ordine attivo</span></div>
+    <div class="app-title-block">
+      <div class="app-title-main">ORDINI</div>
+      <div class="app-title-accent">GESTIONE ACQUISTI</div>
+    </div>
+    <button class="header-menu" type="button" onclick="go('catalog')" aria-label="Apri catalogo"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -174,11 +515,29 @@ nav{
 
 <section id="editor" class="view">
   <div class="eyebrow" id="editorEyebrow">Nuovo ordine</div>
-  <h1 id="editorTitle">Seleziona i prodotti</h1>
-  <p class="sub">Apri solo le categorie che ti servono. Quelle visitate devono essere confermate.</p>
+  <h1 id="editorTitle">Scegli una macro</h1>
+  <p class="sub">Apri una macro, inserisci le quantità e conferma la categoria prima di tornare indietro.</p>
   <div id="categoryWarning"></div>
   <div id="categoryGrid" class="category-grid"></div>
   <div class="sticky-action"><button class="btn blue full" onclick="go('review')">Riepilogo · <span id="editorUnits">0</span> unità</button></div>
+</section>
+
+<section id="categoryPage" class="view category-page">
+  <div class="category-page-head">
+    <button class="back-link" onclick="leaveCategory()">← Torna alle macro</button>
+    <div class="eyebrow">Macro</div>
+    <h1 id="categoryPageTitle">Categoria</h1>
+    <input id="categoryPageSearch" class="search" placeholder="Cerca prodotto…" oninput="renderCategoryPage()">
+  </div>
+  <div class="category-info">Inserisci le quantità dei prodotti che desideri ordinare.</div>
+  <div id="categoryPageProducts" class="category-products-scroll"></div>
+  <div class="category-confirm-bar">
+    <div class="category-total-block">
+      <strong id="categorySelectedCount">0 prodotti</strong>
+      <span id="categoryTotal">Totale € 0,00</span>
+    </div>
+    <button class="btn blue category-confirm-btn" onclick="confirmCategoryPage()">Conferma categoria</button>
+  </div>
 </section>
 
 <section id="review" class="view">
@@ -198,6 +557,27 @@ nav{
     <button class="filter" onclick="setFilter('sent',this)">Inviati</button>
   </div>
   <div id="ordersList"></div>
+</section>
+
+
+<section id="check" class="view">
+  <div class="eyebrow">Controllo consegne</div>
+  <h1>Check</h1>
+  <p class="sub">Spunta ciò che è arrivato. Rimuovi i consegnati e genera automaticamente l’elenco dei prodotti mancanti.</p>
+  <div id="checkList"></div>
+</section>
+
+<section id="checkDetail" class="view">
+  <button class="back-link" onclick="go('check')">← Torna ai check</button>
+  <div class="eyebrow">Controllo consegna</div>
+  <h1 id="checkDetailTitle">Ordine</h1>
+  <p class="sub">Spunta i prodotti consegnati. Le quantità non ricevute resteranno nell’elenco dei mancanti.</p>
+  <div id="checkProgress"></div>
+  <div id="checkItems"></div>
+  <div class="check-actions">
+    <button class="btn dark" onclick="removeDelivered()">Rimuovi consegnati</button>
+    <button class="btn blue" onclick="shareMissing()">Prodotti non consegnati</button>
+  </div>
 </section>
 
 <section id="catalog" class="view">
@@ -224,17 +604,10 @@ nav{
 <nav>
   <button class="nav active" data-view="home" onclick="go('home')">HOME</button>
   <button class="nav" data-view="orders" onclick="go('orders')">ORDINI</button>
+  <button class="nav" data-view="check" onclick="go('check')">CHECK</button>
   <button class="nav" data-view="catalog" onclick="go('catalog')">CATALOGO</button>
   <button class="nav" data-view="board" onclick="go('board')">BACHECA</button>
 </nav>
-
-<div id="categoryModal" class="modal"><div class="sheet">
-  <div class="sheet-head"><div><h2 id="catTitle"></h2><div id="catMeta" class="meta"></div></div><button class="close" onclick="closeModal('categoryModal')">×</button></div>
-  <input id="catSearch" class="search" placeholder="Cerca nella categoria…" oninput="renderCategory()">
-  <div style="height:10px"></div>
-  <div id="catProducts"></div>
-  <div class="sticky-action"><button class="btn blue full" onclick="confirmCategory()">Conferma categoria</button></div>
-</div></div>
 
 <div id="reminderModal" class="modal"><div class="sheet">
   <div class="sheet-head"><h2 id="reminderModalTitle">Nuovo promemoria</h2><button class="close" onclick="closeModal('reminderModal')">×</button></div>
@@ -271,12 +644,14 @@ nav{
 
 <script>
 const INITIAL_PRODUCTS=[{"id": "2765", "originalName": "42 BELOW VODKA PURE 100 CL", "format": "100 cl", "name": "Vodka 42 Below", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0726", "originalName": "ACQUA BRILLANTE 20 CL", "format": "20 cl", "name": "Acqua Brillante", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2913", "originalName": "AMARO CAMATTI 70 CL", "format": "70 cl", "name": "Camatti", "category": "AMARI", "unitCode": "PZ", "price": 12.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0178", "originalName": "AMARO MONTENEGRO 70 CL", "format": "70 cl", "name": "Montenegro", "category": "AMARI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0290", "originalName": "APEROL LT", "format": "100 cl", "name": "Aperol", "category": "APERITIVI", "unitCode": "PZ", "price": 10.58, "vat": 22.0, "notes": "", "active": true}, {"id": "3275", "originalName": "ARIA VELLUTO SHAKE", "format": "", "name": "Aria e velluto", "category": "ACCESSORI", "unitCode": "PZ", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0247", "originalName": "BACARDI CARTA BLANCA1 LT", "format": "100 cl", "name": "Bacardi bianco", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1564", "originalName": "BACARDI RESERVA GOLD ORO LT", "format": "100 cl", "name": "Bacardi scuro", "category": "SCIROPPI", "unitCode": "PZ", "price": 13.39, "vat": 22.0, "notes": "", "active": true}, {"id": "0514", "originalName": "BESO CONCENTRATO DI AGAVE CL 75", "format": "75 cl", "name": "Sciroppo d'agave", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0662", "originalName": "BITTER ANGOSTURA 200 ML", "format": "20 cl", "name": "Angostura bitter", "category": "ACCESSORI", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3221", "originalName": "BITTER MARTINI APERITIVO Lt. 1 ** NEW", "format": "100 cl", "name": "Martini Bitter", "category": "BITTER", "unitCode": "PZ", "price": 10.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0561", "originalName": "BULLEIT BOURBON WHISKY 70 CL", "format": "70 cl", "name": "Bulleit Bourbon", "category": "SPIRITS", "unitCode": "PZ", "price": 16.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0294", "originalName": "BULLEIT RYE WHISKY 70 cl", "format": "70 cl", "name": "Bulleit Rye", "category": "SPIRITS", "unitCode": "PZ", "price": 24.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0406", "originalName": "CACHACA VELHO BARREIRO LT", "format": "100 cl", "name": "Velho Barreiro", "category": "SPIRITS", "unitCode": "PZ", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0255", "originalName": "CAMPARI BITTER 1 LT", "format": "100 cl", "name": "Campari", "category": "BITTER", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2000", "originalName": "CANNUCCE CARTA BIO RIGIDE CM 20", "format": "", "name": "Cannucce carta nere", "category": "ACCESSORI", "unitCode": "PZ", "price": 3.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2735", "originalName": "CAZADORES REPOSADO 70 CL", "format": "70 cl", "name": "Cazadores reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 15.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2686", "originalName": "CAZADORES SILVER 70 CL", "format": "70 cl", "name": "Cazadores silver", "category": "SPIRITS", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0428", "originalName": "CEDRATA TASSONI CL 18", "format": "18 cl", "name": "Cedrata Tassoni", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0590", "originalName": "CHINA MARTINI CL 70", "format": "70 cl", "name": "China Martini", "category": "AMARI", "unitCode": "PZ", "price": 10.56, "vat": 22.0, "notes": "", "active": true}, {"id": "1132", "originalName": "CHOYA EXTRA SHISO ROSSO", "format": "70 cl", "name": "Choya Extra shiso rosso", "category": "LIQUORI", "unitCode": "PZ", "price": 22.45, "vat": 22.0, "notes": "", "active": true}, {"id": "0087", "originalName": "COCA COLA BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0460", "originalName": "COCA COLA ZERO BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola Zero", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0566", "originalName": "COCCHI DOPO TEATRO AMARO CL 75", "format": "75 cl", "name": "Cocchi dopo teatro", "category": "VERMOUTH", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0203", "originalName": "DISARONNO 70 CL", "format": "70 cl", "name": "Disaronno ", "category": "LIQUORI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "2754", "originalName": "FOGLIE DI MANDARINO 50 ML", "format": "5 cl", "name": "Essenza foglie di mandarino", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1871", "originalName": "GERMANA UMBURANA 70 CL", "format": "70 cl", "name": "Germana Umburana", "category": "SPIRITS", "unitCode": "PZ", "price": 14.55, "vat": 22.0, "notes": "", "active": true}, {"id": "G5501", "originalName": "GIFFARD LIQUORE CREME DE BANANE", "format": "70 cl ", "name": "Liquore banana Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 10.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0416", "originalName": "GIFFARD LIQUORE PREMIUM MANDARINE", "format": "70 cl", "name": "Liquore mandarino Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0397", "originalName": "GIFFARD SIROP DE BITTER CL 100", "format": "100 cl", "name": "Bitter analcolico", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0612", "originalName": "GIFFARD SIROP DE FLEUR DE SUREAU LT", "format": "100 cl", "name": "Sciroppo fiori di sambuco Giffard", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1172", "originalName": "GIN BOMBAY LONDON DRY LT PROMO", "format": "100 cl", "name": "Bombay Dry", "category": "SPIRITS", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0360", "originalName": "GIN CITADELLE 70 CL", "format": "70 cl", "name": "Citadelle", "category": "SPIRITS", "unitCode": "PZ", "price": 22.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0177", "originalName": "GIN HENDRICK'S 70 CL", "format": "70 cl", "name": "Hendrick's", "category": "SPIRITS", "unitCode": "PZ", "price": 24.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0081", "originalName": "GIN MAHON XORIGUER 70 CL", "format": "70 cl", "name": "Mahon Xoriguer", "category": "SPIRITS", "unitCode": "PZ", "price": 17.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1910", "originalName": "GIN MARCONI 42 CL 70", "format": "70 cl", "name": "Marconi 42", "category": "SPIRITS", "unitCode": "PZ", "price": 24.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3251", "originalName": "GIN MARE 70 CL NEW**", "format": "70 cl", "name": "Gin Mare", "category": "SPIRITS", "unitCode": "PZ", "price": 25.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0577", "originalName": "GIN MARTIN MILLERS CL 70", "format": "70 cl", "name": "Martin Millers", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1400", "originalName": "GIN SUNTORY ROKU 70 CL", "format": "70 cp", "name": "Roku", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1062", "originalName": "GINGER BEER FEVER TREE cl 20 *24", "format": "20 cl", "name": "Ginger beer Fever Tree", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2187", "originalName": "GOLDBERG BONE DRY TONIC 0.20l", "format": "20 cl", "name": "Goldberg Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.5, "vat": 22.0, "notes": "", "active": true}, {"id": "2357", "originalName": "GOLDBERG MEDITERRANEA TONIC 20CL", "format": "20 cl", "name": "Goldberg Mediterranea Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3369", "originalName": "GOLDBERG MEDITERRANEA TONIC LATTINA *24 PROMO", "format": "15 cl", "name": "Goldberg Mediterranea - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.48, "vat": 22.0, "notes": "", "active": true}, {"id": "3425", "originalName": "J. GASCO DRY BITTER TONIC 20X12", "format": "20 cl", "name": "Gasco Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.45, "vat": 22.0, "notes": "", "active": true}, {"id": "1315", "originalName": "J. GASCO PREMIUM GINGER ROSSO *24", "format": "20 cl", "name": "Ginger rosso Gasco", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1296", "originalName": "KAPRIOL GIN MT. POMPELMO 70 CL", "format": "70 cl", "name": "Kapriol pompelmo", "category": "SPIRITS", "unitCode": "PZ", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2079", "originalName": "LATTE MANDORLE FABBRI LT", "format": "100 cl", "name": "Sciroppo latte di mandorle", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "0219", "originalName": "LEMON SODA .BT CL 20 CL *24", "format": "20 cl", "name": "Lemon soda", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0827", "originalName": "MARTINI BIANCO LT", "format": "100 cl", "name": "Martini Bianco", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0266", "originalName": "MARTINI EXTRA DRY L.1", "format": "100 cl", "name": "Martini Extra Dry", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2710", "originalName": "MARTINI NON ALCOHLIC FLOREALE 75 CL", "format": "75 cl", "name": "Martini Floreale", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2709", "originalName": "MARTINI RISERVA SPECIALE AMBRATO 70 CL", "format": "75", "name": "Martini RS Ambrato", "category": "VERMOUTH", "unitCode": "PZ", "price": 11.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2712", "originalName": "MARTINI RISERVA SPECIALE BITTER PREMIUM 70", "format": "70 cl", "name": "Martini Bitter Riserva", "category": "BITTER", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2315", "originalName": "MARTINI RISERVA SPECIALE RUBINO 75 CL", "format": "75 cl", "name": "Martini RS Rubino", "category": "VERMOUTH", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3225", "originalName": "MARTINI ROSSO VERMOUTH LT", "format": "100 cl", "name": "Martini Rosso", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2711", "originalName": "MARTINI VIBRANTE 75 CL", "format": "75 cl", "name": "Martini Vibrante", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1665", "originalName": "MEZCAL AMORES VERDE MOMENTO", "format": "70 cl", "name": "Mezcal Amores Verde", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0248", "originalName": "MINI SPIEDI REMO COCKTAIL BAMBOO CM 15 1", "format": "", "name": "Remi cocktail", "category": "ACCESSORI", "unitCode": "PZ", "price": 1.55, "vat": 22.0, "notes": "", "active": true}, {"id": "1213", "originalName": "PORTO SANDEMAN WHITE CL.75", "format": "75 cl", "name": "Porto bianco", "category": "LIQUORI", "unitCode": "PZ", "price": 8.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0466", "originalName": "QUAGLIA AL BERGAMOTTO", "format": "70 cl", "name": "Liquore bergamotto Quaglia", "category": "LIQUORI", "unitCode": "PZ", "price": 14.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0150", "originalName": "RUM ABUELO 7 Y CL 70", "format": "70 cl", "name": "Abuelo 7", "category": "SPIRITS", "unitCode": "PZ", "price": 20.58, "vat": 22.0, "notes": "", "active": true}, {"id": "2220", "originalName": "RUM BLACKWELL JAMAICAN 40% 70 CL", "format": "70 cl", "name": "Blackwell", "category": "SPIRITS", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0598", "originalName": "RUM PLANTATION ORIGINAL DARK 70 CL", "format": "70 cl", "name": "Planteray Original Dark", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3305", "originalName": "RUM PLANTERAY O.F.T.D OVERPPROFF 70 CL", "format": "70 cl", "name": "Planteray Overproof", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2011", "originalName": "RUM VERITAS WHITE BLENDED 70 CL", "format": "70 cl", "name": "Veritas", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0479", "originalName": "SAINT GERMAIN CL 70", "format": "70 cl", "name": "Saint Germain", "category": "LIQUORI", "unitCode": "PZ", "price": 26.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0164", "originalName": "SAMBUCA MOLINARI LT", "format": "100 cl", "name": "Sambuca Molinari", "category": "AMARI", "unitCode": "PZ", "price": 16.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0186", "originalName": "SAN SIMONE 70 CL", "format": "70 cl", "name": "San Simone", "category": "AMARI", "unitCode": "PZ", "price": 11.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2794", "originalName": "SCIROPPO CEDRO TASSONI 720 ML", "format": "72 cl", "name": "Sciroppo Cedro Tassoni", "category": "SCIROPPI", "unitCode": "PZ", "price": 6.85, "vat": 22.0, "notes": "", "active": true}, {"id": "1428", "originalName": "SELECT LT", "format": "100 cl", "name": "Select", "category": "APERITIVI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2753", "originalName": "SHERRY OSBORNE BAILEN 75 CL", "format": "75 cl", "name": "Sherry Oloroso", "category": "LIQUORI", "unitCode": "PZ", "price": 13.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2382", "originalName": "STECCONI SPIEDO 15 CM *1000", "format": "", "name": "Stecconi spiedo", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0477", "originalName": "SUCCO POMODORO CIRIO 200 ML*24", "format": "20 cl", "name": "Succo pomodoro", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1535", "originalName": "TABERNERO PISCO PURO ACHOLADO 70 CL", "format": "70 cl", "name": "Pisco Tabernero Alcholado", "category": "SPIRITS", "unitCode": "PZ", "price": 21.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0756", "originalName": "TEQUILA CUERVO REPOSADO LT", "format": "100 cl", "name": "Tequila Cuervo Reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 16.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0496", "originalName": "THE NEW TEA SPIRIT T", "format": "70 cl", "name": "Liquore T+", "category": "LIQUORI", "unitCode": "PZ", "price": 17.2, "vat": 22.0, "notes": "", "active": true}, {"id": "2745", "originalName": "THREE CENTS PINEAPPLE 20 cl", "format": "20 cl", "name": "Soda ananas Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 23.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2211", "originalName": "THREE CENTS PINK GRAPEFRUIT SODA 20 CL*24", "format": "20 cl", "name": "Soda pompelmo Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0436", "originalName": "TIO PEPE SHERRY 70 CL", "format": "70 cl", "name": "Sherry Fino", "category": "LIQUORI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3385", "originalName": "TONIC WATER GOLDBERG LATTINE 20 CL", "format": "20 cl", "name": "Golberg tonica - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1250", "originalName": "TONICA FEVER TREE INDIAN 200 ML *24", "format": "20 cl", "name": "Fever Tree Indian", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 21.5, "vat": 22.0, "notes": "", "active": true}, {"id": "3035", "originalName": "TONICA THREE CENTS DRY *24", "format": "20 cl", "name": "Tonica Dry Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 20.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0276", "originalName": "TOV T. UNITA 2V 25*25 INF 100 PZ/30", "format": "", "name": "Tovaglioli neri", "category": "ACCESSORI", "unitCode": "CT", "price": 38.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0296", "originalName": "TRIPLE SEC 70 CL", "format": "7 cl", "name": "Triple Sec", "category": "LIQUORI", "unitCode": "PZ", "price": 6.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0680", "originalName": "VECCHIA ROMAGNA ET NERA 70 CL", "format": "70 cl", "name": "Vecchia Romagna", "category": "AMARI", "unitCode": "PZ", "price": 99.0, "vat": 22.0, "notes": "", "active": true}, {"id": "2208", "originalName": "WHIS.BUSKER BLEND TRIPLE CASK 70 CL", "format": "70 cl", "name": "Busker Irish", "category": "SPIRITS", "unitCode": "PZ", "price": 14.89, "vat": 22.0, "notes": "", "active": true}, {"id": "0179", "originalName": "WORCHESTER SAUSE CL 15", "format": "15 cl", "name": "Salsa Worchestershire", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0208", "originalName": "ZUCCHERO LIQ BARMAN LITRO", "format": "100 cl", "name": "Zucchero liquido", "category": "SCIROPPI", "unitCode": "PZ", "price": 4.4, "vat": 10.0, "notes": "", "active": true}];
-const KEY={products:'done_products_v1',orders:'done_orders_v1',reminders:'done_reminders_v1',legacyProducts:'done_products_v01',legacyOrders:'done_orders_v02',legacyReminders:'done_reminders_v02'};
+const KEY={products:'done_products_v1',orders:'done_orders_v1',reminders:'done_reminders_v1',checks:'done_checks_v14',legacyProducts:'done_products_v01',legacyOrders:'done_orders_v02',legacyReminders:'done_reminders_v02'};
 const load=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}};
 const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let products=load(KEY.products,load(KEY.legacyProducts,INITIAL_PRODUCTS));
 let orders=load(KEY.orders,load(KEY.legacyOrders,[]));
 let reminders=load(KEY.reminders,load(KEY.legacyReminders,[]));
+let checks=load(KEY.checks,[]);
+let activeCheckId='';
 let current=blankOrder(),activeCategory='',filter='all';
 
 function blankOrder(){return{id:'ORD-'+Date.now(),createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),status:'draft',note:'',items:{},visited:[],confirmed:[],revision:0}}
@@ -289,20 +664,23 @@ function totals(){const a=selected(),net=a.reduce((s,p)=>s+p.price*p.qty,0),vat=
 function categories(){return [...new Set(products.filter(p=>p.active).map(p=>p.category||'SENZA CATEGORIA'))].sort((a,b)=>a.localeCompare(b,'it'))}
 
 function go(view){
+  if(view!=='categoryPage')document.body.classList.remove('category-open');
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(view).classList.add('active');
+  const target=document.getElementById(view);if(!target){console.error('Vista non trovata:',view);return}target.classList.add('active');
   document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.view===view));
   if(view==='home')renderHome();
   if(view==='editor')renderEditor();
   if(view==='review')renderReview();
+  if(view==='categoryPage')renderCategoryPage();
   if(view==='orders')renderOrders();
+  if(view==='check')renderChecks();
+  if(view==='checkDetail')renderCheckDetail();
   if(view==='catalog')renderProducts();
   if(view==='board')renderBoard();
   window.scrollTo(0,0);
 }
 function refreshHeader(){
   const t=totals();
-  document.getElementById('headerStatus').textContent=t.units?`${t.units} unità nell'ordine attivo`:'Nessun ordine attivo';
   const eu=document.getElementById('editorUnits');if(eu)eu.textContent=t.units;
 }
 function newOrder(){current=blankOrder();go('editor')}
@@ -315,10 +693,12 @@ function renderHome(){
   const drafts=orders.filter(o=>o.status==='draft');
   const sent=orders.filter(o=>o.status!=='draft');
   const activeRem=reminders.filter(r=>!r.done);
+  ensureChecksForSentOrders();
+  const openChecks=checks.filter(c=>c.items.length>0);
   document.getElementById('homeMetrics').innerHTML=
     `<div class="metric"><b>${drafts.length}</b><span>Bozze</span></div>
      <div class="metric"><b>${sent.length}</b><span>Inviati</span></div>
-     <div class="metric"><b>${activeRem.length}</b><span>Promemoria</span></div>`;
+     <div class="metric"><b>${openChecks.length}</b><span>Check aperti</span></div>`;
   const latestDraft=drafts.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt))[0];
   document.getElementById('continueMeta').textContent=latestDraft?`Ultima modifica ${new Date(latestDraft.updatedAt).toLocaleString('it-IT')}`:'Nessuna bozza disponibile';
   document.getElementById('homeOrders').innerHTML=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).slice(0,4).map(orderCard).join('')||`<div class="empty">Nessun ordine salvato.</div>`;
@@ -345,31 +725,49 @@ function openCategory(c){
   activeCategory=c;
   if(!current.visited.includes(c))current.visited.push(c);
   current.confirmed=current.confirmed.filter(x=>x!==c);
-  document.getElementById('catTitle').textContent=c;
-  document.getElementById('catSearch').value='';
-  renderCategory();
-  document.getElementById('categoryModal').classList.add('open');
-  renderEditor();
+  document.body.classList.add('category-open');
+  document.getElementById('categoryPageTitle').textContent=c;
+  document.getElementById('categoryPageSearch').value='';
+  go('categoryPage');
 }
-function renderCategory(){
-  const q=document.getElementById('catSearch').value.toLowerCase();
+function renderCategoryPage(){
+  const q=(document.getElementById('categoryPageSearch')?.value||'').toLowerCase();
   const ps=products.filter(p=>p.active&&(p.category||'SENZA CATEGORIA')===activeCategory&&p.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'it'));
-  document.getElementById('catMeta').textContent=ps.length+' prodotti';
-  document.getElementById('catProducts').innerHTML=ps.map(p=>`<div class="card light product-row">
-    <div><div class="product-name">${esc(p.name)}</div><div class="meta">${esc(p.format||'Formato non indicato')} · ${esc(unit(p.unitCode))}</div></div>
-    <div class="stepper"><button onclick="changeQty('${js(p.id)}',-1)">−</button><input inputmode="numeric" value="${Number(current.items[p.id]||0)}" onchange="setQty('${js(p.id)}',this.value)"><button onclick="changeQty('${js(p.id)}',1)">+</button></div>
+  document.getElementById('categoryPageProducts').innerHTML=ps.map(p=>`<div class="category-product">
+    <div>
+      <div class="product-name">${esc(p.name)}</div>
+      <div class="meta">${esc(p.format||'Formato non indicato')} · ${esc(unit(p.unitCode))}</div>
+      <div class="price-line">${euro(p.price)} <span>IVA ${p.vat}%</span></div>
+    </div>
+    <div class="stepper">
+      <button onclick="changeQty('${js(p.id)}',-1)">−</button>
+      <input inputmode="numeric" value="${Number(current.items[p.id]||0)}" onchange="setQty('${js(p.id)}',this.value)">
+      <button onclick="changeQty('${js(p.id)}',1)">+</button>
+    </div>
   </div>`).join('');
+  updateCategoryFooter();
 }
 function changeQty(id,d){setQty(id,Number(current.items[id]||0)+d)}
 function setQty(id,v){
   v=Math.max(0,parseInt(v)||0);
   if(v)current.items[id]=v;else delete current.items[id];
   current.confirmed=current.confirmed.filter(c=>c!==activeCategory);
-  renderCategory();refreshHeader();
+  renderCategoryPage();refreshHeader();
 }
-function confirmCategory(){
+function updateCategoryFooter(){
+  const ps=products.filter(p=>(p.category||'SENZA CATEGORIA')===activeCategory);
+  const chosen=ps.map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0);
+  const total=chosen.reduce((s,p)=>s+p.price*p.qty*(1+p.vat/100),0);
+  document.getElementById('categorySelectedCount').textContent=`${chosen.length} ${chosen.length===1?'prodotto':'prodotti'}`;
+  document.getElementById('categoryTotal').textContent=`Totale ${euro(total)}`;
+}
+function confirmCategoryPage(){
   if(!current.confirmed.includes(activeCategory))current.confirmed.push(activeCategory);
-  closeModal('categoryModal');renderEditor();
+  leaveCategory();
+}
+function leaveCategory(){
+  document.body.classList.remove('category-open');
+  go('editor');
 }
 function renderReview(){
   const a=selected(),t=totals(),pending=current.visited.filter(c=>!current.confirmed.includes(c));
@@ -401,6 +799,7 @@ async function sendCurrent(){
   const s=snapshot(status),i=orders.findIndex(o=>o.id===s.id);
   if(i>=0)orders[i]=s;else orders.unshift(s);
   save(KEY.orders,orders);
+  createOrUpdateCheck(s);
   const text=orderText(s);
   try{
     if(navigator.share)await navigator.share({title:'Ordine D.ONE',text});
@@ -409,9 +808,9 @@ async function sendCurrent(){
   current=blankOrder();go('orders');
 }
 function orderText(o){
-  return `ORDINE D.ONE — ${new Date(o.updatedAt).toLocaleString('it-IT')}\n\n`+
-  o.items.map(i=>`• ${i.name}: ${i.qty} ${unit(i.unitCode)}${i.format?' ('+i.format+')':''}`).join('\n')+
-  `\n\nTotale netto: ${euro(o.totals.net)}\nIVA: ${euro(o.totals.vat)}\nTotale: ${euro(o.totals.gross)}${o.note?'\n\nNote: '+o.note:''}`;
+  const rows=o.items.map(i=>`${i.qty} ${unit(i.unitCode)} — ${i.name}`).join('\\n');
+  const note=o.note?`\\n\\nNote: ${o.note}`:'';
+  return `ORDINE D.ONE — ${new Date(o.updatedAt).toLocaleString('it-IT')}\\n\\n${rows}${note}`;
 }
 function resetCurrent(){if(confirm('Azzero tutto l’ordine?')){current=blankOrder();go('editor')}}
 function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders()}
@@ -438,6 +837,119 @@ async function shareOrder(id){
   else{await navigator.clipboard.writeText(text);alert('Ordine copiato.')}
 }
 function deleteOrder(id){if(confirm('Eliminare questo ordine?')){orders=orders.filter(o=>o.id!==id);save(KEY.orders,orders);renderOrders();renderHome()}}
+
+
+function ensureChecksForSentOrders(){
+  let changed=false;
+  orders.filter(o=>o.status!=='draft').forEach(o=>{
+    if(!checks.some(c=>c.orderId===o.id)){
+      checks.unshift({
+        id:'CHK-'+o.id,
+        orderId:o.id,
+        createdAt:o.updatedAt||new Date().toISOString(),
+        updatedAt:new Date().toISOString(),
+        items:o.items.map(i=>({id:i.id,name:i.name,unitCode:i.unitCode,qty:i.qty,delivered:false}))
+      });
+      changed=true;
+    }
+  });
+  if(changed)save(KEY.checks,checks);
+}
+function createOrUpdateCheck(order){
+  const check={
+    id:'CHK-'+order.id,
+    orderId:order.id,
+    createdAt:order.updatedAt,
+    updatedAt:new Date().toISOString(),
+    items:order.items.map(i=>({id:i.id,name:i.name,unitCode:i.unitCode,qty:i.qty,delivered:false}))
+  };
+  const i=checks.findIndex(c=>c.orderId===order.id);
+  if(i>=0)checks[i]=check;else checks.unshift(check);
+  save(KEY.checks,checks);
+}
+function renderChecks(){
+  ensureChecksForSentOrders();
+  const list=checks.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
+  document.getElementById('checkList').innerHTML=list.map(c=>{
+    const total=c.items.length;
+    const delivered=c.items.filter(i=>i.delivered).length;
+    const remaining=total-delivered;
+    const pct=total?Math.round(delivered/total*100):100;
+    return `<div class="card check-card ${remaining===0?'completed':''}">
+      <div class="card-row">
+        <div>
+          <div class="card-title">${new Date(c.createdAt).toLocaleString('it-IT')}</div>
+          <div class="meta">${remaining} da controllare · ${delivered} consegnati</div>
+        </div>
+        <span class="badge ${remaining===0?'sent':'draft'}">${remaining===0?'COMPLETO':'DA VERIFICARE'}</span>
+      </div>
+      <div class="check-progress-bar"><span style="width:${pct}%"></span></div>
+      <div class="actions" style="margin-top:11px">
+        <button class="btn dark" onclick="openCheck('${js(c.id)}')">Apri check</button>
+        <button class="btn red" onclick="deleteCheck('${js(c.id)}')">Elimina</button>
+      </div>
+    </div>`;
+  }).join('')||`<div class="empty">Nessun ordine da controllare.</div>`;
+}
+function openCheck(id){
+  activeCheckId=id;
+  go('checkDetail');
+}
+function getActiveCheck(){return checks.find(c=>c.id===activeCheckId)}
+function renderCheckDetail(){
+  const c=getActiveCheck();
+  if(!c){go('check');return}
+  document.getElementById('checkDetailTitle').textContent=`Ordine ${new Date(c.createdAt).toLocaleDateString('it-IT')}`;
+  const total=c.items.length,delivered=c.items.filter(i=>i.delivered).length,remaining=total-delivered;
+  const pct=total?Math.round(delivered/total*100):100;
+  document.getElementById('checkProgress').innerHTML=`<div class="card"><div class="card-row"><div><div class="card-title">${delivered} consegnati</div><div class="meta">${remaining} ancora da verificare</div></div><b>${pct}%</b></div><div class="check-progress-bar"><span style="width:${pct}%"></span></div></div>`;
+  document.getElementById('checkItems').innerHTML=c.items.length?c.items.map((i,idx)=>`<div class="check-item ${i.delivered?'delivered':''}">
+    <div class="check-item-row">
+      <input class="check-box" type="checkbox" ${i.delivered?'checked':''} onchange="toggleCheckItem(${idx},this.checked)">
+      <div class="check-name">${esc(i.name)}</div>
+      <div class="check-qty">${i.qty} ${esc(unit(i.unitCode))}</div>
+    </div>
+  </div>`).join(''):`<div class="missing-empty">Tutti i prodotti consegnati sono stati rimossi dal check.</div>`;
+}
+function toggleCheckItem(index,value){
+  const c=getActiveCheck();if(!c||!c.items[index])return;
+  c.items[index].delivered=value;
+  c.updatedAt=new Date().toISOString();
+  save(KEY.checks,checks);
+  renderCheckDetail();
+}
+function removeDelivered(){
+  const c=getActiveCheck();if(!c)return;
+  const n=c.items.filter(i=>i.delivered).length;
+  if(!n){alert('Non hai ancora spuntato prodotti consegnati.');return}
+  if(!confirm(`Rimuovere ${n} prodotti consegnati dal check?`))return;
+  c.items=c.items.filter(i=>!i.delivered);
+  c.updatedAt=new Date().toISOString();
+  save(KEY.checks,checks);
+  renderCheckDetail();
+}
+function missingText(c){
+  const missing=c.items.filter(i=>!i.delivered);
+  return `PRODOTTI NON CONSEGNATI\\n\\n`+
+    missing.map(i=>`${i.qty} ${unit(i.unitCode)} — ${i.name}`).join('\\n');
+}
+async function shareMissing(){
+  const c=getActiveCheck();if(!c)return;
+  const missing=c.items.filter(i=>!i.delivered);
+  if(!missing.length){alert('Non ci sono prodotti non consegnati.');return}
+  const text=missingText(c);
+  try{
+    if(navigator.share)await navigator.share({title:'PRODOTTI NON CONSEGNATI',text});
+    else{await navigator.clipboard.writeText(text);alert('Elenco copiato negli appunti.')}
+  }catch(e){}
+}
+function deleteCheck(id){
+  if(confirm('Eliminare questo check?')){
+    checks=checks.filter(c=>c.id!==id);
+    save(KEY.checks,checks);
+    renderChecks();
+  }
+}
 
 function renderProducts(){
   const q=(document.getElementById('productSearch')?.value||'').toLowerCase();
