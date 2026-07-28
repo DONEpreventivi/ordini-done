@@ -871,9 +871,17 @@ async function sendCurrent(){
   current=blankOrder();go('orders');
 }
 function orderText(o){
-  const rows=o.items.map(i=>`${i.qty} ${unit(i.unitCode)} — ${i.name}`).join('\\n');
-  const note=o.note?`\\n\\nNote: ${o.note}`:'';
-  return `ORDINE D.ONE — ${new Date(o.updatedAt).toLocaleString('it-IT')}\\n\\n${rows}${note}`;
+  const rows=o.items.map(i=>{
+    const qty=Number(i.qty)||0;
+    const baseUnit=unit(i.unitCode);
+    const displayUnit=(String(i.unitCode).toUpperCase()==='CT' && qty>1)
+      ? 'Cartoni'
+      : baseUnit;
+    return `${qty} ${displayUnit} ${i.name}`;
+  }).join('\n');
+
+  const note=o.note?`\n\nNote: ${o.note}`:'';
+  return `ORDINE D.ONE\n${rows}${note}`;
 }
 function resetCurrent(){if(confirm('Azzero tutto l’ordine?')){current=blankOrder();go('editor')}}
 function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders()}

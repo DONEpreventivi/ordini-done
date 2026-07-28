@@ -17,3 +17,18 @@ ORDINE CATEGORIE
 - Le eventuali categorie aggiuntive vengono mostrate dopo ACCESSORI, in ordine alfabetico.
 - Rimosso il menu hamburger dall'header.
 - Riequilibrate le proporzioni della testata.
+
+
+D.ONE ORDINI — V1.8
+
+ESPORTAZIONE ORDINE
+- Rimossa data e ora.
+- Rimossi i trattini tra unità e prodotto.
+- Rimossi i caratteri \n visualizzati come testo.
+- Nuovo formato:
+
+ORDINE D.ONE
+1 bott. Cocchi Dopo Teatro
+2 Cartoni Coca Cola
+
+- "Cartone" diventa automaticamente "Cartoni" quando la quantità è superiore a 1.
