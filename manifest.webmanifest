@@ -1,7 +1,7 @@
 {
   "name": "D.ONE Ordini",
   "short_name": "Ordini",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#071426",
   "theme_color": "#071426",
