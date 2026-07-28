@@ -477,6 +477,36 @@ nav{min-height:70px;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:
   .nav{font-size:7.8px}
 }
 
+
+/* V1.7 — definitive category order and header without hamburger */
+header.app-header .header-row{
+  display:grid;
+  grid-template-columns:82px minmax(0,1fr);
+  gap:16px;
+  align-items:center;
+}
+header.app-header .logo{
+  width:82px;
+  max-width:82px;
+}
+header.app-header .app-title-block{
+  min-width:0;
+  padding-left:0;
+  border-left:0;
+}
+.header-menu{display:none!important}
+
+@media(max-width:390px){
+  header.app-header .header-row{
+    grid-template-columns:72px minmax(0,1fr);
+    gap:13px;
+  }
+  header.app-header .logo{
+    width:72px;
+    max-width:72px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -488,7 +518,6 @@ nav{min-height:70px;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:
       <div class="app-title-main">ORDINI</div>
       <div class="app-title-accent">GESTIONE ACQUISTI</div>
     </div>
-    <button class="header-menu" type="button" onclick="go('catalog')" aria-label="Apri catalogo"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -661,7 +690,41 @@ function euro(n){return new Intl.NumberFormat('it-IT',{style:'currency',currency
 function unit(c){return c==='PZ'?'bott.':c==='CT'?'Cartone':c||''}
 function selected(){return products.map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0)}
 function totals(){const a=selected(),net=a.reduce((s,p)=>s+p.price*p.qty,0),vat=a.reduce((s,p)=>s+p.price*p.qty*p.vat/100,0);return{count:a.length,units:a.reduce((s,p)=>s+p.qty,0),net,vat,gross:net+vat}}
-function categories(){return [...new Set(products.filter(p=>p.active).map(p=>p.category||'SENZA CATEGORIA'))].sort((a,b)=>a.localeCompare(b,'it'))}
+function categories(){
+  const priority=[
+    'VERMOUTH',
+    'BITTER',
+    'APERITIVI',
+    'LIQUORI',
+    'SPIRITS',
+    'NO ALCOHOL',
+    'AMARI',
+    'SODATI-SUCCHI',
+    'SCIROPPI',
+    'ACCESSORI'
+  ];
+
+  const available=[...new Set(
+    products
+      .filter(p=>p.active)
+      .map(p=>String(p.category||'SENZA CATEGORIA').trim())
+  )];
+
+  return available.sort((a,b)=>{
+    const normalizedA=a.toUpperCase();
+    const normalizedB=b.toUpperCase();
+    const indexA=priority.indexOf(normalizedA);
+    const indexB=priority.indexOf(normalizedB);
+
+    if(indexA!==-1 || indexB!==-1){
+      if(indexA===-1)return 1;
+      if(indexB===-1)return -1;
+      return indexA-indexB;
+    }
+
+    return a.localeCompare(b,'it');
+  });
+}
 
 function go(view){
   if(view!=='categoryPage')document.body.classList.remove('category-open');
