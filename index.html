@@ -1,1168 +1,503 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>ORDINI D.ONE — V2.8 Feature Complete</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#071426">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>D.ONE Ordini</title>
+<link rel="manifest" href="manifest.webmanifest">
 <style>
-:root{--bg:#f5f5f7;--surface:#fff;--text:#111;--muted:#717171;--line:#e5e5e7;--soft:#efeff1;--red:#d71920;--nav:78px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text)}body{padding-bottom:calc(var(--nav) + env(safe-area-inset-bottom))}button,input,textarea,select{font:inherit}.app{max-width:820px;margin:auto;min-height:100vh}header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px;background:rgba(245,245,247,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.04)}.brand{font-size:13px;font-weight:900;letter-spacing:.15em}.home-button{
-position:relative;z-index:3;border:0;background:#000;color:#fff;
-padding:10px 13px;border-radius:12px;font-size:12px;font-weight:900;
-letter-spacing:.04em;white-space:nowrap
-}
-.home-button:active{transform:scale(.97)}
-.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e3e3e6;font-weight:900}main{padding:18px}.view{display:none}.view.active{display:block}h1{font-size:34px;line-height:1.02;margin:7px 0;letter-spacing:-.04em}h2{font-size:22px;margin:26px 0 12px}h3{font-size:14px;margin:0;text-transform:uppercase;letter-spacing:.08em}p{margin:0;color:var(--muted)}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.metric,.panel,.form,.order{background:#fff;border-radius:20px;padding:17px;margin-top:13px}.metric strong{display:block;font-size:29px}.metric span,.meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.link{border:0;background:none;font-weight:800}.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.main-btn{border:0;background:#000;color:#fff;border-radius:0;min-height:95px;padding:22px 15px;text-align:left;font-size:22px;font-weight:900}.main-btn small{display:block;font-size:11px;opacity:.6;margin-top:9px}.cat{margin-top:25px}.cat-title{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}.batch-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.batch-card{background:#fff;border-radius:16px;padding:14px}.batch-card strong{display:block}.qty{font-size:26px;font-weight:900;color:var(--red);margin-top:10px}.batch-row{display:grid;grid-template-columns:1fr 78px 92px;gap:10px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.batch-row:last-child{border-bottom:0}.batch-name{font-size:18px;font-weight:900}.step{display:flex;background:var(--soft);border-radius:12px;overflow:hidden;align-items:center;justify-content:space-between}.step button{border:0;background:none;width:30px;height:38px;font-size:20px}.recipe-btn,.btn.black{border:0;background:#000;color:#fff;border-radius:12px;padding:11px;font-weight:900}.note{background:#fff;border-radius:16px;padding:15px;margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:10px}.note.done{opacity:.45}.note-title{font-weight:900}.note-text{font-size:14px;color:var(--muted);margin-top:5px;white-space:pre-wrap}.note-actions{display:flex;gap:6px}.icon{border:0;background:var(--soft);width:36px;height:36px;border-radius:50%;font-size:18px}.icon.active{background:#000;color:#fff}label{display:block;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin:13px 0 7px}input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:13px}textarea{min-height:100px}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:900}.btn.light{background:var(--soft)}.actions{display:flex;gap:9px;margin-top:13px}.order-top{display:flex;justify-content:space-between}.badge{background:var(--soft);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}.ingredient{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.calc{background:#000;color:#fff;border-radius:19px;padding:17px;margin-top:14px}.calc input,.calc select{background:#171717;color:#fff;border-color:#333}.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,820px);height:calc(var(--nav) + env(safe-area-inset-bottom));padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:2px}.nav button{border:0;background:none;border-radius:13px;padding:7px 2px;color:#777;font-size:9px;font-weight:900}.nav button span{display:block;font-size:21px}.nav button.active{background:#000;color:#fff}.hidden{display:none}.empty{text-align:center;color:var(--muted);padding:20px}@media(max-width:520px){main{padding:15px}.batch-row{grid-template-columns:1fr 76px}.recipe-btn{grid-column:1/-1}.main-btn{font-size:20px}}
-
-/* ORDINI V2.3 */
-.order-progress{height:11px;background:var(--soft);overflow:hidden;margin:12px 0}.order-progress>div{height:100%;background:#000;transition:.2s}
-.order-toolbar{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-top:18px}.order-toolbar h2{margin:0}
-.order-category{width:100%;border:0;background:#fff;padding:16px;margin-top:9px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:16px}
-.order-category strong{font-size:17px}.order-category small{display:block;color:var(--muted);margin-top:4px}.order-state{font-size:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.order-state.done{color:#15834d}.order-state.new{color:var(--muted)}
-.order-product{display:grid;grid-template-columns:1fr 126px;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.order-product:last-child{border-bottom:0}.order-product-name{font-weight:800}.order-product-meta{font-size:11px;color:var(--muted);margin-top:4px}
-.order-qty{display:grid;grid-template-columns:34px 1fr 34px;gap:5px;align-items:center}.order-qty button{height:38px;border:0;background:var(--soft);font-size:19px;font-weight:900}.order-qty input{height:38px;padding:5px;text-align:center;border-radius:0}
-.order-filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.order-filter-grid label{margin-top:0}
-.order-preview{white-space:pre-wrap;background:#fff;padding:17px;margin-top:13px;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;border-radius:16px}
-.order-alert{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:80;display:none;align-items:center;justify-content:center;padding:18px}.order-alert.show{display:flex}.order-alert-box{background:#fff;width:min(520px,100%);padding:20px;border-radius:20px}.order-alert-box h2{margin-top:0}.draft-card{border-left:5px solid #d39b16}.status-ok{color:#15834d}.order-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
-@media(max-width:520px){.order-product{grid-template-columns:1fr}.order-qty{width:150px}.order-filter-grid{grid-template-columns:1fr}}
-
-/* ARCHIVIO V2.4 */
-.archive-tools{background:#fff;border-radius:20px;padding:15px;margin-top:16px}.archive-filters{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.archive-filter{border:0;background:var(--soft);padding:9px 12px;font-size:11px;font-weight:900;white-space:nowrap}.archive-filter.active{background:#000;color:#fff}.archive-search{margin-top:10px}.archive-type{font-size:20px;font-weight:900}.archive-date{margin-top:4px}.archive-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:13px}.archive-actions .btn{padding:11px 8px}.archive-detail{display:none;margin-top:13px}.archive-detail.show{display:block}.archive-delete{background:#f9e6e6;color:#a31515}.archive-editing{background:#fff4d8;color:#7a5700}.archive-empty-filter{text-align:center;color:var(--muted);padding:28px 10px}
-@media(max-width:520px){.archive-actions{grid-template-columns:1fr 1fr}.archive-actions .archive-delete{grid-column:1/-1}}
-
-/* SITUAZIONE BATCH V2.5 */
-.batch-launcher-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.batch-launcher{border:0;background:#000;color:#fff;min-height:112px;padding:18px;text-align:left;font-size:18px;font-weight:900}
-.batch-launcher small{display:block;margin-top:8px;font-size:11px;font-weight:700;opacity:.62;line-height:1.35}
-.batch-toolbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:18px}
-.batch-toolbar h2{margin:0}.batch-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
-.batch-edit-row{background:#fff;border-radius:18px;padding:16px;margin-top:10px}
-.batch-edit-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.batch-edit-name{font-size:19px;font-weight:900}
-.batch-alert{background:#fff0f0;color:#a31515;padding:9px 11px;margin-top:11px;font-size:12px;font-weight:900}
-.batch-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
-.batch-fields label{margin:0 0 6px;font-size:10px}
-.batch-fields input{border-radius:0;text-align:center;font-weight:900;font-size:18px}
-.batch-production-badge{background:#000;color:#fff;padding:6px 9px;font-size:11px;font-weight:900;white-space:nowrap}
-.batch-production-badge.zero{background:var(--soft);color:var(--muted)}
-.home-batch-task{background:#fff;border-radius:16px;padding:14px;margin-top:9px}
-.home-batch-task-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.home-batch-task strong{font-size:17px}
-.home-batch-confirm{width:100%;margin-top:12px;border:0;background:#000;color:#fff;padding:11px;font-weight:900}
-.batch-save-note{font-size:11px;color:var(--muted);margin-top:12px}
-@media(max-width:560px){
- .batch-launcher-grid{grid-template-columns:1fr}
- .batch-fields{grid-template-columns:1fr 1fr}
- .batch-fields>div:last-child{grid-column:1/-1}
-}
-
-
-/* RICETTE BATCH V2.6 */
-.recipe-category-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.recipe-category-btn{border:0;background:#000;color:#fff;min-height:112px;padding:18px;text-align:left;font-size:18px;font-weight:900}
-.recipe-category-btn small{display:block;margin-top:8px;font-size:11px;font-weight:700;opacity:.62;line-height:1.35}
-.recipe-list{margin-top:18px}
-.recipe-list-btn{width:100%;border:0;background:#fff;padding:17px;margin-top:9px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:16px}
-.recipe-list-btn strong{font-size:19px}.recipe-list-btn span{font-size:25px}
-.recipe-screen-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:15px}
-.recipe-back{border:0;background:var(--soft);padding:10px 12px;font-weight:900}
-.recipe-hero{background:#000;color:#fff;padding:20px;margin-top:14px}
-.recipe-hero p{color:#aaa}.recipe-hero h2{font-size:30px;margin:4px 0 9px}
-.recipe-yield{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
-.recipe-multiplier{background:#fff;padding:16px;margin-top:10px;border-radius:18px}
-.recipe-multiplier-grid{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin-top:10px}
-.recipe-multiplier-grid button{border:0;background:#000;color:#fff;width:46px;height:46px;font-size:26px;font-weight:900}
-.recipe-multiplier-grid input{text-align:center;font-size:22px;font-weight:900;border-radius:0}
-.recipe-summary{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
-.recipe-summary>div{background:var(--soft);padding:13px}
-.recipe-summary strong{display:block;font-size:22px}
-.recipe-sheet{background:#fff;padding:18px;margin-top:10px;border-radius:18px}
-.recipe-sheet-title{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;padding-bottom:9px;border-bottom:2px solid #000}
-.recipe-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.recipe-table-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
-.recipe-table-row:last-child{border-bottom:0}
-.recipe-table-row strong{text-align:right}
-.recipe-time{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-.recipe-time>div{background:#000;color:#fff;padding:14px}
-.recipe-time span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.6}
-.recipe-time strong{display:block;font-size:20px;margin-top:5px}
-.recipe-steps{counter-reset:steps;margin-top:5px}
-.recipe-step{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
-.recipe-step:before{counter-increment:steps;content:counter(steps);display:grid;place-items:center;width:28px;height:28px;background:#000;color:#fff;font-weight:900}
-.recipe-serve{background:#000;color:#fff;padding:18px;margin-top:10px}
-.recipe-serve h3{margin-bottom:8px}.recipe-serve-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid #333}
-.recipe-serve-row:last-child{border-bottom:0}
-.recipe-secondary{background:var(--soft);padding:15px;margin-top:12px}
-.recipe-note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.45}
-@media(max-width:560px){
- .recipe-category-grid,.recipe-columns{grid-template-columns:1fr}
- .recipe-summary{grid-template-columns:1fr 1fr}
-}
-
-
-/* =========================================================
-   V2.8 — FEATURE COMPLETE / DESIGN SYSTEM
-   ========================================================= */
 :root{
-  --bg:#f4f4f2;
-  --surface:#ffffff;
-  --surface-2:#ececea;
-  --text:#0b0b0b;
-  --muted:#747470;
-  --line:#dcdcd8;
-  --soft:#ececea;
-  --red:#c9161d;
-  --nav:72px;
-  --space-1:4px;
-  --space-2:8px;
-  --space-3:12px;
-  --space-4:16px;
-  --space-5:24px;
-  --space-6:32px;
-  --radius-sm:10px;
-  --radius-md:16px;
-  --radius-lg:22px;
+  --bg:#071426;
+  --panel:#0b1d34;
+  --panel-2:#10253f;
+  --line:#223955;
+  --white:#ffffff;
+  --muted:#9eabc0;
+  --blue:#1f9cff;
+  --blue-2:#63c4ff;
+  --red:#ff4b55;
+  --green:#36c985;
+  --warning:#ffb547;
+  --radius:18px;
 }
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
-button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
-input,textarea,select{font-size:16px}
-.app{max-width:760px}
-.app-header{
-  min-height:64px;
-  padding:10px 16px;
-  background:rgba(244,244,242,.94);
-  border-bottom:1px solid rgba(0,0,0,.07);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+  padding-bottom:88px;
 }
-.brand-logo{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  display:block;
-  width:92px;
-  height:42px;
-  object-fit:contain;
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:820px;margin:auto;min-height:100vh}
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(7,20,38,.98);
+  border-bottom:1px solid var(--line);
+  padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
 }
-.header-action{
-  border:0;
-  background:transparent;
-  padding:10px 5px;
-  color:var(--text);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.08em;
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{width:145px;max-width:42vw;height:auto;display:block}
+.header-meta{text-align:right}
+.header-meta strong{display:block;font-size:13px}
+.header-meta span{display:block;color:var(--muted);font-size:11px}
+main{padding:20px 16px 36px}
+.view{display:none}.view.active{display:block}
+.eyebrow{color:var(--blue-2);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:34px;line-height:1.05;letter-spacing:-1.3px;margin:7px 0 8px;font-weight:850}
+h2{font-size:20px;margin:0;font-weight:850}
+p.sub{margin:0 0 18px;color:var(--muted)}
+.divider{height:1px;background:var(--line);margin:18px 0}
+.primary-action,.row-action{
+  width:100%;border:1px solid var(--line);background:var(--panel);color:#fff;
+  border-radius:var(--radius);padding:18px;text-align:left;
 }
-.header-action:active{opacity:.45}
-.avatar{
-  width:34px;height:34px;
-  background:#111;color:#fff;
-  font-size:12px;
+.primary-action{background:var(--blue);border-color:var(--blue);color:#04101d}
+.primary-action strong,.row-action strong{display:block;font-size:20px;font-weight:900}
+.primary-action span,.row-action span{display:block;margin-top:4px;font-size:13px}
+.primary-action span{color:#08213a}.row-action span{color:var(--muted)}
+.action-stack{display:grid;gap:10px}
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
+.metric b{display:block;font-size:24px;font-weight:900}.metric span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:24px 0 10px}
+.link-btn{border:0;background:transparent;color:var(--blue-2);font-weight:800;padding:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:9px}
+.card.light{background:#fff;color:#091426;border-color:#fff}
+.card-row{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.card-title{font-weight:850;font-size:16px}
+.meta{color:var(--muted);font-size:12px;margin-top:3px}
+.card.light .meta{color:#647087}
+.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;letter-spacing:.04em}
+.badge.draft{color:var(--blue-2);border:1px solid var(--blue)}
+.badge.sent{color:#ff8c91;border:1px solid var(--red)}
+.badge.revised{color:#ffd479;border:1px solid var(--warning)}
+.badge.high{color:#ff8c91;border:1px solid var(--red)}
+.badge.normal{color:var(--blue-2);border:1px solid var(--blue)}
+.search{width:100%;border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:15px;padding:13px 14px;outline:none}
+.search:focus{border-color:var(--blue)}
+.category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.category{
+  min-height:104px;border:1px solid var(--line);background:var(--panel);color:#fff;
+  border-radius:17px;padding:14px;text-align:left;
 }
-main{padding:24px 18px 34px}
-.view>p:first-child{
-  font-size:11px;
-  line-height:1.2;
-  text-transform:uppercase;
-  letter-spacing:.13em;
-  font-weight:800;
-  color:var(--muted);
-}
-h1{
-  margin:7px 0 10px;
-  font-size:clamp(34px,8vw,48px);
-  line-height:.96;
-  letter-spacing:-.055em;
-  font-weight:850;
-}
-h2{
-  margin:30px 0 13px;
-  font-size:24px;
-  line-height:1;
-  letter-spacing:-.035em;
-}
-h3{font-size:12px;letter-spacing:.11em}
-p{line-height:1.45}
-.metric,.panel,.form,.order,.archive-tools,.batch-edit-row,.home-batch-task,.note{
-  border-radius:var(--radius-md);
-  box-shadow:none;
-}
-.main-grid,.batch-launcher-grid,.recipe-category-grid{gap:8px}
-.main-btn,.batch-launcher,.recipe-category-btn{
-  min-height:104px;
-  border-radius:0;
-  padding:18px;
-  transition:transform .12s ease,opacity .12s ease;
-}
-.main-btn:active,.batch-launcher:active,.recipe-category-btn:active{transform:scale(.985);opacity:.86}
-.btn,.recipe-btn,.home-batch-confirm,.order-back,.batch-back,.recipe-back{
-  min-height:42px;
-  border-radius:var(--radius-sm);
-  transition:transform .12s ease,opacity .12s ease;
-}
-.btn:active,.recipe-btn:active,.home-batch-confirm:active,.order-back:active,.batch-back:active,.recipe-back:active{transform:scale(.98);opacity:.75}
-.btn.light,.order-back,.batch-back,.recipe-back{background:transparent;border:1px solid var(--line)}
-.link{padding:9px 0;color:var(--text)}
-.nav{
-  height:calc(var(--nav) + env(safe-area-inset-bottom));
+.category strong{display:block;font-size:16px;font-weight:850}
+.category span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.category.selected{border-color:var(--blue)}
+.category.confirmed{background:#0c2a2a;border-color:var(--green)}
+.category.pending{background:#302817;border-color:var(--warning)}
+.category-state{margin-top:11px;font-size:11px;font-weight:850;color:var(--blue-2)}
+.product-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.product-name{font-weight:850;color:#091426}
+.stepper{display:grid;grid-template-columns:40px 48px 40px;align-items:center}
+.stepper button{height:42px;border:0;background:#dce3eb;color:#071426;font-size:22px;font-weight:900}
+.stepper button:first-child{border-radius:12px 0 0 12px}
+.stepper button:last-child{border-radius:0 12px 12px 0}
+.stepper input{width:48px;height:42px;border:0;border-top:1px solid #cfd7e0;border-bottom:1px solid #cfd7e0;text-align:center;font-weight:900}
+.btn{border:0;border-radius:14px;padding:14px 15px;font-weight:900}
+.btn.blue{background:var(--blue);color:#04101d}
+.btn.dark{background:var(--panel-2);color:#fff;border:1px solid var(--line)}
+.btn.red{background:#35161d;color:#ff8f96;border:1px solid #71303a}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.35}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.actions.three{grid-template-columns:1fr 1fr 1fr}
+.sticky-action{position:sticky;bottom:80px;background:linear-gradient(transparent,var(--bg) 32%);padding-top:28px}
+.total-box{background:#fff;color:#081426;border-radius:18px;padding:16px;margin-bottom:10px}
+.total-box .big{font-size:28px;font-weight:900}
+.order-line{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #dce3eb}
+.order-line:last-child{border:0}
+.field{margin-bottom:10px}
+.field label{display:block;color:var(--muted);font-size:11px;font-weight:800;margin:0 0 5px 3px}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:13px;padding:12px}
+.field textarea{min-height:90px;resize:vertical}
+.form2{display:grid;gap:10px}
+.filters{display:flex;gap:7px;overflow:auto;margin:12px 0}
+.filter{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:9px 12px;font-weight:800;white-space:nowrap}
+.filter.active{background:var(--blue);color:#04101d;border-color:var(--blue)}
+.empty{text-align:center;color:var(--muted);padding:34px 12px}
+.reminder-card.done{opacity:.5}
+.reminder-card.done .card-title{text-decoration:line-through}
+.modal{position:fixed;inset:0;display:none;align-items:flex-end;background:rgba(0,0,0,.62);z-index:50}
+.modal.open{display:flex}
+.sheet{width:100%;max-height:94vh;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:18px 14px calc(28px + env(safe-area-inset-bottom))}
+.sheet-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}
+.close{width:38px;height:38px;border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:50%;font-size:20px}
+nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;max-width:820px;margin:auto;
+  background:#081426;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(4,1fr);
   padding:7px 7px calc(7px + env(safe-area-inset-bottom));
 }
-.nav button{
-  border-radius:11px;
-  font-size:8px;
-  letter-spacing:.04em;
+.nav{border:0;background:transparent;color:#7f8da3;padding:8px 2px;font-size:10px;font-weight:850}
+.nav.active{color:var(--blue-2)}
+@media(min-width:620px){
+  .category-grid{grid-template-columns:repeat(3,1fr)}
+  .form2{grid-template-columns:1fr 1fr}
 }
-.nav button span{font-size:19px;margin-bottom:1px}
-.nav button.active{background:#111}
-.home-batch-task{
-  position:relative;
-  padding:17px;
-  border-left:4px solid #111;
-}
-.home-batch-task strong{font-size:19px;line-height:1.05}
-.home-batch-confirm{margin-top:14px}
-.batch-grid{gap:8px}
-.batch-card{border-radius:var(--radius-md)}
-.qty{font-variant-numeric:tabular-nums}
-.order-category,.recipe-list-btn{border-radius:var(--radius-md)}
-.order-product-name,.batch-edit-name,.recipe-list-btn strong{letter-spacing:-.02em}
-
-/* Ricette: meno box, più gerarchia */
-.recipe-screen-head{
-  align-items:center;
-  margin-top:18px;
-}
-.recipe-screen-head h2{margin:4px 0 0;font-size:24px}
-.recipe-hero{
-  background:transparent;
-  color:var(--text);
-  padding:30px 0 23px;
-  margin-top:12px;
-  border-top:2px solid #111;
-  border-bottom:2px solid #111;
-}
-.recipe-hero p{
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.13em;
-  font-weight:850;
-  color:var(--muted);
-}
-.recipe-hero h2{
-  margin:12px 0 8px;
-  font-size:clamp(39px,10vw,58px);
-  line-height:.88;
-  letter-spacing:-.065em;
-}
-.recipe-yield{color:var(--muted)}
-.recipe-multiplier{
-  padding:20px 0;
-  margin-top:0;
-  border-radius:0;
-  border-bottom:1px solid var(--line);
-  background:transparent;
-}
-.recipe-multiplier label{margin-top:0}
-.recipe-multiplier-grid{
-  grid-template-columns:50px minmax(0,1fr) 50px;
-  max-width:360px;
-}
-.recipe-multiplier-grid button{
-  width:50px;height:50px;border-radius:50%;
-  transition:transform .1s ease,opacity .1s ease;
-}
-.recipe-multiplier-grid button:active{transform:scale(.93);opacity:.72}
-.recipe-multiplier-grid input{
-  height:54px;
-  border:0;
-  border-bottom:2px solid #111;
-  background:transparent;
-  font-size:30px;
-  font-variant-numeric:tabular-nums;
-}
-.recipe-summary{
-  margin-top:22px;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--line);
-}
-.recipe-summary>div{
-  min-height:106px;
-  background:var(--surface);
-  padding:16px;
-}
-.recipe-summary .meta{display:block}
-.recipe-summary strong{
-  margin-top:9px;
-  font-size:clamp(27px,7vw,38px);
-  line-height:.95;
-  letter-spacing:-.045em;
-  font-variant-numeric:tabular-nums;
-}
-.recipe-sheet{
-  padding:28px 0 0;
-  margin-top:0;
-  border-radius:0;
-  background:transparent;
-}
-.recipe-sheet-title{
-  font-size:11px;
-  padding:0 0 10px;
-  border-bottom:2px solid #111;
-}
-.recipe-columns{gap:30px}
-.recipe-table-row{
-  display:block;
-  padding:15px 0 14px;
-}
-.recipe-table-row span{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-}
-.recipe-table-row strong{
-  display:block;
-  margin-top:3px;
-  text-align:left;
-  font-size:clamp(25px,6vw,34px);
-  line-height:1;
-  letter-spacing:-.04em;
-  font-variant-numeric:tabular-nums;
-}
-.recipe-time{gap:1px;background:var(--line)}
-.recipe-time>div{
-  min-height:96px;
-  background:#111;
-}
-.recipe-time strong{font-size:24px;line-height:1}
-.recipe-step{
-  grid-template-columns:42px 1fr;
-  gap:12px;
-  padding:18px 0;
-}
-.recipe-step:before{
-  width:34px;height:34px;
-  border-radius:50%;
-  font-size:14px;
-}
-.recipe-step>div{
-  padding-top:5px;
-  font-size:16px;
-  line-height:1.5;
-}
-.recipe-serve{
-  padding:22px 0 0;
-  margin-top:30px;
-  background:transparent;
-  color:var(--text);
-  border-top:2px solid #111;
-}
-.recipe-serve h3{font-size:11px}
-.recipe-serve-row{
-  display:block;
-  padding:15px 0;
-  border-color:var(--line);
-}
-.recipe-serve-row span{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-}
-.recipe-serve-row strong{
-  display:block;
-  margin-top:4px;
-  font-size:25px;
-  letter-spacing:-.03em;
-}
-.recipe-secondary{
-  margin-top:16px;
-  border-left:3px solid #111;
-}
-.recipe-note{
-  padding:16px 0 0;
-  font-size:13px;
-}
-.recipe-number-flash{
-  animation:recipeFlash .16s ease-out;
-}
-@keyframes recipeFlash{
-  from{opacity:.2;transform:translateY(2px)}
-  to{opacity:1;transform:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-}
-@media(max-width:560px){
-  .recipe-columns{grid-template-columns:1fr}
-  .recipe-summary{grid-template-columns:1fr 1fr}
-  .brand-logo{width:82px}
-}
-
-
-/* =========================================================
-   V2.8 — LOGIN, MULTIUTENTE, NOTE E STORICO
-   ========================================================= */
-.login-screen{
-  position:fixed;inset:0;z-index:1000;
-  display:grid;place-items:center;
-  padding:22px;
-  background:#f4f4f2;
-}
-.login-screen[hidden]{display:none}
-.login-card{
-  width:min(100%,410px);
-  background:#fff;
-  padding:30px;
-  border-radius:22px;
-  box-shadow:0 24px 70px rgba(0,0,0,.12);
-}
-.login-logo{display:block;width:126px;height:64px;object-fit:contain;margin:0 auto 25px}
-.login-card>p{text-align:center;text-transform:uppercase;font-size:10px;letter-spacing:.15em;font-weight:850}
-.login-card>h1{text-align:center;font-size:38px;margin:7px 0 25px}
-.login-submit{width:100%;margin-top:10px;min-height:48px}
-.remember-row{
-  display:flex;align-items:center;gap:9px;
-  text-transform:none;letter-spacing:0;font-weight:700;
-}
-.remember-row input{width:auto;margin:0}
-.login-error{min-height:20px;margin-top:8px;color:#b31218;font-size:13px;font-weight:750}
-.avatar{border:0;cursor:pointer;padding:0}
-.user-popover{
-  position:fixed;z-index:70;right:max(14px,calc((100vw - 760px)/2 + 14px));top:58px;
-  width:220px;padding:14px;background:#fff;border:1px solid var(--line);
-  border-radius:15px;box-shadow:0 18px 50px rgba(0,0,0,.15);
-}
-.user-popover[hidden]{display:none}
-.user-popover-name{font-size:18px;font-weight:850}
-.user-popover button{
-  display:block;width:100%;border:0;border-top:1px solid var(--line);
-  background:transparent;text-align:left;padding:13px 0 6px;margin-top:10px;
-  font-size:11px;font-weight:850;letter-spacing:.06em;
-}
-.home-batch-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14px}
-.home-batch-actions .home-batch-confirm{margin:0}
-.home-batch-remove{
-  border:1px solid var(--line);background:transparent;border-radius:10px;
-  padding:10px 13px;font-size:11px;font-weight:850;
-}
-.production-note{
-  margin-top:10px;padding:10px 12px;border-left:3px solid #111;
-  background:var(--surface-2);font-size:13px;line-height:1.4;
-}
-.batch-production-note{margin-top:14px}
-.recipe-user-notes{
-  margin-top:32px;padding-top:20px;border-top:2px solid #111;
-}
-.recipe-user-notes textarea{min-height:130px;background:#fff}
-.recipe-note-actions{display:flex;justify-content:flex-end;margin-top:9px}
-.saved-feedback{font-size:12px;font-weight:750;color:var(--muted);margin-right:auto;align-self:center}
-.history-toolbar{display:flex;justify-content:flex-end;margin:18px 0}
-.history-day{margin-top:26px}
-.history-day-title{font-size:12px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
-.history-item{display:grid;grid-template-columns:42px 1fr auto;gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}
-.history-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-size:12px;font-weight:850}
-.history-title{font-weight:800;line-height:1.25}
-.history-detail{margin-top:4px;color:var(--muted);font-size:13px;line-height:1.35}
-.history-time{font-size:11px;color:var(--muted);white-space:nowrap}
-@media(max-width:520px){
-  .login-card{padding:24px}
-  .home-batch-actions{grid-template-columns:1fr}
-  .history-item{grid-template-columns:38px 1fr}
-  .history-time{grid-column:2}
-}
-
 </style>
 </head>
-<body><div class="app">
-<header class="app-header">
-  <button id="homeButton" class="header-action" type="button" aria-label="Vai alla Home">HOME</button>
-  <img class="brand-logo" src="done-logo.png" alt="D.ONE Torino">
-  <button id="userMenuButton" class="avatar" type="button" aria-label="Apri menu utente">S</button>
-</header>
-<main>
-<section id="home" class="view active"><p>Pannello operativo</p><h1 id="homeGreeting">Ciao.</h1><div class="summary"><div class="metric"><strong id="mBatch">0</strong><span>Batch da produrre</span></div><div class="metric"><strong id="mBottle">0</strong><span>Bottiglie totali</span></div></div><div class="panel"><div class="head"><h3>Situazione batch</h3><button class="link" data-go="batch">Apri</button></div><div id="homeBatch"></div></div><div class="panel"><div class="head"><h3>Appunti in evidenza</h3><button class="link" data-go="notes">Apri</button></div><div id="homeNotes"></div></div><div class="panel"><div class="head"><h3>Ordini in sospeso</h3><button class="link" data-go="neworder">Nuovo</button></div><div id="homeDrafts"></div></div><div class="panel"><div class="head"><h3>Ultimi ordini</h3><button class="link" data-go="archive">Archivio</button></div><div id="homeOrders"></div></div></section>
-<section id="neworder" class="view"><p>Ordini fornitori</p><h1>Nuovo ordine</h1>
-<div id="orderLauncher"><div class="main-grid"><button class="main-btn cat-btn" data-cat="Spirits">SPIRITS<small>Catalogo per tipologia</small></button><button class="main-btn cat-btn" data-cat="Vini">VINI<small>Bianchi e rossi · casse da 6</small></button><button class="main-btn cat-btn" data-cat="Birre">BIRRE<small>Ordine espresso in fusti</small></button><button class="main-btn cat-btn" data-cat="Spezie">SPEZIE<small>Spezie, tè ed essenze</small></button></div></div>
-<div id="orderWizard" class="hidden"></div>
-<div id="orderCategoryDetail" class="hidden"></div>
-<div id="orderPreviewWrap" class="hidden"></div>
-</section>
-<section id="archive" class="view"><p>Storico condiviso</p><h1>Archivio ordini</h1><div class="archive-tools"><div class="archive-filters" id="archiveFilters"></div><input class="archive-search" id="archiveSearch" placeholder="Cerca per operatore, data o tipo…"></div><div id="archiveList"></div></section>
-<section id="batch" class="view">
-<p>Produzione</p>
-<h1>Situazione batch</h1>
-<p>Inserisci la giacenza attuale, la soglia minima e quante bottiglie desideri produrre.</p>
-<div id="batchManager"></div>
-</section>
-<section id="notes" class="view"><p>Bacheca condivisa</p><h1>Bacheca appunti</h1><div class="form"><label>Titolo</label><input id="noteTitle" placeholder="Es. Ordinare bottiglie nuove"><label>Testo</label><textarea id="noteText" placeholder="Scrivi una nota visibile a tutti…"></textarea><label><input id="noteStar" type="checkbox" style="width:auto;margin-right:6px"> Mostra anche in Home</label><button class="btn black" id="addNote">Aggiungi appunto</button></div><div id="notesList"></div></section>
-<section id="recipes" class="view">
-<p>Manuale operativo</p>
-<h1>Ricette batch</h1>
-<p>Scegli la sezione, apri una ricetta e imposta quanti batch desideri preparare.</p>
-<div id="recipeManager"></div>
-</section>
-
-<section id="history" class="view">
-<p>Attività condivisa</p>
-<h1>Storico attività</h1>
-<p>Operazioni registrate in questa versione offline del dispositivo.</p>
-<div class="history-toolbar">
-  <button class="btn light" id="clearHistoryButton">SVUOTA STORICO</button>
-</div>
-<div id="historyList"></div>
-</section>
-</main></div><nav class="nav"><button data-view="neworder"><span>＋</span>NUOVO<br>ORDINE</button><button data-view="archive"><span>▤</span>ARCHIVIO</button><button data-view="batch"><span>◫</span>BATCH</button><button data-view="notes"><span>✎</span>BACHECA</button><button data-view="recipes"><span>∑</span>RICETTE</button></nav>
-
-<div id="loginScreen" class="login-screen" hidden>
-  <div class="login-card">
-    <img src="done-logo.png" class="login-logo" alt="D.ONE Torino">
-    <p>Accesso riservato</p>
-    <h1>ORDINI D.ONE</h1>
-    <form id="loginForm">
-      <label for="loginUsername">Utente</label>
-      <input id="loginUsername" autocomplete="username" placeholder="Nome utente" required>
-      <label for="loginPassword">Password</label>
-      <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password" required>
-      <label class="remember-row"><input id="rememberLogin" type="checkbox"> Ricorda l’accesso su questo dispositivo</label>
-      <div id="loginError" class="login-error" role="alert"></div>
-      <button class="btn black login-submit" type="submit">ACCEDI</button>
-    </form>
+<body>
+<div class="app">
+<header>
+  <div class="header-row">
+    <img class="logo" src="logo-DONE-white.png" alt="D.ONE Torino">
+    <div class="header-meta"><strong>D.ONE ORDINI</strong><span id="headerStatus">Nessun ordine attivo</span></div>
   </div>
-</div>
-<div id="userPopover" class="user-popover" hidden>
-  <div class="user-popover-name" id="popoverUserName"></div>
-  <div class="meta" id="popoverUserRole"></div>
-  <button type="button" id="openHistoryButton">STORICO ATTIVITÀ</button>
-  <button type="button" id="logoutButton">ESCI</button>
-</div>
-<div id="orderMissingAlert" class="order-alert"><div class="order-alert-box"><h2>Categorie non controllate</h2><p id="orderMissingText"></p><div class="actions"><button class="btn light" id="orderAlertBack">TORNA A CONTROLLARE</button><button class="btn black" id="orderAlertContinue">CONTINUA COSÌ</button></div></div></div><script>
-const C=["Main cocktail list","Analcolici main cocktail list","Evergreen","Make americano great again","Analcolici Make americano great again"];
-const orderCatalog={
-Spirits:{label:"SPIRITS",categories:[
-{name:"Vermouth",items:["Martini Riserva Speciale Rubino","Martini Riserva Speciale Ambrato","Cocchi Storico Vermouth di Torino","Carpano Antica Formula"]},
-{name:"Bitter",items:["Martini Bitter","Campari","Select","Bitter Fusetti"]},
-{name:"Aperitivi",items:["Aperol","Martini Fiero","Cocchi Americano","Italicus"]},
-{name:"Gin",items:["Bombay Sapphire","Tanqueray","Hendrick's","Gin Mare"]},
-{name:"Vodka",items:["Grey Goose","Belvedere","Ketel One"]},
-{name:"Rum",items:["Bacardi Carta Blanca","Bacardi 8","Diplomatico Reserva","Plantation 3 Stars"]},
-{name:"Whisky",items:["Dewar's 12","Maker's Mark","Laphroaig 10","Jameson"]},
-{name:"Tequila e Mezcal",items:["Patrón Silver","Patrón Reposado","Patrón Añejo","Del Maguey Vida"]},
-{name:"Liquori",items:["St-Germain","Amaretto Disaronno","Frangelico","Cointreau"]}]},
-Vini:{label:"VINI",categories:[{name:"Bianchi",items:["Roero Arneis","Chardonnay","Sauvignon Blanc","Riesling"]},{name:"Rossi",items:["Barbera d'Alba","Nebbiolo Langhe","Dolcetto d'Alba"]}]},
-Birre:{label:"BIRRE",categories:[{name:"Catalogo birre",items:["Lager","IPA","Blanche"]}]},
-Spezie:{label:"SPEZIE",categories:[
-{name:"Spezie",items:[{name:"Pepe nero",supplier:"Metro",unit:"etti"},{name:"Cardamomo verde",supplier:"Tuttospezie",unit:"grammi"},{name:"Cannella Ceylon",supplier:"Tuttospezie",unit:"scatole"},{name:"Anice stellato",supplier:"Metro",unit:"etti"},{name:"Pepe di Sichuan",supplier:"Longino",unit:"grammi"}]},
-{name:"Tè",items:[{name:"Tè matcha",supplier:"Tea Shop",unit:"boccette"},{name:"Earl Grey",supplier:"Tea Shop",unit:"scatole"},{name:"Tè oolong",supplier:"Tuttospezie",unit:"grammi"},{name:"Mate",supplier:"Metro",unit:"etti"}]},
-{name:"Essenze",items:[{name:"Essenza bergamotto",supplier:"FlavourArt",unit:"bottiglie"},{name:"Essenza vaniglia",supplier:"FlavourArt",unit:"boccette"},{name:"Acqua di fiori d'arancio",supplier:"Metro",unit:"bottiglie"}]}]}}
-let S=JSON.parse(localStorage.getItem("doneProto")||"null")||{batches:[{name:"Sakura",category:C[0],available:2,toProduce:4,ideal:6,recipe:"Sakura"},{name:"Pisco Andes",category:C[0],available:5,toProduce:1,ideal:6,recipe:"Pisco Andes"},{name:"Tokyo Zero",category:C[1],available:1,toProduce:3,ideal:4,recipe:"Tokyo Zero"},{name:"Negroni",category:C[2],available:6,toProduce:0,ideal:6,recipe:"Negroni"},{name:"Boulevardier",category:C[2],available:1,toProduce:4,ideal:5,recipe:"Boulevardier"},{name:"Americano Torino",category:C[3],available:3,toProduce:3,ideal:6,recipe:"Americano Torino"},{name:"Americano Tropical",category:C[3],available:0,toProduce:4,ideal:4,recipe:"Americano Tropical"},{name:"Americano Zero",category:C[4],available:2,toProduce:2,ideal:4,recipe:"Americano Zero"}],notes:[{title:"Bottiglie batch",text:"Verificare disponibilità delle bottiglie da 720 ml.",author:"Simone",star:true,done:false,date:"18 luglio"},{title:"Sciroppo matcha",text:"Prepararne una nuova base entro venerdì.",author:"Vanessa",star:false,done:false,date:"17 luglio"}],orders:[{date:"18 luglio · 20:42",category:"Spirits",items:5,status:"Inviato",operator:"Simone"},{date:"17 luglio · 18:10",category:"Vini",items:3,status:"Bozza",operator:"Vanessa"}],recipes:{"Sakura":{base:12,bottle:720,ings:[["Rhum mix sakura",320,"ml"],["Sciroppo matcha",160,"ml"],["Shochu",160,"ml"],["Choya umeboshi",80,"ml"]]},"Pisco Andes":{base:10,bottle:700,ings:[["Pisco",350,"ml"],["Cordial andino",210,"ml"],["Vermouth dry",140,"ml"]]},"Tokyo Zero":{base:10,bottle:700,ings:[["Tè sencha",350,"ml"],["Cordial yuzu",210,"ml"],["Verjus",140,"ml"]]},"Negroni":{base:10,bottle:900,ings:[["Gin",300,"ml"],["Vermouth rosso",300,"ml"],["Bitter",300,"ml"]]},"Boulevardier":{base:10,bottle:900,ings:[["Bourbon",300,"ml"],["Vermouth rosso",300,"ml"],["Bitter",300,"ml"]]},"Americano Torino":{base:12,bottle:720,ings:[["Vermouth rosso",360,"ml"],["Bitter",240,"ml"],["Cordial",120,"ml"]]},"Americano Tropical":{base:12,bottle:720,ings:[["Vermouth bianco",300,"ml"],["Bitter tropicale",240,"ml"],["Cordial ananas",180,"ml"]]},"Americano Zero":{base:12,bottle:720,ings:[["Aperitivo analcolico",360,"ml"],["Vermouth analcolico",240,"ml"],["Cordial agrumi",120,"ml"]]}}};
+</header>
 
-S.users=S.users||[
- {name:"Simone",username:"simone",password:"done123",role:"Amministratore",active:true},
- {name:"Vanessa",username:"vanessa",password:"done123",role:"Amministratore",active:true},
- {name:"Marco",username:"marco",password:"done123",role:"Operatore",active:true}
-];
-S.activityLog=S.activityLog||[];
-S.recipeNotes=S.recipeNotes||{};
-S.batches=(S.batches||[]).map(b=>({...b,productionNote:b.productionNote||""}));
+<main>
+<section id="home" class="view active">
+  <div class="eyebrow">Pannello operativo</div>
+  <h1>Ordini</h1>
+  <p class="sub">Crea, riprendi e consulta tutto da un unico punto.</p>
 
-S.orderDrafts=S.orderDrafts||[];
-S.orders=(S.orders||[]).filter(o=>(o.status||'Inviato').toLowerCase()!=='bozza');
-S.orders.forEach((o,i)=>{o.id=o.id||('arch'+Date.now()+i);o.status='Inviato';o.category=o.category||o.type||'Ordine';o.operator=o.operator||'Operatore non indicato';o.date=o.date||'Data non disponibile'});
+  <div class="action-stack">
+    <button class="primary-action" onclick="newOrder()"><strong>Nuovo ordine</strong><span>Inizia da zero</span></button>
+    <button class="row-action" id="continueBtn" onclick="continueLatest()"><strong>Continua ultimo ordine</strong><span id="continueMeta">Nessuna bozza disponibile</span></button>
+  </div>
 
-const batchCategoryMigration={
- "Giro del mondo":"Main cocktail list",
- "Giro del mondo - analcolici":"Analcolici main cocktail list",
- "Make americano great again - analcolici":"Analcolici Make americano great again"
-};
+  <div class="section-head"><h2>Riepilogo</h2></div>
+  <div id="homeMetrics" class="summary-grid"></div>
 
-const recipeBatchSeeds=[
- {name:"Floyd Patterson",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Floyd Patterson"},
- {name:"Carlos Ortiz",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Carlos Ortiz"},
- {name:"Jean-Claude Bouttier",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Jean-Claude Bouttier"},
- {name:"Carlos Zarate",category:"Make americano great again",available:0,toProduce:0,minimum:2,recipe:"Carlos Zarate"}
-];
+  <div class="section-head"><h2>Ultimi ordini</h2><button class="link-btn" onclick="go('orders')">Vedi tutti</button></div>
+  <div id="homeOrders"></div>
 
-S.batches=S.batches||[];
-S.batches.forEach(b=>{
- b.category=batchCategoryMigration[b.category]||b.category||C[0];
- b.available=Math.max(0,Number(b.available)||0);
- b.toProduce=Math.max(0,Number(b.toProduce)||0);
- b.minimum=Math.max(0,Number(b.minimum ?? b.ideal ?? 0)||0);
-});
-recipeBatchSeeds.forEach(seed=>{
- if(!S.batches.some(b=>b.name===seed.name))S.batches.push({...seed});
-});
-localStorage.setItem('doneProto',JSON.stringify(S));
-let activeBatchCategory=null;
+  <div class="section-head"><h2>Promemoria</h2><button class="link-btn" onclick="go('board')">Vedi tutti</button></div>
+  <div id="homeReminders"></div>
+</section>
 
+<section id="editor" class="view">
+  <div class="eyebrow" id="editorEyebrow">Nuovo ordine</div>
+  <h1 id="editorTitle">Seleziona i prodotti</h1>
+  <p class="sub">Apri solo le categorie che ti servono. Quelle visitate devono essere confermate.</p>
+  <div id="categoryWarning"></div>
+  <div id="categoryGrid" class="category-grid"></div>
+  <div class="sticky-action"><button class="btn blue full" onclick="go('review')">Riepilogo · <span id="editorUnits">0</span> unità</button></div>
+</section>
 
-const recipeCategories=[...C];
-const operationalRecipes={
- "Floyd Patterson":{
-   category:"Make americano great again",yield:9,finalVolume:750,
-   liquid:[
-     ["Martini Rosso",305,"ml"],["Martini Bitter",122,"ml"],
-     ["Martini RS Bitter",122,"ml"],["China Martini",62,"ml"],
-     ["Liquore mandarino",140,"ml"]
-   ],
-   solid:[["Zenzero",75,"gr"],["Cardamomo",9,"gr"],["Scorze lime",9,"gr"]],
-   time:[["Cottura / infusione","4 ore"],["Temperatura","60°"]],
-   steps:[
-     "Pestare lo zenzero in un contenitore.",
-     "Mettere tutto in un sacchetto: parte liquida escluso il liquore al mandarino e parte solida.",
-     "Cuocere con il roner per 4 ore a 60°.",
-     "Lasciare raffreddare.",
-     "Filtrare con superbag: si ottengono circa 610 ml di batch.",
-     "Aggiungere 140 ml di liquore al mandarino.",
-     "Imbottigliare."
-   ],
-   serve:[["Pre-batch",8,"cl"],["Birra IPA Moretti",6,"cl"],["Garnish","Coin lime",""]],
-   notes:"Una produzione completa genera circa 750 ml, equivalenti a 9 pre-batch."
- },
- "Carlos Ortiz":{
-   category:"Make americano great again",yield:9,finalVolume:745,
-   liquid:[
-     ["Martini Rosso",155,"ml"],["Martini RS Rubino",75,"ml"],
-     ["Martini Bitter",235,"ml"],["China Martini",140,"ml"],
-     ["Liquore Rabarbaro",140,"ml"]
-   ],
-   solid:[["Pepe nero in grani",10,"gr"],["Caffè in chicchi",40,"gr"]],
-   time:[["Infusione","24 ore"],["Temperatura","A freddo · 4°–5°"]],
-   steps:[
-     "Pestare molto delicatamente il pepe in un contenitore.",
-     "Mettere tutta la parte liquida e la parte solida in una caraffa.",
-     "Lasciare in frigorifero, circa a 4°–5°, per 24 ore.",
-     "Filtrare con superbag.",
-     "Imbottigliare."
-   ],
-   serve:[["Pre-batch",8,"cl"],["Indian tonic",6,"cl"],["Garnish","Sedano essiccato",""]],
-   notes:"La resa reale può variare leggermente a causa dell'assorbimento degli ingredienti solidi."
- },
- "Jean-Claude Bouttier":{
-   category:"Make americano great again",yield:9,finalVolume:745,
-   liquid:[
-     ["Martini Rosso",155,"ml"],["Martini RS Ambrato",100,"ml"],
-     ["Martini Bitter",375,"ml"],["St. Germain",115,"ml"]
-   ],
-   solid:[
-     ["Tè Flowery Oolong",10,"gr"],["Tè Bancha fiori",10,"gr"],
-     ["Soluzione salina",36,"gocce"],["Acido citrico",4,"gr"]
-   ],
-   time:[["Infusione","1 ora"],["Temperatura","Ambiente"]],
-   steps:[
-     "Mettere tutta la parte liquida in un contenitore.",
-     "Aggiungere i due tè e lasciare in infusione.",
-     "Filtrare con superbag.",
-     "Aggiungere la soluzione salina.",
-     "Aggiungere l'acido citrico.",
-     "Imbottigliare."
-   ],
-   serve:[["Pre-batch",8,"cl"],["Soda sambuco Gasco",6,"cl"],["Finitura","Profumo geranio",""]],
-   notes:"Aggiungere soluzione salina e acido citrico soltanto dopo la filtrazione."
- },
- "Carlos Zarate":{
-   category:"Make americano great again",yield:8,finalVolume:751,
-   liquid:[
-     ["Martini Rosso",168,"ml"],["Martini RS Rubino",168,"ml"],
-     ["Martini Bitter",335,"ml"],["Crema di mezcal",80,"ml"]
-   ],
-   solid:[["Mate",27,"gr"]],
-   time:[["Mate","5 ore · ambiente"],["Crema di mezcal","3 ore · 60°"]],
-   steps:[
-     "Infondere i prodotti Martini con il mate per 5 ore a temperatura ambiente.",
-     "Parallelamente preparare la crema di mezcal.",
-     "Terminate infusione e cottura, filtrare le due preparazioni.",
-     "Unire i prodotti infusi e la crema di mezcal.",
-     "Imbottigliare."
-   ],
-   serve:[["Pre-batch",9,"cl"],["Three Cents grapefruit",6,"cl"],["Finitura","Tajin",""]],
-   secondary:{
-     title:"Crema di mezcal · dose per 1 produzione",
-     ingredients:[["Mezcal Espadin",40,"ml"],["Miele di fiori",40,"gr"],["Habanero",0.8,"gr"]],
-     steps:[
-       "Pulire l'habanero dai semi e tagliarlo finemente.",
-       "Mettere mezcal, miele di fiori e habanero in un sacchetto.",
-       "Cuocere con il roner per 3 ore a 60°.",
-       "Filtrare e imbottigliare."
-     ],
-     note:"Per 1 litro: 500 ml Mezcal Espadin, 500 gr miele di fiori e 10 gr habanero."
-   },
-   notes:"La crema di mezcal viene normalmente prodotta in bottiglie da un litro e utilizzata nella quantità necessaria."
- }
-};
-let activeRecipeCategory=null;
-let activeRecipeName=null;
-let desiredRecipeBatches=9;
+<section id="review" class="view">
+  <div class="eyebrow">Controllo finale</div>
+  <h1>Riepilogo ordine</h1>
+  <div id="reviewContent"></div>
+</section>
 
-let archiveFilter='Tutti',archiveQuery='';
-let currentUser=null;
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-function currentOperator(){return currentUser?.name||"Utente"}
-function nowParts(){
- const d=new Date();
- return {
-  iso:d.toISOString(),
-  date:d.toLocaleDateString('it-IT',{day:'2-digit',month:'long',year:'numeric'}),
-  time:d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})
- };
+<section id="orders" class="view">
+  <div class="eyebrow">Archivio unico</div>
+  <h1>Tutti gli ordini</h1>
+  <p class="sub">Bozze e ordini inviati restano sempre apribili e modificabili.</p>
+  <input id="orderSearch" class="search" placeholder="Cerca data, prodotto o nota…" oninput="renderOrders()">
+  <div class="filters">
+    <button class="filter active" onclick="setFilter('all',this)">Tutti</button>
+    <button class="filter" onclick="setFilter('draft',this)">Bozze</button>
+    <button class="filter" onclick="setFilter('sent',this)">Inviati</button>
+  </div>
+  <div id="ordersList"></div>
+</section>
+
+<section id="catalog" class="view">
+  <div class="eyebrow">Catalogo</div>
+  <h1>Prodotti</h1>
+  <p class="sub">Nomi, categorie, formati, prezzi, IVA e note sono sempre modificabili.</p>
+  <input id="productSearch" class="search" placeholder="Cerca prodotto…" oninput="renderProducts()">
+  <div style="height:9px"></div>
+  <button class="btn blue full" onclick="openProduct()">Nuovo prodotto</button>
+  <div style="height:12px"></div>
+  <div id="productsList"></div>
+</section>
+
+<section id="board" class="view">
+  <div class="eyebrow">Bacheca</div>
+  <h1>Promemoria</h1>
+  <p class="sub">Appunti operativi, priorità e scadenze.</p>
+  <button class="btn blue full" onclick="openReminder()">Nuovo promemoria</button>
+  <div style="height:12px"></div>
+  <div id="reminderList"></div>
+</section>
+</main>
+
+<nav>
+  <button class="nav active" data-view="home" onclick="go('home')">HOME</button>
+  <button class="nav" data-view="orders" onclick="go('orders')">ORDINI</button>
+  <button class="nav" data-view="catalog" onclick="go('catalog')">CATALOGO</button>
+  <button class="nav" data-view="board" onclick="go('board')">BACHECA</button>
+</nav>
+
+<div id="categoryModal" class="modal"><div class="sheet">
+  <div class="sheet-head"><div><h2 id="catTitle"></h2><div id="catMeta" class="meta"></div></div><button class="close" onclick="closeModal('categoryModal')">×</button></div>
+  <input id="catSearch" class="search" placeholder="Cerca nella categoria…" oninput="renderCategory()">
+  <div style="height:10px"></div>
+  <div id="catProducts"></div>
+  <div class="sticky-action"><button class="btn blue full" onclick="confirmCategory()">Conferma categoria</button></div>
+</div></div>
+
+<div id="reminderModal" class="modal"><div class="sheet">
+  <div class="sheet-head"><h2 id="reminderModalTitle">Nuovo promemoria</h2><button class="close" onclick="closeModal('reminderModal')">×</button></div>
+  <input type="hidden" id="rId">
+  <div class="field"><label>Titolo</label><input id="rTitle"></div>
+  <div class="field"><label>Dettagli</label><textarea id="rText"></textarea></div>
+  <div class="form2">
+    <div class="field"><label>Scadenza</label><input id="rDue" type="date"></div>
+    <div class="field"><label>Priorità</label><select id="rPriority"><option value="normal">Normale</option><option value="high">Alta</option></select></div>
+  </div>
+  <button class="btn blue full" onclick="saveReminder()">Salva promemoria</button>
+</div></div>
+
+<div id="productModal" class="modal"><div class="sheet">
+  <div class="sheet-head"><h2 id="productModalTitle">Prodotto</h2><button class="close" onclick="closeModal('productModal')">×</button></div>
+  <input type="hidden" id="pId">
+  <div class="field"><label>Nome da visualizzare</label><input id="pName"></div>
+  <div class="field"><label>Descrizione originale</label><input id="pOriginal"></div>
+  <div class="form2">
+    <div class="field"><label>Formato</label><input id="pFormat"></div>
+    <div class="field"><label>Categoria</label><input id="pCategory"></div>
+  </div>
+  <div class="form2">
+    <div class="field"><label>Unità</label><select id="pUnit"><option value="PZ">bott.</option><option value="CT">Cartone</option><option value="">Altro</option></select></div>
+    <div class="field"><label>Prezzo netto €</label><input id="pPrice" type="number" min="0" step="0.01"></div>
+  </div>
+  <div class="field"><label>IVA %</label><input id="pVat" type="number" min="0" step="0.01"></div>
+  <div class="field"><label>Note</label><textarea id="pNotes"></textarea></div>
+  <div class="field"><label><input id="pActive" type="checkbox"> Attivo negli ordini</label></div>
+  <button class="btn blue full" onclick="saveProduct()">Salva prodotto</button>
+  <div style="height:8px"></div>
+  <button id="deleteProductBtn" class="btn red full" onclick="deleteProduct()">Elimina prodotto</button>
+</div></div>
+
+<script>
+const INITIAL_PRODUCTS=[{"id": "2765", "originalName": "42 BELOW VODKA PURE 100 CL", "format": "100 cl", "name": "Vodka 42 Below", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0726", "originalName": "ACQUA BRILLANTE 20 CL", "format": "20 cl", "name": "Acqua Brillante", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2913", "originalName": "AMARO CAMATTI 70 CL", "format": "70 cl", "name": "Camatti", "category": "AMARI", "unitCode": "PZ", "price": 12.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0178", "originalName": "AMARO MONTENEGRO 70 CL", "format": "70 cl", "name": "Montenegro", "category": "AMARI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0290", "originalName": "APEROL LT", "format": "100 cl", "name": "Aperol", "category": "APERITIVI", "unitCode": "PZ", "price": 10.58, "vat": 22.0, "notes": "", "active": true}, {"id": "3275", "originalName": "ARIA VELLUTO SHAKE", "format": "", "name": "Aria e velluto", "category": "ACCESSORI", "unitCode": "PZ", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0247", "originalName": "BACARDI CARTA BLANCA1 LT", "format": "100 cl", "name": "Bacardi bianco", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1564", "originalName": "BACARDI RESERVA GOLD ORO LT", "format": "100 cl", "name": "Bacardi scuro", "category": "SCIROPPI", "unitCode": "PZ", "price": 13.39, "vat": 22.0, "notes": "", "active": true}, {"id": "0514", "originalName": "BESO CONCENTRATO DI AGAVE CL 75", "format": "75 cl", "name": "Sciroppo d'agave", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0662", "originalName": "BITTER ANGOSTURA 200 ML", "format": "20 cl", "name": "Angostura bitter", "category": "ACCESSORI", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3221", "originalName": "BITTER MARTINI APERITIVO Lt. 1 ** NEW", "format": "100 cl", "name": "Martini Bitter", "category": "BITTER", "unitCode": "PZ", "price": 10.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0561", "originalName": "BULLEIT BOURBON WHISKY 70 CL", "format": "70 cl", "name": "Bulleit Bourbon", "category": "SPIRITS", "unitCode": "PZ", "price": 16.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0294", "originalName": "BULLEIT RYE WHISKY 70 cl", "format": "70 cl", "name": "Bulleit Rye", "category": "SPIRITS", "unitCode": "PZ", "price": 24.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0406", "originalName": "CACHACA VELHO BARREIRO LT", "format": "100 cl", "name": "Velho Barreiro", "category": "SPIRITS", "unitCode": "PZ", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0255", "originalName": "CAMPARI BITTER 1 LT", "format": "100 cl", "name": "Campari", "category": "BITTER", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2000", "originalName": "CANNUCCE CARTA BIO RIGIDE CM 20", "format": "", "name": "Cannucce carta nere", "category": "ACCESSORI", "unitCode": "PZ", "price": 3.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2735", "originalName": "CAZADORES REPOSADO 70 CL", "format": "70 cl", "name": "Cazadores reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 15.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2686", "originalName": "CAZADORES SILVER 70 CL", "format": "70 cl", "name": "Cazadores silver", "category": "SPIRITS", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0428", "originalName": "CEDRATA TASSONI CL 18", "format": "18 cl", "name": "Cedrata Tassoni", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0590", "originalName": "CHINA MARTINI CL 70", "format": "70 cl", "name": "China Martini", "category": "AMARI", "unitCode": "PZ", "price": 10.56, "vat": 22.0, "notes": "", "active": true}, {"id": "1132", "originalName": "CHOYA EXTRA SHISO ROSSO", "format": "70 cl", "name": "Choya Extra shiso rosso", "category": "LIQUORI", "unitCode": "PZ", "price": 22.45, "vat": 22.0, "notes": "", "active": true}, {"id": "0087", "originalName": "COCA COLA BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0460", "originalName": "COCA COLA ZERO BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola Zero", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0566", "originalName": "COCCHI DOPO TEATRO AMARO CL 75", "format": "75 cl", "name": "Cocchi dopo teatro", "category": "VERMOUTH", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0203", "originalName": "DISARONNO 70 CL", "format": "70 cl", "name": "Disaronno ", "category": "LIQUORI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "2754", "originalName": "FOGLIE DI MANDARINO 50 ML", "format": "5 cl", "name": "Essenza foglie di mandarino", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1871", "originalName": "GERMANA UMBURANA 70 CL", "format": "70 cl", "name": "Germana Umburana", "category": "SPIRITS", "unitCode": "PZ", "price": 14.55, "vat": 22.0, "notes": "", "active": true}, {"id": "G5501", "originalName": "GIFFARD LIQUORE CREME DE BANANE", "format": "70 cl ", "name": "Liquore banana Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 10.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0416", "originalName": "GIFFARD LIQUORE PREMIUM MANDARINE", "format": "70 cl", "name": "Liquore mandarino Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0397", "originalName": "GIFFARD SIROP DE BITTER CL 100", "format": "100 cl", "name": "Bitter analcolico", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0612", "originalName": "GIFFARD SIROP DE FLEUR DE SUREAU LT", "format": "100 cl", "name": "Sciroppo fiori di sambuco Giffard", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1172", "originalName": "GIN BOMBAY LONDON DRY LT PROMO", "format": "100 cl", "name": "Bombay Dry", "category": "SPIRITS", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0360", "originalName": "GIN CITADELLE 70 CL", "format": "70 cl", "name": "Citadelle", "category": "SPIRITS", "unitCode": "PZ", "price": 22.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0177", "originalName": "GIN HENDRICK'S 70 CL", "format": "70 cl", "name": "Hendrick's", "category": "SPIRITS", "unitCode": "PZ", "price": 24.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0081", "originalName": "GIN MAHON XORIGUER 70 CL", "format": "70 cl", "name": "Mahon Xoriguer", "category": "SPIRITS", "unitCode": "PZ", "price": 17.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1910", "originalName": "GIN MARCONI 42 CL 70", "format": "70 cl", "name": "Marconi 42", "category": "SPIRITS", "unitCode": "PZ", "price": 24.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3251", "originalName": "GIN MARE 70 CL NEW**", "format": "70 cl", "name": "Gin Mare", "category": "SPIRITS", "unitCode": "PZ", "price": 25.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0577", "originalName": "GIN MARTIN MILLERS CL 70", "format": "70 cl", "name": "Martin Millers", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1400", "originalName": "GIN SUNTORY ROKU 70 CL", "format": "70 cp", "name": "Roku", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1062", "originalName": "GINGER BEER FEVER TREE cl 20 *24", "format": "20 cl", "name": "Ginger beer Fever Tree", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2187", "originalName": "GOLDBERG BONE DRY TONIC 0.20l", "format": "20 cl", "name": "Goldberg Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.5, "vat": 22.0, "notes": "", "active": true}, {"id": "2357", "originalName": "GOLDBERG MEDITERRANEA TONIC 20CL", "format": "20 cl", "name": "Goldberg Mediterranea Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3369", "originalName": "GOLDBERG MEDITERRANEA TONIC LATTINA *24 PROMO", "format": "15 cl", "name": "Goldberg Mediterranea - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.48, "vat": 22.0, "notes": "", "active": true}, {"id": "3425", "originalName": "J. GASCO DRY BITTER TONIC 20X12", "format": "20 cl", "name": "Gasco Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.45, "vat": 22.0, "notes": "", "active": true}, {"id": "1315", "originalName": "J. GASCO PREMIUM GINGER ROSSO *24", "format": "20 cl", "name": "Ginger rosso Gasco", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1296", "originalName": "KAPRIOL GIN MT. POMPELMO 70 CL", "format": "70 cl", "name": "Kapriol pompelmo", "category": "SPIRITS", "unitCode": "PZ", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2079", "originalName": "LATTE MANDORLE FABBRI LT", "format": "100 cl", "name": "Sciroppo latte di mandorle", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "0219", "originalName": "LEMON SODA .BT CL 20 CL *24", "format": "20 cl", "name": "Lemon soda", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0827", "originalName": "MARTINI BIANCO LT", "format": "100 cl", "name": "Martini Bianco", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0266", "originalName": "MARTINI EXTRA DRY L.1", "format": "100 cl", "name": "Martini Extra Dry", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2710", "originalName": "MARTINI NON ALCOHLIC FLOREALE 75 CL", "format": "75 cl", "name": "Martini Floreale", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2709", "originalName": "MARTINI RISERVA SPECIALE AMBRATO 70 CL", "format": "75", "name": "Martini RS Ambrato", "category": "VERMOUTH", "unitCode": "PZ", "price": 11.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2712", "originalName": "MARTINI RISERVA SPECIALE BITTER PREMIUM 70", "format": "70 cl", "name": "Martini Bitter Riserva", "category": "BITTER", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2315", "originalName": "MARTINI RISERVA SPECIALE RUBINO 75 CL", "format": "75 cl", "name": "Martini RS Rubino", "category": "VERMOUTH", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3225", "originalName": "MARTINI ROSSO VERMOUTH LT", "format": "100 cl", "name": "Martini Rosso", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2711", "originalName": "MARTINI VIBRANTE 75 CL", "format": "75 cl", "name": "Martini Vibrante", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1665", "originalName": "MEZCAL AMORES VERDE MOMENTO", "format": "70 cl", "name": "Mezcal Amores Verde", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0248", "originalName": "MINI SPIEDI REMO COCKTAIL BAMBOO CM 15 1", "format": "", "name": "Remi cocktail", "category": "ACCESSORI", "unitCode": "PZ", "price": 1.55, "vat": 22.0, "notes": "", "active": true}, {"id": "1213", "originalName": "PORTO SANDEMAN WHITE CL.75", "format": "75 cl", "name": "Porto bianco", "category": "LIQUORI", "unitCode": "PZ", "price": 8.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0466", "originalName": "QUAGLIA AL BERGAMOTTO", "format": "70 cl", "name": "Liquore bergamotto Quaglia", "category": "LIQUORI", "unitCode": "PZ", "price": 14.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0150", "originalName": "RUM ABUELO 7 Y CL 70", "format": "70 cl", "name": "Abuelo 7", "category": "SPIRITS", "unitCode": "PZ", "price": 20.58, "vat": 22.0, "notes": "", "active": true}, {"id": "2220", "originalName": "RUM BLACKWELL JAMAICAN 40% 70 CL", "format": "70 cl", "name": "Blackwell", "category": "SPIRITS", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0598", "originalName": "RUM PLANTATION ORIGINAL DARK 70 CL", "format": "70 cl", "name": "Planteray Original Dark", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3305", "originalName": "RUM PLANTERAY O.F.T.D OVERPPROFF 70 CL", "format": "70 cl", "name": "Planteray Overproof", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2011", "originalName": "RUM VERITAS WHITE BLENDED 70 CL", "format": "70 cl", "name": "Veritas", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0479", "originalName": "SAINT GERMAIN CL 70", "format": "70 cl", "name": "Saint Germain", "category": "LIQUORI", "unitCode": "PZ", "price": 26.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0164", "originalName": "SAMBUCA MOLINARI LT", "format": "100 cl", "name": "Sambuca Molinari", "category": "AMARI", "unitCode": "PZ", "price": 16.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0186", "originalName": "SAN SIMONE 70 CL", "format": "70 cl", "name": "San Simone", "category": "AMARI", "unitCode": "PZ", "price": 11.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2794", "originalName": "SCIROPPO CEDRO TASSONI 720 ML", "format": "72 cl", "name": "Sciroppo Cedro Tassoni", "category": "SCIROPPI", "unitCode": "PZ", "price": 6.85, "vat": 22.0, "notes": "", "active": true}, {"id": "1428", "originalName": "SELECT LT", "format": "100 cl", "name": "Select", "category": "APERITIVI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2753", "originalName": "SHERRY OSBORNE BAILEN 75 CL", "format": "75 cl", "name": "Sherry Oloroso", "category": "LIQUORI", "unitCode": "PZ", "price": 13.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2382", "originalName": "STECCONI SPIEDO 15 CM *1000", "format": "", "name": "Stecconi spiedo", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0477", "originalName": "SUCCO POMODORO CIRIO 200 ML*24", "format": "20 cl", "name": "Succo pomodoro", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1535", "originalName": "TABERNERO PISCO PURO ACHOLADO 70 CL", "format": "70 cl", "name": "Pisco Tabernero Alcholado", "category": "SPIRITS", "unitCode": "PZ", "price": 21.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0756", "originalName": "TEQUILA CUERVO REPOSADO LT", "format": "100 cl", "name": "Tequila Cuervo Reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 16.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0496", "originalName": "THE NEW TEA SPIRIT T", "format": "70 cl", "name": "Liquore T+", "category": "LIQUORI", "unitCode": "PZ", "price": 17.2, "vat": 22.0, "notes": "", "active": true}, {"id": "2745", "originalName": "THREE CENTS PINEAPPLE 20 cl", "format": "20 cl", "name": "Soda ananas Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 23.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2211", "originalName": "THREE CENTS PINK GRAPEFRUIT SODA 20 CL*24", "format": "20 cl", "name": "Soda pompelmo Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0436", "originalName": "TIO PEPE SHERRY 70 CL", "format": "70 cl", "name": "Sherry Fino", "category": "LIQUORI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3385", "originalName": "TONIC WATER GOLDBERG LATTINE 20 CL", "format": "20 cl", "name": "Golberg tonica - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1250", "originalName": "TONICA FEVER TREE INDIAN 200 ML *24", "format": "20 cl", "name": "Fever Tree Indian", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 21.5, "vat": 22.0, "notes": "", "active": true}, {"id": "3035", "originalName": "TONICA THREE CENTS DRY *24", "format": "20 cl", "name": "Tonica Dry Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 20.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0276", "originalName": "TOV T. UNITA 2V 25*25 INF 100 PZ/30", "format": "", "name": "Tovaglioli neri", "category": "ACCESSORI", "unitCode": "CT", "price": 38.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0296", "originalName": "TRIPLE SEC 70 CL", "format": "7 cl", "name": "Triple Sec", "category": "LIQUORI", "unitCode": "PZ", "price": 6.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0680", "originalName": "VECCHIA ROMAGNA ET NERA 70 CL", "format": "70 cl", "name": "Vecchia Romagna", "category": "AMARI", "unitCode": "PZ", "price": 99.0, "vat": 22.0, "notes": "", "active": true}, {"id": "2208", "originalName": "WHIS.BUSKER BLEND TRIPLE CASK 70 CL", "format": "70 cl", "name": "Busker Irish", "category": "SPIRITS", "unitCode": "PZ", "price": 14.89, "vat": 22.0, "notes": "", "active": true}, {"id": "0179", "originalName": "WORCHESTER SAUSE CL 15", "format": "15 cl", "name": "Salsa Worchestershire", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0208", "originalName": "ZUCCHERO LIQ BARMAN LITRO", "format": "100 cl", "name": "Zucchero liquido", "category": "SCIROPPI", "unitCode": "PZ", "price": 4.4, "vat": 10.0, "notes": "", "active": true}];
+const KEY={products:'done_products_v1',orders:'done_orders_v1',reminders:'done_reminders_v1',legacyProducts:'done_products_v01',legacyOrders:'done_orders_v02',legacyReminders:'done_reminders_v02'};
+const load=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let products=load(KEY.products,load(KEY.legacyProducts,INITIAL_PRODUCTS));
+let orders=load(KEY.orders,load(KEY.legacyOrders,[]));
+let reminders=load(KEY.reminders,load(KEY.legacyReminders,[]));
+let current=blankOrder(),activeCategory='',filter='all';
+
+function blankOrder(){return{id:'ORD-'+Date.now(),createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),status:'draft',note:'',items:{},visited:[],confirmed:[],revision:0}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function js(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+function euro(n){return new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(Number(n||0))}
+function unit(c){return c==='PZ'?'bott.':c==='CT'?'Cartone':c||''}
+function selected(){return products.map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0)}
+function totals(){const a=selected(),net=a.reduce((s,p)=>s+p.price*p.qty,0),vat=a.reduce((s,p)=>s+p.price*p.qty*p.vat/100,0);return{count:a.length,units:a.reduce((s,p)=>s+p.qty,0),net,vat,gross:net+vat}}
+function categories(){return [...new Set(products.filter(p=>p.active).map(p=>p.category||'SENZA CATEGORIA'))].sort((a,b)=>a.localeCompare(b,'it'))}
+
+function go(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(view).classList.add('active');
+  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.view===view));
+  if(view==='home')renderHome();
+  if(view==='editor')renderEditor();
+  if(view==='review')renderReview();
+  if(view==='orders')renderOrders();
+  if(view==='catalog')renderProducts();
+  if(view==='board')renderBoard();
+  window.scrollTo(0,0);
 }
-function logActivity(type,title,detail=""){
- const t=nowParts();
- S.activityLog.unshift({type,title,detail,user:currentOperator(),date:t.date,time:t.time,iso:t.iso});
- S.activityLog=S.activityLog.slice(0,500);
+function refreshHeader(){
+  const t=totals();
+  document.getElementById('headerStatus').textContent=t.units?`${t.units} unità nell'ordine attivo`:'Nessun ordine attivo';
+  const eu=document.getElementById('editorUnits');if(eu)eu.textContent=t.units;
 }
-function go(id){
- document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
- document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
- if(id==='archive')renderArchive();
- if(id==='batch')renderBatch();
- if(id==='recipes')renderRecipes();
- if(id==='history')renderHistory();
- scrollTo(0,0)
+function newOrder(){current=blankOrder();go('editor')}
+function continueLatest(){
+  const d=orders.filter(o=>o.status==='draft').sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt))[0];
+  if(!d)return newOrder();
+  openOrder(d.id);
 }
-document.getElementById('homeButton').onclick=()=>go('home');
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
-document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
-document.getElementById('archiveSearch').oninput=e=>{archiveQuery=e.target.value;renderArchive()};
-function save(){localStorage.setItem('doneProto',JSON.stringify(S));renderAll()}
-
 function renderHome(){
- homeGreeting.textContent=`Ciao, ${currentOperator()}.`;
- const pending=S.batches.filter(b=>Number(b.toProduce)>0);
- mBatch.textContent=pending.length;
- mBottle.textContent=pending.reduce((n,b)=>n+Number(b.toProduce||0),0);
- homeBatch.innerHTML=C.map(cat=>{
-   const rows=pending.filter(b=>b.category===cat);
-   if(!rows.length)return '';
-   return `<div class="cat"><div class="cat-title">${esc(cat)}</div>${rows.map(b=>{
-      const i=S.batches.indexOf(b);
-      return `<div class="home-batch-task">
-        <div class="home-batch-task-top">
-          <div><strong>${esc(b.name)}</strong><div class="meta">${b.available} disponibili · minimo ${b.minimum}</div></div>
-          <div class="qty">${b.toProduce}</div>
-        </div>
-        ${b.productionNote?`<div class="production-note">${esc(b.productionNote)}</div>`:''}
-        <div class="home-batch-actions">
-          <button class="home-batch-confirm" onclick="completeBatch(${i})">✓ SEGNA COME FATTO</button>
-          <button class="home-batch-remove" onclick="dismissBatchReminder(${i})">RIMUOVI</button>
-        </div>
-      </div>`;
-   }).join('')}</div>`;
- }).join('')||'<div class="empty">Nessun batch da produrre.</div>';
- const n=S.notes.filter(x=>x.star&&!x.done);
- homeNotes.innerHTML=n.map(x=>`<div class="note"><div><div class="note-title">★ ${esc(x.title)}</div><div class="note-text">${esc(x.text)}</div><div class="meta">${esc(x.author)} · ${esc(x.date)}</div></div></div>`).join('')||'<div class="empty">Nessuna nota in evidenza.</div>';
- homeDrafts.innerHTML=S.orderDrafts.length?S.orderDrafts.map(d=>`<div class="order draft-card"><div class="order-top"><div><strong>${esc(d.type)}</strong><div class="meta">${esc(d.operator||'Operatore')} · ${esc(d.updatedLabel||'adesso')}</div></div><span class="badge">BOZZA</span></div><div class="actions"><button class="btn black" onclick="resumeOrder('${d.id}')">CONTINUA</button></div></div>`).join(''):'<div class="empty">Nessun ordine in sospeso.</div>';
- homeOrders.innerHTML=S.orders.filter(o=>o.status==='Inviato').slice(0,3).map(o=>`<div class="order"><div class="order-top"><div><strong>${esc(o.category)}</strong><div class="meta">${esc(o.date)} · ${esc(o.operator)}</div></div><span class="badge">INVIATO</span></div></div>`).join('')||'<div class="empty">Nessun ordine condiviso.</div>';
+  const drafts=orders.filter(o=>o.status==='draft');
+  const sent=orders.filter(o=>o.status!=='draft');
+  const activeRem=reminders.filter(r=>!r.done);
+  document.getElementById('homeMetrics').innerHTML=
+    `<div class="metric"><b>${drafts.length}</b><span>Bozze</span></div>
+     <div class="metric"><b>${sent.length}</b><span>Inviati</span></div>
+     <div class="metric"><b>${activeRem.length}</b><span>Promemoria</span></div>`;
+  const latestDraft=drafts.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt))[0];
+  document.getElementById('continueMeta').textContent=latestDraft?`Ultima modifica ${new Date(latestDraft.updatedAt).toLocaleString('it-IT')}`:'Nessuna bozza disponibile';
+  document.getElementById('homeOrders').innerHTML=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).slice(0,4).map(orderCard).join('')||`<div class="empty">Nessun ordine salvato.</div>`;
+  document.getElementById('homeReminders').innerHTML=activeRem.slice(0,3).map(reminderCard).join('')||`<div class="empty">Nessun promemoria attivo.</div>`;
+  refreshHeader();
 }
-function renderBatch(){
- const root=document.getElementById('batchManager');
- if(!activeBatchCategory){
-   root.innerHTML=`<div class="batch-launcher-grid">${C.map((cat,i)=>{
-      const items=S.batches.filter(b=>b.category===cat);
-      const alerts=items.filter(b=>Number(b.available)<Number(b.minimum)).length;
-      const production=items.reduce((n,b)=>n+Number(b.toProduce||0),0);
-      return `<button class="batch-launcher" onclick="openBatchCategory(${i})">${esc(cat).toUpperCase()}<small>${items.length} batch · ${production} da produrre${alerts?` · ${alerts} sotto soglia`:''}</small></button>`;
-   }).join('')}</div>`;
-   return;
- }
- const list=S.batches.filter(b=>b.category===activeBatchCategory);
- root.innerHTML=`<div class="batch-toolbar"><div><p>Categoria</p><h2>${esc(activeBatchCategory)}</h2></div><button class="batch-back" onclick="closeBatchCategory()">← CATEGORIE</button></div>
- ${list.map(b=>{
-   const i=S.batches.indexOf(b);
-   const low=Number(b.available)<Number(b.minimum);
-   return `<div class="batch-edit-row">
-    <div class="batch-edit-head">
-      <div><div class="batch-edit-name">${esc(b.name)}</div><div class="meta">${esc(b.recipe||'Ricetta non associata')}</div></div>
-      <span class="batch-production-badge ${Number(b.toProduce)===0?'zero':''}">${Number(b.toProduce)===0?'NESSUNA PRODUZIONE':b.toProduce+' DA PRODURRE'}</span>
-    </div>
-    ${low?`<div class="batch-alert">⚠ GIACENZA SOTTO IL MINIMO: ${b.available} disponibili, minimo ${b.minimum}</div>`:''}
-    <div class="batch-fields">
-      <div><label>GIACENZA ATTUALE</label><input type="number" min="0" value="${b.available}" onchange="setBatchValue(${i},'available',this.value,true)"></div>
-      <div><label>DA PRODURRE</label><input type="number" min="0" value="${b.toProduce}" onchange="setBatchValue(${i},'toProduce',this.value,false)"></div>
-      <div><label>SOGLIA MINIMA</label><input type="number" min="0" value="${b.minimum}" onchange="setBatchValue(${i},'minimum',this.value,true)"></div>
-    </div>
-    <div class="batch-production-note">
-      <label>NOTA DI PRODUZIONE</label>
-      <textarea placeholder="Es. Preparare entro le 18, usare bottiglie nere…" onchange="setBatchNote(${i},this.value)">${esc(b.productionNote||'')}</textarea>
-    </div>
-    <div class="actions"><button class="recipe-btn" onclick="openRecipe('${esc(b.recipe)}',${b.toProduce||1})">APRI RICETTA</button></div>
-   </div>`;
- }).join('')||'<div class="empty">Nessun batch associato a questa categoria.</div>'}
- <div class="batch-save-note">Le modifiche vengono salvate automaticamente nel dispositivo.</div>`;
+function renderEditor(){
+  document.getElementById('editorEyebrow').textContent=current.status==='draft'?'Ordine in lavorazione':'Modifica ordine inviato';
+  document.getElementById('editorTitle').textContent=current.status==='draft'?'Seleziona i prodotti':'Modifica e reinvia';
+  const pending=current.visited.filter(c=>!current.confirmed.includes(c));
+  document.getElementById('categoryWarning').innerHTML=pending.length?`<div class="card"><div class="card-title">Categorie da confermare</div><div class="meta">${pending.map(esc).join(', ')}</div></div>`:'';
+  document.getElementById('categoryGrid').innerHTML=categories().map(c=>{
+    const ps=products.filter(p=>p.active&&(p.category||'SENZA CATEGORIA')===c);
+    const n=ps.filter(p=>current.items[p.id]>0).length;
+    const visited=current.visited.includes(c),confirmed=current.confirmed.includes(c);
+    return `<button class="category ${n?'selected ':''}${confirmed?'confirmed':visited?'pending':''}" onclick="openCategory('${js(c)}')">
+      <strong>${esc(c)}</strong><span>${ps.length} prodotti${n?' · '+n+' scelti':''}</span>
+      <div class="category-state">${confirmed?'CONFERMATA':visited?'DA CONFERMARE':'APRI'}</div>
+    </button>`;
+  }).join('');
+  refreshHeader();
 }
-window.openBatchCategory=i=>{activeBatchCategory=C[i];renderBatch();scrollTo(0,0)};
-window.closeBatchCategory=()=>{activeBatchCategory=null;renderBatch();scrollTo(0,0)};
-window.setBatchValue=(i,field,value,checkMinimum)=>{
- const b=S.batches[i];
- if(!b)return;
- b[field]=Math.max(0,Number(value)||0);
- localStorage.setItem('doneProto',JSON.stringify(S));
- renderAll();
- if(checkMinimum && Number(b.available)<Number(b.minimum)){
-   alert(`${b.name}: giacenza sotto il minimo.\nDisponibili: ${b.available}\nMinimo impostato: ${b.minimum}`);
- }
-};
-window.setBatchNote=(i,value)=>{
- const b=S.batches[i];if(!b)return;
- b.productionNote=String(value||"").trim();
- localStorage.setItem('doneProto',JSON.stringify(S));
-};
-window.completeBatch=i=>{
- const b=S.batches[i];
- if(!b||Number(b.toProduce)<=0)return;
- const made=Number(b.toProduce);
- if(!confirm(`Confermi che sono state prodotte ${made} bottiglie di ${b.name}?`))return;
- const note=b.productionNote||"";
- b.available=Number(b.available||0)+made;
- b.toProduce=0;
- b.productionNote="";
- logActivity("batch_complete",`Produzione completata: ${b.name}`,`${made} bottiglie${note?` · Nota: ${note}`:""}`);
- save();
-};
-window.dismissBatchReminder=i=>{
- const b=S.batches[i];
- if(!b||Number(b.toProduce)<=0)return;
- const removed=Number(b.toProduce);
- if(!confirm(`Rimuovere il promemoria di ${b.name} senza registrare la produzione?`))return;
- b.toProduce=0;
- b.productionNote="";
- logActivity("batch_dismiss",`Promemoria rimosso: ${b.name}`,`${removed} bottiglie previste, non registrate come prodotte`);
- save();
-};
-function renderNotes(){notesList.innerHTML=S.notes.map((n,i)=>`<div class="note ${n.done?'done':''}"><div><div class="note-title">${esc(n.title)}</div><div class="note-text">${esc(n.text)}</div><div class="meta">${esc(n.author)} · ${esc(n.date)}</div></div><div class="note-actions"><button class="icon ${n.star?'active':''}" onclick="star(${i})">★</button><button class="icon ${n.done?'active':''}" onclick="done(${i})">✓</button></div></div>`).join('')}
-window.star=i=>{S.notes[i].star=!S.notes[i].star;save()};
-window.done=i=>{S.notes[i].done=!S.notes[i].done;logActivity("note_status",`${S.notes[i].done?'Appunto completato':'Appunto riaperto'}: ${S.notes[i].title}`);save()};
-addNote.onclick=()=>{
- const t=noteTitle.value.trim();if(!t)return alert('Inserisci un titolo');
- S.notes.unshift({title:t,text:noteText.value.trim(),author:currentOperator(),star:noteStar.checked,done:false,date:'adesso'});
- logActivity("note_add",`Nuovo appunto: ${t}`,noteText.value.trim());
- noteTitle.value='';noteText.value='';noteStar.checked=false;save()
-};
-function archiveTypeOptions(){return ['Tutti','Spirits','Vini','Birre','Spezie']}
-function renderArchive(){
- const filters=document.getElementById('archiveFilters');
- if(filters)filters.innerHTML=archiveTypeOptions().map(x=>`<button class="archive-filter ${archiveFilter===x?'active':''}" onclick="setArchiveFilter('${x}')">${x}</button>`).join('');
- const q=archiveQuery.trim().toLowerCase();
- const rows=S.orders.filter(o=>o.status==='Inviato').filter(o=>archiveFilter==='Tutti'||o.category===archiveFilter).filter(o=>!q||[o.category,o.date,o.operator].join(' ').toLowerCase().includes(q));
- archiveList.innerHTML=rows.map(o=>{const i=S.orders.findIndex(x=>x.id===o.id);return`<div class="order"><div class="order-top"><div><div class="archive-type">${esc(o.category)}</div><div class="meta archive-date">${esc(o.date)} · ${esc(o.operator)} · ${Number(o.items||0)} prodotti</div></div><span class="badge">INVIATO</span></div><div class="actions archive-actions"><button class="btn light" onclick="toggleArchivedOrder('${o.id}')">APRI</button><button class="btn black" onclick="editArchivedOrder('${o.id}')">MODIFICA</button><button class="btn archive-delete" onclick="deleteArchivedOrder('${o.id}')">ELIMINA</button></div><div class="archive-detail" id="archive-detail-${o.id}"><div class="order-preview">${esc(o.text||'Dettaglio non disponibile per questo vecchio ordine.')}</div></div></div>`}).join('')||'<div class="archive-empty-filter">Nessun ordine inviato corrisponde ai filtri.</div>'
+function openCategory(c){
+  activeCategory=c;
+  if(!current.visited.includes(c))current.visited.push(c);
+  current.confirmed=current.confirmed.filter(x=>x!==c);
+  document.getElementById('catTitle').textContent=c;
+  document.getElementById('catSearch').value='';
+  renderCategory();
+  document.getElementById('categoryModal').classList.add('open');
+  renderEditor();
 }
-window.setArchiveFilter=x=>{archiveFilter=x;renderArchive()};
-window.toggleArchivedOrder=id=>{const el=document.getElementById('archive-detail-'+id);if(el)el.classList.toggle('show')};
-window.deleteArchivedOrder=id=>{const o=S.orders.find(x=>x.id===id);if(!o)return;if(!confirm(`Eliminare definitivamente l’ordine ${o.category} del ${o.date}?`))return;S.orders=S.orders.filter(x=>x.id!==id);save();};
-window.editArchivedOrder=id=>{const o=S.orders.find(x=>x.id===id);if(!o)return;if(o.snapshot){currentOrder=JSON.parse(JSON.stringify(o.snapshot));currentOrder.archiveId=o.id}else{currentOrder=freshOrder(o.category);currentOrder.archiveId=o.id;currentOrder.operator=o.operator||currentOperator();currentOrder.notes='Ordine storico importato. Controllare e reinserire le quantità prima di salvare le modifiche.'}go('neworder');renderOrderWizard();showOrderPane('orderWizard')};
-window.showArchivedOrder=i=>{const o=S.orders[i];if(o)toggleArchivedOrder(o.id)};
-let currentOrder=null,activeOrderCategory=0;
-function freshOrder(type){return{id:'ord'+Date.now(),type,operator:currentOperator(),notes:'',visited:{},quantities:{},units:{},created:new Date().toISOString(),updatedLabel:'adesso'}}
-function showOrderPane(name){['orderLauncher','orderWizard','orderCategoryDetail','orderPreviewWrap'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==name))}
-document.querySelectorAll('.cat-btn').forEach(b=>b.onclick=()=>startOrder(b.dataset.cat));
-window.startOrder=type=>{currentOrder=freshOrder(type);renderOrderWizard();showOrderPane('orderWizard')};
-window.resumeOrder=id=>{const d=S.orderDrafts.find(x=>x.id===id);if(!d)return;currentOrder=JSON.parse(JSON.stringify(d));go('neworder');renderOrderWizard();showOrderPane('orderWizard')};
-function renderOrderWizard(){const c=orderCatalog[currentOrder.type],total=c.categories.length,done=c.categories.filter((_,i)=>currentOrder.visited[i]).length;orderWizard.innerHTML=`<div class="order-toolbar"><div><p>${currentOrder.archiveId?'Modifica ordine inviato':'Nuovo ordine'}</p><h2>${esc(c.label)}</h2></div><button class="order-back" onclick="cancelOrderView()">← CATEGORIE</button></div><div class="order-progress"><div style="width:${total?done/total*100:0}%"></div></div><div class="meta">${done} / ${total} categorie controllate</div><div class="panel">${c.categories.map((cat,i)=>`<button class="order-category" onclick="openOrderCategory(${i})"><span><strong>${esc(cat.name)}</strong><small>${cat.items.length} articoli</small></span><span class="order-state ${currentOrder.visited[i]?'done':'new'}">${currentOrder.visited[i]?'✓ CONTROLLATA':'○ MAI APERTA'}</span></button>`).join('')}</div><div class="form"><label>Operatore</label><input id="orderOperator" value="${esc(currentOrder.operator)}"><label>Note generali</label><textarea id="orderNotesField" placeholder="Indicazioni per il fornitore">${esc(currentOrder.notes)}</textarea><div class="actions">${currentOrder.archiveId?'':`<button class="btn light" onclick="saveOrderDraft()">SALVA BOZZA</button>`}<button class="btn black" onclick="attemptOrderConfirm()">CONFERMA ORDINE</button></div></div>`}
-window.cancelOrderView=()=>{if(currentOrder&&currentOrder.archiveId){go('archive')}else showOrderPane('orderLauncher');currentOrder=null};
-window.openOrderCategory=i=>{activeOrderCategory=i;renderOrderCategory();showOrderPane('orderCategoryDetail')};
-function renderOrderCategory(){const c=orderCatalog[currentOrder.type],cat=c.categories[activeOrderCategory];let filters='',items=cat.items;if(currentOrder.type==='Spezie'){const suppliers=[...new Set(cat.items.map(x=>x.supplier))];filters=`<div class="form order-filter-grid"><div><label>Macro</label><select disabled><option>${esc(cat.name)}</option></select></div><div><label>Fornitore</label><select id="supplierFilter"><option value="">Tutti</option>${suppliers.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div></div>`}orderCategoryDetail.innerHTML=`<div class="order-toolbar"><div><p>${esc(c.label)}</p><h2>${esc(cat.name)}</h2></div><button class="order-back" onclick="backToOrderWizard()">← INDIETRO</button></div>${filters}<div class="panel" id="orderProducts"></div><button class="btn black" style="width:100%;margin-top:13px" onclick="confirmOrderCategory()">CONFERMA CATEGORIA</button>`;if(currentOrder.type==='Spezie')supplierFilter.onchange=renderOrderProducts;renderOrderProducts()}
-function orderItemObj(raw){return typeof raw==='string'?{name:raw,unit:currentOrder.type==='Birre'?'fusti':currentOrder.type==='Vini'?'bottiglie':'bottiglie'}:raw}
-function renderOrderProducts(){const cat=orderCatalog[currentOrder.type].categories[activeOrderCategory];let items=cat.items;if(currentOrder.type==='Spezie'&&supplierFilter.value)items=items.filter(x=>x.supplier===supplierFilter.value);orderProducts.innerHTML=items.map(raw=>{const o=orderItemObj(raw),key=activeOrderCategory+'|'+o.name,q=Number(currentOrder.quantities[key]||0);currentOrder.units[key]=o.unit;return`<div class="order-product"><div><div class="order-product-name">${esc(o.name)}</div><div class="order-product-meta">${o.supplier?esc(o.supplier)+' · ':''}${esc(o.unit)}</div></div><div class="order-qty"><button onclick="changeOrderQty('${encodeURIComponent(key)}',-1)">−</button><input type="number" min="0" value="${q}" onchange="setOrderQty('${encodeURIComponent(key)}',this.value)"><button onclick="changeOrderQty('${encodeURIComponent(key)}',1)">+</button></div></div>`}).join('')||'<div class="empty">Nessun prodotto.</div>'}
-window.changeOrderQty=(encoded,d)=>{const key=decodeURIComponent(encoded);currentOrder.quantities[key]=Math.max(0,Number(currentOrder.quantities[key]||0)+d);renderOrderProducts()};
-window.setOrderQty=(encoded,v)=>{const key=decodeURIComponent(encoded);currentOrder.quantities[key]=Math.max(0,Number(v)||0)};
-window.backToOrderWizard=()=>{renderOrderWizard();showOrderPane('orderWizard')};
-window.confirmOrderCategory=()=>{currentOrder.visited[activeOrderCategory]=true;renderOrderWizard();showOrderPane('orderWizard')};
-function syncOrderFields(){currentOrder.operator=(document.getElementById('orderOperator')?.value||'Simone').trim()||'Simone';currentOrder.notes=(document.getElementById('orderNotesField')?.value||'').trim();currentOrder.updatedLabel='adesso'}
-window.saveOrderDraft=()=>{syncOrderFields();const i=S.orderDrafts.findIndex(x=>x.id===currentOrder.id);if(i>=0)S.orderDrafts[i]=JSON.parse(JSON.stringify(currentOrder));else S.orderDrafts.unshift(JSON.parse(JSON.stringify(currentOrder)));save();alert('Bozza salvata e visibile nella Home.');go('home')};
-window.attemptOrderConfirm=()=>{syncOrderFields();const c=orderCatalog[currentOrder.type],missing=c.categories.filter((_,i)=>!currentOrder.visited[i]).map(x=>x.name);if(missing.length){orderMissingText.innerHTML=`Non hai ancora aperto:<br><br><strong>${missing.map(esc).join('<br>')}</strong><br><br>Vuoi continuare comunque?`;orderMissingAlert.classList.add('show')}else renderOrderPreview()};
-orderAlertBack.onclick=()=>orderMissingAlert.classList.remove('show');orderAlertContinue.onclick=()=>{orderMissingAlert.classList.remove('show');renderOrderPreview()};
-function orderSelectedLines(){const c=orderCatalog[currentOrder.type],lines=[];c.categories.forEach((cat,i)=>cat.items.forEach(raw=>{const o=orderItemObj(raw),key=i+'|'+o.name,q=Number(currentOrder.quantities[key]||0);if(q<=0)return;let line;if(currentOrder.type==='Vini'){const boxes=Math.floor(q/6),loose=q%6,parts=[];if(boxes)parts.push(`${boxes} ${boxes===1?'cassa':'casse'}`);if(loose)parts.push(`${loose} ${loose===1?'bottiglia':'bottiglie'}`);line=`${o.name}: ${parts.join(' + ')} (${q} bottiglie)`}else if(currentOrder.type==='Birre')line=`${o.name}: ${q} ${q===1?'fusto':'fusti'}`;else line=`${o.name}: ${q} ${o.unit}`;lines.push({category:cat.name,line})}));return lines}
-function buildOrderText(){const lines=orderSelectedLines();let out=`ORDINE ${currentOrder.type.toUpperCase()}\nOperatore: ${currentOrder.operator}\nData: ${new Date().toLocaleString('it-IT')}\n`;let last='';lines.forEach(x=>{if(last!==x.category){out+=`\n${x.category.toUpperCase()}\n`;last=x.category}out+=`- ${x.line}\n`});if(!lines.length)out+='\nNessun articolo con quantità superiore a zero.\n';if(currentOrder.notes)out+=`\nNOTE\n${currentOrder.notes}\n`;return out.trim()}
-function renderOrderPreview(){orderPreviewWrap.innerHTML=`<div class="order-toolbar"><div><p>Anteprima ordine</p><h2>${esc(currentOrder.type)}</h2></div><button class="order-back" onclick="backToOrderWizard()">← MODIFICA</button></div><div class="order-preview" id="finalOrderText">${esc(buildOrderText())}</div><div class="form"><div class="actions"><button class="btn light" onclick="copyOrderText()">COPIA TESTO</button><button class="btn light" onclick="printOrderPdf()">ESPORTA PDF</button></div><button class="btn black" style="width:100%;margin-top:10px" onclick="markOrderShared()">${currentOrder.archiveId?'SALVA MODIFICHE':'HO CONDIVISO L\'ORDINE'}</button><p class="meta" style="margin-top:10px">${currentOrder.archiveId?'L’ordine resterà nello storico con i dati aggiornati.':'Passa in archivio soltanto dopo questa conferma.'}</p></div>`;showOrderPane('orderPreviewWrap')}
-window.copyOrderText=async()=>{try{await navigator.clipboard.writeText(buildOrderText());alert('Testo copiato.')}catch(e){alert('Copia automatica non disponibile: seleziona il testo dell’anteprima.')}};
-window.printOrderPdf=()=>{const w=window.open('','_blank');w.document.write(`<html><head><title>Ordine ${esc(currentOrder.type)}</title><style>body{font-family:Arial;padding:40px;white-space:pre-wrap;line-height:1.5}h1{font-size:24px}
-/* ARCHIVIO V2.4 */
-.archive-tools{background:#fff;border-radius:20px;padding:15px;margin-top:16px}.archive-filters{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.archive-filter{border:0;background:var(--soft);padding:9px 12px;font-size:11px;font-weight:900;white-space:nowrap}.archive-filter.active{background:#000;color:#fff}.archive-search{margin-top:10px}.archive-type{font-size:20px;font-weight:900}.archive-date{margin-top:4px}.archive-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:13px}.archive-actions .btn{padding:11px 8px}.archive-detail{display:none;margin-top:13px}.archive-detail.show{display:block}.archive-delete{background:#f9e6e6;color:#a31515}.archive-editing{background:#fff4d8;color:#7a5700}.archive-empty-filter{text-align:center;color:var(--muted);padding:28px 10px}
-@media(max-width:520px){.archive-actions{grid-template-columns:1fr 1fr}.archive-actions .archive-delete{grid-column:1/-1}}
-</style></head><body><h1>ORDINI D.ONE</h1>${esc(buildOrderText())}</body></html>`);w.document.close();w.print()};
-window.markOrderShared=()=>{const lines=orderSelectedLines(),now=new Date(),record={id:currentOrder.archiveId||('arch'+Date.now()),date:now.toLocaleDateString('it-IT',{day:'2-digit',month:'long',year:'numeric'})+' · '+now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),category:currentOrder.type,items:lines.length,status:'Inviato',operator:currentOrder.operator,text:buildOrderText(),snapshot:JSON.parse(JSON.stringify({...currentOrder,archiveId:undefined}))};S.orderDrafts=S.orderDrafts.filter(x=>x.id!==currentOrder.id);if(currentOrder.archiveId){const i=S.orders.findIndex(x=>x.id===currentOrder.archiveId);if(i>=0)S.orders[i]=record;else S.orders.unshift(record)}else S.orders.unshift(record);save();alert(currentOrder.archiveId?'Modifiche salvate nell’archivio.':'Ordine archiviato come condiviso.');go('archive');showOrderPane('orderLauncher');currentOrder=null};
-function recipeNum(value){
- const n=Number(value);
- if(!Number.isFinite(n))return value;
- return Math.round(n*100)/100;
+function renderCategory(){
+  const q=document.getElementById('catSearch').value.toLowerCase();
+  const ps=products.filter(p=>p.active&&(p.category||'SENZA CATEGORIA')===activeCategory&&p.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'it'));
+  document.getElementById('catMeta').textContent=ps.length+' prodotti';
+  document.getElementById('catProducts').innerHTML=ps.map(p=>`<div class="card light product-row">
+    <div><div class="product-name">${esc(p.name)}</div><div class="meta">${esc(p.format||'Formato non indicato')} · ${esc(unit(p.unitCode))}</div></div>
+    <div class="stepper"><button onclick="changeQty('${js(p.id)}',-1)">−</button><input inputmode="numeric" value="${Number(current.items[p.id]||0)}" onchange="setQty('${js(p.id)}',this.value)"><button onclick="changeQty('${js(p.id)}',1)">+</button></div>
+  </div>`).join('');
 }
-function scaledRecipeValue(value,multiplier){
- return recipeNum(Number(value)*multiplier);
+function changeQty(id,d){setQty(id,Number(current.items[id]||0)+d)}
+function setQty(id,v){
+  v=Math.max(0,parseInt(v)||0);
+  if(v)current.items[id]=v;else delete current.items[id];
+  current.confirmed=current.confirmed.filter(c=>c!==activeCategory);
+  renderCategory();refreshHeader();
 }
-function recipeDisplayNumber(value){
- return String(recipeNum(value)).replace('.',',');
+function confirmCategory(){
+  if(!current.confirmed.includes(activeCategory))current.confirmed.push(activeCategory);
+  closeModal('categoryModal');renderEditor();
 }
-function recipeIngredientRows(items,multiplier){
- return items.map((x,index)=>`<div class="recipe-table-row">
-   <span>${esc(x[0])}</span>
-   <strong class="js-recipe-value" data-base="${Number(x[1])}" data-unit="${esc(x[2])}">${recipeDisplayNumber(Number(x[1])*multiplier)} ${esc(x[2])}</strong>
- </div>`).join('');
+function renderReview(){
+  const a=selected(),t=totals(),pending=current.visited.filter(c=>!current.confirmed.includes(c));
+  let h=`<div class="total-box"><div class="meta">TOTALE NETTO</div><div class="big">${euro(t.net)}</div><div class="meta">${t.units} unità · ${t.count} prodotti</div></div>`;
+  if(pending.length)h+=`<div class="card"><div class="card-title">Non puoi completare l'ordine</div><div class="meta">Conferma prima: ${pending.map(esc).join(', ')}</div></div>`;
+  if(a.length)h+=`<div class="card light">${a.map(p=>`<div class="order-line"><div><b>${esc(p.name)}</b><div class="meta">${p.qty} ${esc(unit(p.unitCode))} · ${esc(p.format||'')}</div></div><div style="text-align:right"><b>${euro(p.price*p.qty)}</b><div class="meta">IVA ${p.vat}%</div></div></div>`).join('')}</div>`;
+  else h+=`<div class="empty">Nessun prodotto selezionato.</div>`;
+  h+=`<div class="card light"><div class="order-line"><span>Imponibile</span><b>${euro(t.net)}</b></div><div class="order-line"><span>IVA</span><b>${euro(t.vat)}</b></div><div class="order-line"><span>Totale</span><b>${euro(t.gross)}</b></div></div>
+  <div class="field"><label>Note ordine</label><textarea id="orderNote">${esc(current.note||'')}</textarea></div>
+  <div class="actions"><button class="btn dark" onclick="saveCurrent('draft')">Salva</button><button class="btn blue" onclick="sendCurrent()" ${(!a.length||pending.length)?'disabled':''}>${current.status==='draft'?'Completa e condividi':'Salva e ricondividi'}</button></div>
+  <div style="height:8px"></div><button class="btn red full" onclick="resetCurrent()">Azzera ordine</button>`;
+  document.getElementById('reviewContent').innerHTML=h;refreshHeader();
 }
-function flashRecipeNumber(el){
- el.classList.remove('recipe-number-flash');
- void el.offsetWidth;
- el.classList.add('recipe-number-flash');
+function snapshot(status){
+  current.note=document.getElementById('orderNote')?.value??current.note;
+  const t=totals();
+  return{id:current.id,createdAt:current.createdAt,updatedAt:new Date().toISOString(),status,note:current.note,visited:current.visited,confirmed:current.confirmed,revision:current.revision||0,items:selected().map(p=>({id:p.id,name:p.name,format:p.format,unitCode:p.unitCode,qty:p.qty,price:p.price,vat:p.vat})),totals:t}
 }
-function updateRecipeNumbers(){
- const r=operationalRecipes[activeRecipeName];
- if(!r)return;
- const wanted=Math.max(1,Number(desiredRecipeBatches)||1);
- const multiplier=wanted/r.yield;
- const volume=Math.round(r.finalVolume*multiplier);
- const litres=(volume/1000).toFixed(volume%1000===0?0:2).replace('.',',');
- const oneL=Math.ceil(volume/1000);
- const bottles700=Math.ceil(volume/700);
-
- const input=document.getElementById('desiredRecipeBatches');
- if(input && Number(input.value)!==wanted)input.value=wanted;
-
- document.querySelectorAll('.js-recipe-value').forEach(el=>{
-   const next=`${recipeDisplayNumber(Number(el.dataset.base)*multiplier)} ${el.dataset.unit}`;
-   if(el.textContent!==next){el.textContent=next;flashRecipeNumber(el)}
- });
- const dynamic={
-   recipeMultiplier:`×${multiplier.toFixed(2).replace('.',',')}`,
-   recipeVolume:`${litres} L`,
-   recipeOneL:String(oneL),
-   recipeSevenHundred:String(bottles700)
- };
- Object.entries(dynamic).forEach(([id,value])=>{
-   const el=document.getElementById(id);
-   if(el && el.textContent!==value){el.textContent=value;flashRecipeNumber(el)}
- });
+function saveCurrent(status){
+  const s=snapshot(status),i=orders.findIndex(o=>o.id===s.id);
+  if(i>=0)orders[i]=s;else orders.unshift(s);
+  save(KEY.orders,orders);
+  current={...s,items:Object.fromEntries(s.items.map(x=>[x.id,x.qty]))};
+  alert('Ordine salvato.');go('orders');
 }
-function renderRecipes(){
- const root=document.getElementById('recipeManager');
- if(!root)return;
- if(!activeRecipeCategory){
-   root.innerHTML=`<div class="recipe-category-grid">${recipeCategories.map((cat,i)=>{
-     const count=Object.values(operationalRecipes).filter(r=>r.category===cat).length;
-     return `<button class="recipe-category-btn" onclick="openRecipeCategory(${i})">${esc(cat).toUpperCase()}<small>${count?count+' ricette operative':'Sezione pronta per le ricette'}</small></button>`;
-   }).join('')}</div>`;
-   return;
- }
- if(!activeRecipeName){
-   const names=Object.keys(operationalRecipes).filter(n=>operationalRecipes[n].category===activeRecipeCategory);
-   root.innerHTML=`<div class="recipe-screen-head"><div><p>Sezione</p><h2>${esc(activeRecipeCategory)}</h2></div><button class="recipe-back" onclick="closeRecipeCategory()">← MACROCATEGORIE</button></div>
-   <div class="recipe-list">${names.map(n=>`<button class="recipe-list-btn" onclick="showOperationalRecipe('${esc(n)}')"><strong>${esc(n)}</strong><span>›</span></button>`).join('')||'<div class="empty">Nessuna ricetta ancora inserita in questa sezione.</div>'}</div>`;
-   return;
- }
- const r=operationalRecipes[activeRecipeName];
- if(!r){activeRecipeName=null;renderRecipes();return}
- const wanted=Math.max(1,Number(desiredRecipeBatches)||1);
- const multiplier=wanted/r.yield;
- const volume=Math.round(r.finalVolume*multiplier);
- const litres=(volume/1000).toFixed(volume%1000===0?0:2).replace('.',',');
- const oneL=Math.ceil(volume/1000);
- const bottles700=Math.ceil(volume/700);
- root.innerHTML=`<div class="recipe-screen-head"><div><p>Ricetta operativa</p><h2>${esc(activeRecipeName)}</h2></div><button class="recipe-back" onclick="backToRecipeList()">← LISTA</button></div>
- <div class="recipe-hero">
-   <p>${esc(r.category)}</p>
-   <h2>${esc(activeRecipeName)}</h2>
-   <div class="recipe-yield">1× = ${r.yield} batch · resa indicativa ${r.finalVolume} ml</div>
- </div>
- <div class="recipe-multiplier">
-   <label for="desiredRecipeBatches">Batch da preparare</label>
-   <div class="recipe-multiplier-grid">
-     <button type="button" aria-label="Riduci batch" onclick="changeDesiredBatches(-1)">−</button>
-     <input id="desiredRecipeBatches" inputmode="numeric" type="number" min="1" value="${wanted}" aria-label="Numero di batch">
-     <button type="button" aria-label="Aumenta batch" onclick="changeDesiredBatches(1)">+</button>
-   </div>
-   <div class="recipe-summary">
-     <div><span class="meta">Moltiplicatore</span><strong id="recipeMultiplier">×${multiplier.toFixed(2).replace('.',',')}</strong></div>
-     <div><span class="meta">Volume stimato</span><strong id="recipeVolume">${litres} L</strong></div>
-     <div><span class="meta">Bottiglie da 1 L</span><strong id="recipeOneL">${oneL}</strong></div>
-     <div><span class="meta">Bottiglie da 700 ml</span><strong id="recipeSevenHundred">${bottles700}</strong></div>
-   </div>
- </div>
- <div class="recipe-sheet">
-   <div class="recipe-columns">
-     <div><div class="recipe-sheet-title">Parte liquida</div>${recipeIngredientRows(r.liquid,multiplier)}</div>
-     <div><div class="recipe-sheet-title">Parte solida</div>${recipeIngredientRows(r.solid,multiplier)}</div>
-   </div>
- </div>
- <div class="recipe-sheet">
-   <div class="recipe-sheet-title">Tempi cotture e infusioni</div>
-   <div class="recipe-time">${r.time.map(t=>`<div><span>${esc(t[0])}</span><strong>${esc(t[1])}</strong></div>`).join('')}</div>
- </div>
- <div class="recipe-sheet">
-   <div class="recipe-sheet-title">Modalità</div>
-   <div class="recipe-steps">${r.steps.map(s=>`<div class="recipe-step"><div>${esc(s)}</div></div>`).join('')}</div>
- </div>
- ${r.secondary?`<div class="recipe-sheet">
-   <div class="recipe-sheet-title">${esc(r.secondary.title)}</div>
-   ${recipeIngredientRows(r.secondary.ingredients,multiplier)}
-   <div class="recipe-steps">${r.secondary.steps.map(s=>`<div class="recipe-step"><div>${esc(s)}</div></div>`).join('')}</div>
-   <div class="recipe-secondary">${esc(r.secondary.note)}</div>
- </div>`:''}
- <div class="recipe-serve">
-   <h3>How to serve</h3>
-   ${r.serve.map(x=>`<div class="recipe-serve-row"><span>${esc(x[0])}</span><strong>${typeof x[1]==='number'?scaledRecipeValue(x[1],1)+' '+esc(x[2]):esc(x[1])}</strong></div>`).join('')}
- </div>
- <div class="recipe-note">${esc(r.notes)}</div>
- <div class="recipe-user-notes">
-   <div class="recipe-sheet-title">Note libere della ricetta</div>
-   <label for="recipeFreeNotes">Visibili a tutti gli utenti quando il database sarà collegato</label>
-   <textarea id="recipeFreeNotes" placeholder="Aggiungi correzioni, accorgimenti operativi o altre note…">${esc(S.recipeNotes[activeRecipeName]||"")}</textarea>
-   <div class="recipe-note-actions">
-     <span id="recipeNoteFeedback" class="saved-feedback"></span>
-     <button class="btn black" type="button" onclick="saveRecipeNote()">SALVA NOTE</button>
-   </div>
- </div>`;
-
- const input=document.getElementById('desiredRecipeBatches');
- if(input){
-   input.addEventListener('input',()=>{
-     desiredRecipeBatches=Math.max(1,Number(input.value)||1);
-     updateRecipeNumbers();
-   });
-   input.addEventListener('blur',()=>{
-     desiredRecipeBatches=Math.max(1,Number(input.value)||1);
-     input.value=desiredRecipeBatches;
-     updateRecipeNumbers();
-   });
- }
-}
-window.saveRecipeNote=()=>{
- if(!activeRecipeName)return;
- const input=document.getElementById('recipeFreeNotes');
- const text=(input?.value||"").trim();
- S.recipeNotes[activeRecipeName]=text;
- logActivity("recipe_note",`Note ricetta aggiornate: ${activeRecipeName}`,text);
- localStorage.setItem('doneProto',JSON.stringify(S));
- const feedback=document.getElementById('recipeNoteFeedback');
- if(feedback){
-  feedback.textContent="Salvato";
-  setTimeout(()=>{if(feedback)feedback.textContent=""},1400);
- }
-};
-window.openRecipeCategory=i=>{activeRecipeCategory=recipeCategories[i];activeRecipeName=null;renderRecipes();scrollTo(0,0)};
-window.closeRecipeCategory=()=>{activeRecipeCategory=null;activeRecipeName=null;renderRecipes();scrollTo(0,0)};
-window.showOperationalRecipe=name=>{activeRecipeName=name;desiredRecipeBatches=operationalRecipes[name]?.yield||1;renderRecipes();scrollTo(0,0)};
-window.backToRecipeList=()=>{activeRecipeName=null;renderRecipes();scrollTo(0,0)};
-window.setDesiredBatches=value=>{desiredRecipeBatches=Math.max(1,Number(value)||1);updateRecipeNumbers()};
-window.changeDesiredBatches=delta=>{
- desiredRecipeBatches=Math.max(1,(Number(desiredRecipeBatches)||1)+delta);
- updateRecipeNumbers();
-};
-window.openRecipe=(name,q)=>{
- go('recipes');
- const op=operationalRecipes[name];
- if(op){
-   activeRecipeCategory=op.category;
-   activeRecipeName=name;
-   desiredRecipeBatches=Math.max(1,Number(q)||op.yield);
- }else{
-   activeRecipeCategory=recipeCategories.find(cat=>cat===S.batches.find(b=>b.recipe===name)?.category)||null;
-   activeRecipeName=null;
- }
- renderRecipes();
-};
-
-
-function renderHistory(){
- const root=document.getElementById('historyList');
- if(!root)return;
- const logs=S.activityLog||[];
- if(!logs.length){root.innerHTML='<div class="empty">Nessuna attività registrata.</div>';return}
- const groups={};
- logs.forEach(x=>{(groups[x.date]||(groups[x.date]=[])).push(x)});
- root.innerHTML=Object.entries(groups).map(([date,items])=>`<div class="history-day">
-  <div class="history-day-title">${esc(date)}</div>
-  ${items.map(x=>`<div class="history-item">
-   <div class="history-avatar">${esc((x.user||'?').slice(0,1).toUpperCase())}</div>
-   <div><div class="history-title">${esc(x.title)}</div><div class="history-detail">${esc(x.user)}${x.detail?` · ${esc(x.detail)}`:""}</div></div>
-   <div class="history-time">${esc(x.time||"")}</div>
-  </div>`).join("")}
- </div>`).join("");
-}
-document.getElementById('clearHistoryButton').onclick=()=>{
- if(!confirm("Svuotare tutto lo storico attività locale?"))return;
- S.activityLog=[];
- save();
- go('history');
-};
-function applyCurrentUser(){
- const avatar=document.getElementById('userMenuButton');
- avatar.textContent=(currentUser?.name||"?").slice(0,1).toUpperCase();
- avatar.setAttribute('aria-label',`Profilo ${currentOperator()}`);
- document.getElementById('popoverUserName').textContent=currentOperator();
- document.getElementById('popoverUserRole').textContent=currentUser?.role||"";
- renderAll();
-}
-function showLogin(){
- document.getElementById('loginScreen').hidden=false;
- document.querySelector('.app').setAttribute('aria-hidden','true');
- document.querySelector('.nav').setAttribute('aria-hidden','true');
- setTimeout(()=>document.getElementById('loginUsername').focus(),0);
-}
-function hideLogin(){
- document.getElementById('loginScreen').hidden=true;
- document.querySelector('.app').removeAttribute('aria-hidden');
- document.querySelector('.nav').removeAttribute('aria-hidden');
-}
-document.getElementById('loginForm').addEventListener('submit',e=>{
- e.preventDefault();
- const username=document.getElementById('loginUsername').value.trim().toLowerCase();
- const password=document.getElementById('loginPassword').value;
- const user=(S.users||[]).find(u=>u.active!==false&&u.username.toLowerCase()===username&&u.password===password);
- if(!user){
-  document.getElementById('loginError').textContent="Utente o password non corretti.";
-  return;
- }
- currentUser={name:user.name,username:user.username,role:user.role};
- const storage=document.getElementById('rememberLogin').checked?localStorage:sessionStorage;
- localStorage.removeItem('doneCurrentUser');
- sessionStorage.removeItem('doneCurrentUser');
- storage.setItem('doneCurrentUser',JSON.stringify(currentUser));
- document.getElementById('loginError').textContent="";
- hideLogin();
- applyCurrentUser();
- logActivity("login","Accesso all’app");
- localStorage.setItem('doneProto',JSON.stringify(S));
- go("home");
-});
-document.getElementById('userMenuButton').onclick=e=>{
- e.stopPropagation();
- const pop=document.getElementById('userPopover');
- pop.hidden=!pop.hidden;
-};
-document.addEventListener('click',e=>{
- const pop=document.getElementById('userPopover');
- if(!pop.hidden&&!pop.contains(e.target)&&e.target.id!=='userMenuButton')pop.hidden=true;
-});
-document.getElementById('openHistoryButton').onclick=()=>{
- document.getElementById('userPopover').hidden=true;
- go('history');
-};
-document.getElementById('logoutButton').onclick=()=>{
- logActivity("logout","Uscita dall’app");
- localStorage.setItem('doneProto',JSON.stringify(S));
- localStorage.removeItem('doneCurrentUser');
- sessionStorage.removeItem('doneCurrentUser');
- currentUser=null;
- document.getElementById('userPopover').hidden=true;
- document.getElementById('loginPassword').value="";
- showLogin();
-};
-function initializeAuth(){
- const raw=localStorage.getItem('doneCurrentUser')||sessionStorage.getItem('doneCurrentUser');
- if(raw){
+async function sendCurrent(){
+  current.revision=(current.revision||0)+(current.status==='draft'?0:1);
+  const status=current.status==='draft'?'sent':'revised';
+  const s=snapshot(status),i=orders.findIndex(o=>o.id===s.id);
+  if(i>=0)orders[i]=s;else orders.unshift(s);
+  save(KEY.orders,orders);
+  const text=orderText(s);
   try{
-   const cached=JSON.parse(raw);
-   const user=(S.users||[]).find(u=>u.active!==false&&u.username===cached.username);
-   if(user){
-    currentUser={name:user.name,username:user.username,role:user.role};
-    hideLogin();
-    applyCurrentUser();
-    go("home");
-    return;
-   }
+    if(navigator.share)await navigator.share({title:'Ordine D.ONE',text});
+    else{await navigator.clipboard.writeText(text);alert('Ordine copiato negli appunti.')}
   }catch(e){}
- }
- showLogin();
+  current=blankOrder();go('orders');
 }
-function renderAll(){renderHome();renderBatch();renderNotes();renderArchive();renderRecipes();renderHistory()}
-renderAll();
-initializeAuth();
+function orderText(o){
+  return `ORDINE D.ONE — ${new Date(o.updatedAt).toLocaleString('it-IT')}\n\n`+
+  o.items.map(i=>`• ${i.name}: ${i.qty} ${unit(i.unitCode)}${i.format?' ('+i.format+')':''}`).join('\n')+
+  `\n\nTotale netto: ${euro(o.totals.net)}\nIVA: ${euro(o.totals.vat)}\nTotale: ${euro(o.totals.gross)}${o.note?'\n\nNote: '+o.note:''}`;
+}
+function resetCurrent(){if(confirm('Azzero tutto l’ordine?')){current=blankOrder();go('editor')}}
+function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders()}
+function renderOrders(){
+  const q=(document.getElementById('orderSearch')?.value||'').toLowerCase();
+  let list=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
+  if(filter!=='all')list=list.filter(o=>filter==='draft'?o.status==='draft':o.status!=='draft');
+  list=list.filter(o=>[o.note,new Date(o.updatedAt).toLocaleString('it-IT'),...o.items.map(i=>i.name)].join(' ').toLowerCase().includes(q));
+  document.getElementById('ordersList').innerHTML=list.map(orderCard).join('')||`<div class="empty">Nessun ordine trovato.</div>`;
+}
+function orderCard(o){
+  return `<div class="card"><div class="card-row"><div><div class="card-title">${new Date(o.updatedAt).toLocaleString('it-IT')}</div><div class="meta">${o.items.length} prodotti · ${o.totals.units} unità · ${euro(o.totals.net)}</div></div><span class="badge ${o.status}">${o.status==='draft'?'BOZZA':o.status==='revised'?'MODIFICATO':'INVIATO'}</span></div>
+  <div class="actions three" style="margin-top:11px"><button class="btn dark" onclick="openOrder('${js(o.id)}')">Apri</button><button class="btn dark" onclick="shareOrder('${js(o.id)}')">Condividi</button><button class="btn red" onclick="deleteOrder('${js(o.id)}')">Elimina</button></div></div>`;
+}
+function openOrder(id){
+  const o=orders.find(x=>x.id===id);if(!o)return;
+  current={...o,items:Object.fromEntries(o.items.map(i=>[i.id,i.qty])),visited:o.visited||[],confirmed:o.confirmed||[]};
+  go('editor');
+}
+async function shareOrder(id){
+  const o=orders.find(x=>x.id===id);if(!o)return;
+  const text=orderText(o);
+  if(navigator.share)try{await navigator.share({title:'Ordine D.ONE',text})}catch{}
+  else{await navigator.clipboard.writeText(text);alert('Ordine copiato.')}
+}
+function deleteOrder(id){if(confirm('Eliminare questo ordine?')){orders=orders.filter(o=>o.id!==id);save(KEY.orders,orders);renderOrders();renderHome()}}
 
-</script></body></html>
+function renderProducts(){
+  const q=(document.getElementById('productSearch')?.value||'').toLowerCase();
+  document.getElementById('productsList').innerHTML=products.filter(p=>[p.name,p.category,p.originalName].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'it')).map(p=>`<div class="card"><div class="card-row"><div><div class="card-title">${esc(p.name||'Senza nome')}</div><div class="meta">${esc(p.category)} · ${esc(p.format||'Formato n/d')} · ${esc(unit(p.unitCode))}</div><div class="meta">${euro(p.price)} netto · IVA ${p.vat}%${p.active?'':' · DISATTIVO'}</div></div><button class="btn dark" onclick="openProduct('${js(p.id)}')">Modifica</button></div></div>`).join('');
+}
+function openProduct(id=''){
+  const p=products.find(x=>x.id===id);
+  document.getElementById('productModalTitle').textContent=p?'Modifica prodotto':'Nuovo prodotto';
+  document.getElementById('pId').value=p?.id||'';
+  document.getElementById('pName').value=p?.name||'';
+  document.getElementById('pOriginal').value=p?.originalName||'';
+  document.getElementById('pFormat').value=p?.format||'';
+  document.getElementById('pCategory').value=p?.category||'';
+  document.getElementById('pUnit').value=p?.unitCode||'';
+  document.getElementById('pPrice').value=p?.price??'';
+  document.getElementById('pVat').value=p?.vat??'';
+  document.getElementById('pNotes').value=p?.notes||'';
+  document.getElementById('pActive').checked=p?.active??true;
+  document.getElementById('deleteProductBtn').style.display=p?'block':'none';
+  document.getElementById('productModal').classList.add('open');
+}
+function saveProduct(){
+  let id=document.getElementById('pId').value||'NEW-'+Date.now();
+  const p={id,name:document.getElementById('pName').value.trim(),originalName:document.getElementById('pOriginal').value.trim(),format:document.getElementById('pFormat').value.trim(),category:document.getElementById('pCategory').value.trim()||'SENZA CATEGORIA',unitCode:document.getElementById('pUnit').value,price:Number(document.getElementById('pPrice').value||0),vat:Number(document.getElementById('pVat').value||0),notes:document.getElementById('pNotes').value.trim(),active:document.getElementById('pActive').checked};
+  const i=products.findIndex(x=>x.id===id);if(i>=0)products[i]=p;else products.push(p);
+  save(KEY.products,products);closeModal('productModal');renderProducts();renderEditor();
+}
+function deleteProduct(){
+  const id=document.getElementById('pId').value;
+  if(id&&confirm('Eliminare il prodotto?')){products=products.filter(p=>p.id!==id);save(KEY.products,products);closeModal('productModal');renderProducts();}
+}
+
+function openReminder(id=''){
+  const r=reminders.find(x=>x.id===id);
+  document.getElementById('reminderModalTitle').textContent=r?'Modifica promemoria':'Nuovo promemoria';
+  document.getElementById('rId').value=r?.id||'';
+  document.getElementById('rTitle').value=r?.title||'';
+  document.getElementById('rText').value=r?.text||'';
+  document.getElementById('rDue').value=r?.due||'';
+  document.getElementById('rPriority').value=r?.priority||'normal';
+  document.getElementById('reminderModal').classList.add('open');
+}
+function saveReminder(){
+  const id=document.getElementById('rId').value||'REM-'+Date.now();
+  const old=reminders.find(x=>x.id===id);
+  const r={id,title:document.getElementById('rTitle').value.trim()||'Promemoria',text:document.getElementById('rText').value.trim(),due:document.getElementById('rDue').value,priority:document.getElementById('rPriority').value,done:old?.done||false,createdAt:old?.createdAt||new Date().toISOString()};
+  const i=reminders.findIndex(x=>x.id===id);if(i>=0)reminders[i]=r;else reminders.unshift(r);
+  save(KEY.reminders,reminders);closeModal('reminderModal');renderBoard();renderHome();
+}
+function reminderCard(r){
+  return `<div class="card reminder-card ${r.done?'done':''}"><div class="card-row"><div><div class="card-title">${esc(r.title)}</div><div class="meta">${r.due?'Scade '+new Date(r.due+'T12:00').toLocaleDateString('it-IT'):'Nessuna scadenza'}${r.text?' · '+esc(r.text):''}</div></div><span class="badge ${r.priority}">${r.priority==='high'?'ALTA':'NORMALE'}</span></div>
+  <div class="actions three" style="margin-top:11px"><button class="btn dark" onclick="toggleReminder('${js(r.id)}')">${r.done?'Riapri':'Fatto'}</button><button class="btn dark" onclick="openReminder('${js(r.id)}')">Modifica</button><button class="btn red" onclick="deleteReminder('${js(r.id)}')">Elimina</button></div></div>`;
+}
+function renderBoard(){document.getElementById('reminderList').innerHTML=reminders.slice().sort((a,b)=>Number(a.done)-Number(b.done)||(b.priority==='high')-(a.priority==='high')).map(reminderCard).join('')||`<div class="empty">Bacheca vuota.</div>`}
+function toggleReminder(id){const r=reminders.find(x=>x.id===id);if(r)r.done=!r.done;save(KEY.reminders,reminders);renderBoard();renderHome()}
+function deleteReminder(id){if(confirm('Eliminare il promemoria?')){reminders=reminders.filter(r=>r.id!==id);save(KEY.reminders,reminders);renderBoard();renderHome()}}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
+renderHome();refreshHeader();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body>
+</html>

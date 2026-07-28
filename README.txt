@@ -1,41 +1,27 @@
-ORDINI D.ONE — V2.8 FEATURE COMPLETE
+D.ONE ORDINI — V1.0
 
-Questa è l’ultima release offline prima del Database v1.0 e del collegamento a Google Sheets.
+CONTENUTO
+- index.html
+- logo-DONE-white.png
+- manifest.webmanifest
+- sw.js
 
-CREDENZIALI DEMO
-- Simone / done123
-- Vanessa / done123
-- Marco / done123
+FUNZIONI
+- Logo D.ONE originale integrato nella testata
+- Grafica navy uniforme, senza gradienti evidenti
+- Contrasto elevato con testi bianchi e titoli bold
+- Nuovo ordine e ripresa dell’ultima bozza dalla Home
+- Categorie e prodotti importati dall’Excel
+- Conferma obbligatoria delle categorie visitate
+- Bozze e ordini inviati nello stesso archivio
+- Riapertura, modifica e reinvio degli ordini già inviati
+- Prezzi, IVA e conto economico dell’ordine
+- Catalogo prodotti modificabile
+- Inserimento di nuovi prodotti
+- Bacheca promemoria con scadenza e priorità
+- Condivisione tramite menu nativo del telefono
+- Funzionamento offline dopo il primo caricamento
+- Migrazione automatica dei dati locali delle versioni precedenti
 
-FUNZIONI NUOVE
-- Login con username e password.
-- Opzione “Ricorda l’accesso” sul dispositivo.
-- Logout dal menu utente.
-- Supporto multiutente offline.
-- Nome dell’utente utilizzato per appunti, ordini e storico.
-- Conferma dei promemoria batch direttamente dalla Home.
-- Rimozione di un promemoria senza registrare la produzione.
-- Nota di produzione modificabile nella sezione Batch e visibile in Home.
-- Note libere permanenti sotto ogni ricetta.
-- Storico attività accessibile dal menu utente.
-- Registrazione di produzioni, promemoria rimossi, note, accessi e uscite.
-- Logo D.ONE sempre visibile.
-- Tutte le funzioni precedenti della V2.7 mantenute.
-
-IMPORTANTE SULLA PASSWORD
-Questa è una demo HTML offline: utenti e password sono salvati nel codice locale e non costituiscono
-un sistema di sicurezza adatto alla pubblicazione su Internet. Nella versione collegata al Database v1.0
-il login dovrà essere gestito lato server / Apps Script, con password non leggibili nel foglio e sessioni sicure.
-
-DATI LOCALI
-Le modifiche vengono salvate nel localStorage del browser. Dispositivi diversi non condividono ancora
-gli stessi dati: la sincronizzazione multiutente reale arriverà con il collegamento a Google Sheets.
-
-PROSSIMO PASSAGGIO
-D.ONE DATABASE v1.0:
-- file Excel importabile in Google Sheets;
-- struttura completa e protetta;
-- foglio utenti;
-- ordini, batch, produzioni, ricette, note, log;
-- predisposizione magazzino;
-- manuale passo passo.
+NOTA
+I dati sono salvati nel browser del singolo dispositivo. Per sincronizzare più telefoni serve un database condiviso.
