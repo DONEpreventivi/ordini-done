@@ -507,248 +507,6 @@ header.app-header .app-title-block{
   }
 }
 
-
-/* V1.9 — prezzi mancanti e database local-first */
-.price-missing{color:var(--red)!important;font-weight:900}
-.missing-price-box{
-  background:#35161d;border:1px solid #71303a;color:#ff9da3;
-  border-radius:15px;padding:12px 13px;margin-bottom:10px
-}
-.sync-panel{margin-top:18px}
-.sync-status{
-  display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
-  background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:14px
-}
-.sync-dot{width:11px;height:11px;border-radius:50%;background:var(--warning);display:inline-block;margin-right:7px}
-.sync-dot.ok{background:var(--green)}
-.sync-dot.error{background:var(--red)}
-.sync-details{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.45}
-.share-choice{
-  display:flex;align-items:center;gap:10px;background:var(--panel);
-  border:1px solid var(--line);border-radius:14px;padding:12px 13px
-}
-.share-choice input{width:21px;height:21px;accent-color:var(--blue)}
-.badge.shared{color:#8ed6ff;border:1px solid var(--blue)}
-.badge.personal{color:#c2cad7;border:1px solid #53647c}
-.partial-total{color:var(--red);font-weight:900}
-
-
-/* V1.10 — CHECK: elenco scorrevole e barra azioni sempre ferma */
-body.check-detail-open{
-  overflow:hidden;
-  overscroll-behavior:none;
-}
-
-body.check-detail-open main{
-  height:calc(100dvh - 100px - 70px);
-  min-height:0;
-  overflow:hidden;
-  padding-bottom:0;
-}
-
-#checkDetail.active{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  min-height:0;
-  overflow:hidden;
-}
-
-#checkDetail .back-link,
-#checkDetail .eyebrow,
-#checkDetail h1,
-#checkDetail > .sub,
-#checkDetail #checkProgress{
-  flex:0 0 auto;
-}
-
-#checkDetail #checkItems{
-  flex:1 1 auto;
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  padding:2px 1px 14px;
-  scrollbar-gutter:stable;
-}
-
-#checkDetail .check-actions{
-  position:relative;
-  bottom:auto;
-  flex:0 0 auto;
-  z-index:8;
-  margin:0 -15px;
-  padding:10px 15px calc(10px + env(safe-area-inset-bottom));
-  background:var(--bg);
-  border-top:1px solid var(--line);
-  box-shadow:0 -12px 24px rgba(0,0,0,.22);
-}
-
-@media(max-width:390px){
-  body.check-detail-open main{
-    height:calc(100dvh - 100px - 70px);
-  }
-
-  #checkDetail .check-actions{
-    margin-left:-12px;
-    margin-right:-12px;
-    padding-left:12px;
-    padding-right:12px;
-  }
-}
-
-
-/* V1.11 — CATALOGO e BACHECA con liste scorrevoli indipendenti */
-body.catalog-open,
-body.board-open{
-  overflow:hidden;
-  overscroll-behavior:none;
-}
-
-body.catalog-open main,
-body.board-open main{
-  height:calc(100dvh - 100px - 70px);
-  min-height:0;
-  overflow:hidden;
-  padding-bottom:0;
-}
-
-#catalog.active,
-#board.active{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  min-height:0;
-  overflow:hidden;
-}
-
-#catalog > .eyebrow,
-#catalog > h1,
-#catalog > .sub,
-#catalog > .search,
-#catalog > button,
-#catalog > div:not(#productsList),
-#board > .eyebrow,
-#board > h1,
-#board > .sub,
-#board > button,
-#board > div:not(#reminderList){
-  flex:0 0 auto;
-}
-
-#productsList,
-#reminderList{
-  flex:1 1 auto;
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  padding:2px 1px calc(14px + env(safe-area-inset-bottom));
-  scrollbar-gutter:stable;
-}
-
-/* Piccola ombra per separare i controlli fissi dalla lista */
-#catalog > div[style*="height:12px"],
-#board > div[style*="height:12px"]{
-  position:relative;
-  z-index:2;
-  box-shadow:0 10px 18px rgba(5,15,29,.20);
-}
-
-@media(max-width:390px){
-  body.catalog-open main,
-  body.board-open main{
-    height:calc(100dvh - 100px - 70px);
-  }
-}
-
-
-/* V1.13 — Sincronizzazione come primo elemento della Home */
-.home-sync-card{
-  margin:0 0 18px;
-  padding:14px;
-  border-radius:18px;
-  border:1px solid rgba(91,152,220,.36);
-  background:linear-gradient(180deg,rgba(22,48,80,.98),rgba(12,31,54,.98));
-  box-shadow:0 10px 28px rgba(0,0,0,.18);
-}
-
-.home-sync-content{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:12px;
-  align-items:center;
-}
-
-.home-sync-copy{
-  min-width:0;
-}
-
-.home-sync-heading{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:15px;
-}
-
-.home-sync-card .sync-details{
-  margin-top:4px;
-  line-height:1.35;
-}
-
-.home-sync-button{
-  min-width:118px;
-  white-space:nowrap;
-}
-
-.home-sync-footer{
-  margin-top:8px;
-}
-
-.sync-config-link{
-  appearance:none;
-  border:0;
-  padding:0;
-  background:transparent;
-  color:#9db7d5;
-  font:inherit;
-  font-size:11px;
-  text-decoration:underline;
-  cursor:pointer;
-}
-
-.sync-progress{
-  margin-top:11px;
-  padding-top:10px;
-  border-top:1px solid rgba(255,255,255,.10);
-  font-size:12px;
-  line-height:1.55;
-}
-
-.sync-progress .working{color:#a9d7ff}
-.sync-progress .done{color:#91dfa9}
-.sync-progress .error{color:#ff9ca4}
-
-.home-sync-card.is-syncing{
-  pointer-events:none;
-}
-
-.home-sync-card.is-syncing .home-sync-button{
-  opacity:.72;
-}
-
-@media(max-width:390px){
-  .home-sync-content{
-    grid-template-columns:1fr;
-  }
-
-  .home-sync-button{
-    width:100%;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -764,24 +522,7 @@ body.board-open main{
 </header>
 
 <main>
-
 <section id="home" class="view active">
-  <div class="home-sync-card">
-    <div class="home-sync-content">
-      <div class="home-sync-copy">
-        <div class="home-sync-heading">
-          <span id="syncDot" class="sync-dot"></span>
-          <strong id="syncLabel">Dati solo locali</strong>
-        </div>
-        <div id="syncDetails" class="sync-details">Premi Sincronizza per allineare il database.</div>
-      </div>
-      <button id="syncMainButton" class="btn blue home-sync-button" onclick="syncAll()">Sincronizza</button>
-    </div>
-    <div class="home-sync-footer">
-      <button class="sync-config-link" onclick="openSyncSettings()">Configura collegamento</button>
-    </div>
-    <div id="syncProgress" class="sync-progress" hidden></div>
-  </div>
   <div class="eyebrow">Pannello operativo</div>
   <h1>Ordini</h1>
   <p class="sub">Crea, riprendi e consulta tutto da un unico punto.</p>
@@ -790,6 +531,14 @@ body.board-open main{
     <button class="primary-action" onclick="newOrder()"><strong>Nuovo ordine</strong><span>Inizia da zero</span></button>
     <button class="row-action" id="continueBtn" onclick="continueLatest()"><strong>Continua ultimo ordine</strong><span id="continueMeta">Nessuna bozza disponibile</span></button>
   </div>
+
+  <div class="section-head"><h2>Protezione dati</h2></div>
+  <div class="actions" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn blue" onclick="exportLocalBackup()">Esporta backup</button>
+    <button class="btn dark" onclick="document.getElementById('backupRestoreFile').click()">Ripristina backup</button>
+  </div>
+  <input id="backupRestoreFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreLocalBackup(event)">
+  <p class="sub" style="font-size:12px">Backup completo sul dispositivo, senza server. Conserva il file JSON nell’app File.</p>
 
   <div class="section-head"><h2>Riepilogo</h2></div>
   <div id="homeMetrics" class="summary-grid"></div>
@@ -906,20 +655,7 @@ body.board-open main{
     <div class="field"><label>Scadenza</label><input id="rDue" type="date"></div>
     <div class="field"><label>Priorità</label><select id="rPriority"><option value="normal">Normale</option><option value="high">Alta</option></select></div>
   </div>
-  <label class="share-choice"><input id="rShared" type="checkbox"><span><strong>Condividi con tutti</strong><br><span class="meta">Se disattivato, il promemoria resta solo su questo dispositivo.</span></span></label>
-  <div style="height:10px"></div>
   <button class="btn blue full" onclick="saveReminder()">Salva promemoria</button>
-</div></div>
-
-
-<div id="syncModal" class="modal"><div class="sheet">
-  <div class="sheet-head"><h2>Database condiviso</h2><button class="close" onclick="closeModal('syncModal')">×</button></div>
-  <p class="sub">L’app resta sempre locale. Il server viene contattato soltanto quando premi Sincronizza dalla Home.</p>
-  <div class="field"><label>Indirizzo API</label><input id="syncEndpoint" placeholder="./server/api.php"></div>
-  <div class="field"><label>Chiave di accesso</label><input id="syncToken" type="password" placeholder="Inserisci la chiave del server"></div>
-  <button class="btn blue full" onclick="saveSyncSettings()">Salva configurazione</button>
-  <div style="height:8px"></div>
-  <button class="btn dark full" onclick="testServer()">Verifica collegamento</button>
 </div></div>
 
 <div id="productModal" class="modal"><div class="sheet">
@@ -945,48 +681,13 @@ body.board-open main{
 
 <script>
 const INITIAL_PRODUCTS=[{"id": "2765", "originalName": "42 BELOW VODKA PURE 100 CL", "format": "100 cl", "name": "Vodka 42 Below", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0726", "originalName": "ACQUA BRILLANTE 20 CL", "format": "20 cl", "name": "Acqua Brillante", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2913", "originalName": "AMARO CAMATTI 70 CL", "format": "70 cl", "name": "Camatti", "category": "AMARI", "unitCode": "PZ", "price": 12.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0178", "originalName": "AMARO MONTENEGRO 70 CL", "format": "70 cl", "name": "Montenegro", "category": "AMARI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0290", "originalName": "APEROL LT", "format": "100 cl", "name": "Aperol", "category": "APERITIVI", "unitCode": "PZ", "price": 10.58, "vat": 22.0, "notes": "", "active": true}, {"id": "3275", "originalName": "ARIA VELLUTO SHAKE", "format": "", "name": "Aria e velluto", "category": "ACCESSORI", "unitCode": "PZ", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0247", "originalName": "BACARDI CARTA BLANCA1 LT", "format": "100 cl", "name": "Bacardi bianco", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1564", "originalName": "BACARDI RESERVA GOLD ORO LT", "format": "100 cl", "name": "Bacardi scuro", "category": "SCIROPPI", "unitCode": "PZ", "price": 13.39, "vat": 22.0, "notes": "", "active": true}, {"id": "0514", "originalName": "BESO CONCENTRATO DI AGAVE CL 75", "format": "75 cl", "name": "Sciroppo d'agave", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0662", "originalName": "BITTER ANGOSTURA 200 ML", "format": "20 cl", "name": "Angostura bitter", "category": "ACCESSORI", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3221", "originalName": "BITTER MARTINI APERITIVO Lt. 1 ** NEW", "format": "100 cl", "name": "Martini Bitter", "category": "BITTER", "unitCode": "PZ", "price": 10.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0561", "originalName": "BULLEIT BOURBON WHISKY 70 CL", "format": "70 cl", "name": "Bulleit Bourbon", "category": "SPIRITS", "unitCode": "PZ", "price": 16.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0294", "originalName": "BULLEIT RYE WHISKY 70 cl", "format": "70 cl", "name": "Bulleit Rye", "category": "SPIRITS", "unitCode": "PZ", "price": 24.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0406", "originalName": "CACHACA VELHO BARREIRO LT", "format": "100 cl", "name": "Velho Barreiro", "category": "SPIRITS", "unitCode": "PZ", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0255", "originalName": "CAMPARI BITTER 1 LT", "format": "100 cl", "name": "Campari", "category": "BITTER", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2000", "originalName": "CANNUCCE CARTA BIO RIGIDE CM 20", "format": "", "name": "Cannucce carta nere", "category": "ACCESSORI", "unitCode": "PZ", "price": 3.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2735", "originalName": "CAZADORES REPOSADO 70 CL", "format": "70 cl", "name": "Cazadores reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 15.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2686", "originalName": "CAZADORES SILVER 70 CL", "format": "70 cl", "name": "Cazadores silver", "category": "SPIRITS", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0428", "originalName": "CEDRATA TASSONI CL 18", "format": "18 cl", "name": "Cedrata Tassoni", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0590", "originalName": "CHINA MARTINI CL 70", "format": "70 cl", "name": "China Martini", "category": "AMARI", "unitCode": "PZ", "price": 10.56, "vat": 22.0, "notes": "", "active": true}, {"id": "1132", "originalName": "CHOYA EXTRA SHISO ROSSO", "format": "70 cl", "name": "Choya Extra shiso rosso", "category": "LIQUORI", "unitCode": "PZ", "price": 22.45, "vat": 22.0, "notes": "", "active": true}, {"id": "0087", "originalName": "COCA COLA BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0460", "originalName": "COCA COLA ZERO BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola Zero", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0566", "originalName": "COCCHI DOPO TEATRO AMARO CL 75", "format": "75 cl", "name": "Cocchi dopo teatro", "category": "VERMOUTH", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0203", "originalName": "DISARONNO 70 CL", "format": "70 cl", "name": "Disaronno ", "category": "LIQUORI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "2754", "originalName": "FOGLIE DI MANDARINO 50 ML", "format": "5 cl", "name": "Essenza foglie di mandarino", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1871", "originalName": "GERMANA UMBURANA 70 CL", "format": "70 cl", "name": "Germana Umburana", "category": "SPIRITS", "unitCode": "PZ", "price": 14.55, "vat": 22.0, "notes": "", "active": true}, {"id": "G5501", "originalName": "GIFFARD LIQUORE CREME DE BANANE", "format": "70 cl ", "name": "Liquore banana Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 10.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0416", "originalName": "GIFFARD LIQUORE PREMIUM MANDARINE", "format": "70 cl", "name": "Liquore mandarino Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0397", "originalName": "GIFFARD SIROP DE BITTER CL 100", "format": "100 cl", "name": "Bitter analcolico", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0612", "originalName": "GIFFARD SIROP DE FLEUR DE SUREAU LT", "format": "100 cl", "name": "Sciroppo fiori di sambuco Giffard", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1172", "originalName": "GIN BOMBAY LONDON DRY LT PROMO", "format": "100 cl", "name": "Bombay Dry", "category": "SPIRITS", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0360", "originalName": "GIN CITADELLE 70 CL", "format": "70 cl", "name": "Citadelle", "category": "SPIRITS", "unitCode": "PZ", "price": 22.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0177", "originalName": "GIN HENDRICK'S 70 CL", "format": "70 cl", "name": "Hendrick's", "category": "SPIRITS", "unitCode": "PZ", "price": 24.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0081", "originalName": "GIN MAHON XORIGUER 70 CL", "format": "70 cl", "name": "Mahon Xoriguer", "category": "SPIRITS", "unitCode": "PZ", "price": 17.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1910", "originalName": "GIN MARCONI 42 CL 70", "format": "70 cl", "name": "Marconi 42", "category": "SPIRITS", "unitCode": "PZ", "price": 24.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3251", "originalName": "GIN MARE 70 CL NEW**", "format": "70 cl", "name": "Gin Mare", "category": "SPIRITS", "unitCode": "PZ", "price": 25.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0577", "originalName": "GIN MARTIN MILLERS CL 70", "format": "70 cl", "name": "Martin Millers", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1400", "originalName": "GIN SUNTORY ROKU 70 CL", "format": "70 cp", "name": "Roku", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1062", "originalName": "GINGER BEER FEVER TREE cl 20 *24", "format": "20 cl", "name": "Ginger beer Fever Tree", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2187", "originalName": "GOLDBERG BONE DRY TONIC 0.20l", "format": "20 cl", "name": "Goldberg Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.5, "vat": 22.0, "notes": "", "active": true}, {"id": "2357", "originalName": "GOLDBERG MEDITERRANEA TONIC 20CL", "format": "20 cl", "name": "Goldberg Mediterranea Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3369", "originalName": "GOLDBERG MEDITERRANEA TONIC LATTINA *24 PROMO", "format": "15 cl", "name": "Goldberg Mediterranea - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.48, "vat": 22.0, "notes": "", "active": true}, {"id": "3425", "originalName": "J. GASCO DRY BITTER TONIC 20X12", "format": "20 cl", "name": "Gasco Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.45, "vat": 22.0, "notes": "", "active": true}, {"id": "1315", "originalName": "J. GASCO PREMIUM GINGER ROSSO *24", "format": "20 cl", "name": "Ginger rosso Gasco", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1296", "originalName": "KAPRIOL GIN MT. POMPELMO 70 CL", "format": "70 cl", "name": "Kapriol pompelmo", "category": "SPIRITS", "unitCode": "PZ", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2079", "originalName": "LATTE MANDORLE FABBRI LT", "format": "100 cl", "name": "Sciroppo latte di mandorle", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "0219", "originalName": "LEMON SODA .BT CL 20 CL *24", "format": "20 cl", "name": "Lemon soda", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0827", "originalName": "MARTINI BIANCO LT", "format": "100 cl", "name": "Martini Bianco", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0266", "originalName": "MARTINI EXTRA DRY L.1", "format": "100 cl", "name": "Martini Extra Dry", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2710", "originalName": "MARTINI NON ALCOHLIC FLOREALE 75 CL", "format": "75 cl", "name": "Martini Floreale", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2709", "originalName": "MARTINI RISERVA SPECIALE AMBRATO 70 CL", "format": "75", "name": "Martini RS Ambrato", "category": "VERMOUTH", "unitCode": "PZ", "price": 11.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2712", "originalName": "MARTINI RISERVA SPECIALE BITTER PREMIUM 70", "format": "70 cl", "name": "Martini Bitter Riserva", "category": "BITTER", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2315", "originalName": "MARTINI RISERVA SPECIALE RUBINO 75 CL", "format": "75 cl", "name": "Martini RS Rubino", "category": "VERMOUTH", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3225", "originalName": "MARTINI ROSSO VERMOUTH LT", "format": "100 cl", "name": "Martini Rosso", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2711", "originalName": "MARTINI VIBRANTE 75 CL", "format": "75 cl", "name": "Martini Vibrante", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1665", "originalName": "MEZCAL AMORES VERDE MOMENTO", "format": "70 cl", "name": "Mezcal Amores Verde", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0248", "originalName": "MINI SPIEDI REMO COCKTAIL BAMBOO CM 15 1", "format": "", "name": "Remi cocktail", "category": "ACCESSORI", "unitCode": "PZ", "price": 1.55, "vat": 22.0, "notes": "", "active": true}, {"id": "1213", "originalName": "PORTO SANDEMAN WHITE CL.75", "format": "75 cl", "name": "Porto bianco", "category": "LIQUORI", "unitCode": "PZ", "price": 8.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0466", "originalName": "QUAGLIA AL BERGAMOTTO", "format": "70 cl", "name": "Liquore bergamotto Quaglia", "category": "LIQUORI", "unitCode": "PZ", "price": 14.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0150", "originalName": "RUM ABUELO 7 Y CL 70", "format": "70 cl", "name": "Abuelo 7", "category": "SPIRITS", "unitCode": "PZ", "price": 20.58, "vat": 22.0, "notes": "", "active": true}, {"id": "2220", "originalName": "RUM BLACKWELL JAMAICAN 40% 70 CL", "format": "70 cl", "name": "Blackwell", "category": "SPIRITS", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0598", "originalName": "RUM PLANTATION ORIGINAL DARK 70 CL", "format": "70 cl", "name": "Planteray Original Dark", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3305", "originalName": "RUM PLANTERAY O.F.T.D OVERPPROFF 70 CL", "format": "70 cl", "name": "Planteray Overproof", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2011", "originalName": "RUM VERITAS WHITE BLENDED 70 CL", "format": "70 cl", "name": "Veritas", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0479", "originalName": "SAINT GERMAIN CL 70", "format": "70 cl", "name": "Saint Germain", "category": "LIQUORI", "unitCode": "PZ", "price": 26.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0164", "originalName": "SAMBUCA MOLINARI LT", "format": "100 cl", "name": "Sambuca Molinari", "category": "AMARI", "unitCode": "PZ", "price": 16.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0186", "originalName": "SAN SIMONE 70 CL", "format": "70 cl", "name": "San Simone", "category": "AMARI", "unitCode": "PZ", "price": 11.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2794", "originalName": "SCIROPPO CEDRO TASSONI 720 ML", "format": "72 cl", "name": "Sciroppo Cedro Tassoni", "category": "SCIROPPI", "unitCode": "PZ", "price": 6.85, "vat": 22.0, "notes": "", "active": true}, {"id": "1428", "originalName": "SELECT LT", "format": "100 cl", "name": "Select", "category": "APERITIVI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2753", "originalName": "SHERRY OSBORNE BAILEN 75 CL", "format": "75 cl", "name": "Sherry Oloroso", "category": "LIQUORI", "unitCode": "PZ", "price": 13.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2382", "originalName": "STECCONI SPIEDO 15 CM *1000", "format": "", "name": "Stecconi spiedo", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0477", "originalName": "SUCCO POMODORO CIRIO 200 ML*24", "format": "20 cl", "name": "Succo pomodoro", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1535", "originalName": "TABERNERO PISCO PURO ACHOLADO 70 CL", "format": "70 cl", "name": "Pisco Tabernero Alcholado", "category": "SPIRITS", "unitCode": "PZ", "price": 21.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0756", "originalName": "TEQUILA CUERVO REPOSADO LT", "format": "100 cl", "name": "Tequila Cuervo Reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 16.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0496", "originalName": "THE NEW TEA SPIRIT T", "format": "70 cl", "name": "Liquore T+", "category": "LIQUORI", "unitCode": "PZ", "price": 17.2, "vat": 22.0, "notes": "", "active": true}, {"id": "2745", "originalName": "THREE CENTS PINEAPPLE 20 cl", "format": "20 cl", "name": "Soda ananas Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 23.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2211", "originalName": "THREE CENTS PINK GRAPEFRUIT SODA 20 CL*24", "format": "20 cl", "name": "Soda pompelmo Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0436", "originalName": "TIO PEPE SHERRY 70 CL", "format": "70 cl", "name": "Sherry Fino", "category": "LIQUORI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3385", "originalName": "TONIC WATER GOLDBERG LATTINE 20 CL", "format": "20 cl", "name": "Golberg tonica - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1250", "originalName": "TONICA FEVER TREE INDIAN 200 ML *24", "format": "20 cl", "name": "Fever Tree Indian", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 21.5, "vat": 22.0, "notes": "", "active": true}, {"id": "3035", "originalName": "TONICA THREE CENTS DRY *24", "format": "20 cl", "name": "Tonica Dry Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 20.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0276", "originalName": "TOV T. UNITA 2V 25*25 INF 100 PZ/30", "format": "", "name": "Tovaglioli neri", "category": "ACCESSORI", "unitCode": "CT", "price": 38.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0296", "originalName": "TRIPLE SEC 70 CL", "format": "7 cl", "name": "Triple Sec", "category": "LIQUORI", "unitCode": "PZ", "price": 6.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0680", "originalName": "VECCHIA ROMAGNA ET NERA 70 CL", "format": "70 cl", "name": "Vecchia Romagna", "category": "AMARI", "unitCode": "PZ", "price": 99.0, "vat": 22.0, "notes": "", "active": true}, {"id": "2208", "originalName": "WHIS.BUSKER BLEND TRIPLE CASK 70 CL", "format": "70 cl", "name": "Busker Irish", "category": "SPIRITS", "unitCode": "PZ", "price": 14.89, "vat": 22.0, "notes": "", "active": true}, {"id": "0179", "originalName": "WORCHESTER SAUSE CL 15", "format": "15 cl", "name": "Salsa Worchestershire", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0208", "originalName": "ZUCCHERO LIQ BARMAN LITRO", "format": "100 cl", "name": "Zucchero liquido", "category": "SCIROPPI", "unitCode": "PZ", "price": 4.4, "vat": 10.0, "notes": "", "active": true}];
-const KEY={
-  products:'done_products_v1',
-  orders:'done_orders_v1',
-  reminders:'done_reminders_v1',
-  checks:'done_checks_v14',
-  sync:'done_sync_v19',
-  legacyProducts:'done_products_v01',
-  legacyOrders:'done_orders_v02',
-  legacyReminders:'done_reminders_v02'
-};
+const KEY={products:'done_products_v1',orders:'done_orders_v1',reminders:'done_reminders_v1',checks:'done_checks_v14',legacyProducts:'done_products_v01',legacyOrders:'done_orders_v02',legacyReminders:'done_reminders_v02'};
 const load=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}};
-let syncApplying=false;
-const SHARED_KEYS=[KEY.products,KEY.orders,KEY.reminders,KEY.checks];
-function save(k,v){
-  localStorage.setItem(k,JSON.stringify(v));
-  if(!syncApplying&&SHARED_KEYS.includes(k)){
-    syncMeta.dirty=true;
-    syncMeta.pending=(syncMeta.pending||0)+1;
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderSyncStatus();
-  }
-}
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let products=load(KEY.products,load(KEY.legacyProducts,INITIAL_PRODUCTS));
 let orders=load(KEY.orders,load(KEY.legacyOrders,[]));
 let reminders=load(KEY.reminders,load(KEY.legacyReminders,[]));
 let checks=load(KEY.checks,[]);
-let syncMeta=load(KEY.sync,{
-  endpoint:'./server/api.php',
-  token:'',
-  dirty:false,
-  pending:0,
-  lastPush:'',
-  lastPull:'',
-  lastError:''
-});
-const nowISO=()=>new Date().toISOString();
-const stampEntity=x=>({...x,updatedAt:x.updatedAt||x.createdAt||nowISO(),deleted:!!x.deleted});
-products=products.map(stampEntity);
-orders=orders.map(stampEntity);
-checks=checks.map(stampEntity);
-reminders=reminders.map(r=>({...stampEntity(r),shared:!!r.shared}));
-
 let activeCheckId='';
 let current=blankOrder(),activeCategory='',filter='all';
 
@@ -995,40 +696,8 @@ function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&l
 function js(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
 function euro(n){return new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(Number(n||0))}
 function unit(c){return c==='PZ'?'bott.':c==='CT'?'Cartone':c||''}
-function hasPrice(v){return v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v))}
-function selected(){return products.filter(p=>!p.deleted).map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0)}
-function calcTotalsFromItems(items){
-  const priced=items.filter(i=>hasPrice(i.price));
-  const net=priced.reduce((s,p)=>s+Number(p.price)*Number(p.qty||0),0);
-  const vat=priced.reduce((s,p)=>s+Number(p.price)*Number(p.qty||0)*Number(p.vat||0)/100,0);
-  return{
-    count:items.length,
-    units:items.reduce((s,p)=>s+Number(p.qty||0),0),
-    net,vat,gross:net+vat,
-    missing:items.filter(i=>!hasPrice(i.price)).length
-  };
-}
-function totals(){return calcTotalsFromItems(selected())}
-function refreshMissingPrices(){
-  let changedOrders=false;
-  orders=orders.map(o=>{
-    let changed=false;
-    const items=(o.items||[]).map(i=>{
-      if(hasPrice(i.price))return i;
-      const p=products.find(x=>x.id===i.id&&!x.deleted);
-      if(p&&hasPrice(p.price)){
-        changed=true;
-        return {...i,price:Number(p.price),vat:Number(p.vat||0),name:p.name||i.name,format:p.format||i.format,unitCode:p.unitCode||i.unitCode};
-      }
-      return i;
-    });
-    if(!changed)return o;
-    changedOrders=true;
-    return {...o,items,totals:calcTotalsFromItems(items),updatedAt:nowISO()};
-  });
-  if(changedOrders)save(KEY.orders,orders);
-  return changedOrders;
-}
+function selected(){return products.map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0)}
+function totals(){const a=selected(),net=a.reduce((s,p)=>s+p.price*p.qty,0),vat=a.reduce((s,p)=>s+p.price*p.qty*p.vat/100,0);return{count:a.length,units:a.reduce((s,p)=>s+p.qty,0),net,vat,gross:net+vat}}
 function categories(){
   const priority=[
     'VERMOUTH',
@@ -1066,9 +735,6 @@ function categories(){
 }
 
 function go(view){
-  document.body.classList.toggle('check-detail-open',view==='checkDetail');
-  document.body.classList.toggle('catalog-open',view==='catalog');
-  document.body.classList.toggle('board-open',view==='board');
   if(view!=='categoryPage')document.body.classList.remove('category-open');
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   const target=document.getElementById(view);if(!target){console.error('Vista non trovata:',view);return}target.classList.add('active');
@@ -1095,9 +761,9 @@ function continueLatest(){
   openOrder(d.id);
 }
 function renderHome(){
-  const drafts=orders.filter(o=>o.status==='draft'&&!o.deleted);
-  const sent=orders.filter(o=>o.status!=='draft'&&!o.deleted);
-  const activeRem=reminders.filter(r=>!r.done&&!r.deleted);
+  const drafts=orders.filter(o=>o.status==='draft');
+  const sent=orders.filter(o=>o.status!=='draft');
+  const activeRem=reminders.filter(r=>!r.done);
   ensureChecksForSentOrders();
   const openChecks=checks.filter(c=>c.items.length>0);
   document.getElementById('homeMetrics').innerHTML=
@@ -1106,7 +772,7 @@ function renderHome(){
      <div class="metric"><b>${openChecks.length}</b><span>Check aperti</span></div>`;
   const latestDraft=drafts.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt))[0];
   document.getElementById('continueMeta').textContent=latestDraft?`Ultima modifica ${new Date(latestDraft.updatedAt).toLocaleString('it-IT')}`:'Nessuna bozza disponibile';
-  document.getElementById('homeOrders').innerHTML=orders.filter(o=>!o.deleted).slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).slice(0,4).map(orderCard).join('')||`<div class="empty">Nessun ordine salvato.</div>`;
+  document.getElementById('homeOrders').innerHTML=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).slice(0,4).map(orderCard).join('')||`<div class="empty">Nessun ordine salvato.</div>`;
   document.getElementById('homeReminders').innerHTML=activeRem.slice(0,3).map(reminderCard).join('')||`<div class="empty">Nessun promemoria attivo.</div>`;
   refreshHeader();
 }
@@ -1142,7 +808,7 @@ function renderCategoryPage(){
     <div>
       <div class="product-name">${esc(p.name)}</div>
       <div class="meta">${esc(p.format||'Formato non indicato')} · ${esc(unit(p.unitCode))}</div>
-      <div class="price-line ${hasPrice(p.price)?'':'price-missing'}">${hasPrice(p.price)?euro(p.price):'PREZZO MANCANTE'} <span>${hasPrice(p.price)?`IVA ${p.vat}%`:'Da completare nel catalogo'}</span></div>
+      <div class="price-line">${euro(p.price)} <span>IVA ${p.vat}%</span></div>
     </div>
     <div class="stepper">
       <button onclick="changeQty('${js(p.id)}',-1)">−</button>
@@ -1162,13 +828,9 @@ function setQty(id,v){
 function updateCategoryFooter(){
   const ps=products.filter(p=>(p.category||'SENZA CATEGORIA')===activeCategory);
   const chosen=ps.map(p=>({...p,qty:Number(current.items[p.id]||0)})).filter(p=>p.qty>0);
-  const priced=chosen.filter(p=>hasPrice(p.price));
-  const missing=chosen.length-priced.length;
-  const total=priced.reduce((s,p)=>s+Number(p.price)*p.qty*(1+Number(p.vat||0)/100),0);
+  const total=chosen.reduce((s,p)=>s+p.price*p.qty*(1+p.vat/100),0);
   document.getElementById('categorySelectedCount').textContent=`${chosen.length} ${chosen.length===1?'prodotto':'prodotti'}`;
-  document.getElementById('categoryTotal').innerHTML=missing
-    ? `<span class="price-missing">${missing} senza prezzo</span> · Parziale ${euro(total)}`
-    : `Totale ${euro(total)}`;
+  document.getElementById('categoryTotal').textContent=`Totale ${euro(total)}`;
 }
 function confirmCategoryPage(){
   if(!current.confirmed.includes(activeCategory))current.confirmed.push(activeCategory);
@@ -1180,12 +842,11 @@ function leaveCategory(){
 }
 function renderReview(){
   const a=selected(),t=totals(),pending=current.visited.filter(c=>!current.confirmed.includes(c));
-  let h=`<div class="total-box"><div class="meta">${t.missing?'TOTALE PARZIALE':'TOTALE NETTO'}</div><div class="big ${t.missing?'partial-total':''}">${euro(t.net)}</div><div class="meta">${t.units} unità · ${t.count} prodotti${t.missing?` · ${t.missing} senza prezzo`:''}</div></div>`;
-  if(t.missing)h+=`<div class="missing-price-box"><strong>Riepilogo incompleto</strong><div class="meta" style="color:#ffb2b7">${t.missing} ${t.missing===1?'prodotto non ha':'prodotti non hanno'} ancora un prezzo. L’ordine può essere salvato e il valore si aggiornerà automaticamente quando completerai il catalogo.</div></div>`;
+  let h=`<div class="total-box"><div class="meta">TOTALE NETTO</div><div class="big">${euro(t.net)}</div><div class="meta">${t.units} unità · ${t.count} prodotti</div></div>`;
   if(pending.length)h+=`<div class="card"><div class="card-title">Non puoi completare l'ordine</div><div class="meta">Conferma prima: ${pending.map(esc).join(', ')}</div></div>`;
-  if(a.length)h+=`<div class="card light">${a.map(p=>`<div class="order-line"><div><b>${esc(p.name)}</b><div class="meta">${p.qty} ${esc(unit(p.unitCode))} · ${esc(p.format||'')}</div></div><div style="text-align:right"><b class="${hasPrice(p.price)?'':'price-missing'}">${hasPrice(p.price)?euro(Number(p.price)*p.qty):'PREZZO MANCANTE'}</b><div class="meta">${hasPrice(p.price)?`IVA ${p.vat}%`:'Da completare'}</div></div></div>`).join('')}</div>`;
+  if(a.length)h+=`<div class="card light">${a.map(p=>`<div class="order-line"><div><b>${esc(p.name)}</b><div class="meta">${p.qty} ${esc(unit(p.unitCode))} · ${esc(p.format||'')}</div></div><div style="text-align:right"><b>${euro(p.price*p.qty)}</b><div class="meta">IVA ${p.vat}%</div></div></div>`).join('')}</div>`;
   else h+=`<div class="empty">Nessun prodotto selezionato.</div>`;
-  h+=`<div class="card light"><div class="order-line"><span>Imponibile${t.missing?' parziale':''}</span><b>${euro(t.net)}</b></div><div class="order-line"><span>IVA${t.missing?' parziale':''}</span><b>${euro(t.vat)}</b></div><div class="order-line"><span>Totale${t.missing?' parziale':''}</span><b class="${t.missing?'price-missing':''}">${euro(t.gross)}</b></div></div>
+  h+=`<div class="card light"><div class="order-line"><span>Imponibile</span><b>${euro(t.net)}</b></div><div class="order-line"><span>IVA</span><b>${euro(t.vat)}</b></div><div class="order-line"><span>Totale</span><b>${euro(t.gross)}</b></div></div>
   <div class="field"><label>Note ordine</label><textarea id="orderNote">${esc(current.note||'')}</textarea></div>
   <div class="actions"><button class="btn dark" onclick="saveCurrent('draft')">Salva</button><button class="btn blue" onclick="sendCurrent()" ${(!a.length||pending.length)?'disabled':''}>${current.status==='draft'?'Completa e condividi':'Salva e ricondividi'}</button></div>
   <div style="height:8px"></div><button class="btn red full" onclick="resetCurrent()">Azzera ordine</button>`;
@@ -1194,7 +855,7 @@ function renderReview(){
 function snapshot(status){
   current.note=document.getElementById('orderNote')?.value??current.note;
   const t=totals();
-  return{id:current.id,createdAt:current.createdAt,updatedAt:nowISO(),status,note:current.note,visited:current.visited,confirmed:current.confirmed,revision:current.revision||0,items:selected().map(p=>({id:p.id,name:p.name,format:p.format,unitCode:p.unitCode,qty:p.qty,price:hasPrice(p.price)?Number(p.price):null,vat:Number(p.vat||0)})),totals:t,deleted:false}
+  return{id:current.id,createdAt:current.createdAt,updatedAt:new Date().toISOString(),status,note:current.note,visited:current.visited,confirmed:current.confirmed,revision:current.revision||0,items:selected().map(p=>({id:p.id,name:p.name,format:p.format,unitCode:p.unitCode,qty:p.qty,price:p.price,vat:p.vat})),totals:t}
 }
 function saveCurrent(status){
   const s=snapshot(status),i=orders.findIndex(o=>o.id===s.id);
@@ -1234,15 +895,13 @@ function resetCurrent(){if(confirm('Azzero tutto l’ordine?')){current=blankOrd
 function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders()}
 function renderOrders(){
   const q=(document.getElementById('orderSearch')?.value||'').toLowerCase();
-  let list=orders.filter(o=>!o.deleted).slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
+  let list=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
   if(filter!=='all')list=list.filter(o=>filter==='draft'?o.status==='draft':o.status!=='draft');
   list=list.filter(o=>[o.note,new Date(o.updatedAt).toLocaleString('it-IT'),...o.items.map(i=>i.name)].join(' ').toLowerCase().includes(q));
   document.getElementById('ordersList').innerHTML=list.map(orderCard).join('')||`<div class="empty">Nessun ordine trovato.</div>`;
 }
 function orderCard(o){
-  const missing=(o.items||[]).filter(i=>!hasPrice(i.price)).length;
-  const t=o.totals||calcTotalsFromItems(o.items||[]);
-  return `<div class="card"><div class="card-row"><div><div class="card-title">${new Date(o.updatedAt).toLocaleString('it-IT')}</div><div class="meta">${o.items.length} prodotti · ${t.units} unità · <span class="${missing?'price-missing':''}">${missing?`${missing} senza prezzo · parziale ${euro(t.net)}`:euro(t.net)}</span></div></div><span class="badge ${o.status}">${o.status==='draft'?'BOZZA':o.status==='revised'?'MODIFICATO':'INVIATO'}</span></div>
+  return `<div class="card"><div class="card-row"><div><div class="card-title">${new Date(o.updatedAt).toLocaleString('it-IT')}</div><div class="meta">${o.items.length} prodotti · ${o.totals.units} unità · ${euro(o.totals.net)}</div></div><span class="badge ${o.status}">${o.status==='draft'?'BOZZA':o.status==='revised'?'MODIFICATO':'INVIATO'}</span></div>
   <div class="actions three" style="margin-top:11px"><button class="btn dark" onclick="openOrder('${js(o.id)}')">Apri</button><button class="btn dark" onclick="shareOrder('${js(o.id)}')">Condividi</button><button class="btn red" onclick="deleteOrder('${js(o.id)}')">Elimina</button></div></div>`;
 }
 function openOrder(id){
@@ -1256,7 +915,7 @@ async function shareOrder(id){
   if(navigator.share)try{await navigator.share({title:'Ordine D.ONE',text})}catch{}
   else{await navigator.clipboard.writeText(text);alert('Ordine copiato.')}
 }
-function deleteOrder(id){if(confirm('Eliminare questo ordine?')){const o=orders.find(x=>x.id===id);if(o){o.deleted=true;o.updatedAt=nowISO();save(KEY.orders,orders)}renderOrders();renderHome()}}
+function deleteOrder(id){if(confirm('Eliminare questo ordine?')){orders=orders.filter(o=>o.id!==id);save(KEY.orders,orders);renderOrders();renderHome()}}
 
 
 function ensureChecksForSentOrders(){
@@ -1373,7 +1032,7 @@ function deleteCheck(id){
 
 function renderProducts(){
   const q=(document.getElementById('productSearch')?.value||'').toLowerCase();
-  document.getElementById('productsList').innerHTML=products.filter(p=>!p.deleted&&[p.name,p.category,p.originalName].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'it')).map(p=>`<div class="card"><div class="card-row"><div><div class="card-title">${esc(p.name||'Senza nome')}</div><div class="meta">${esc(p.category)} · ${esc(p.format||'Formato n/d')} · ${esc(unit(p.unitCode))}</div><div class="meta ${hasPrice(p.price)?'':'price-missing'}">${hasPrice(p.price)?`${euro(p.price)} netto · IVA ${p.vat}%`:'PREZZO MANCANTE'}${p.active?'':' · DISATTIVO'}</div></div><button class="btn dark" onclick="openProduct('${js(p.id)}')">Modifica</button></div></div>`).join('');
+  document.getElementById('productsList').innerHTML=products.filter(p=>[p.name,p.category,p.originalName].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'it')).map(p=>`<div class="card"><div class="card-row"><div><div class="card-title">${esc(p.name||'Senza nome')}</div><div class="meta">${esc(p.category)} · ${esc(p.format||'Formato n/d')} · ${esc(unit(p.unitCode))}</div><div class="meta">${euro(p.price)} netto · IVA ${p.vat}%${p.active?'':' · DISATTIVO'}</div></div><button class="btn dark" onclick="openProduct('${js(p.id)}')">Modifica</button></div></div>`).join('');
 }
 function openProduct(id=''){
   const p=products.find(x=>x.id===id);
@@ -1393,33 +1052,13 @@ function openProduct(id=''){
 }
 function saveProduct(){
   let id=document.getElementById('pId').value||'NEW-'+Date.now();
-  const old=products.find(x=>x.id===id);
-  const rawPrice=document.getElementById('pPrice').value.trim();
-  const p={
-    id,
-    name:document.getElementById('pName').value.trim(),
-    originalName:document.getElementById('pOriginal').value.trim(),
-    format:document.getElementById('pFormat').value.trim(),
-    category:document.getElementById('pCategory').value.trim()||'SENZA CATEGORIA',
-    unitCode:document.getElementById('pUnit').value,
-    price:rawPrice===''?null:Number(rawPrice),
-    vat:Number(document.getElementById('pVat').value||0),
-    notes:document.getElementById('pNotes').value.trim(),
-    active:document.getElementById('pActive').checked,
-    createdAt:old?.createdAt||nowISO(),
-    updatedAt:nowISO(),
-    deleted:false
-  };
-  const i=products.findIndex(x=>x.id===id);
-  if(i>=0)products[i]=p;else products.push(p);
-  save(KEY.products,products);
-  if(hasPrice(p.price))refreshMissingPrices();
-  closeModal('productModal');
-  renderProducts();renderEditor();renderOrders();renderHome();
+  const p={id,name:document.getElementById('pName').value.trim(),originalName:document.getElementById('pOriginal').value.trim(),format:document.getElementById('pFormat').value.trim(),category:document.getElementById('pCategory').value.trim()||'SENZA CATEGORIA',unitCode:document.getElementById('pUnit').value,price:Number(document.getElementById('pPrice').value||0),vat:Number(document.getElementById('pVat').value||0),notes:document.getElementById('pNotes').value.trim(),active:document.getElementById('pActive').checked};
+  const i=products.findIndex(x=>x.id===id);if(i>=0)products[i]=p;else products.push(p);
+  save(KEY.products,products);closeModal('productModal');renderProducts();renderEditor();
 }
 function deleteProduct(){
   const id=document.getElementById('pId').value;
-  if(id&&confirm('Eliminare il prodotto?')){const p=products.find(x=>x.id===id);if(p){p.deleted=true;p.active=false;p.updatedAt=nowISO();save(KEY.products,products)}closeModal('productModal');renderProducts();}
+  if(id&&confirm('Eliminare il prodotto?')){products=products.filter(p=>p.id!==id);save(KEY.products,products);closeModal('productModal');renderProducts();}
 }
 
 function openReminder(id=''){
@@ -1430,254 +1069,70 @@ function openReminder(id=''){
   document.getElementById('rText').value=r?.text||'';
   document.getElementById('rDue').value=r?.due||'';
   document.getElementById('rPriority').value=r?.priority||'normal';
-  document.getElementById('rShared').checked=!!r?.shared;
   document.getElementById('reminderModal').classList.add('open');
 }
 function saveReminder(){
   const id=document.getElementById('rId').value||'REM-'+Date.now();
   const old=reminders.find(x=>x.id===id);
-  const r={id,title:document.getElementById('rTitle').value.trim()||'Promemoria',text:document.getElementById('rText').value.trim(),due:document.getElementById('rDue').value,priority:document.getElementById('rPriority').value,done:old?.done||false,shared:document.getElementById('rShared').checked,createdAt:old?.createdAt||nowISO(),updatedAt:nowISO(),deleted:false};
+  const r={id,title:document.getElementById('rTitle').value.trim()||'Promemoria',text:document.getElementById('rText').value.trim(),due:document.getElementById('rDue').value,priority:document.getElementById('rPriority').value,done:old?.done||false,createdAt:old?.createdAt||new Date().toISOString()};
   const i=reminders.findIndex(x=>x.id===id);if(i>=0)reminders[i]=r;else reminders.unshift(r);
   save(KEY.reminders,reminders);closeModal('reminderModal');renderBoard();renderHome();
 }
 function reminderCard(r){
-  return `<div class="card reminder-card ${r.done?'done':''}"><div class="card-row"><div><div class="card-title">${esc(r.title)}</div><div class="meta">${r.due?'Scade '+new Date(r.due+'T12:00').toLocaleDateString('it-IT'):'Nessuna scadenza'}${r.text?' · '+esc(r.text):''}</div><div style="margin-top:7px"><span class="badge ${r.shared?'shared':'personal'}">${r.shared?'CONDIVISA':'PERSONALE'}</span></div></div><span class="badge ${r.priority}">${r.priority==='high'?'ALTA':'NORMALE'}</span></div>
+  return `<div class="card reminder-card ${r.done?'done':''}"><div class="card-row"><div><div class="card-title">${esc(r.title)}</div><div class="meta">${r.due?'Scade '+new Date(r.due+'T12:00').toLocaleDateString('it-IT'):'Nessuna scadenza'}${r.text?' · '+esc(r.text):''}</div></div><span class="badge ${r.priority}">${r.priority==='high'?'ALTA':'NORMALE'}</span></div>
   <div class="actions three" style="margin-top:11px"><button class="btn dark" onclick="toggleReminder('${js(r.id)}')">${r.done?'Riapri':'Fatto'}</button><button class="btn dark" onclick="openReminder('${js(r.id)}')">Modifica</button><button class="btn red" onclick="deleteReminder('${js(r.id)}')">Elimina</button></div></div>`;
 }
-function renderBoard(){document.getElementById('reminderList').innerHTML=reminders.filter(r=>!r.deleted).slice().sort((a,b)=>Number(a.done)-Number(b.done)||(b.priority==='high')-(a.priority==='high')).map(reminderCard).join('')||`<div class="empty">Bacheca vuota.</div>`}
-function toggleReminder(id){const r=reminders.find(x=>x.id===id);if(r){r.done=!r.done;r.updatedAt=nowISO()}save(KEY.reminders,reminders);renderBoard();renderHome()}
-function deleteReminder(id){if(confirm('Eliminare il promemoria?')){const r=reminders.find(x=>x.id===id);if(r){r.deleted=true;r.updatedAt=nowISO();save(KEY.reminders,reminders)}renderBoard();renderHome()}}
-
-function mergeEntities(local,remote){
-  const map=new Map();
-  [...local,...remote].forEach(item=>{
-    if(!item||!item.id)return;
-    const prev=map.get(item.id);
-    const itemTime=new Date(item.updatedAt||item.createdAt||0).getTime();
-    const prevTime=prev?new Date(prev.updatedAt||prev.createdAt||0).getTime():-1;
-    if(!prev||itemTime>=prevTime)map.set(item.id,item);
-  });
-  return [...map.values()];
-}
-function renderSyncStatus(){
-  const dot=document.getElementById('syncDot');
-  const label=document.getElementById('syncLabel');
-  const details=document.getElementById('syncDetails');
-  const button=document.getElementById('syncMainButton');
-  if(!dot||!label||!details)return;
-
-  const last=syncMeta.lastPull||syncMeta.lastPush;
-  const lastText=last?new Date(last).toLocaleString('it-IT'):'mai';
-
-  dot.className='sync-dot'+(syncMeta.lastError?' error':syncMeta.dirty?'':' ok');
-
-  if(syncMeta.lastError){
-    label.textContent='Sincronizzazione non riuscita';
-    details.textContent=`Ultimo tentativo: ${lastText}`;
-  }else if(syncMeta.dirty){
-    const pending=Number(syncMeta.pending||1);
-    label.textContent=`${pending} ${pending===1?'modifica da condividere':'modifiche da condividere'}`;
-    details.textContent=`Ultima sincronizzazione: ${lastText}`;
-  }else if(last){
-    label.textContent='Database allineato';
-    details.textContent=`Ultima sincronizzazione: ${lastText}`;
-  }else{
-    label.textContent='Dati solo locali';
-    details.textContent='Premi Sincronizza per allineare il database.';
-  }
-
-  if(button&&!button.disabled)button.textContent='Sincronizza';
-}
-function openSyncSettings(){
-  document.getElementById('syncEndpoint').value=syncMeta.endpoint||'./server/api.php';
-  document.getElementById('syncToken').value=syncMeta.token||'';
-  document.getElementById('syncModal').classList.add('open');
-}
-function saveSyncSettings(){
-  syncMeta.endpoint=document.getElementById('syncEndpoint').value.trim()||'./server/api.php';
-  syncMeta.token=document.getElementById('syncToken').value;
-  syncMeta.lastError='';
-  localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-  closeModal('syncModal');renderSyncStatus();
-}
-async function serverRequest(action,payload=null){
-  if(!syncMeta.endpoint)throw new Error('Indirizzo API non configurato');
-  const options={
-    method:payload?'POST':'GET',
-    headers:{'Accept':'application/json','X-DONE-TOKEN':syncMeta.token||''}
-  };
-  if(payload){
-    options.headers['Content-Type']='application/json';
-    options.body=JSON.stringify(payload);
-  }
-  const sep=syncMeta.endpoint.includes('?')?'&':'?';
-  const response=await fetch(`${syncMeta.endpoint}${sep}action=${encodeURIComponent(action)}`,options);
-  const data=await response.json().catch(()=>({}));
-  if(!response.ok||data.ok===false)throw new Error(data.error||`Errore server ${response.status}`);
-  return data;
-}
-async function testServer(){
-  saveSyncSettings();
-  try{
-    await serverRequest('ping');
-    syncMeta.lastError='';
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    alert('Collegamento al database riuscito.');
-  }catch(e){
-    syncMeta.lastError=e.message;
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    alert(`Collegamento non riuscito: ${e.message}`);
-  }
-  renderSyncStatus();
-}
-
-function setSyncProgress(lines=[],active=false){
-  const box=document.getElementById('syncProgress');
-  const card=document.querySelector('.home-sync-card');
-  const button=document.getElementById('syncMainButton');
-  if(!box)return;
-
-  box.hidden=lines.length===0;
-  box.innerHTML=lines.map(line=>`<div class="${line.type||''}">${line.text}</div>`).join('');
-
-  if(card)card.classList.toggle('is-syncing',active);
-  if(button){
-    button.disabled=active;
-    button.textContent=active?'Sincronizzazione…':'Sincronizza';
-  }
-}
-
-async function syncAll(){
-  if(!syncMeta.endpoint){
-    openSyncSettings();
-    return;
-  }
-
-  const steps=[];
-
-  try{
-    setSyncProgress([{text:'Preparazione dati locali…',type:'working'}],true);
-
-    const payload={
-      products,
-      orders,
-      checks,
-      reminders:reminders.filter(r=>r.shared||r.deleted)
-    };
-
-    steps.push({text:'✓ Dati locali preparati',type:'done'});
-    setSyncProgress([...steps,{text:'Invio modifiche al server…',type:'working'}],true);
-
-    await serverRequest('push',payload);
-    syncMeta.lastPush=nowISO();
-
-    steps.push({text:'✓ Modifiche condivise',type:'done'});
-    setSyncProgress([...steps,{text:'Download aggiornamenti…',type:'working'}],true);
-
-    const data=await serverRequest('pull');
-
-    syncApplying=true;
-    products=mergeEntities(products,data.products||[]);
-    orders=mergeEntities(orders,data.orders||[]);
-    checks=mergeEntities(checks,data.checks||[]);
-
-    const personal=reminders.filter(r=>!r.shared);
-    const localShared=reminders.filter(r=>r.shared);
-    reminders=[...personal,...mergeEntities(localShared,data.reminders||[])];
-
-    localStorage.setItem(KEY.products,JSON.stringify(products));
-    localStorage.setItem(KEY.orders,JSON.stringify(orders));
-    localStorage.setItem(KEY.checks,JSON.stringify(checks));
-    localStorage.setItem(KEY.reminders,JSON.stringify(reminders));
-    syncApplying=false;
-
-    refreshMissingPrices();
-
-    syncMeta.dirty=false;
-    syncMeta.pending=0;
-    syncMeta.lastPull=nowISO();
-    syncMeta.lastError='';
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-
-    renderHome();
-    renderOrders();
-    renderChecks();
-    renderProducts();
-    renderBoard();
-    renderSyncStatus();
-
-    steps.push({text:'✓ Aggiornamenti scaricati',type:'done'});
-    steps.push({text:'✓ Database allineato',type:'done'});
-    setSyncProgress(steps,false);
-
-    setTimeout(()=>setSyncProgress([],false),2200);
-  }catch(e){
-    syncApplying=false;
-    syncMeta.lastError=e.message;
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderSyncStatus();
-    setSyncProgress([...steps,{text:`Errore: ${e.message}`,type:'error'}],false);
-  }
-}
-
-async function pushToServer(){
-  if(!syncMeta.endpoint){openSyncSettings();return}
-  const payload={
-    products:products,
-    orders:orders,
-    checks:checks,
-    reminders:reminders.filter(r=>r.shared||r.deleted)
-  };
-  try{
-    await serverRequest('push',payload);
-    syncMeta.dirty=false;
-    syncMeta.pending=0;
-    syncMeta.lastPush=nowISO();
-    syncMeta.lastError='';
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderSyncStatus();
-    alert('Modifiche condivise sul server.');
-  }catch(e){
-    syncMeta.lastError=e.message;
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderSyncStatus();
-    alert(`Condivisione non riuscita: ${e.message}`);
-  }
-}
-async function pullFromServer(){
-  if(!syncMeta.endpoint){openSyncSettings();return}
-  try{
-    const data=await serverRequest('pull');
-    syncApplying=true;
-    products=mergeEntities(products,data.products||[]);
-    orders=mergeEntities(orders,data.orders||[]);
-    checks=mergeEntities(checks,data.checks||[]);
-    const personal=reminders.filter(r=>!r.shared);
-    const localShared=reminders.filter(r=>r.shared);
-    reminders=[...personal,...mergeEntities(localShared,data.reminders||[])];
-    localStorage.setItem(KEY.products,JSON.stringify(products));
-    localStorage.setItem(KEY.orders,JSON.stringify(orders));
-    localStorage.setItem(KEY.checks,JSON.stringify(checks));
-    localStorage.setItem(KEY.reminders,JSON.stringify(reminders));
-    syncApplying=false;
-    refreshMissingPrices();
-    syncMeta.lastPull=nowISO();
-    syncMeta.lastError='';
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderHome();renderOrders();renderChecks();renderProducts();renderBoard();renderSyncStatus();
-    alert('Aggiornamenti scaricati. Ora stai lavorando sulla copia locale aggiornata.');
-  }catch(e){
-    syncApplying=false;
-    syncMeta.lastError=e.message;
-    localStorage.setItem(KEY.sync,JSON.stringify(syncMeta));
-    renderSyncStatus();
-    alert(`Download non riuscito: ${e.message}`);
-  }
-}
-
+function renderBoard(){document.getElementById('reminderList').innerHTML=reminders.slice().sort((a,b)=>Number(a.done)-Number(b.done)||(b.priority==='high')-(a.priority==='high')).map(reminderCard).join('')||`<div class="empty">Bacheca vuota.</div>`}
+function toggleReminder(id){const r=reminders.find(x=>x.id===id);if(r)r.done=!r.done;save(KEY.reminders,reminders);renderBoard();renderHome()}
+function deleteReminder(id){if(confirm('Eliminare il promemoria?')){reminders=reminders.filter(r=>r.id!==id);save(KEY.reminders,reminders);renderBoard();renderHome()}}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
-refreshMissingPrices();renderHome();renderSyncStatus();refreshHeader();
+
+// Backup locale V1.8: esporta tutte le chiavi dell'app senza modificarle.
+function exportLocalBackup(){
+  try{
+    const records={};
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(k&&k.startsWith('done_'))records[k]=localStorage.getItem(k);
+    }
+    const backup={format:'DONE_ORDINI_LOCAL_BACKUP',version:1,createdAt:new Date().toISOString(),origin:location.origin,records};
+    const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;
+    a.download='DONE_Ordini_Backup_'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    alert('Backup generato. Verifica che il file JSON sia stato salvato nell’app File prima di procedere con altri aggiornamenti.');
+  }catch(err){alert('Esportazione non riuscita: '+err.message)}
+}
+async function restoreLocalBackup(event){
+  const input=event.target;
+  try{
+    const file=input.files&&input.files[0];if(!file)return;
+    const data=JSON.parse(await file.text());
+    if(!data||data.format!=='DONE_ORDINI_LOCAL_BACKUP'||data.version!==1||!data.records||typeof data.records!=='object'||Array.isArray(data.records))throw Error('File non riconosciuto');
+    const entries=Object.entries(data.records);
+    if(!entries.length||entries.some(([k,v])=>!k.startsWith('done_')||typeof v!=='string'))throw Error('Contenuto del backup non valido');
+    for(const [k,v] of entries)JSON.parse(v);
+    const keys=[KEY.products,KEY.orders,KEY.reminders,KEY.checks];
+    const counts=keys.map(k=>{const v=data.records[k];return v?JSON.parse(v).length||0:0});
+    if(!confirm('ATTENZIONE: il ripristino SOSTITUISCE i dati attuali con quelli del file. Prima esporta un backup dello stato corrente.\n\nArchivio: '+counts[0]+' prodotti, '+counts[1]+' ordini, '+counts[2]+' promemoria, '+counts[3]+' controlli.\n\nContinuare?'))return;
+    // Evita il ripristino parziale per mancanza di spazio: salva prima una copia in memoria.
+    const before={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('done_'))before[k]=localStorage.getItem(k)}
+    try{
+      for(const k of Object.keys(before))localStorage.removeItem(k);
+      for(const [k,v] of entries)localStorage.setItem(k,v);
+    }catch(e){
+      for(const k of Object.keys(data.records))localStorage.removeItem(k);
+      for(const [k,v] of Object.entries(before))localStorage.setItem(k,v);
+      throw e;
+    }
+    alert('Ripristino completato. L’app verrà ricaricata.');location.reload();
+  }catch(err){alert('Ripristino non riuscito: '+err.message)}finally{input.value=''}
+}
+
+renderHome();refreshHeader();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body>
