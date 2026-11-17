@@ -1,0 +1,1 @@
+Versione V1.8 con backup locale. Nessuna sincronizzazione o server. Pubblicare nello stesso repository e aprire dalla stessa icona iPhone. Prima esportare backup e verificarne presenza in File. Ripristino sostitutivo, richiede conferma.\n
