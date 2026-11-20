@@ -583,6 +583,59 @@ header.app-header .logo{width:78px!important;max-width:78px!important;height:aut
 .v2-bottom-nav .v2-nav-icon{font-size:21px;line-height:1.15;font-weight:400}
 .v2-bottom-nav .nav.active{color:#7fb7ff!important}
 @media(max-width:370px){.home-v2-refined .metric b{font-size:28px}}
+
+/* V2.0.1 — uniform design system; flat header and contained analysis controls */
+:root{--bg:#090f19;--panel:#121e2d;--panel-2:#172538;--line:#273649;--muted:#9aacc2;--blue:#287de8;--blue-2:#8abaff;--radius:13px;--control-h:46px;--control-r:11px;--card-r:13px}
+html,body{background:#090f19}
+body{color:#f4f7fc}
+.app{width:100%;max-width:640px}
+header.app-header{background:#090f19!important;background-image:none!important;box-shadow:none!important;filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid #243244!important;isolation:isolate}
+header.app-header::before,header.app-header::after,.app-header .header-row::before,.app-header .header-row::after{content:none!important;display:none!important}
+header.app-header .logo{box-shadow:none!important;filter:none!important;opacity:1;transform:none!important}
+.header-settings{background:#142235;border-color:#2a3c52;box-shadow:none;font-family:inherit}
+main{padding:14px 14px 30px;min-width:0}
+.view,.view>*,.card,.field,.form2,.form2>*,.actions,.actions>*,.analysis-picker,.analysis-picker-row,.analysis-picker-actions,.analysis-selected,.summary-grid{min-width:0;max-width:100%}
+.card{background:#121e2d;border:1px solid #273649;border-radius:13px;padding:14px;margin-bottom:10px;box-shadow:none}
+h1{font-size:27px;letter-spacing:-.8px;font-weight:750;margin:5px 0 8px}
+h2{font-size:17px;font-weight:720;letter-spacing:-.25px}
+.eyebrow{color:#8abaff;font-size:10px;letter-spacing:.13em}
+.section-head{margin:20px 0 10px}
+.btn{border-radius:11px;min-height:44px;box-shadow:none;font-weight:650;transition:background .15s ease,border-color .15s ease}
+.btn.blue{background:#287de8;border-color:#287de8;color:#fff}
+.btn.dark{background:#1a2a3e;border-color:#30445c;color:#e8f1ff}
+.search,.field input,.field textarea,.field select{display:block;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;min-height:46px;border-radius:11px;border:1px solid #34465e;background:#0e1928;color:#f4f7fc;padding:10px 12px;box-shadow:none;outline-offset:2px}
+.field input:focus,.field textarea:focus,.field select:focus,.search:focus{border-color:#65a7ff;outline:1px solid #65a7ff}
+.field label{display:block;margin-bottom:6px;font-size:11px;font-weight:650;color:#a9bdd4}
+.form2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#analysis{overflow-x:clip}
+#analysis .card{width:100%;max-width:100%;overflow:hidden;padding:13px}
+#analysis .field{width:100%;min-width:0}
+#analysis .field input[type=date]{-webkit-appearance:none;appearance:none;font-size:14px;padding:9px 7px;min-width:0}
+#analysis .field select{font-size:13px;padding-right:22px}
+#analysis .analysis-picker-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;flex-wrap:initial}
+#analysis .analysis-picker-actions .btn{width:100%;min-width:0;max-width:100%;padding:9px 7px;font-size:11px;overflow-wrap:anywhere}
+#analysis .analysis-picker{width:100%;max-width:100%;border-color:#30435b;background:#0d1827;border-radius:11px}
+#analysis .analysis-picker-row{width:100%;padding:10px 9px;overflow:hidden}
+#analysis .analysis-picker-row span{min-width:0;overflow-wrap:anywhere}
+#analysis .analysis-picker-row small{max-width:30%;overflow-wrap:anywhere;text-align:right}
+#analysis .analysis-chip{max-width:100%;overflow-wrap:anywhere;border-radius:9px;background:#1a2a40}
+#analysis .analysis-option{width:100%;min-width:0;color:#d6e3f2;line-height:1.4}
+#analysis .analysis-option input{width:19px!important;min-width:19px!important;min-height:19px!important;height:19px!important;flex:0 0 19px;padding:0;accent-color:#287de8}
+#analysisStats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#analysisStats .metric{min-width:0;padding:10px 6px}
+#analysisStats .metric b{font-size:19px;overflow-wrap:anywhere}
+#analysisStats .metric span{font-size:9px;overflow-wrap:anywhere}
+.category,.category-product,.check-item,.home-backup{box-shadow:none}
+.home-v2-refined .home-shortcuts button{transition:background .15s ease}
+.home-v2-refined .home-shortcuts button:active{background:#17263a}
+.home-v2-refined .home-new{background:#287de8}
+.home-v2-refined .home-overview{border-bottom-color:#273649}
+nav{background:#0c1623;border-top:1px solid #273649;box-shadow:none}
+@media(max-width:390px){main{padding-left:12px;padding-right:12px}#analysis .card{padding:11px}.form2{gap:7px}#analysis .field input[type=date]{font-size:12px;padding:9px 5px}}
+</style>
+<style>
+/* V2.1 – analisi, grafici e inserimento storico */
+.chart-item{margin:13px 0}.chart-label{display:flex;justify-content:space-between;gap:10px;color:#e6eef9;font-size:12px;margin-bottom:6px}.chart-track{height:8px;background:#26384f;border-radius:8px;overflow:hidden}.chart-fill{height:100%;background:#3188f4;border-radius:8px}.historical-product{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;background:transparent;border:0;border-bottom:1px solid #2a3b50;color:#fff;padding:12px 5px;font:inherit}.historical-product small{display:block;color:#9bb0c8;margin-top:3px}.historical-row{padding:12px 0;border-bottom:1px solid #2a3b50}.historical-row-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.historical-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}.historical-fields label{min-width:0;font-size:11px;color:#9bb0c8}.historical-fields input{box-sizing:border-box;width:100%;min-width:0;margin-top:5px;padding:9px 5px;font-size:14px}.historical-list-item{display:flex;align-items:center;gap:7px;justify-content:space-between;padding:12px 0;border-bottom:1px solid #293b51}.historical-list-item>div{flex:1;min-width:0}.historical-list-item .btn{padding:8px}.home-shortcut-icon,.v2-nav-icon{font-weight:700}#analysisExportPanel[hidden],#historicalDayField[hidden],#historicalMonthField[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -604,7 +657,7 @@ header.app-header .logo{width:78px!important;max-width:78px!important;height:aut
     <button onclick="go('check')"><span class="home-shortcut-icon">✓</span><span><strong>Verifica consegne</strong><small id="homeCheckLabel">Apri CHECK</small></span><b>›</b></button>
     <button onclick="go('board')"><span class="home-shortcut-icon">☷</span><span><strong>Bacheca</strong><small id="homeReminderLabel">Promemoria attivi</small></span><b>›</b></button>
     <button onclick="go('catalog')"><span class="home-shortcut-icon">▦</span><span><strong>Catalogo prodotti</strong><small>Prodotti, categorie e prezzi</small></span><b>›</b></button>
-    <button onclick="go('analysis')"><span class="home-shortcut-icon">▥</span><span><strong>Analisi acquisti</strong><small>Storico ed esportazione Excel</small></span><b>›</b></button>
+    <button onclick="go('analysis')"><span class="home-shortcut-icon">↗</span><span><strong>Analisi acquisti</strong><small>Volumi, confronti e report</small></span><b>›</b></button>
   </div>
   <div class="section-head"><h2>Ultimi ordini</h2><button class="link-btn" onclick="go('orders')">Vedi tutti</button></div><div id="homeOrders"></div>
   <div class="section-head"><h2>Promemoria</h2><button class="link-btn" onclick="go('board')">Vedi tutti</button></div><div id="homeReminders"></div>
@@ -626,15 +679,26 @@ header.app-header .logo{width:78px!important;max-width:78px!important;height:aut
     <div id="analysisPickerCount" class="meta" style="margin:8px 0"></div>
     <div id="analysisPicker" class="analysis-picker"></div>
     <div id="analysisSelected" class="analysis-selected"></div>
-    <div class="field"><label>Tipo di esportazione</label><select id="analysisMode"><option value="summary">Riepilogo prodotti</option><option value="detail">Dettaglio ordini</option><option value="both" selected>Riepilogo + dettaglio (due fogli)</option></select></div>
-    <label class="analysis-option"><input type="checkbox" id="analysisDates" checked> Includi le date degli ordini</label>
-    <label class="analysis-option"><input type="checkbox" id="analysisAmounts" checked> Includi prezzi e importi spesi</label>
-    <div style="height:10px"></div>
-    <button class="btn blue full" onclick="exportAnalysisXlsx()">Esporta Excel (.xlsx)</button>
   </div>
+  <div class="section-head"><h2>Riepilogo quantità</h2><button class="link-btn" onclick="openHistorical()">+ Ordine pregresso</button></div>
   <div id="analysisStats" class="summary-grid" style="margin-top:14px"></div>
   <div class="section-head"><h2>Prodotti ordinati</h2></div>
   <div id="analysisResults"></div>
+  <div class="section-head"><h2>Andamento acquisti</h2></div>
+  <div class="card"><div class="field"><label>Confronto</label><select id="analysisChartMode" onchange="renderAnalysisCharts()"><option value="monthly">Mese per mese</option><option value="products">Prodotti più ordinati</option></select></div><div id="analysisCharts"></div></div>
+  <button class="btn blue full" onclick="document.getElementById('analysisExportPanel').hidden=!document.getElementById('analysisExportPanel').hidden">Esporta report · Excel / PDF</button>
+  <div class="card" id="analysisExportPanel" hidden style="margin-top:10px">
+    <div class="field"><label>Formato</label><select id="analysisFormat"><option value="xlsx">Excel (.xlsx)</option><option value="pdf">PDF (stampa / salva come PDF)</option></select></div>
+    <div class="field"><label>Contenuto</label><select id="analysisMode"><option value="summary">Riepilogo prodotti</option><option value="detail">Dettaglio ordini</option><option value="both" selected>Riepilogo + dettaglio</option></select></div>
+    <label class="analysis-option"><input type="checkbox" id="analysisDates" checked> Date o mesi di riferimento</label>
+    <label class="analysis-option"><input type="checkbox" id="analysisAmounts"> Includi spesa e prezzi</label>
+    <label class="analysis-option"><input type="checkbox" id="analysisExportCharts" checked> Includi grafico nel PDF</label>
+    <button class="btn blue full" style="margin-top:12px" onclick="exportAnalysisReport()">Genera report</button>
+  </div>
+  <div class="section-head"><h2>Ordini pregressi</h2></div>
+  <p class="sub">Ordini completi con data precisa oppure mese indicativo, senza coinvolgere CHECK.</p>
+  <button class="btn dark full" onclick="openHistorical()">+ Inserisci ordine pregresso</button>
+  <div id="historicalList" style="margin-top:12px"></div>
 </section>
 
 <section id="editor" class="view">
@@ -729,7 +793,7 @@ header.app-header .logo{width:78px!important;max-width:78px!important;height:aut
   <button class="nav active" data-view="home" onclick="go('home')"><span class="v2-nav-icon">⌂</span><span>HOME</span></button>
   <button class="nav" data-view="orders" onclick="go('orders')"><span class="v2-nav-icon">☷</span><span>ORDINI</span></button>
   <button class="nav" data-view="catalog" onclick="go('catalog')"><span class="v2-nav-icon">▦</span><span>PRODOTTI</span></button>
-  <button class="nav" data-view="analysis" onclick="go('analysis')"><span class="v2-nav-icon">▥</span><span>ANALISI</span></button>
+  <button class="nav" data-view="analysis" onclick="go('analysis')"><span class="v2-nav-icon">↗</span><span>ANALISI</span></button>
 </nav>
 
 <div id="reminderModal" class="modal"><div class="sheet">
@@ -765,6 +829,19 @@ header.app-header .logo{width:78px!important;max-width:78px!important;height:aut
   <button id="deleteProductBtn" class="btn red full" onclick="deleteProduct()">Elimina prodotto</button>
 </div></div>
 
+<div id="historicalModal" class="modal"><div class="sheet">
+ <div class="sheet-head"><h2>Ordine pregresso</h2><button class="close" onclick="closeModal('historicalModal')">×</button></div>
+ <input type="hidden" id="historicalEditId">
+ <div class="field"><label>Riferimento temporale</label><select id="historicalPrecision" onchange="historicalToggleDate()"><option value="month">Mese e anno indicativi</option><option value="day">Data precisa</option></select></div>
+ <div class="field" id="historicalMonthField"><label>Mese di riferimento</label><input type="month" id="historicalMonth"></div>
+ <div class="field" id="historicalDayField" hidden><label>Data ordine</label><input type="date" id="historicalDay"></div>
+ <div class="field"><label>Note</label><textarea id="historicalNote" placeholder="Riferimento, fornitore, note..."></textarea></div>
+ <div class="field"><label>Cerca prodotto</label><input id="historicalSearch" placeholder="Nome o codice" oninput="renderHistoricalProducts()"></div>
+ <div id="historicalProducts" class="analysis-picker" style="max-height:230px;overflow:auto"></div>
+ <div class="section-head"><h2>Righe ordine</h2></div><div id="historicalRows"></div>
+ <div id="historicalTotal" class="meta" style="margin:12px 0"></div>
+ <button class="btn blue full" onclick="saveHistorical()">Salva ordine pregresso</button>
+ </div></div>
 <script>
 const INITIAL_PRODUCTS=[{"id": "2765", "originalName": "42 BELOW VODKA PURE 100 CL", "format": "100 cl", "name": "Vodka 42 Below", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0726", "originalName": "ACQUA BRILLANTE 20 CL", "format": "20 cl", "name": "Acqua Brillante", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2913", "originalName": "AMARO CAMATTI 70 CL", "format": "70 cl", "name": "Camatti", "category": "AMARI", "unitCode": "PZ", "price": 12.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0178", "originalName": "AMARO MONTENEGRO 70 CL", "format": "70 cl", "name": "Montenegro", "category": "AMARI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0290", "originalName": "APEROL LT", "format": "100 cl", "name": "Aperol", "category": "APERITIVI", "unitCode": "PZ", "price": 10.58, "vat": 22.0, "notes": "", "active": true}, {"id": "3275", "originalName": "ARIA VELLUTO SHAKE", "format": "", "name": "Aria e velluto", "category": "ACCESSORI", "unitCode": "PZ", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0247", "originalName": "BACARDI CARTA BLANCA1 LT", "format": "100 cl", "name": "Bacardi bianco", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1564", "originalName": "BACARDI RESERVA GOLD ORO LT", "format": "100 cl", "name": "Bacardi scuro", "category": "SCIROPPI", "unitCode": "PZ", "price": 13.39, "vat": 22.0, "notes": "", "active": true}, {"id": "0514", "originalName": "BESO CONCENTRATO DI AGAVE CL 75", "format": "75 cl", "name": "Sciroppo d'agave", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0662", "originalName": "BITTER ANGOSTURA 200 ML", "format": "20 cl", "name": "Angostura bitter", "category": "ACCESSORI", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3221", "originalName": "BITTER MARTINI APERITIVO Lt. 1 ** NEW", "format": "100 cl", "name": "Martini Bitter", "category": "BITTER", "unitCode": "PZ", "price": 10.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0561", "originalName": "BULLEIT BOURBON WHISKY 70 CL", "format": "70 cl", "name": "Bulleit Bourbon", "category": "SPIRITS", "unitCode": "PZ", "price": 16.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0294", "originalName": "BULLEIT RYE WHISKY 70 cl", "format": "70 cl", "name": "Bulleit Rye", "category": "SPIRITS", "unitCode": "PZ", "price": 24.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0406", "originalName": "CACHACA VELHO BARREIRO LT", "format": "100 cl", "name": "Velho Barreiro", "category": "SPIRITS", "unitCode": "PZ", "price": 13.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0255", "originalName": "CAMPARI BITTER 1 LT", "format": "100 cl", "name": "Campari", "category": "BITTER", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2000", "originalName": "CANNUCCE CARTA BIO RIGIDE CM 20", "format": "", "name": "Cannucce carta nere", "category": "ACCESSORI", "unitCode": "PZ", "price": 3.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2735", "originalName": "CAZADORES REPOSADO 70 CL", "format": "70 cl", "name": "Cazadores reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 15.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2686", "originalName": "CAZADORES SILVER 70 CL", "format": "70 cl", "name": "Cazadores silver", "category": "SPIRITS", "unitCode": "PZ", "price": 13.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0428", "originalName": "CEDRATA TASSONI CL 18", "format": "18 cl", "name": "Cedrata Tassoni", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0590", "originalName": "CHINA MARTINI CL 70", "format": "70 cl", "name": "China Martini", "category": "AMARI", "unitCode": "PZ", "price": 10.56, "vat": 22.0, "notes": "", "active": true}, {"id": "1132", "originalName": "CHOYA EXTRA SHISO ROSSO", "format": "70 cl", "name": "Choya Extra shiso rosso", "category": "LIQUORI", "unitCode": "PZ", "price": 22.45, "vat": 22.0, "notes": "", "active": true}, {"id": "0087", "originalName": "COCA COLA BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0460", "originalName": "COCA COLA ZERO BT CL 33 *24 VETRO", "format": "33 cl", "name": "Coca Cola Zero", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0566", "originalName": "COCCHI DOPO TEATRO AMARO CL 75", "format": "75 cl", "name": "Cocchi dopo teatro", "category": "VERMOUTH", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0203", "originalName": "DISARONNO 70 CL", "format": "70 cl", "name": "Disaronno ", "category": "LIQUORI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "2754", "originalName": "FOGLIE DI MANDARINO 50 ML", "format": "5 cl", "name": "Essenza foglie di mandarino", "category": "ACCESSORI", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1871", "originalName": "GERMANA UMBURANA 70 CL", "format": "70 cl", "name": "Germana Umburana", "category": "SPIRITS", "unitCode": "PZ", "price": 14.55, "vat": 22.0, "notes": "", "active": true}, {"id": "G5501", "originalName": "GIFFARD LIQUORE CREME DE BANANE", "format": "70 cl ", "name": "Liquore banana Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 10.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0416", "originalName": "GIFFARD LIQUORE PREMIUM MANDARINE", "format": "70 cl", "name": "Liquore mandarino Giffard", "category": "LIQUORI", "unitCode": "PZ", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0397", "originalName": "GIFFARD SIROP DE BITTER CL 100", "format": "100 cl", "name": "Bitter analcolico", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0612", "originalName": "GIFFARD SIROP DE FLEUR DE SUREAU LT", "format": "100 cl", "name": "Sciroppo fiori di sambuco Giffard", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "1172", "originalName": "GIN BOMBAY LONDON DRY LT PROMO", "format": "100 cl", "name": "Bombay Dry", "category": "SPIRITS", "unitCode": "PZ", "price": 14.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0360", "originalName": "GIN CITADELLE 70 CL", "format": "70 cl", "name": "Citadelle", "category": "SPIRITS", "unitCode": "PZ", "price": 22.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0177", "originalName": "GIN HENDRICK'S 70 CL", "format": "70 cl", "name": "Hendrick's", "category": "SPIRITS", "unitCode": "PZ", "price": 24.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0081", "originalName": "GIN MAHON XORIGUER 70 CL", "format": "70 cl", "name": "Mahon Xoriguer", "category": "SPIRITS", "unitCode": "PZ", "price": 17.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1910", "originalName": "GIN MARCONI 42 CL 70", "format": "70 cl", "name": "Marconi 42", "category": "SPIRITS", "unitCode": "PZ", "price": 24.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3251", "originalName": "GIN MARE 70 CL NEW**", "format": "70 cl", "name": "Gin Mare", "category": "SPIRITS", "unitCode": "PZ", "price": 25.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0577", "originalName": "GIN MARTIN MILLERS CL 70", "format": "70 cl", "name": "Martin Millers", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1400", "originalName": "GIN SUNTORY ROKU 70 CL", "format": "70 cp", "name": "Roku", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "1062", "originalName": "GINGER BEER FEVER TREE cl 20 *24", "format": "20 cl", "name": "Ginger beer Fever Tree", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2187", "originalName": "GOLDBERG BONE DRY TONIC 0.20l", "format": "20 cl", "name": "Goldberg Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.5, "vat": 22.0, "notes": "", "active": true}, {"id": "2357", "originalName": "GOLDBERG MEDITERRANEA TONIC 20CL", "format": "20 cl", "name": "Goldberg Mediterranea Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3369", "originalName": "GOLDBERG MEDITERRANEA TONIC LATTINA *24 PROMO", "format": "15 cl", "name": "Goldberg Mediterranea - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.48, "vat": 22.0, "notes": "", "active": true}, {"id": "3425", "originalName": "J. GASCO DRY BITTER TONIC 20X12", "format": "20 cl", "name": "Gasco Dry Tonica", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.45, "vat": 22.0, "notes": "", "active": true}, {"id": "1315", "originalName": "J. GASCO PREMIUM GINGER ROSSO *24", "format": "20 cl", "name": "Ginger rosso Gasco", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.4, "vat": 22.0, "notes": "", "active": true}, {"id": "1296", "originalName": "KAPRIOL GIN MT. POMPELMO 70 CL", "format": "70 cl", "name": "Kapriol pompelmo", "category": "SPIRITS", "unitCode": "PZ", "price": 18.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2079", "originalName": "LATTE MANDORLE FABBRI LT", "format": "100 cl", "name": "Sciroppo latte di mandorle", "category": "SCIROPPI", "unitCode": "PZ", "price": 10.9, "vat": 22.0, "notes": "", "active": true}, {"id": "0219", "originalName": "LEMON SODA .BT CL 20 CL *24", "format": "20 cl", "name": "Lemon soda", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 11.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0827", "originalName": "MARTINI BIANCO LT", "format": "100 cl", "name": "Martini Bianco", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0266", "originalName": "MARTINI EXTRA DRY L.1", "format": "100 cl", "name": "Martini Extra Dry", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2710", "originalName": "MARTINI NON ALCOHLIC FLOREALE 75 CL", "format": "75 cl", "name": "Martini Floreale", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "2709", "originalName": "MARTINI RISERVA SPECIALE AMBRATO 70 CL", "format": "75", "name": "Martini RS Ambrato", "category": "VERMOUTH", "unitCode": "PZ", "price": 11.85, "vat": 22.0, "notes": "", "active": true}, {"id": "2712", "originalName": "MARTINI RISERVA SPECIALE BITTER PREMIUM 70", "format": "70 cl", "name": "Martini Bitter Riserva", "category": "BITTER", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2315", "originalName": "MARTINI RISERVA SPECIALE RUBINO 75 CL", "format": "75 cl", "name": "Martini RS Rubino", "category": "VERMOUTH", "unitCode": "PZ", "price": 12.8, "vat": 22.0, "notes": "", "active": true}, {"id": "3225", "originalName": "MARTINI ROSSO VERMOUTH LT", "format": "100 cl", "name": "Martini Rosso", "category": "VERMOUTH", "unitCode": "PZ", "price": 7.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2711", "originalName": "MARTINI VIBRANTE 75 CL", "format": "75 cl", "name": "Martini Vibrante", "category": "NO ALCOHOL", "unitCode": "PZ", "price": 9.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1665", "originalName": "MEZCAL AMORES VERDE MOMENTO", "format": "70 cl", "name": "Mezcal Amores Verde", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0248", "originalName": "MINI SPIEDI REMO COCKTAIL BAMBOO CM 15 1", "format": "", "name": "Remi cocktail", "category": "ACCESSORI", "unitCode": "PZ", "price": 1.55, "vat": 22.0, "notes": "", "active": true}, {"id": "1213", "originalName": "PORTO SANDEMAN WHITE CL.75", "format": "75 cl", "name": "Porto bianco", "category": "LIQUORI", "unitCode": "PZ", "price": 8.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0466", "originalName": "QUAGLIA AL BERGAMOTTO", "format": "70 cl", "name": "Liquore bergamotto Quaglia", "category": "LIQUORI", "unitCode": "PZ", "price": 14.8, "vat": 22.0, "notes": "", "active": true}, {"id": "0150", "originalName": "RUM ABUELO 7 Y CL 70", "format": "70 cl", "name": "Abuelo 7", "category": "SPIRITS", "unitCode": "PZ", "price": 20.58, "vat": 22.0, "notes": "", "active": true}, {"id": "2220", "originalName": "RUM BLACKWELL JAMAICAN 40% 70 CL", "format": "70 cl", "name": "Blackwell", "category": "SPIRITS", "unitCode": "PZ", "price": 19.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0598", "originalName": "RUM PLANTATION ORIGINAL DARK 70 CL", "format": "70 cl", "name": "Planteray Original Dark", "category": "SPIRITS", "unitCode": "PZ", "price": 12.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3305", "originalName": "RUM PLANTERAY O.F.T.D OVERPPROFF 70 CL", "format": "70 cl", "name": "Planteray Overproof", "category": "SPIRITS", "unitCode": "PZ", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "2011", "originalName": "RUM VERITAS WHITE BLENDED 70 CL", "format": "70 cl", "name": "Veritas", "category": "SPIRITS", "unitCode": "PZ", "price": 15.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0479", "originalName": "SAINT GERMAIN CL 70", "format": "70 cl", "name": "Saint Germain", "category": "LIQUORI", "unitCode": "PZ", "price": 26.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0164", "originalName": "SAMBUCA MOLINARI LT", "format": "100 cl", "name": "Sambuca Molinari", "category": "AMARI", "unitCode": "PZ", "price": 16.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0186", "originalName": "SAN SIMONE 70 CL", "format": "70 cl", "name": "San Simone", "category": "AMARI", "unitCode": "PZ", "price": 11.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2794", "originalName": "SCIROPPO CEDRO TASSONI 720 ML", "format": "72 cl", "name": "Sciroppo Cedro Tassoni", "category": "SCIROPPI", "unitCode": "PZ", "price": 6.85, "vat": 22.0, "notes": "", "active": true}, {"id": "1428", "originalName": "SELECT LT", "format": "100 cl", "name": "Select", "category": "APERITIVI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2753", "originalName": "SHERRY OSBORNE BAILEN 75 CL", "format": "75 cl", "name": "Sherry Oloroso", "category": "LIQUORI", "unitCode": "PZ", "price": 13.89, "vat": 22.0, "notes": "", "active": true}, {"id": "2382", "originalName": "STECCONI SPIEDO 15 CM *1000", "format": "", "name": "Stecconi spiedo", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0477", "originalName": "SUCCO POMODORO CIRIO 200 ML*24", "format": "20 cl", "name": "Succo pomodoro", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1535", "originalName": "TABERNERO PISCO PURO ACHOLADO 70 CL", "format": "70 cl", "name": "Pisco Tabernero Alcholado", "category": "SPIRITS", "unitCode": "PZ", "price": 21.98, "vat": 22.0, "notes": "", "active": true}, {"id": "0756", "originalName": "TEQUILA CUERVO REPOSADO LT", "format": "100 cl", "name": "Tequila Cuervo Reposado", "category": "SPIRITS", "unitCode": "PZ", "price": 16.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0496", "originalName": "THE NEW TEA SPIRIT T", "format": "70 cl", "name": "Liquore T+", "category": "LIQUORI", "unitCode": "PZ", "price": 17.2, "vat": 22.0, "notes": "", "active": true}, {"id": "2745", "originalName": "THREE CENTS PINEAPPLE 20 cl", "format": "20 cl", "name": "Soda ananas Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 23.98, "vat": 22.0, "notes": "", "active": true}, {"id": "2211", "originalName": "THREE CENTS PINK GRAPEFRUIT SODA 20 CL*24", "format": "20 cl", "name": "Soda pompelmo Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 22.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0436", "originalName": "TIO PEPE SHERRY 70 CL", "format": "70 cl", "name": "Sherry Fino", "category": "LIQUORI", "unitCode": "PZ", "price": 10.98, "vat": 22.0, "notes": "", "active": true}, {"id": "3385", "originalName": "TONIC WATER GOLDBERG LATTINE 20 CL", "format": "20 cl", "name": "Golberg tonica - Lattina", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 15.8, "vat": 22.0, "notes": "", "active": true}, {"id": "1250", "originalName": "TONICA FEVER TREE INDIAN 200 ML *24", "format": "20 cl", "name": "Fever Tree Indian", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 21.5, "vat": 22.0, "notes": "", "active": true}, {"id": "3035", "originalName": "TONICA THREE CENTS DRY *24", "format": "20 cl", "name": "Tonica Dry Three Cents", "category": "SODATI-SUCCHI", "unitCode": "CT", "price": 20.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0276", "originalName": "TOV T. UNITA 2V 25*25 INF 100 PZ/30", "format": "", "name": "Tovaglioli neri", "category": "ACCESSORI", "unitCode": "CT", "price": 38.5, "vat": 22.0, "notes": "", "active": true}, {"id": "0296", "originalName": "TRIPLE SEC 70 CL", "format": "7 cl", "name": "Triple Sec", "category": "LIQUORI", "unitCode": "PZ", "price": 6.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0680", "originalName": "VECCHIA ROMAGNA ET NERA 70 CL", "format": "70 cl", "name": "Vecchia Romagna", "category": "AMARI", "unitCode": "PZ", "price": 99.0, "vat": 22.0, "notes": "", "active": true}, {"id": "2208", "originalName": "WHIS.BUSKER BLEND TRIPLE CASK 70 CL", "format": "70 cl", "name": "Busker Irish", "category": "SPIRITS", "unitCode": "PZ", "price": 14.89, "vat": 22.0, "notes": "", "active": true}, {"id": "0179", "originalName": "WORCHESTER SAUSE CL 15", "format": "15 cl", "name": "Salsa Worchestershire", "category": "ACCESSORI", "unitCode": "PZ", "price": 4.48, "vat": 22.0, "notes": "", "active": true}, {"id": "0208", "originalName": "ZUCCHERO LIQ BARMAN LITRO", "format": "100 cl", "name": "Zucchero liquido", "category": "SCIROPPI", "unitCode": "PZ", "price": 4.4, "vat": 10.0, "notes": "", "active": true}];
 const KEY={products:'done_products_v1',orders:'done_orders_v1',reminders:'done_reminders_v1',checks:'done_checks_v14',legacyProducts:'done_products_v01',legacyOrders:'done_orders_v02',legacyReminders:'done_reminders_v02'};
@@ -774,6 +851,8 @@ let products=load(KEY.products,load(KEY.legacyProducts,INITIAL_PRODUCTS));
 let orders=load(KEY.orders,load(KEY.legacyOrders,[]));
 let reminders=load(KEY.reminders,load(KEY.legacyReminders,[]));
 let checks=load(KEY.checks,[]);
+let historicalOrders=load('done_historical_orders_v21',[]);
+let historicalDraft=[];
 let activeCheckId='';
 let current=blankOrder(),activeCategory='',filter='all';
 
@@ -830,7 +909,7 @@ function go(view){
   if(view==='review')renderReview();
   if(view==='categoryPage')renderCategoryPage();
   if(view==='orders')renderOrders();
-  if(view==='analysis'){initAnalysis();renderAnalysisPicker();}
+  if(view==='analysis'){initAnalysis();renderAnalysisPicker();renderHistoricalList();}
   if(view==='check')renderChecks();
   if(view==='checkDetail')renderCheckDetail();
   if(view==='catalog')renderProducts();
@@ -1035,11 +1114,12 @@ function analysisData(){
   const to=document.getElementById('analysisTo').value;
   const productById=new Map(products.map(p=>[String(p.id),p]));
   const rows=[];const includedOrders=new Set();
-  for(const o of orders){
+  for(const o of [...orders,...historicalOrders]){
     if(o.status==='draft'||!Array.isArray(o.items))continue;
     // Use the original order date: editing must not shift historical purchases.
-    const day=analysisIsoDate(o.createdAt||o.updatedAt);
-    if(!day||(from&&day<from)||(to&&day>to))continue;
+    const day=o.historicalPrecision==='month'?String(o.historicalMonth)+'-01':analysisIsoDate(o.historicalDay||o.createdAt||o.updatedAt);
+    const monthOnly=o.historicalPrecision==='month';
+    if(!day||((from||to)&&monthOnly?((from&&day.slice(0,7)<from.slice(0,7))||(to&&day.slice(0,7)>to.slice(0,7))):((from&&day<from)||(to&&day>to))))continue;
     for(const i of o.items){
       const qty=Number(i.qty);
       if(!Number.isFinite(qty)||qty<=0)continue;
@@ -1050,7 +1130,7 @@ function analysisData(){
       const price=(i.price===null||i.price===undefined||i.price==='')?null:Number(i.price);
       const vat=Number(i.vat??product?.vat??0);
       const priced=price!==null&&Number.isFinite(price);
-      rows.push({orderId:String(o.id),day,name,category,id:String(i.id||''),format:String(i.format||product?.format||''),unit:String(i.unitCode||product?.unitCode||''),qty,price:priced?price:null,vat:Number.isFinite(vat)?vat:0,net:priced?qty*price:null,gross:priced?qty*price*(1+vat/100):null});
+      rows.push({orderId:String(o.id),day:monthOnly?day.slice(0,7)+' (mese indicativo)':day,month:day.slice(0,7),name,category,id:String(i.id||''),format:String(i.format||product?.format||''),unit:String(i.unitCode||product?.unitCode||''),qty,price:priced?price:null,vat:Number.isFinite(vat)?vat:0,net:priced?qty*price:null,gross:priced?qty*price*(1+vat/100):null});
       includedOrders.add(o.id);
     }
   }
@@ -1082,9 +1162,73 @@ function renderAnalysis(){
   if(from&&to&&from>to){document.getElementById('analysisStats').innerHTML='';document.getElementById('analysisResults').innerHTML='<div class="empty">La data iniziale deve precedere quella finale.</div>';return;}
   const d=analysisData();const net=d.summary.reduce((s,x)=>s+x.net,0);
   const missing=d.summary.reduce((s,x)=>s+x.missing,0);
-  document.getElementById('analysisStats').innerHTML=`<div class="metric"><b>${d.orders}</b><span>Ordini</span></div><div class="metric"><b>${d.summary.length}</b><span>Prodotti distinti</span></div><div class="metric"><b>${euro(net)}</b><span>Spesa netta${missing?' (parziale)':''}</span></div>`;
+  document.getElementById('analysisStats').innerHTML=`<div class="metric"><b>${d.summary.reduce((s,x)=>s+x.qty,0)}</b><span>Unità / colli*</span></div><div class="metric"><b>${d.orders}</b><span>Ordini</span></div><div class="metric"><b>${d.summary.length}</b><span>Prodotti distinti</span></div>`;
   document.getElementById('analysisResults').innerHTML=d.summary.map(x=>`<div class="card"><div class="card-row"><div><div class="card-title">${esc(x.name)}</div><div class="meta">${esc(x.category)} · ${esc(x.format)} · ${esc(unit(x.unit))}</div><div class="meta">${x.orders.size} ordini${x.missing?' · Prezzo mancante in '+x.missing+' righe':''}</div></div><div style="text-align:right"><b>${x.qty} ${esc(x.unit==='CT'?'cartoni':'unità')}</b><div class="meta">${euro(x.net)} netto</div></div></div></div>`).join('')||'<div class="empty">Nessun prodotto ordinato nel periodo selezionato.</div>';
+  renderAnalysisCharts();renderHistoricalList();
 }
+
+function analysisChartData(){
+ const d=analysisData(),mode=document.getElementById('analysisChartMode').value;
+ const sums=new Map();
+ for(const r of d.rows){const k=mode==='monthly'?r.month:r.name+' · '+r.unit;sums.set(k,(sums.get(k)||0)+r.qty);}
+ let data=[...sums].sort((a,b)=>mode==='monthly'?a[0].localeCompare(b[0]):b[1]-a[1]);
+ return mode==='products'?data.slice(0,12):data;
+}
+function renderAnalysisCharts(){
+ const host=document.getElementById('analysisCharts');if(!host)return;
+ const data=analysisChartData(),max=Math.max(1,...data.map(x=>x[1]));
+ host.innerHTML=data.map(([name,value])=>`<div class="chart-item"><div class="chart-label"><span>${esc(name)}</span><b>${Number(value.toLocaleString?value:value)}</b></div><div class="chart-track"><div class="chart-fill" style="width:${Math.max(1,100*value/max)}%"></div></div></div>`).join('')||'<p class="sub">Nessun dato nel periodo.</p>';
+}
+function exportAnalysisReport(){
+ if(document.getElementById('analysisFormat').value==='pdf')exportAnalysisPdf();else exportAnalysisXlsx();
+}
+function exportAnalysisPdf(){
+ const d=analysisData();if(!d.rows.length){alert('Nessun dato da esportare.');return;}
+ const dates=document.getElementById('analysisDates').checked,amounts=document.getElementById('analysisAmounts').checked,mode=document.getElementById('analysisMode').value;
+ const from=document.getElementById('analysisFrom').value,to=document.getElementById('analysisTo').value;
+ const table=(heads,rows)=>'<table><thead><tr>'+heads.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+esc(v??'')+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ let content='';
+ if(mode!=='detail')content+='<h2>Riepilogo per prodotto</h2>'+table(['Prodotto','Categoria','Unità','Quantità','Ordini',...(amounts?['Spesa netta']:[]),...(dates?['Date / mesi']:[])],d.summary.map(x=>[x.name,x.category,x.unit,x.qty,x.orders.size,...(amounts?[euro(x.net)]:[]),...(dates?[[...x.dates].sort().join(', ')]:[])]));
+ if(mode!=='summary')content+='<h2>Dettaglio ordini</h2>'+table(['Ordine',...(dates?['Data / mese']:[]),'Prodotto','Unità','Quantità',...(amounts?['Prezzo netto','Spesa netta']:[])],d.rows.map(x=>[x.orderId,...(dates?[x.day]:[]),x.name,x.unit,x.qty,...(amounts?[x.price===null?'':euro(x.price),x.net===null?'':euro(x.net)]:[])]));
+ if(document.getElementById('analysisExportCharts').checked){const data=analysisChartData(),max=Math.max(1,...data.map(x=>x[1]));content+='<h2>Grafico comparativo</h2>'+data.map(([k,v])=>'<div class="barrow"><span>'+esc(k)+'</span><div class="bar" style="width:'+Math.round(v/max*65)+'%"></div><b>'+v+'</b></div>').join('');}
+ const html='<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.ONE Analisi acquisti</title><style>body{font:13px -apple-system,Arial,sans-serif;color:#142235;padding:22px}h1{font-size:23px}h2{margin-top:25px;font-size:17px}table{border-collapse:collapse;width:100%;font-size:11px}td,th{border-bottom:1px solid #cbd5e1;padding:6px;text-align:left}th{background:#e6eef9}.barrow{display:flex;align-items:center;gap:8px;margin:7px 0}.barrow span{width:150px}.bar{height:12px;background:#287de8}@media print{body{padding:0}@page{size:A4;margin:14mm}}</style></head><body><h1>D.ONE · Analisi acquisti</h1><p>Periodo: '+esc(from)+' — '+esc(to)+' · '+d.orders+' ordini · '+d.summary.reduce((v,x)=>v+x.qty,0)+' unità/colli (non omogenei)</p>'+content+'<p>Gli ordini con mese indicativo sono attribuiti al mese e non a un giorno specifico.</p></body></html>';
+ const w=window.open('','_blank');if(!w){alert('Consenti l’apertura del report per stamparlo o salvarlo come PDF.');return;}w.document.open();w.document.write(html);w.document.close();w.focus();setTimeout(()=>w.print(),450);
+}
+function historicalToggleDate(){const day=document.getElementById('historicalPrecision').value==='day';document.getElementById('historicalDayField').hidden=!day;document.getElementById('historicalMonthField').hidden=day;}
+function openHistorical(id=''){
+ const o=historicalOrders.find(x=>x.id===id);
+ document.getElementById('historicalEditId').value=id;
+ document.getElementById('historicalPrecision').value=o?.historicalPrecision||'month';
+ document.getElementById('historicalMonth').value=o?.historicalMonth||new Date().toISOString().slice(0,7);
+ document.getElementById('historicalDay').value=o?.historicalDay||new Date().toISOString().slice(0,10);
+ document.getElementById('historicalNote').value=o?.note||'';
+ document.getElementById('historicalSearch').value='';
+ historicalDraft=(o?.items||[]).map(x=>({...x}));
+ historicalToggleDate();renderHistoricalProducts();renderHistoricalRows();document.getElementById('historicalModal').classList.add('open');
+}
+function renderHistoricalProducts(){
+ const q=document.getElementById('historicalSearch').value.toLocaleLowerCase('it');
+ document.getElementById('historicalProducts').innerHTML=products.filter(p=>(p.name+' '+p.id+' '+p.category).toLocaleLowerCase('it').includes(q)).slice(0,50).map(p=>`<button type="button" class="historical-product" onclick="historicalAdd('${js(p.id)}')"><span>${esc(p.name)} <small>${esc(p.category)}</small></span><b>＋</b></button>`).join('');
+}
+function historicalAdd(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;const existing=historicalDraft.find(x=>String(x.id)===String(id));if(existing)existing.qty+=1;else historicalDraft.push({id:p.id,name:p.name,category:p.category,format:p.format,unitCode:p.unitCode,qty:1,price:p.price,vat:p.vat});renderHistoricalRows();}
+function historicalChange(index,key,value){if(!historicalDraft[index])return;historicalDraft[index][key]=Number(value);renderHistoricalTotal();}
+function historicalRemove(index){historicalDraft.splice(index,1);renderHistoricalRows();}
+function renderHistoricalRows(){
+ document.getElementById('historicalRows').innerHTML=historicalDraft.map((p,i)=>`<div class="historical-row"><div class="historical-row-title"><b>${esc(p.name)}</b><button class="link-btn" onclick="historicalRemove(${i})">Rimuovi</button></div><div class="historical-fields"><label>Quantità<input type="number" min="0.01" step="any" value="${Number(p.qty)}" onchange="historicalChange(${i},'qty',this.value)"></label><label>Prezzo netto €<input type="number" min="0" step="0.01" value="${Number(p.price)}" onchange="historicalChange(${i},'price',this.value)"></label><label>IVA %<input type="number" min="0" step="0.01" value="${Number(p.vat)}" onchange="historicalChange(${i},'vat',this.value)"></label></div></div>`).join('')||'<p class="sub">Aggiungi almeno un prodotto dal catalogo.</p>';renderHistoricalTotal();
+}
+function renderHistoricalTotal(){const net=historicalDraft.reduce((v,p)=>v+Number(p.qty)*Number(p.price),0),gross=historicalDraft.reduce((v,p)=>v+Number(p.qty)*Number(p.price)*(1+Number(p.vat)/100),0);document.getElementById('historicalTotal').textContent='Totale netto: '+euro(net)+' · IVA inclusa: '+euro(gross);}
+function saveHistorical(){
+ const precision=document.getElementById('historicalPrecision').value,month=document.getElementById('historicalMonth').value,day=document.getElementById('historicalDay').value;
+ if((precision==='month'&&!/^\d{4}-\d{2}$/.test(month))||(precision==='day'&&!/^\d{4}-\d{2}-\d{2}$/.test(day))){alert('Indica il mese o la data.');return;}
+ if(!historicalDraft.length||historicalDraft.some(p=>!Number.isFinite(Number(p.qty))||Number(p.qty)<=0||!Number.isFinite(Number(p.price))||Number(p.price)<0||!Number.isFinite(Number(p.vat))||Number(p.vat)<0)){alert('Inserisci prodotti, quantità e prezzi validi.');return;}
+ const id=document.getElementById('historicalEditId').value||'HIST-'+Date.now(),old=historicalOrders.find(x=>x.id===id);
+ const o={id,status:'historical',historicalPrecision:precision,historicalMonth:precision==='month'?month:day.slice(0,7),historicalDay:precision==='day'?day:'',createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString(),note:document.getElementById('historicalNote').value,items:historicalDraft.map(x=>({...x}))};
+ const next=historicalOrders.filter(x=>x.id!==id);next.push(o);
+ try{save('done_historical_orders_v21',next);historicalOrders=next;}catch(e){alert('Impossibile salvare: '+e.message);return;}
+ closeModal('historicalModal');renderAnalysisPicker();
+}
+function renderHistoricalList(){const host=document.getElementById('historicalList');if(!host)return;host.innerHTML=historicalOrders.slice().sort((a,b)=>(b.historicalMonth||'').localeCompare(a.historicalMonth||'')).map(o=>`<div class="historical-list-item"><div><b>${esc(o.historicalPrecision==='month'?o.historicalMonth+' · indicativo':o.historicalDay)}</b><div class="meta">${o.items.length} prodotti · ${esc(o.note||'Ordine pregresso')}</div></div><button class="btn dark" onclick="openHistorical('${js(o.id)}')">Modifica</button><button class="btn dark" onclick="deleteHistorical('${js(o.id)}')">×</button></div>`).join('')||'<p class="sub">Nessun ordine pregresso inserito.</p>';}
+function deleteHistorical(id){if(!confirm('Eliminare questo ordine pregresso?'))return;const next=historicalOrders.filter(o=>o.id!==id);save('done_historical_orders_v21',next);historicalOrders=next;renderAnalysis();}
 // Minimal self-contained XLSX writer (ZIP store), works offline on iPhone.
 function xlsxCRC(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return(c^0xffffffff)>>>0;}
 function xlsxZip(entries){
