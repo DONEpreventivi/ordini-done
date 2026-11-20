@@ -637,6 +637,27 @@ nav{background:#0c1623;border-top:1px solid #273649;box-shadow:none}
 /* V2.1 – analisi, grafici e inserimento storico */
 .chart-item{margin:13px 0}.chart-label{display:flex;justify-content:space-between;gap:10px;color:#e6eef9;font-size:12px;margin-bottom:6px}.chart-track{height:8px;background:#26384f;border-radius:8px;overflow:hidden}.chart-fill{height:100%;background:#3188f4;border-radius:8px}.historical-product{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;background:transparent;border:0;border-bottom:1px solid #2a3b50;color:#fff;padding:12px 5px;font:inherit}.historical-product small{display:block;color:#9bb0c8;margin-top:3px}.historical-row{padding:12px 0;border-bottom:1px solid #2a3b50}.historical-row-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.historical-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}.historical-fields label{min-width:0;font-size:11px;color:#9bb0c8}.historical-fields input{box-sizing:border-box;width:100%;min-width:0;margin-top:5px;padding:9px 5px;font-size:14px}.historical-list-item{display:flex;align-items:center;gap:7px;justify-content:space-between;padding:12px 0;border-bottom:1px solid #293b51}.historical-list-item>div{flex:1;min-width:0}.historical-list-item .btn{padding:8px}.home-shortcut-icon,.v2-nav-icon{font-weight:700}#analysisExportPanel[hidden],#historicalDayField[hidden],#historicalMonthField[hidden]{display:none!important}
 </style>
+<style id="v22-refinement">
+/* V2.2 – clean, cohesive mobile interface */
+:root{color-scheme:dark}*{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}
+.app-header,.app-header::before,.app-header::after,.header-row,.logo{filter:none!important;text-shadow:none!important;box-shadow:none!important;backdrop-filter:none!important}
+.view{min-width:0}.view .card{min-width:0;max-width:100%;box-shadow:none!important;border-radius:13px}
+.view input,.view select,.view textarea,.view button{max-width:100%;min-width:0}
+.view input,.view select,.view textarea{border-radius:10px!important;box-shadow:none!important;outline-offset:2px}
+.view button{touch-action:manipulation}.btn{border-radius:10px!important;box-shadow:none!important;min-height:42px}
+.section-head{gap:10px;align-items:center}.section-head h2{letter-spacing:-.25px}
+#analysis .card{padding:14px;overflow:hidden}#analysis .form2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+#analysis .form2 .field{min-width:0;width:100%}#analysis .form2 input{width:100%;min-width:0;font-size:14px;padding:11px 7px}
+#analysis .analysis-picker-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+#analysis .analysis-picker-actions .btn{width:100%;white-space:normal;padding:10px 7px;font-size:12px}
+#analysis .analysis-picker,#analysis .analysis-selected{max-width:100%;min-width:0;overflow-wrap:anywhere}
+#analysis .analysis-picker *{min-width:0}#analysis .analysis-option{display:flex;align-items:center;gap:10px;padding:9px 0;line-height:1.4}
+#analysis .analysis-option input{width:18px;height:18px;flex:0 0 18px}
+#analysis .chart-item{margin:15px 0}#analysis .chart-track{height:7px}#analysis .chart-label{font-size:13px;line-height:1.4}
+#analysis .summary-grid{gap:8px}#analysis .metric{min-width:0}#analysis .metric b{font-variant-numeric:tabular-nums}
+.home-v2-refined .home-shortcuts button{min-height:58px}.home-v2-refined .home-new{box-shadow:none!important}
+@media(max-width:390px){#analysis .card{padding:11px}#analysis .form2{gap:7px}#analysis .form2 input{font-size:12px;padding:10px 4px}#analysis .analysis-picker-actions .btn{font-size:11px}}
+</style>
 </head>
 <body>
 <div class="app">
@@ -689,10 +710,10 @@ nav{background:#0c1623;border-top:1px solid #273649;box-shadow:none}
   <button class="btn blue full" onclick="document.getElementById('analysisExportPanel').hidden=!document.getElementById('analysisExportPanel').hidden">Esporta report · Excel / PDF</button>
   <div class="card" id="analysisExportPanel" hidden style="margin-top:10px">
     <div class="field"><label>Formato</label><select id="analysisFormat"><option value="xlsx">Excel (.xlsx)</option><option value="pdf">PDF (stampa / salva come PDF)</option></select></div>
-    <div class="field"><label>Contenuto</label><select id="analysisMode"><option value="summary">Riepilogo prodotti</option><option value="detail">Dettaglio ordini</option><option value="both" selected>Riepilogo + dettaglio</option></select></div>
+    <div class="field"><label>Contenuto</label><select id="analysisMode"><option value="summary" selected>Riepilogo prodotti</option><option value="detail">Dettaglio ordini</option><option value="both">Riepilogo + dettaglio</option></select></div>
     <label class="analysis-option"><input type="checkbox" id="analysisDates" checked> Date o mesi di riferimento</label>
     <label class="analysis-option"><input type="checkbox" id="analysisAmounts"> Includi spesa e prezzi</label>
-    <label class="analysis-option"><input type="checkbox" id="analysisExportCharts" checked> Includi grafico nel PDF</label>
+    <p class="sub">I grafici rimangono nell’app: il PDF privilegia tabelle leggibili e quantità.</p>
     <button class="btn blue full" style="margin-top:12px" onclick="exportAnalysisReport()">Genera report</button>
   </div>
   <div class="section-head"><h2>Ordini pregressi</h2></div>
@@ -1183,16 +1204,45 @@ function exportAnalysisReport(){
  if(document.getElementById('analysisFormat').value==='pdf')exportAnalysisPdf();else exportAnalysisXlsx();
 }
 function exportAnalysisPdf(){
- const d=analysisData();if(!d.rows.length){alert('Nessun dato da esportare.');return;}
- const dates=document.getElementById('analysisDates').checked,amounts=document.getElementById('analysisAmounts').checked,mode=document.getElementById('analysisMode').value;
- const from=document.getElementById('analysisFrom').value,to=document.getElementById('analysisTo').value;
- const table=(heads,rows)=>'<table><thead><tr>'+heads.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+esc(v??'')+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ const d=analysisData();
+ if(!d.rows.length){alert('Nessun dato da esportare.');return;}
+ const dates=document.getElementById('analysisDates').checked;
+ const amounts=document.getElementById('analysisAmounts').checked;
+ const mode=document.getElementById('analysisMode').value;
+ const from=document.getElementById('analysisFrom').value;
+ const to=document.getElementById('analysisTo').value;
+ const totalQty=d.summary.reduce((sum,x)=>sum+x.qty,0);
+ const fmt=n=>Number(n||0).toLocaleString('it-IT',{maximumFractionDigits:2});
+ const money=n=>Number(n||0).toLocaleString('it-IT',{style:'currency',currency:'EUR'});
+ const cells=(vals,tag='td')=>vals.map(v=>'<'+tag+'>'+esc(v??'')+'</'+tag+'>').join('');
+ const table=(heads,rows,widths)=>'<table><colgroup>'+widths.map(w=>'<col style="width:'+w+'%">').join('')+'</colgroup><thead><tr>'+cells(heads,'th')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cells(r)+'</tr>').join('')+'</tbody></table>';
  let content='';
- if(mode!=='detail')content+='<h2>Riepilogo per prodotto</h2>'+table(['Prodotto','Categoria','Unità','Quantità','Ordini',...(amounts?['Spesa netta']:[]),...(dates?['Date / mesi']:[])],d.summary.map(x=>[x.name,x.category,x.unit,x.qty,x.orders.size,...(amounts?[euro(x.net)]:[]),...(dates?[[...x.dates].sort().join(', ')]:[])]));
- if(mode!=='summary')content+='<h2>Dettaglio ordini</h2>'+table(['Ordine',...(dates?['Data / mese']:[]),'Prodotto','Unità','Quantità',...(amounts?['Prezzo netto','Spesa netta']:[])],d.rows.map(x=>[x.orderId,...(dates?[x.day]:[]),x.name,x.unit,x.qty,...(amounts?[x.price===null?'':euro(x.price),x.net===null?'':euro(x.net)]:[])]));
- if(document.getElementById('analysisExportCharts').checked){const data=analysisChartData(),max=Math.max(1,...data.map(x=>x[1]));content+='<h2>Grafico comparativo</h2>'+data.map(([k,v])=>'<div class="barrow"><span>'+esc(k)+'</span><div class="bar" style="width:'+Math.round(v/max*65)+'%"></div><b>'+v+'</b></div>').join('');}
- const html='<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.ONE Analisi acquisti</title><style>body{font:13px -apple-system,Arial,sans-serif;color:#142235;padding:22px}h1{font-size:23px}h2{margin-top:25px;font-size:17px}table{border-collapse:collapse;width:100%;font-size:11px}td,th{border-bottom:1px solid #cbd5e1;padding:6px;text-align:left}th{background:#e6eef9}.barrow{display:flex;align-items:center;gap:8px;margin:7px 0}.barrow span{width:150px}.bar{height:12px;background:#287de8}@media print{body{padding:0}@page{size:A4;margin:14mm}}</style></head><body><h1>D.ONE · Analisi acquisti</h1><p>Periodo: '+esc(from)+' — '+esc(to)+' · '+d.orders+' ordini · '+d.summary.reduce((v,x)=>v+x.qty,0)+' unità/colli (non omogenei)</p>'+content+'<p>Gli ordini con mese indicativo sono attribuiti al mese e non a un giorno specifico.</p></body></html>';
- const w=window.open('','_blank');if(!w){alert('Consenti l’apertura del report per stamparlo o salvarlo come PDF.');return;}w.document.open();w.document.write(html);w.document.close();w.focus();setTimeout(()=>w.print(),450);
+ if(mode!=='detail'){
+  const heads=['Prodotto','Unità','Q.tà','Ordini'];
+  const widths=amounts?[42,12,12,12,22]:[56,14,14,16];
+  if(amounts)heads.push('Spesa netta');
+  content+='<section><h2>Quantità per prodotto</h2>'+table(heads,d.summary.map(x=>[x.name,x.unit,fmt(x.qty),x.orders.size,...(amounts?[x.missing?'Parziale · '+money(x.net):money(x.net)]:[])]),widths)+'</section>';
+ }
+ if(mode!=='summary'){
+  const heads=['Prodotto',...(dates?['Data / mese']:[]),'Unità','Q.tà',...(amounts?['Spesa netta']:[])];
+  const widths=dates?(amounts?[36,22,12,12,18]:[46,25,13,16]):(amounts?[50,15,15,20]:[60,18,22]);
+  content+='<section class="detail"><h2>Dettaglio righe ordinate</h2>'+table(heads,d.rows.map(x=>[x.name,...(dates?[x.day]:[]),x.unit,fmt(x.qty),...(amounts?[x.net===null?'Non disponibile':money(x.net)]:[])]),widths)+'</section>';
+ }
+ const note=amounts?'<p class="foot">Gli importi sono calcolati dai prezzi salvati negli ordini. I valori mancanti non sono stimati.</p>':'';
+ const html=`<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>D.ONE · Report acquisti</title><style>
+ *{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;margin:0;color:#172235;background:#fff;font-size:10pt;line-height:1.38}
+ .sheet{max-width:190mm;margin:auto;padding:12mm 8mm}header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #172235;padding-bottom:12px;margin-bottom:20px}
+ .brand{font-size:17pt;font-weight:800;letter-spacing:-.5px}.report{font-size:9pt;color:#526073;text-align:right}h1{font-size:19pt;letter-spacing:-.5px;margin:0 0 6px}h2{font-size:12pt;margin:23px 0 10px;page-break-after:avoid}
+ .period{color:#59677a;margin-bottom:17px}.metrics{display:flex;gap:12px;border-top:1px solid #dce3ec;border-bottom:1px solid #dce3ec;padding:13px 0;margin-bottom:18px}.metric{flex:1}.metric strong{display:block;font-size:20pt;font-weight:750;line-height:1.1}.metric span{font-size:8pt;color:#657387;text-transform:uppercase;letter-spacing:.3px}
+ table{border-collapse:collapse;width:100%;table-layout:fixed}thead{display:table-header-group}tr{break-inside:avoid;page-break-inside:avoid}th{text-transform:uppercase;letter-spacing:.3px;font-size:7.5pt;color:#55677b;text-align:left;background:#edf2f8;border-bottom:1px solid #ccd7e3;padding:9px 7px}td{padding:8px 7px;border-bottom:1px solid #e1e7ee;overflow-wrap:anywhere;vertical-align:top;font-size:8.7pt}td:nth-child(n+3){font-variant-numeric:tabular-nums}.foot{font-size:8pt;color:#657387;margin-top:20px}.detail{break-before:auto}
+ @page{size:A4 portrait;margin:13mm} @media print{.sheet{max-width:none;padding:0}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+ </style></head><body><div class="sheet"><header><div class="brand">D.ONE</div><div class="report">ANALISI ACQUISTI<br>REPORT QUANTITATIVO</div></header><h1>Riepilogo acquisti</h1><div class="period">Dal ${esc(from||'inizio storico')} al ${esc(to||'oggi')}</div><div class="metrics"><div class="metric"><strong>${esc(fmt(totalQty))}</strong><span>Unità / colli*</span></div><div class="metric"><strong>${esc(fmt(d.orders))}</strong><span>Ordini</span></div><div class="metric"><strong>${esc(fmt(d.summary.length))}</strong><span>Prodotti</span></div></div>${content}<p class="foot">* Le quantità possono riferirsi a unità di confezionamento differenti e non sono necessariamente omogenee. Gli ordini con mese indicativo sono attribuiti al mese, non a un giorno preciso.</p>${note}</div></body></html>`;
+ const w=window.open('','_blank');
+ if(!w){alert('Il browser ha bloccato il report. Consenti le finestre per poterlo stampare o salvare in PDF.');return;}
+ w.document.open();w.document.write(html);w.document.close();
+ w.addEventListener('load',()=>{w.focus();setTimeout(()=>w.print(),300);},{once:true});
+ // Some iOS WebKit versions do not dispatch load for document.write documents.
+ setTimeout(()=>{if(w&&!w.closed&&w.document.readyState==='complete'){w.focus();}},500);
 }
 function historicalToggleDate(){const day=document.getElementById('historicalPrecision').value==='day';document.getElementById('historicalDayField').hidden=!day;document.getElementById('historicalMonthField').hidden=day;}
 function openHistorical(id=''){
