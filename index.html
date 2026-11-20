@@ -507,6 +507,82 @@ header.app-header .app-title-block{
   }
 }
 
+
+/* Analisi acquisti */
+.analysis-option{display:flex;align-items:center;gap:9px;padding:7px 0;font-size:13px;color:var(--text)}
+.analysis-option input{width:19px;height:19px;accent-color:#2689f3;flex-shrink:0}
+#analysisResults .card{margin-bottom:9px}
+#analysis .field select,#analysis .field input{max-width:100%}
+
+.analysis-picker{max-height:225px;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.analysis-picker-row{display:flex;align-items:center;gap:9px;padding:10px 9px;border-bottom:1px solid var(--line);font-size:13px}
+.analysis-picker-row:last-child{border-bottom:0}
+.analysis-picker-row input{width:18px;height:18px;accent-color:#2689f3;flex-shrink:0}
+.analysis-picker-row span{flex:1;min-width:0}
+.analysis-picker-row small{font-size:10px;opacity:.7}
+.analysis-picker-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.analysis-picker-actions .btn{font-size:12px;padding:10px}
+.analysis-selected{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+.analysis-chip{border:1px solid var(--line);border-radius:20px;padding:7px 9px;background:var(--card);color:var(--text);font-size:11px}
+
+/* D.ONE V2.0 — Home redesign only. Existing storage and operational views unchanged. */
+.home-v2{--home-surface:#152238;--home-soft:#9daec6}
+.home-v2 .home-kicker{font-size:10px;letter-spacing:.15em;color:#e9f2ff;font-weight:850;display:flex;gap:6px;align-items:center}
+.home-v2 .home-kicker span{color:#7f95b3}.home-v2 .home-version{margin-left:auto;font-size:10px;letter-spacing:.08em;border:1px solid #2c4260;padding:4px 7px;border-radius:7px}
+.home-v2 .home-heading{display:flex;justify-content:space-between;align-items:center;margin:10px 0 20px}
+.home-v2 h1{font-size:42px;letter-spacing:-2px;margin:0 0 4px;font-weight:780}.home-dot{color:#3489ee}
+.home-v2 .sub{margin:0;color:var(--home-soft);font-size:13px}
+.home-gear{width:44px;height:44px;border-radius:13px;border:1px solid #30445f;background:#18283e;color:#e7f1ff;font-size:22px}
+.home-overview{background:#15243b;border:1px solid #263a55;border-radius:18px;padding:16px;margin-bottom:12px}
+.home-panel-title{display:flex;justify-content:space-between;color:#b8c9e2;font-size:10px;font-weight:800;letter-spacing:.1em}.home-panel-title small{font-size:10px;color:#8299b7;letter-spacing:0}
+.home-v2 .summary-grid{margin-top:13px;gap:0}.home-v2 .metric{border:0;border-radius:0;background:transparent;padding:4px 12px;border-right:1px solid #30425c}.home-v2 .metric:first-child{padding-left:0}.home-v2 .metric:last-child{border:0}.home-v2 .metric b{font-size:29px;font-weight:760;line-height:1.1}.home-v2 .metric span{font-size:11px;margin-top:6px}
+.home-new{width:100%;display:flex;align-items:center;justify-content:space-between;background:#2878df;color:white;border:0;border-radius:17px;padding:20px;text-align:left;min-height:91px}.home-new strong{font-size:20px;display:block;letter-spacing:-.5px}.home-new small{display:block;font-size:12px;color:#e1eeff;margin-top:5px}.home-arrow{font-size:30px;font-weight:300}
+.home-continue{width:100%;margin-top:9px;display:flex;align-items:center;justify-content:space-between;text-align:left;background:#17263b;border:1px solid #2b405d;color:#fff;border-radius:14px;padding:13px 16px}.home-continue strong{display:block;font-size:14px}.home-continue small{display:block;color:#9dafc8;font-size:11px;margin-top:3px}.home-continue>span:last-child{font-size:26px;color:#94a9c5}
+.home-v2 .section-head{margin:23px 0 11px}.home-v2 .section-head h2{font-size:18px;font-weight:760;letter-spacing:-.4px}
+.home-shortcuts{display:grid;gap:8px}.home-shortcuts button{width:100%;display:flex;gap:12px;align-items:center;background:#152338;color:#fff;border:1px solid #253b57;border-radius:13px;padding:13px;text-align:left}.home-shortcuts button>span:nth-child(2){flex:1}.home-shortcuts strong{display:block;font-size:14px}.home-shortcuts small{display:block;font-size:11px;color:#9cafc9;margin-top:3px}.home-shortcuts b{font-size:22px;color:#849bb9;font-weight:400}.home-shortcut-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:#243e61;color:#a6caff;font-size:20px}
+.home-tiles{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}.home-tiles button{display:flex;flex-direction:column;align-items:flex-start;min-height:119px;background:#152338;color:#fff;border:1px solid #253b57;border-radius:14px;padding:14px;text-align:left}.home-tiles .tile-icon{font-size:24px;color:#9bc5ff;margin-bottom:12px}.home-tiles strong{font-size:14px}.home-tiles small{font-size:11px;color:#9cafc9;margin-top:3px}
+.home-backup{margin:30px 0 10px;padding:16px;background:#101e31;border:1px solid #263a55;border-radius:16px}.home-backup .section-head{margin:0 0 7px}.home-backup .sub{margin-bottom:14px}.home-backup .btn{font-size:12px;padding:12px 8px}
+@media(max-width:370px){.home-v2 .metric{padding:4px 8px}.home-v2 .metric b{font-size:25px}.home-v2 .metric span{font-size:10px}}
+
+/* V2.0 — compact fixed header: logo + settings only */
+header.app-header{min-height:0!important;height:auto!important;padding:calc(8px + env(safe-area-inset-top)) 16px 8px!important;align-items:center!important}
+header.app-header .header-row{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;width:100%}
+header.app-header .logo{width:78px!important;max-width:78px!important;height:auto}
+.header-settings{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:11px;border:1px solid #30445f;background:#18283e;color:#e7f1ff;font-size:21px;line-height:1;cursor:pointer}
+.home-v2 .home-overview{margin-top:0}
+#homeBackup{scroll-margin-top:85px}
+@media(max-width:390px){header.app-header .logo{width:72px!important;max-width:72px!important}}
+
+/* V2.0 — Evoluzione D.ONE: refined, flat, compact home; storage/operations untouched */
+.home-v2-refined{--home-soft:#92a1b7}
+.home-v2-refined .home-overview{background:transparent;border:0;border-radius:0;padding:8px 0 14px;margin:0 0 10px;border-bottom:1px solid #283344}
+.home-v2-refined .summary-grid{margin-top:0;gap:0}
+.home-v2-refined .metric{padding:2px 13px;border-right:1px solid #283344;min-width:0;cursor:pointer}
+.home-v2-refined .metric:first-child{padding-left:2px}
+.home-v2-refined .metric b{font-size:32px;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.home-v2-refined .metric span{font-size:10px;letter-spacing:.055em;text-transform:uppercase;color:#96a7bf}
+.home-v2-refined .home-new{min-height:54px;padding:14px 17px;border-radius:12px;background:#2778e3}
+.home-v2-refined .home-new-label{display:flex;align-items:center;gap:11px}
+.home-v2-refined .home-new strong{font-size:16px;letter-spacing:-.2px}
+.home-v2-refined .home-plus{font-size:23px;line-height:1;font-weight:300}
+.home-v2-refined .home-arrow{font-size:24px}
+.home-v2-refined .home-continue{margin-top:7px;background:transparent;border:1px solid #2a3a50;border-radius:11px;padding:11px 14px}
+.home-v2-refined .home-continue strong{font-size:13px}
+.home-v2-refined .home-operation-label{margin:24px 0 6px;color:#8fa2bd;font-size:10px;font-weight:750;letter-spacing:.13em}
+.home-v2-refined .home-shortcuts{gap:0}
+.home-v2-refined .home-shortcuts button{background:transparent;border:0;border-bottom:1px solid #263345;border-radius:0;padding:12px 2px;min-height:61px;gap:13px}
+.home-v2-refined .home-shortcut-icon{background:transparent;border-radius:0;width:25px;height:32px;color:#81b4fb;font-size:22px}
+.home-v2-refined .home-shortcuts strong{font-size:14px;font-weight:650}
+.home-v2-refined .home-shortcuts small{font-size:11px;color:#92a2b8}
+.home-v2-refined .home-shortcuts b{font-size:22px;color:#65768c}
+.home-v2-refined .section-head{margin-top:25px}
+.home-v2-refined .section-head h2{font-size:17px}
+.home-v2-refined .home-backup{background:transparent;border-color:#29374a;border-radius:12px;margin-top:30px}
+.v2-bottom-nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;padding-bottom:max(5px,env(safe-area-inset-bottom))!important}
+.v2-bottom-nav .nav{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px!important;letter-spacing:.035em;min-width:0;padding:6px 2px!important}
+.v2-bottom-nav .v2-nav-icon{font-size:21px;line-height:1.15;font-weight:400}
+.v2-bottom-nav .nav.active{color:#7fb7ff!important}
+@media(max-width:370px){.home-v2-refined .metric b{font-size:28px}}
 </style>
 </head>
 <body>
@@ -514,40 +590,51 @@ header.app-header .app-title-block{
 <header class="app-header">
   <div class="header-row">
     <img class="logo" src="logo-DONE-white.png" alt="D.ONE Torino">
-    <div class="app-title-block">
-      <div class="app-title-main">ORDINI</div>
-      <div class="app-title-accent">GESTIONE ACQUISTI</div>
-    </div>
+    <button class="header-settings" type="button" onclick="go('home');document.getElementById('homeBackup').scrollIntoView({behavior:'smooth',block:'start'})" aria-label="Impostazioni e protezione dati" title="Impostazioni e protezione dati">⚙</button>
   </div>
 </header>
 
 <main>
-<section id="home" class="view active">
-  <div class="eyebrow">Pannello operativo</div>
-  <h1>Ordini</h1>
-  <p class="sub">Crea, riprendi e consulta tutto da un unico punto.</p>
-
-  <div class="action-stack">
-    <button class="primary-action" onclick="newOrder()"><strong>Nuovo ordine</strong><span>Inizia da zero</span></button>
-    <button class="row-action" id="continueBtn" onclick="continueLatest()"><strong>Continua ultimo ordine</strong><span id="continueMeta">Nessuna bozza disponibile</span></button>
+<section id="home" class="view active home-v2 home-v2-refined">
+  <div class="home-overview" aria-label="Riepilogo operativo"><div id="homeMetrics" class="summary-grid"></div></div>
+  <button class="home-new" onclick="newOrder()"><span class="home-new-label"><span class="home-plus">＋</span><strong>Nuovo ordine</strong></span><span class="home-arrow">↗</span></button>
+  <button class="home-continue" id="continueBtn" onclick="continueLatest()"><span><strong>Riprendi una bozza</strong><small id="continueMeta">Nessuna bozza disponibile</small></span><span>›</span></button>
+  <div class="home-operation-label">OPERATIVITÀ</div>
+  <div class="home-shortcuts">
+    <button onclick="go('check')"><span class="home-shortcut-icon">✓</span><span><strong>Verifica consegne</strong><small id="homeCheckLabel">Apri CHECK</small></span><b>›</b></button>
+    <button onclick="go('board')"><span class="home-shortcut-icon">☷</span><span><strong>Bacheca</strong><small id="homeReminderLabel">Promemoria attivi</small></span><b>›</b></button>
+    <button onclick="go('catalog')"><span class="home-shortcut-icon">▦</span><span><strong>Catalogo prodotti</strong><small>Prodotti, categorie e prezzi</small></span><b>›</b></button>
+    <button onclick="go('analysis')"><span class="home-shortcut-icon">▥</span><span><strong>Analisi acquisti</strong><small>Storico ed esportazione Excel</small></span><b>›</b></button>
   </div>
+  <div class="section-head"><h2>Ultimi ordini</h2><button class="link-btn" onclick="go('orders')">Vedi tutti</button></div><div id="homeOrders"></div>
+  <div class="section-head"><h2>Promemoria</h2><button class="link-btn" onclick="go('board')">Vedi tutti</button></div><div id="homeReminders"></div>
+  <div id="homeBackup" class="home-backup"><div class="section-head"><h2>Protezione dati</h2></div><p class="sub">Backup locale dello storico, senza server.</p><div class="actions"><button class="btn blue" onclick="exportLocalBackup()">Esporta backup</button><button class="btn dark" onclick="document.getElementById('backupRestoreFile').click()">Ripristina</button></div><input id="backupRestoreFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreLocalBackup(event)"></div>
+</section>
 
-  <div class="section-head"><h2>Protezione dati</h2></div>
-  <div class="actions" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
-    <button class="btn blue" onclick="exportLocalBackup()">Esporta backup</button>
-    <button class="btn dark" onclick="document.getElementById('backupRestoreFile').click()">Ripristina backup</button>
+<section id="analysis" class="view">
+  <div class="eyebrow">Storico acquisti</div>
+  <h1>Analisi acquisti</h1>
+  <p class="sub">Quantità e importi dagli ordini inviati. Le bozze non vengono conteggiate.</p>
+  <div class="card">
+    <div class="form2">
+      <div class="field"><label>Dal</label><input type="date" id="analysisFrom" onchange="renderAnalysis()"></div>
+      <div class="field"><label>Al</label><input type="date" id="analysisTo" onchange="renderAnalysis()"></div>
+    </div>
+    <div class="field"><label>Categoria</label><select id="analysisCategory" onchange="renderAnalysisPicker()"><option value="">Tutte le categorie</option></select></div>
+    <div class="field"><label>Cerca prodotti da selezionare</label><input id="analysisSearch" class="search" placeholder="Cerca per nome…" oninput="renderAnalysisPicker()"></div>
+    <div class="analysis-picker-actions"><button class="btn dark" onclick="analysisSelectVisible()">Seleziona visibili</button><button class="btn dark" onclick="analysisClearSelection()">Tutti i prodotti</button></div>
+    <div id="analysisPickerCount" class="meta" style="margin:8px 0"></div>
+    <div id="analysisPicker" class="analysis-picker"></div>
+    <div id="analysisSelected" class="analysis-selected"></div>
+    <div class="field"><label>Tipo di esportazione</label><select id="analysisMode"><option value="summary">Riepilogo prodotti</option><option value="detail">Dettaglio ordini</option><option value="both" selected>Riepilogo + dettaglio (due fogli)</option></select></div>
+    <label class="analysis-option"><input type="checkbox" id="analysisDates" checked> Includi le date degli ordini</label>
+    <label class="analysis-option"><input type="checkbox" id="analysisAmounts" checked> Includi prezzi e importi spesi</label>
+    <div style="height:10px"></div>
+    <button class="btn blue full" onclick="exportAnalysisXlsx()">Esporta Excel (.xlsx)</button>
   </div>
-  <input id="backupRestoreFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreLocalBackup(event)">
-  <p class="sub" style="font-size:12px">Backup completo sul dispositivo, senza server. Conserva il file JSON nell’app File.</p>
-
-  <div class="section-head"><h2>Riepilogo</h2></div>
-  <div id="homeMetrics" class="summary-grid"></div>
-
-  <div class="section-head"><h2>Ultimi ordini</h2><button class="link-btn" onclick="go('orders')">Vedi tutti</button></div>
-  <div id="homeOrders"></div>
-
-  <div class="section-head"><h2>Promemoria</h2><button class="link-btn" onclick="go('board')">Vedi tutti</button></div>
-  <div id="homeReminders"></div>
+  <div id="analysisStats" class="summary-grid" style="margin-top:14px"></div>
+  <div class="section-head"><h2>Prodotti ordinati</h2></div>
+  <div id="analysisResults"></div>
 </section>
 
 <section id="editor" class="view">
@@ -638,12 +725,11 @@ header.app-header .app-title-block{
 </section>
 </main>
 
-<nav>
-  <button class="nav active" data-view="home" onclick="go('home')">HOME</button>
-  <button class="nav" data-view="orders" onclick="go('orders')">ORDINI</button>
-  <button class="nav" data-view="check" onclick="go('check')">CHECK</button>
-  <button class="nav" data-view="catalog" onclick="go('catalog')">CATALOGO</button>
-  <button class="nav" data-view="board" onclick="go('board')">BACHECA</button>
+<nav class="v2-bottom-nav" aria-label="Navigazione principale">
+  <button class="nav active" data-view="home" onclick="go('home')"><span class="v2-nav-icon">⌂</span><span>HOME</span></button>
+  <button class="nav" data-view="orders" onclick="go('orders')"><span class="v2-nav-icon">☷</span><span>ORDINI</span></button>
+  <button class="nav" data-view="catalog" onclick="go('catalog')"><span class="v2-nav-icon">▦</span><span>PRODOTTI</span></button>
+  <button class="nav" data-view="analysis" onclick="go('analysis')"><span class="v2-nav-icon">▥</span><span>ANALISI</span></button>
 </nav>
 
 <div id="reminderModal" class="modal"><div class="sheet">
@@ -744,6 +830,7 @@ function go(view){
   if(view==='review')renderReview();
   if(view==='categoryPage')renderCategoryPage();
   if(view==='orders')renderOrders();
+  if(view==='analysis'){initAnalysis();renderAnalysisPicker();}
   if(view==='check')renderChecks();
   if(view==='checkDetail')renderCheckDetail();
   if(view==='catalog')renderProducts();
@@ -766,6 +853,8 @@ function renderHome(){
   const activeRem=reminders.filter(r=>!r.done);
   ensureChecksForSentOrders();
   const openChecks=checks.filter(c=>c.items.length>0);
+  document.getElementById('homeCheckLabel').textContent=openChecks.length+' check aperti';
+  document.getElementById('homeReminderLabel').textContent=activeRem.length+' promemoria attivi';
   document.getElementById('homeMetrics').innerHTML=
     `<div class="metric"><b>${drafts.length}</b><span>Bozze</span></div>
      <div class="metric"><b>${sent.length}</b><span>Inviati</span></div>
@@ -893,6 +982,175 @@ function orderText(o){
 }
 function resetCurrent(){if(confirm('Azzero tutto l’ordine?')){current=blankOrder();go('editor')}}
 function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders()}
+
+/* Analisi acquisti: selezione multi-prodotto trasversale alle categorie. */
+let analysisSelectedKeys=new Set();
+function analysisKey(category,id,name,format,unitCode){
+ return JSON.stringify([String(category||''),String(id||''),String(name||''),String(format||''),String(unitCode||'')]);
+}
+function analysisCatalog(){
+ const m=new Map();
+ for(const p of products){const key=analysisKey(p.category,p.id,p.name,p.format,p.unitCode);m.set(key,{key,name:p.name||'Prodotto senza nome',category:p.category||'SENZA CATEGORIA'});}
+ for(const o of orders){if(o.status==='draft'||!Array.isArray(o.items))continue;for(const i of o.items){
+ const p=products.find(x=>String(x.id)===String(i.id));
+ const cat=i.category||p?.category||'SENZA CATEGORIA',name=i.name||p?.name||'Prodotto senza nome',format=i.format||p?.format||'',unitCode=i.unitCode||p?.unitCode||'';
+ const key=analysisKey(cat,i.id,name,format,unitCode);
+ if(!m.has(key))m.set(key,{key,name,category:cat});
+ }}
+ return [...m.values()].sort((a,b)=>a.category.localeCompare(b.category,'it')||a.name.localeCompare(b.name,'it'));
+}
+function analysisVisible(){
+ const cat=document.getElementById('analysisCategory').value;
+ const q=document.getElementById('analysisSearch').value.trim().toLocaleLowerCase('it');
+ return analysisCatalog().filter(p=>(!cat||p.category===cat)&&(!q||p.name.toLocaleLowerCase('it').includes(q)));
+}
+function renderAnalysisPicker(){
+ const visible=analysisVisible();
+ const picker=document.getElementById('analysisPicker');
+ picker.replaceChildren();
+ for(const p of visible){
+  const label=document.createElement('label');label.className='analysis-picker-row';
+  const check=document.createElement('input');check.type='checkbox';check.checked=analysisSelectedKeys.has(p.key);
+  check.addEventListener('change',()=>{if(check.checked)analysisSelectedKeys.add(p.key);else analysisSelectedKeys.delete(p.key);renderAnalysisPicker();});
+  const text=document.createElement('span');text.textContent=p.name;
+  const cat=document.createElement('small');cat.textContent=p.category;
+  label.append(check,text,cat);picker.append(label);
+ }
+ const count=document.getElementById('analysisPickerCount');
+ count.textContent=analysisSelectedKeys.size?`${analysisSelectedKeys.size} prodotti selezionati · il report include solo questi prodotti`:'Nessun prodotto selezionato · il report include tutti i prodotti';
+ const selected=document.getElementById('analysisSelected');selected.replaceChildren();
+ const byKey=new Map(analysisCatalog().map(x=>[x.key,x]));
+ for(const key of analysisSelectedKeys){const p=byKey.get(key);if(!p)continue;
+  const b=document.createElement('button');b.type='button';b.className='analysis-chip';b.textContent=`${p.name} · ${p.category} ×`;
+  b.onclick=()=>{analysisSelectedKeys.delete(key);renderAnalysisPicker();};selected.append(b);
+ }
+ renderAnalysis();
+}
+function analysisSelectVisible(){for(const p of analysisVisible())analysisSelectedKeys.add(p.key);renderAnalysisPicker();}
+function analysisClearSelection(){analysisSelectedKeys.clear();renderAnalysisPicker();}
+
+function analysisIsoDate(v){return String(v||'').slice(0,10)}
+function analysisData(){
+  const from=document.getElementById('analysisFrom').value;
+  const to=document.getElementById('analysisTo').value;
+  const productById=new Map(products.map(p=>[String(p.id),p]));
+  const rows=[];const includedOrders=new Set();
+  for(const o of orders){
+    if(o.status==='draft'||!Array.isArray(o.items))continue;
+    // Use the original order date: editing must not shift historical purchases.
+    const day=analysisIsoDate(o.createdAt||o.updatedAt);
+    if(!day||(from&&day<from)||(to&&day>to))continue;
+    for(const i of o.items){
+      const qty=Number(i.qty);
+      if(!Number.isFinite(qty)||qty<=0)continue;
+      const product=productById.get(String(i.id));
+      const category=String(i.category||product?.category||'SENZA CATEGORIA');
+      const name=String(i.name||product?.name||'Prodotto senza nome');
+      if(analysisSelectedKeys.size&&!analysisSelectedKeys.has(analysisKey(category,i.id,name,i.format||product?.format||'',i.unitCode||product?.unitCode||'')))continue;
+      const price=(i.price===null||i.price===undefined||i.price==='')?null:Number(i.price);
+      const vat=Number(i.vat??product?.vat??0);
+      const priced=price!==null&&Number.isFinite(price);
+      rows.push({orderId:String(o.id),day,name,category,id:String(i.id||''),format:String(i.format||product?.format||''),unit:String(i.unitCode||product?.unitCode||''),qty,price:priced?price:null,vat:Number.isFinite(vat)?vat:0,net:priced?qty*price:null,gross:priced?qty*price*(1+vat/100):null});
+      includedOrders.add(o.id);
+    }
+  }
+  const grouped=new Map();
+  for(const r of rows){
+    const key=[r.id,r.name,r.format,r.unit].join('|');
+    if(!grouped.has(key))grouped.set(key,{id:r.id,name:r.name,category:r.category,format:r.format,unit:r.unit,qty:0,net:0,gross:0,missing:0,dates:new Set(),orders:new Set()});
+    const a=grouped.get(key);a.qty+=r.qty;a.dates.add(r.day);a.orders.add(r.orderId);
+    if(r.net===null)a.missing++;else{a.net+=r.net;a.gross+=r.gross;}
+  }
+  const summary=[...grouped.values()].sort((a,b)=>a.category.localeCompare(b.category,'it')||a.name.localeCompare(b.name,'it'));
+  return{rows:rows.sort((a,b)=>a.day.localeCompare(b.day)||a.name.localeCompare(b.name,'it')),summary,orders:includedOrders.size};
+}
+function initAnalysis(){
+  const from=document.getElementById('analysisFrom');
+  const to=document.getElementById('analysisTo');
+  if(!to.value)to.value=new Date().toLocaleDateString('en-CA');
+  if(!from.value){const d=new Date();d.setMonth(d.getMonth()-3);from.value=[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+  const select=document.getElementById('analysisCategory');
+  const chosen=select.value;
+  const cats=[...new Set(analysisCatalog().map(p=>p.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'it'));
+  select.innerHTML='<option value="">Tutte le categorie</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+  select.value=cats.includes(chosen)?chosen:'';
+  // Keep the selection across category and search changes.
+}
+function renderAnalysis(){
+  initAnalysis();
+  const from=document.getElementById('analysisFrom').value,to=document.getElementById('analysisTo').value;
+  if(from&&to&&from>to){document.getElementById('analysisStats').innerHTML='';document.getElementById('analysisResults').innerHTML='<div class="empty">La data iniziale deve precedere quella finale.</div>';return;}
+  const d=analysisData();const net=d.summary.reduce((s,x)=>s+x.net,0);
+  const missing=d.summary.reduce((s,x)=>s+x.missing,0);
+  document.getElementById('analysisStats').innerHTML=`<div class="metric"><b>${d.orders}</b><span>Ordini</span></div><div class="metric"><b>${d.summary.length}</b><span>Prodotti distinti</span></div><div class="metric"><b>${euro(net)}</b><span>Spesa netta${missing?' (parziale)':''}</span></div>`;
+  document.getElementById('analysisResults').innerHTML=d.summary.map(x=>`<div class="card"><div class="card-row"><div><div class="card-title">${esc(x.name)}</div><div class="meta">${esc(x.category)} · ${esc(x.format)} · ${esc(unit(x.unit))}</div><div class="meta">${x.orders.size} ordini${x.missing?' · Prezzo mancante in '+x.missing+' righe':''}</div></div><div style="text-align:right"><b>${x.qty} ${esc(x.unit==='CT'?'cartoni':'unità')}</b><div class="meta">${euro(x.net)} netto</div></div></div></div>`).join('')||'<div class="empty">Nessun prodotto ordinato nel periodo selezionato.</div>';
+}
+// Minimal self-contained XLSX writer (ZIP store), works offline on iPhone.
+function xlsxCRC(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return(c^0xffffffff)>>>0;}
+function xlsxZip(entries){
+ const encoder=new TextEncoder(),parts=[],central=[];let offset=0;
+ const u16=n=>[n&255,(n>>>8)&255],u32=n=>[n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255];
+ for(const [name,content] of entries){
+  const filename=encoder.encode(name),data=encoder.encode(content),crc=xlsxCRC(data);
+  const local=new Uint8Array([...u32(0x04034b50),...u16(20),...u16(0),...u16(0),...u16(0),...u16(0),...u32(crc),...u32(data.length),...u32(data.length),...u16(filename.length),...u16(0),...filename]);
+  parts.push(local,data);
+  central.push(new Uint8Array([...u32(0x02014b50),...u16(20),...u16(20),...u16(0),...u16(0),...u16(0),...u16(0),...u32(crc),...u32(data.length),...u32(data.length),...u16(filename.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(offset),...filename]));
+  offset+=local.length+data.length;
+ }
+ const size=central.reduce((s,x)=>s+x.length,0),end=new Uint8Array([...u32(0x06054b50),...u16(0),...u16(0),...u16(central.length),...u16(central.length),...u32(size),...u32(offset),...u16(0)]);
+ return new Blob([...parts,...central,end],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+function xmlEsc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));}
+function excelColumn(n){let s='';while(n){n--;s=String.fromCharCode(65+n%26)+s;n=Math.floor(n/26);}return s;}
+function excelSheet(rows){
+ const cols=Math.max(1,...rows.map(r=>r.length));
+ const data=rows.map((row,i)=>'<row r="'+(i+1)+'">'+row.map((v,j)=>{
+  const ref=excelColumn(j+1)+(i+1);
+  if(v===null||v===undefined)return '';
+  if(typeof v==='number'&&Number.isFinite(v))return `<c r="${ref}" s="${i===0?1:0}"><v>${v}</v></c>`;
+  return `<c r="${ref}" t="inlineStr"${i===0?' s="1"':''}><is><t>${xmlEsc(v)}</t></is></c>`;
+ }).join('')+'</row>').join('');
+ return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><dimension ref="A1:${excelColumn(cols)}${rows.length}"/><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="17"/><sheetData>${data}</sheetData><autoFilter ref="A1:${excelColumn(cols)}${rows.length}"/></worksheet>`;
+}
+function exportAnalysisXlsx(){
+ const from=document.getElementById('analysisFrom').value,to=document.getElementById('analysisTo').value;
+ if(from&&to&&from>to){alert('Intervallo di date non valido.');return;}
+ const d=analysisData();if(!d.rows.length){alert('Nessun acquisto da esportare con questi filtri.');return;}
+ const dates=document.getElementById('analysisDates').checked,amounts=document.getElementById('analysisAmounts').checked,mode=document.getElementById('analysisMode').value;
+ const sheets=[];
+ if(mode!=='detail'){
+  const head=['Categoria','Codice prodotto','Prodotto','Formato','Unità','Quantità totale','N. ordini'];
+  if(dates)head.push('Date ordini');
+  if(amounts)head.push('Spesa netta (€)','Spesa IVA inclusa (€)','Righe senza prezzo');
+  const rows=[head,...d.summary.map(x=>{
+   const r=[x.category,x.id,x.name,x.format,x.unit,x.qty,x.orders.size];
+   if(dates)r.push([...x.dates].sort().join(', '));
+   if(amounts)r.push(Number(x.net.toFixed(2)),Number(x.gross.toFixed(2)),x.missing);
+   return r;
+  })];sheets.push(['Riepilogo prodotti',rows]);
+ }
+ if(mode!=='summary'){
+  const head=['Codice ordine'];if(dates)head.push('Data ordine');
+  head.push('Categoria','Codice prodotto','Prodotto','Formato','Unità','Quantità');
+  if(amounts)head.push('Prezzo unitario netto (€)','IVA %','Importo netto (€)','Importo IVA inclusa (€)');
+  const rows=[head,...d.rows.map(x=>{
+   const r=[x.orderId];if(dates)r.push(x.day);
+   r.push(x.category,x.id,x.name,x.format,x.unit,x.qty);
+   if(amounts)r.push(x.price,x.vat,x.net===null?null:Number(x.net.toFixed(2)),x.gross===null?null:Number(x.gross.toFixed(2)));
+   return r;
+  })];sheets.push(['Dettaglio ordini',rows]);
+ }
+ const files=[['[Content_Types].xml',`<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((_,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}</Types>`],
+ ['_rels/.rels','<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'],
+ ['xl/workbook.xml',`<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${sheets.map((x,i)=>`<sheet name="${xmlEsc(x[0])}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join('')}</sheets></workbook>`],
+ ['xl/_rels/workbook.xml.rels',`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((_,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join('')}<Relationship Id="rId${sheets.length+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`],
+ ['xl/styles.xml','<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Aptos"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Aptos"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF173D67"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/></cellXfs></styleSheet>']];
+ sheets.forEach((x,i)=>files.push([`xl/worksheets/sheet${i+1}.xml`,excelSheet(x[1])]));
+ const blob=xlsxZip(files),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=`DONE_Analisi_Acquisti_${from||'inizio'}_${to||'oggi'}.xlsx`;
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+
 function renderOrders(){
   const q=(document.getElementById('orderSearch')?.value||'').toLowerCase();
   let list=orders.slice().sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
